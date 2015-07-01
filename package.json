@@ -1,0 +1,16 @@
+{
+  "name": "router5.github.io",
+  "version": "0.0.0",
+  "description": "router5 website",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/router5/router5.github.io.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/router5/router5.github.io/issues"
+  },
+  "homepage": "http://router5.github.io"
+}
