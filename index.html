@@ -4,10 +4,85 @@
 
 <head>
     <title>router5 | simple yet powerful routing solution!</title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-    <a href="https://github.com/router5/router5">See it on Github!</a>
+    <header>
+        <nav>
+            <a>Menu</a>
+        </nav>
+    </header>
+
+    <main>
+        Logo here
+
+        <h1>router5 is an HTML5 router, simple but powerful.</h1>
+
+        <blockquote>It favours convention over configuration, and is library / framework agnostic.</blockquote>
+
+        <blockquote>It plays nicely with modern component-based functional frameworks and libraries.</blockquote>
+    </main>
+
+    <section>
+        <blockquote>Router5 is made of several building blocks, each of them embrace the
+        <i>Single Responsability Principle</i>.</blockquote>
+
+        <ul>
+            <li>
+                <a href="https://github.com/troch/path-parser"><strong>path-parser</strong></a>
+
+                PathParser is responsible for parsing paths into tokens (identifying segments, parameters, etc...) so
+                it can match URL fragments or build them with supplied parameters.
+            </li>
+
+            <li>
+                <a href="https://github.com/troch/route-node"><strong>route-node</strong></a>
+
+                RouteNode organises routes in a tree of nested named routes with each of its branch being a valid route. It uses
+                PathParser to quickly find a matching route in a tree, or to build a path from a route name and params.
+            </li>
+
+            <li>
+                <a href="https://github.com/troch/route-node"><strong>router5</strong></a>
+
+                Finally, router5 is the last layer. It adds navigation and history functionalities, using RouteNode
+                to store your application routes.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <blockquote>
+            Helpers are being created for some specifi libraries and frameworks to help reduce boilerplate code.
+        </blockquote>
+
+        <ul>
+            <li>
+                <a href="https://github.com/router5/router5-react"><strong>router5-react</strong></a>
+
+                In progress, currently including a Mixin and a Link component</p>
+            </li>
+
+            <li>
+                <a><strong>router5-deku</strong></a>
+
+                Will be added soon
+            </li>
+
+            <li>
+                <a><strong>Your favourite framework</strong></a>
+
+                You would like router5 to integrate with your favourite framework or library?
+                <a href="https://github.com/router5/router5/issues">Open an issue</a> and say hi!
+            </li>
+    </section>
+
+    <footer>&copy; Thomas Roch | Licence MIT | Contributors | issues</footer>
 </body>
 
 </html>
