@@ -1,17 +1,18 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Open Sans', sans-serif;
     line-height: 1.5rem;
     color: #333;
 }
 
 a {
-    color: #E34F18;
+    color: #E70756;
     text-decoration: none;
 }
-a:hover, a:focus {
+
+a[href]:hover, a[href]:focus {
     text-decoration: underline;
 }
 
@@ -47,6 +48,7 @@ body > header > nav {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1rem;
 }
 
 body > header > nav > a {
@@ -58,9 +60,9 @@ body > header > nav > a {
 body > main {
     background-color: #336699;
     color: white;
-    width: 100%;
+    /*width: 100%;*/
     text-align: center;
-    padding: 1rem 0;
+    padding: 1rem;
 }
 
 body > main > blockquote {
@@ -85,19 +87,12 @@ body > section > ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: row;
 }
 
 body > section > ul > li {
-    flex: 1;
-    padding: 0 1rem 0.75rem;
-    border-left:  1px solid #F1F1F1;
-    border-right: 1px solid #FAFAFA;
+    padding: 0.5rem 1rem 0.75rem;
+    text-align: justify;
 }
-
-body > section > ul > li:first-child { padding-left: 0;  border-left: none; }
-body > section > ul > li:last-child  { padding-right: 0; border-right: none; }
 
 body > section > ul > li > a:first-child {
     display: block;
@@ -110,4 +105,38 @@ body > footer {
     padding: 1rem;
     margin-top: 1rem;
     text-align: center;
+}
+
+code {
+    font-size: 14px;
+    line-height: 1.4em;
+}
+
+@media (min-width: 800px) {
+    body > section > ul {
+        display: flex;
+        flex-direction: row;
+    }
+
+    body > section > ul > li {
+        flex: 1;
+    }
+
+    body > section:not(.no-v-border) > ul > li {
+        border-left:  1px solid #F1F1F1;
+        border-right: 1px solid #FAFAFA;
+    }
+
+    body > section > ul > li:first-child { border-left: none; }
+    body > section > ul > li:last-child  { border-right: none; }
+}
+
+#svgRouteTree svg {
+    display: block;
+    margin: 0 auto;
+}
+
+code.javascript.hljs {
+    background-color: #555;
+    box-shadow: 0 0 4px 2px rgba(85, 85, 85, 0.1);
 }

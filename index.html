@@ -3,12 +3,25 @@
 <html>
 
 <head>
+    <base href="/">
     <title>router5 | simple yet powerful routing solution!</title>
-
+    <!-- Meta -->
+    <meta name="description" content="router5 is an HTML5 router, simple but powerful.">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="router5">
+    <meta name="twitter:description" content="Simple, framework-agnostic, powerful and functional HTML5 routing solution.">
+    <meta name="twitter:creator" content="@tcroch">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="router5">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://router5.github.io">
+    <meta property="og:description" content="Simple, framework-agnostic, powerful and functional HTML5 routing solution.">
+    <!-- Stylsheets -->
     <link rel="stylesheet" href="styles.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai.min.css">
 </head>
 
 <body>
@@ -23,42 +36,129 @@
 
         <h1>router5 is an HTML5 router, simple but powerful.</h1>
 
-        <blockquote>It favours convention over configuration, and is library / framework agnostic.</blockquote>
-
-        <blockquote>It plays nicely with modern component-based functional frameworks and libraries.</blockquote>
+        <p>Download | Install | How to use | IE10+</p>
     </main>
 
     <section>
-        <blockquote>Router5 is made of several building blocks, each of them embrace the
+        <blockquote>Fully featured, easy to use</blockquote>
+
+        <ul>
+            <li>
+                <a><strong>Just a router</strong></a>
+
+                <i>router 5</i> is just a router, nothing else. It won't take care of updating your view,
+                and makes no demands regarding you app structure or how your code is organised.
+            </li>
+
+            <li>
+                <a><strong>Component trees in mind</strong></a>
+
+                <i>router5</i> is built to be framework agnostic, and was designed to provide a more flexible
+                and scalable solution for Single Page Applications routing, especially those made of a
+                component tree.
+            </li>
+
+            <li>
+                <a><strong>Be functional and reactive</strong></a>
+
+                <i>router5</i> exposes simple methods and mechanisms to observe route changes and react to them. You can then use it with your favourite stream implementation or FRP library, use it in a flux-like architecture, etc...
+            </li>
+        </ul>
+    </section>
+
+    <section class="no-v-border">
+        <blockquote>Sounds good? Below is a simple example (click on the nodes)</blockquote>
+
+        <ul>
+            <li id="svgRouteTree">
+                <style>
+                    .node circle {
+                      fill: #fff;
+                      stroke: #336699;
+                      stroke-width: 4px;
+                      cursor: pointer;
+                    }
+
+                    .node {
+                      font-size: 14px;
+                    }
+
+                    .node.active circle {
+                      stroke: rgb(166, 226, 46);
+                    }
+
+                    .node.active.match circle {
+                      fill: rgb(166, 226, 46);
+                      cursor: default;
+                    }
+
+                    .link {
+                      fill: none;
+                      stroke: #ccc;
+                      stroke-width: 2px;
+                    }
+                </style>
+            </li>
+
+            <li>
+                <pre><code class="javascript">// Route definitions
+var router = new Router5()
+    .setOption('useHash', true)
+    // Users
+    .addNode('users',      '/users')
+    .addNode('users.view', '/view/:id')
+    .addNode('users.list', '/list')
+    // Orders
+    .addNode('orders',           '/orders')
+    .addNode('orders.completed', '/completed')
+    .addNode('orders.pending',   '/pending')
+    .addNode('orders.view',      '/details/:id')
+    .start();
+
+function drawGraph() { /* ... */ }
+
+router.addListener(drawGraph);</code></pre>
+
+                <!-- <a class="nav-link" route-name="users">Go to 'users'</a><br/>
+                <a class="nav-link" route-name="users.view" route-params="{'id': 1}">Go to 'users.view'</a><br/>
+                <a class="nav-link" route-name="users.list">Go to 'users.list'</a><br/>
+
+                <a class="nav-link" route-name="orders">Go to 'orders'</a><br/>
+                <a class="nav-link" route-name="orders.view" route-params="{'id': 123}">Go to 'orders.view'</a><br/>
+                <a class="nav-link" route-name="orders.completed">Go to 'orders.completed'</a><br/>
+                <a class="nav-link" route-name="orders.pending">Go to 'orders.pending'</a><br/> -->
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <blockquote>Router5 is made of distinctive building blocks, each of them embrace the
         <i>Single Responsability Principle</i>.</blockquote>
 
         <ul>
             <li>
-                <a href="https://github.com/troch/path-parser"><strong>path-parser</strong></a>
+                <a href="https://github.com/troch/route-node"><strong>router5</strong></a>
 
-                PathParser is responsible for parsing paths into tokens (identifying segments, parameters, etc...) so
-                it can match URL fragments or build them with supplied parameters.
+                router5 is the last layer on top of route-node and path-parser. It adds navigation and history features, using RouteNode to store your application routes.
             </li>
 
             <li>
                 <a href="https://github.com/troch/route-node"><strong>route-node</strong></a>
 
-                RouteNode organises routes in a tree of nested named routes with each of its branch being a valid route. It uses
-                PathParser to quickly find a matching route in a tree, or to build a path from a route name and params.
+                RouteNode organises routes in a tree of nested named routes with each of its branch being a valid route. It uses PathParser to quickly find a matching route in a tree, or to build a path from a route name and params.
             </li>
 
             <li>
-                <a href="https://github.com/troch/route-node"><strong>router5</strong></a>
+                <a href="https://github.com/troch/path-parser"><strong>path-parser</strong></a>
 
-                Finally, router5 is the last layer. It adds navigation and history functionalities, using RouteNode
-                to store your application routes.
+                PathParser is responsible for parsing paths into tokens: it identifies segments, parameters, etc... It can match URL fragments or build them with supplied parameters.
             </li>
         </ul>
     </section>
 
     <section>
         <blockquote>
-            Helpers are being created for some specifi libraries and frameworks to help reduce boilerplate code.
+            Helpers are being created to support the use of router5 with libraries and frameworks out there, to reduce boilerplate code.
         </blockquote>
 
         <ul>
@@ -75,7 +175,7 @@
             </li>
 
             <li>
-                <a><strong>Your favourite framework</strong></a>
+                <a href="https://github.com/router5/router5/issues"><strong>Your favourite framework</strong></a>
 
                 You would like router5 to integrate with your favourite framework or library?
                 <a href="https://github.com/router5/router5/issues">Open an issue</a> and say hi!
@@ -83,6 +183,122 @@
     </section>
 
     <footer>&copy; Thomas Roch | Licence MIT | Contributors | issues</footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+    <script src="/assets/router5.0.0.1-alpha.8.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        // Router
+        var router = new Router5()
+            .setOption('useHash', true)
+            // Users
+            .addNode('users',      '/users')
+            .addNode('users.view', '/view/:id')
+            .addNode('users.list', '/list')
+            // Orders
+            .addNode('orders',           '/orders')
+            .addNode('orders.completed', '/completed')
+            .addNode('orders.pending',   '/pending')
+            .addNode('orders.view',      '/details/:id')
+            .start();
+
+        // Links
+        // Array.prototype.slice
+        //     .call(document.querySelectorAll('a.nav-link'))
+        //     .forEach(function(link) {
+        //         var routeName = link.getAttribute('route-name');
+        //         var routeParams = JSON.parse((link.getAttribute('route-params') || '{}').replace(/'/g, '"'));
+
+        //         link.setAttribute('href', router.buildPath(routeName, routeParams));
+
+        //         link.addEventListener('click', function (evt) {
+        //             evt.preventDefault();
+        //             router.navigate(routeName, routeParams);
+        //         }, false);
+        //     });
+
+        routeNodes = {
+            name: '',
+            children: [
+                {name: 'users', children: [
+                    {name: 'users.view', params: {id: 1}, segmentName: 'view'},
+                    {name: 'users.list', segmentName: 'list'}
+                ]},
+                {name: 'orders', children: [
+                    {name: 'orders.view', params: {id: 'AB45F8'}, segmentName: 'view'},
+                    {name: 'orders.completed', segmentName: 'completed'},
+                    {name: 'orders.pending', segmentName: 'pending'}
+                ]}
+            ]
+        };
+
+        var svg;
+        var height = 380;
+        // Draw graph
+        function drawGraph() {
+            var width = Math.min(500, document.getElementById('svgRouteTree').clientWidth - 40);
+            if (svg) {
+                svg.remove();
+                document.getElementById('svgRouteTree').removeChild(document.querySelector("#svgRouteTree svg"));
+            }
+
+            var cluster = d3.layout.cluster()
+                .size([width, height - 100]);
+
+            var diagonal = d3.svg.diagonal()
+                .projection(function(d) { return [d.x, d.y]; });
+
+            svg = d3.select('#svgRouteTree').append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .append('g')
+                .attr('transform', 'translate(0, 30)');
+
+            var nodes = cluster.nodes(routeNodes),
+                links = cluster.links(nodes);
+
+            var link = svg.selectAll(".link")
+                .data(links)
+                .enter()
+                    .append("path")
+                    .attr("class", "link")
+                    .attr("d", diagonal);
+
+            var node = svg.selectAll(".node")
+                .data(nodes)
+                .enter()
+                    .append("g")
+                    .attr("class", function(d) {
+                        var currentState = router.getState() || {};
+                        if (currentState.name === d.name) return 'node active match';
+                        if (currentState.name && currentState.name.indexOf(d.name) === 0) return 'node active';
+                        return 'node';
+                    })
+                    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+
+            node.append("circle")
+                .attr("r", 10)
+                .on('click', function (d) {
+                    if (d.name) {
+                        router.navigate(d.name, d.params);
+                    }
+                });
+
+            node.append("text")
+                .attr("dx", function(d) { return d.children ? -15 : 0; })
+                .attr("dy", function(d) { return d.children ? 5 : 25; })
+                .style("text-anchor", function(d) { return d.children ? "end" : "middle"; })
+                .text(function(d) { return d.segmentName || d.name; });
+        }
+
+        drawGraph();
+
+        window.addEventListener('resize', drawGraph, false);
+
+        router.addListener(drawGraph);
+    </script>
 </body>
 
 </html>
