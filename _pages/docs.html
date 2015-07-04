@@ -1,24 +1,23 @@
 {% extends "_templates/page.html" %}
 
 {% block body %}
-    <header>
-        <nav>
-            <a href="/">router 5</a>
-
-            <a href="https://github.com/router5/router5" target="_blank">See it on Github</a>
-
-            <a href="">Examples</a>
-        </nav>
-    </header>
+    {% include "_templates/header.html" %}
 
     <aside>
         <nav>
+            <a class="link">Why router5?</a>
+            <a class="link">Getting started</a>
 
+            <strong>Guides</strong>
+
+            <a class="link">Configuring routes</a>
+
+            <strong>API</strong>
         </nav>
     </aside>
 
     <main>
-        Docs
+        {{ article }}
     </main>
 
     {% include "_templates/footer.html" %}
