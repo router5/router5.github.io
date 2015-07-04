@@ -1,0 +1,33 @@
+{% extends "_templates/page.html" %}
+
+{% block body %}
+    <header>
+        <nav>
+            <a href="/">router 5</a>
+
+            <a href="https://github.com/router5/router5" target="_blank">See it on Github</a>
+
+            <a href="">Examples</a>
+        </nav>
+    </header>
+
+    <aside>
+        <nav>
+
+        </nav>
+    </aside>
+
+    <main>
+        Docs
+    </main>
+
+    {% include "_templates/footer.html" %}
+
+    <!-- Scripts -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+    <script src="/assets/router5.0.0.1-alpha.9.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+{% endblock %}

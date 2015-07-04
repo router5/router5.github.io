@@ -2,15 +2,19 @@
   "name": "router5.github.io",
   "version": "0.0.0",
   "description": "router5 website",
-  "scripts": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/router5/router5.github.io.git"
   },
-  "author": "",
+  "author": "Thomas Roch <thomas.c.roch@gmail.com> (http://blog.reactandbethankful.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/router5/router5.github.io/issues"
   },
-  "homepage": "http://router5.github.io"
+  "homepage": "http://router5.github.io",
+  "main": "index.js",
+  "devDependencies": {
+    "async": "^1.3.0",
+    "nunjucks": "^1.3.4"
+  }
 }
