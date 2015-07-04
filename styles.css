@@ -19,7 +19,7 @@ a.link:hover, a.link:hover {
 .btn {
     display: inline-block;
     color: #fff;
-    background-color: #E70756;
+    background-color: #555;
     line-height: 1.5rem;
     font-size: 1rem;
     border: none;
@@ -29,8 +29,8 @@ a.link:hover, a.link:hover {
     font-weight: 600;
 }
 
-.btn:hover {
-    background-color: #555;
+.btn:hover, .btn:focus {
+    background-color: #E70756;
 }
 
 .btn + .btn {

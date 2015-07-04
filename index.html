@@ -77,7 +77,8 @@
             <li>
                 <a><strong>Be functional and reactive</strong></a>
 
-                <i>router5</i> exposes simple methods and mechanisms to observe route changes and react to them. You can then use it with your favourite stream implementation or FRP library, use it in a flux-like architecture, etc...
+                <i>router5</i> exposes simple methods and mechanisms to observe route changes and react to them. You can then use it with your
+                favourite stream implementation, FRP library, in a flux-like architecture, etc...
             </li>
         </ul>
     </section>
@@ -110,8 +111,12 @@
 
                     .link {
                       fill: none;
-                      stroke: #ccc;
-                      stroke-width: 2px;
+                      stroke: #336699;
+                      stroke-width: 3px;
+                    }
+
+                    .link.active {
+                      stroke: rgb(166, 226, 46);
                     }
                 </style>
             </li>
@@ -288,7 +293,11 @@ router.addListener(drawGraph);</code></pre>
                 .data(links)
                 .enter()
                     .append("path")
-                    .attr("class", "link")
+                    .attr("class", function (d) {
+                        var currentState = router.getState() || {};
+                        if (!currentState.name) return "link";
+                        return currentState.name.indexOf(d.target.name) >= 0 && currentState.name.indexOf(d.source.name) >= 0 ? "link active" : "link";
+                    })
                     .attr("d", diagonal);
 
             var node = svg.selectAll(".node")
