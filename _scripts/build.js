@@ -17,15 +17,15 @@ var data = {
     styleSheets: ['styles.css']
 };
 
-function renderPage(page) {
+function renderPage(page, customData) {
     return function (done) {
-        nunjucks.render(path.join(__dirname, '../_pages', page), data, function (err, res) {
+        nunjucks.render(path.join(__dirname, '../_pages', page), objectAssign({}, data, customData), function (err, res) {
             fs.writeFile(path.join(__dirname, '..', page), res, done);
         });
     };
 }
 
-function renderDoc(page) {
+function renderDoc(page, customData) {
     return function (done) {
         fs.readFile(path.join(__dirname, '../_docs', page), function (err, md) {
             if (err) {
@@ -33,7 +33,7 @@ function renderDoc(page) {
                 return;
             }
 
-            var docData = objectAssign({}, data, {
+            var docData = objectAssign({}, data, customData, {
                 styleSheets: ['styles.css', 'docs.css'],
                 article: marked(md.toString())
             });
@@ -46,8 +46,8 @@ function renderDoc(page) {
 }
 
 async.parallel([
-    renderPage('index.html'),
-    renderDoc('why-router5.md'),
+    renderPage('index.html', {home: true}),
+    renderDoc('why-router5.md', {whyRouter5: true}),
 ], function (err, res) {
     if (err) console.log(err);
     process.exit(err ? 1 : 0);

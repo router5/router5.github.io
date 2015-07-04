@@ -11,11 +11,11 @@ to try to tell you more about router5, why I decided to develop an entire new ro
 
 With ES6 gaining every day more traction, observable patterns are becoming increasingly popular. There is also a lot of buzz around FRP
 (Functional Reactive Programming). If you have never heard about FRP, or if you are unfamiliar with it, I recommend reading
-[The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
+[The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754).
 Like an increasing number of developers I see a future for non-monolithic solutions, made of loosely coupled building blocks with FRP gluing the parts
 together.
 
-There is also React, that I started to use. Before React, I have heavily used Angular. I still do, and I'll probably continue to do so with
+I started to use React. Before React, I have heavily used Angular. I still do, and I'll probably continue to do so with
 Angular2. Coming from Angular, I started to look for a routing solution in React and used the most popular one: [react-router](https://github.com/rackt/react-router).
 React-router is a great tool, and it is easy to use: like in [ui-router](https://github.com/angular-ui/ui-router) or ngRoute, I can simply tell it
 what component / view to render on what route.

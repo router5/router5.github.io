@@ -37,8 +37,12 @@ a.link:hover, a.link:hover {
     margin-left: 0.7rem;
 }
 
-h1, h2, h3 {
+h1 {
     font-size: 1.4rem;
+}
+
+h2, h3 {
+    font-size: 1.2rem;
 }
 
 p {
@@ -78,7 +82,9 @@ body > header > nav > a {
     color: white;
 }
 
-body > header > nav > a[href]:hover {
+body > header > nav > a:hover,
+/*body > header > nav > a:focus,*/
+body > header > nav > a.active {
     text-decoration: none;
     background-color: #777;
 }
