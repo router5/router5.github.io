@@ -46,7 +46,7 @@ function renderDoc(dir, page, customData) {
 }
 
 async.parallel([
-    renderPage('index.html', {home: true}),
+    renderPage('index.html', {home: true, router5Version: '0.0.1-alpha.10'}),
     renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
