@@ -28,8 +28,7 @@ __Node.js (CommonJS)__
 Files are available in `/dist/commonjs/`.
 
 ```javascript
-var Router5 = require('router5');
-var Router5 = require('router5');
+var r5 = require('router5');
 
 var Router5   = r5.Router5;
 var RouteNode = r5.RouteNode;

@@ -41,13 +41,28 @@ h2, h3 {
     font-size: 1.2rem;
 }
 
+h2 {
+    margin-top: 1.5rem;
+}
+
 p {
     /*margin: 0;*/
+    text-indent: 0;
 }
 
 blockquote {
     text-align: center;
     margin: 0;
+}
+
+p > code:not(.hljs) {
+    color: #336699;
+    line-height: 1.5rem;
+    font-size: 0.9rem;
+    background-color: #f8f8f8;
+    padding: 0 0.3rem;
+    margin: 0 0.3rem;
+    display: inline-block;
 }
 
 body > header {
