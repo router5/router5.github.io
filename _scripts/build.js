@@ -50,7 +50,8 @@ async.parallel([
     renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
-    renderDoc('_guides', 'navigation.md', {navigation: true, docs: true})
+    renderDoc('_guides', 'navigation.md', {navigation: true, docs: true}),
+    renderDoc('_guides', 'listeners.md', {listeners: true, docs: true})
 ], function (err, res) {
     if (err) console.log(err);
     process.exit(err ? 1 : 0);
