@@ -65,10 +65,3 @@ and focus on navigation, history and triggering listeners.
 
 By only supporting IE10, it means only browsers with HTML5 history are supported. It makes the library lighter by not having to add
 polyfills or fallbacks.
-
-Navigation can be prevented by components through a _canDeactivate_ method, as seen in Angular 2 and Aurelia. Three different type
-of listeners can be triggered:
-
-- `addListener(fn)`: triggered on every route change
-- `addRouteListener(routeName, fn)`: triggered when navigating to `routeName`
-- `addNodeListener(routeName, fn))`: triggered for a re-render from `routeName` (see more explanations [here]())

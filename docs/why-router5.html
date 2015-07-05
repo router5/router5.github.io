@@ -23,11 +23,8 @@
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai.min.css">
-
-    
-        <link rel="stylesheet" href="styles.css">
-    
-        <link rel="stylesheet" href="docs.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="docs.css">
     
 </head>
 
@@ -37,11 +34,11 @@
         <nav>
             <a href="/" class="">Home</a>
 
-            <a href="/why-router5.html" class="active">Why router5?</a>
+            <a href="/docs/why-router5.html" class="active">Why router5?</a>
 
-            <a href="/why-router5.html">Getting started</a>
+            <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/why-router5.html">Docs</a>
+            <a href="/docs/configuring-routes.html" class="">Docs</a>
 
             <a href="/examples.html">Examples</a>
 
@@ -52,12 +49,12 @@
 
     <aside>
         <nav>
-            <a href="/why-router5.html" class="link active">Why router5?</a>
-            <a class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link active">Why router5?</a>
+            <a href="/docs/get-started.html" class="link">Getting started</a>
 
             <strong>Guides</strong>
 
-            <a class="link">Configuring routes</a>
+            <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
 
             <strong>API</strong>
         </nav>
@@ -109,13 +106,6 @@ URLs as well as partially match URLs (going down the tree until a match is found
 and focus on navigation, history and triggering listeners.</p>
 <p>By only supporting IE10, it means only browsers with HTML5 history are supported. It makes the library lighter by not having to add
 polyfills or fallbacks.</p>
-<p>Navigation can be prevented by components through a <em>canDeactivate</em> method, as seen in Angular 2 and Aurelia. Three different type
-of listeners can be triggered:</p>
-<ul>
-<li><code>addListener(fn)</code>: triggered on every route change</li>
-<li><code>addRouteListener(routeName, fn)</code>: triggered when navigating to <code>routeName</code></li>
-<li><code>addNodeListener(routeName, fn))</code>: triggered for a re-render from <code>routeName</code> (see more explanations <a href="">here</a>)</li>
-</ul>
 
     </main>
 

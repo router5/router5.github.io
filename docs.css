@@ -42,8 +42,6 @@ aside + main img {
     margin: 0 auto;
 }
 
-
-
 @media (min-width: 800px) {
     body {
         padding-left: 320px;
@@ -51,6 +49,7 @@ aside + main img {
 
     aside {
         position: fixed;
+        z-index: 1;
         top: 60px;
         width: 300px;
         bottom: 0;

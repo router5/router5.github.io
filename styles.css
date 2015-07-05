@@ -153,6 +153,7 @@ code {
         right: 0;
         height: 60px;
         left: 0;
+        z-index: 2;
     }
 
     body > header > nav {
@@ -199,7 +200,7 @@ code {
     margin: 0 auto;
 }
 
-code.javascript.hljs {
+code.hljs {
     background-color: #555;
     box-shadow: 0 0 4px 2px rgba(85, 85, 85, 0.1);
 }
