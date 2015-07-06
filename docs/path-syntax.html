@@ -74,10 +74,14 @@
 large part of your URL. It is recommended to handle with care and to ONLY use on routes without children.</li>
 <li><code>?param1&amp;param2</code> or <code>?:param1&amp;:param2</code>: query parameters</li>
 </ul>
-<h2 id="optional-parameters">Optional parameters</h2>
-<p>In development.</p>
 <h2 id="constrained-parameters">Constrained parameters</h2>
-<p>In development.</p>
+<p>Url and matrix parameters can be constrained with a regular expression. Backslashes need to be escaped.</p>
+<ul>
+<li><code>:param&lt;\\d+&gt;</code> will match numbers only for parameter param</li>
+<li><code>;id&lt;[a-fA-F0-9]{8}&gt;</code> will match 8 characters hexadecimal strings for parameter id</li>
+</ul>
+<p>Constraints are also applied when building paths: when passing incorrect params to <code>.navigate()</code>,
+an error will be thrown.</p>
 
     </main>
 
