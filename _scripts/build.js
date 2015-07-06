@@ -34,7 +34,11 @@ function renderDoc(dir, page, customData) {
             }
 
             var docData = objectAssign({}, data, customData, {
-                styleSheets: data.styleSheets.concat(['docs.css']),
+                styleSheets: [
+                    '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css',
+                    'styles.css',
+                    'docs.css'
+                ],
                 article: marked(md.toString())
             });
 
@@ -51,7 +55,8 @@ async.parallel([
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
     renderDoc('_guides', 'navigation.md', {navigation: true, docs: true}),
-    renderDoc('_guides', 'listeners.md', {listeners: true, docs: true})
+    renderDoc('_guides', 'listeners.md', {listeners: true, docs: true}),
+    renderDoc('_guides', 'path-syntax.md', {pathSyntax: true, docs: true})
 ], function (err, res) {
     if (err) console.log(err);
     process.exit(err ? 1 : 0);

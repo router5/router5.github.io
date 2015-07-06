@@ -16,9 +16,7 @@ State objects contain the following properties: `name`, `params` and `path`.
 ## Listen to any route change
 
 Listeners registered with `addListener(fn)` will be triggered on any route change, including route reloads (_toState_
-will be equal to _fromState_).
-
-__addListener(fn)__ and __removeListener(fn)__
+will be equal to _fromState_). You can remove a previously added listener by using `removeListener(fn)`.
 
 ```javascript
 function callback(toState, fromState) {

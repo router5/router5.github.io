@@ -54,8 +54,8 @@
 
             <strong>Guides</strong>
 
-            <a href="/docs/configuring-routes.html" class="link active">Configuring routes</a>
-            <a href="/docs/path-syntax.html" class="link">Path syntax</a>
+            <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
+            <a href="/docs/path-syntax.html" class="link active">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
 
@@ -64,65 +64,20 @@
     </aside>
 
     <main>
-        <h1 id="configuring-routes">Configuring routes</h1>
-<p>There are a few ways to add routes to your router.</p>
-<p>You can specifying your routes when creating a router instance and / or use chainable <code>add</code> and <code>addNode</code> functions to add routes.</p>
-<h2 id="router5-constructor">Router5 constructor</h2>
-<p><strong>new Router5(routes, opts)</strong>: routes can be:</p>
+        <h1 id="path-syntax">Path syntax</h1>
+<h2 id="defining-parameters">Defining parameters</h2>
+<p><em>router5</em> uses <a href="https://github.com/troch/path-parser">path-parser</a> for parsing, matching and generating URLs. It supports four parameter types:</p>
 <ul>
-<li>An array of RouteNode objects and plain objects.</li>
-<li>A RouteNode Object or plain object: in that case.</li>
+<li><code>:param</code>: url parameters</li>
+<li><code>;matrix</code>: matrix parameters</li>
+<li><code>*splat</code>: for parameters spanning over multiple segments. Splat parameters are greedy and could swallow a
+large part of your URL. It is recommended to handle with care and to ONLY use on routes without children.</li>
+<li><code>?param1&amp;param2</code> or <code>?:param1&amp;:param2</code>: query parameters</li>
 </ul>
-<p>If passing a RouteNode object (or a plain object), that node will become your router&#39;s root node. All routes added later will
-then extend its path. If you pass to Router5 an array, it will automatically create a rootNode with an empty name and empty path
-(<code>new RouteNode(&#39;&#39;, &#39;&#39;)</code>), which is the recommended way.</p>
-<p>When configuring routes, RouteNode and POJOs can be mixed. The two compulsory information needed to create a route are name and path.
-When nesting routes, they inherit from their parent. For example, a route named <code>b</code> with path <code>/b</code> added as a children of route named
-&#39;a&#39; (path <code>/a</code>) will be named <code>a.b</code> (its path will be <code>/a/b</code>).</p>
-<p><strong>Using RouteNode</strong></p>
-<pre><code class="lang-javascript">var myRouter = new Router5([
-    new RouteNode(&#39;home&#39;, &#39;/home&#39;),
-
-    new RouteNode(&#39;users&#39;, path: &#39;/users&#39;, [
-        new RouteNode(&#39;view&#39;, &#39;/view/:id&#39;),
-        new RouteNode(&#39;list&#39;, &#39;list&#39;),
-    ]}
-]);
-</code></pre>
-<p><strong>Using POJOs</strong></p>
-<pre><code class="lang-javascript">var myRouter = new Router5([
-    new RouteNode(&#39;home&#39;, &#39;/home&#39;),
-
-    {name: &#39;users&#39;, path: &#39;/users&#39;, [
-        {name: &#39;view&#39;, path: &#39;/view/:id&#39;},
-        {name: &#39;list&#39;, path: &#39;/list&#39;},
-    ]}
-]);
-</code></pre>
-<h2 id="adding-routes">Adding routes</h2>
-<p><strong>add(routes)</strong></p>
-<p>Like in Router5 constructor, routes can be a single node (RouteNode or plain object), or a list of nodes.</p>
-<pre><code class="lang-javascript">myRouter.add(new RouteNode(&#39;about&#39;, &#39;/about&#39;));
-// Or
-myRouter.add({name: &#39;about&#39;, path: &#39;/about&#39;});
-// Or
-myRouter.add([
-    new RouteNode(&#39;about&#39;,   &#39;/about&#39;),
-    new RouteNode(&#39;contact&#39;, &#39;/contact&#39;),
-]);
-// Or
-myRouter.add([
-    {name: &#39;about&#39;,   path: &#39;/about&#39;},
-    {name: &#39;contact&#39;, path: &#39;/contact&#39;},
-]);
-</code></pre>
-<p><strong>addNode(name, path)</strong></p>
-<pre><code class="lang-javascript">var rootNode = new RouteNode()
-    .addNode(&#39;home&#39;,       &#39;/home&#39;)
-    .addNode(&#39;users&#39;,      &#39;/users&#39;)
-    .addNode(&#39;users.view&#39;, &#39;/view/:id&#39;)
-    .addNode(&#39;users.list&#39;, &#39;/list&#39;);
-</code></pre>
+<h2 id="optional-parameters">Optional parameters</h2>
+<p>In development.</p>
+<h2 id="constrained-parameters">Constrained parameters</h2>
+<p>In development.</p>
 
     </main>
 

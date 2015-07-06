@@ -22,7 +22,7 @@
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="docs.css">
     
@@ -55,6 +55,7 @@
             <strong>Guides</strong>
 
             <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
+            <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/listeners.html" class="link active">Listeners</a>
 
@@ -75,8 +76,7 @@ add three types of listeners.</p>
 <p>State objects contain the following properties: <code>name</code>, <code>params</code> and <code>path</code>.</p>
 <h2 id="listen-to-any-route-change">Listen to any route change</h2>
 <p>Listeners registered with <code>addListener(fn)</code> will be triggered on any route change, including route reloads (<em>toState</em>
-will be equal to <em>fromState</em>).</p>
-<p><strong>addListener(fn)</strong> and <strong>removeListener(fn)</strong></p>
+will be equal to <em>fromState</em>). You can remove a previously added listener by using <code>removeListener(fn)</code>.</p>
 <pre><code class="lang-javascript">function callback(toState, fromState) {
     renderComponent(toState.name);
 }
