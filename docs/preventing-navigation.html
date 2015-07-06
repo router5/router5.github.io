@@ -58,7 +58,7 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
+            <a href="/docs/preventing-navigation.html" class="link active">Preventing navigation</a>
 
             <strong>API</strong>
         </nav>
@@ -69,8 +69,8 @@
 <p>It is a common case to want to allow / prevent navigation away from a view or component: if a User
 is in the middle of completing a form and data has not been saved, you might want to warn them
 about data being lost or prevent them to leave the current view until data has been saved.</p>
-<h2 id="can-you-deactivate-">Can you deactivate?</h2>
-<p>Like Angular 2 and Aurelia routers, <em>router5</em> will ask active components which are about to be
+<h2 id="can-i-deactivate-">Can I deactivate?</h2>
+<p>Like Angular 2 and Aurelia routers, <em>router5</em> will ask active components which would be
 deactivated by a route change if they can be deactivated. If one of them returns a falsy value,
 transition will be prevented.</p>
 <p><em>router5</em> exposes two methods: <code>registerComponent(name)</code> and <code>deregisterComponent(name)</code> for registering

@@ -5,9 +5,9 @@ is in the middle of completing a form and data has not been saved, you might wan
 about data being lost or prevent them to leave the current view until data has been saved.
 
 
-## Can you deactivate?
+## Can I deactivate?
 
-Like Angular 2 and Aurelia routers, _router5_ will ask active components which are about to be
+Like Angular 2 and Aurelia routers, _router5_ will ask active components which would be
 deactivated by a route change if they can be deactivated. If one of them returns a falsy value,
 transition will be prevented.
 
