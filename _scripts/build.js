@@ -5,6 +5,8 @@ var async          = require('async');
 var marked         = require('marked');
 var objectAssign   = require('object-assign');
 
+var generateApi    = require('./generate-api');
+
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true
@@ -49,15 +51,36 @@ function renderDoc(dir, page, customData) {
     };
 }
 
+function renderApi(done) {
+    generateApi(function (err, doc) {
+        nunjucks.render(path.join(__dirname, '../_pages/api.html'), doc, function (err, docHtml) {
+            var docData = objectAssign({}, data, {
+                styleSheets: [
+                    '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css',
+                    'styles.css',
+                    'docs.css'
+                ],
+                apiRef: true,
+                article: docHtml
+            });
+
+            nunjucks.render(path.join(__dirname, '../_pages/docs.html'), docData, function (err, res) {
+                fs.writeFile(path.join(__dirname, '..', 'docs/api-reference.html'), res, done);
+            });
+        });
+    })
+};
+
 async.parallel([
-    renderPage('index.html', {home: true, router5Version: '0.1.0-rc2'}),
+    renderPage('index.html', {home: true, router5Version: '0.1.0-rc3'}),
     renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
     renderDoc('_guides', 'navigation.md', {navigation: true, docs: true}),
     renderDoc('_guides', 'listeners.md', {listeners: true, docs: true}),
     renderDoc('_guides', 'path-syntax.md', {pathSyntax: true, docs: true}),
-    renderDoc('_guides', 'preventing-navigation.md', {preventNav: true, docs: true})
+    renderDoc('_guides', 'preventing-navigation.md', {preventNav: true, docs: true}),
+    renderApi
 ], function (err, res) {
     if (err) console.log(err);
     process.exit(err ? 1 : 0);

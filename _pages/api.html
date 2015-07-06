@@ -1,0 +1,56 @@
+<h1>{{ class.name }}</h1>
+
+
+<h2>Constructor</h2>
+
+<strong>Params:</strong>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>/
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for param in class.params %}<tr>
+            <td>{{ param.name }}</td>
+            <td>{{ param.type }}</td>
+            <td>{{ param.description }}</td>
+        </tr>{% endfor %}
+    </tbody>
+</table>
+
+<strong>Return:</strong>
+
+
+<h2>Methods</h2>
+
+{% for method in methods %}
+<h3>{{ method.name }}</h3>
+
+<strong>Params:</strong>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for param in method.params %}<tr>
+            <td>{{ param.name }}</td>
+            <td>{{ param.type }}</td>
+            <td>{{ param.description }}</td>
+        </tr>{% endfor %}
+    </tbody>
+</table>
+
+<strong>Return:</strong>
+
+{% endfor %}
