@@ -58,6 +58,7 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/listeners.html" class="link active">Listeners</a>
+            <a href="/docs/preventing-navigation.html" class="link preventNav">Preventing navigation</a>
 
             <strong>API</strong>
         </nav>
@@ -110,8 +111,9 @@ myRouter.navigate(&#39;about&#39;); // =&gt; alerts &#39;You have navigated to a
 is the apex node of a route change, i.e. the lowest node in a tree remaining activated on a route change.</p>
 <p>For example, when navigating from route name <code>A.1.a</code> to <code>A.1.b</code>, node <code>a.1</code> is the <em>apex node</em>. When navigating
 from <code>A.1.a</code> to <code>A.2</code>, <code>A</code> is the <em>apex</em>.</p>
-<p>This type of listeners can be used when using a <strong>component tree</strong> to know from which component a re-render
+<p>This type of listener is useful for <strong>component trees</strong> to know from which component a re-render
 needs to happen. For removing a previously added listner, use <code>removeNodeListener(name, fn)</code>.</p>
+<p><code>addNodeListener(&#39;&#39;, fn)</code> will add a listener for the router&#39;s unamed root node.</p>
 <pre><code class="lang-javascript">var node1 = new RouteNode(&#39;1&#39;, &#39;/1&#39;, [
     new RouteNode(&#39;a&#39;, &#39;/a&#39;)
     new RouteNode(&#39;a&#39;, &#39;/a&#39;)

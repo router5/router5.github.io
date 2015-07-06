@@ -36,9 +36,9 @@
 
             <a href="/docs/why-router5.html" class="">Why router5?</a>
 
-            <a href="/docs/get-started.html" class="active">Get started</a>
+            <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="">Docs</a>
+            <a href="/docs/configuring-routes.html" class="active">Docs</a>
 
             <a href="/examples.html">Examples</a>
 
@@ -50,7 +50,7 @@
     <aside>
         <nav>
             <a href="/docs/why-router5.html" class="link">Why router5?</a>
-            <a href="/docs/get-started.html" class="link active">Getting started</a>
+            <a href="/docs/get-started.html" class="link">Getting started</a>
 
             <strong>Guides</strong>
 
@@ -65,44 +65,27 @@
     </aside>
 
     <main>
-        <h1 id="get-started">Get started</h1>
-<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>AMD</strong>, <strong>CommonJS</strong> and <strong>globals</strong>.</p>
-<p>It can be installed using <strong>npm</strong> or <strong>bower</strong>. Alternatively, you can download a specific version
-from <a href="https://github.com/router5/router5/releases">github</a>. Whether you install <em>router5</em> from npm, bower or github,
-you will have access to the same files.</p>
-<h2 id="installation">Installation</h2>
-<p><strong>Bower</strong></p>
-<pre><code class="lang-sh">bower install router5
-</code></pre>
-<p><strong>npm</strong></p>
-<pre><code class="lang-sh">npm install router5
-</code></pre>
-<h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
-<p><strong>Node.js (CommonJS)</strong></p>
-<p>Files are available in <code>/dist/commonjs/</code>.</p>
-<pre><code class="lang-javascript">var r5 = require(&#39;router5&#39;);
-
-var Router5   = r5.Router5;
-var RouteNode = r5.RouteNode;
-</code></pre>
-<p><strong>Browser (globals)</strong></p>
-<p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/browser/</code>. All <em>router5</em> dependencies (<em>route-node</em> and <em>path-parser</em>)
-are packaged together, and <code>Router5</code> and <code>Router5Node</code> are made globally available.</p>
-<!-- __ES6__
-
-_router5_ and its dependencies are written in ES6 and transpiled to ES5. If you wish to include ES6 sources directly
-in your application, files are located in `/modules`. It is planned to release ES6 sources by default through __jspm__.
-
-For now, ES6 sources can be accessed using `npm`.
-
-```javascript
-import {Router5, RouteNode} from 'router5/dist/es6'
-```
-
-__Univeral Module Loader__
-
-The UMD format (accessible in `/dist/umd`) covers AMD, CommonJS and Globals.
- -->
+        <h1 id="preventing-navigation">Preventing navigation</h1>
+<p>It is a common case to want to allow / prevent navigation away from a view or component: if a User
+is in the middle of completing a form and data has not been saved, you might want to warn them
+about data being lost or prevent them to leave the current view until data has been saved.</p>
+<h2 id="can-you-deactivate-">Can you deactivate?</h2>
+<p>Like Angular 2 and Aurelia routers, <em>router5</em> will ask active components which are about to be
+deactivated by a route change if they can be deactivated. If one of them returns a falsy value,
+transition will be prevented.</p>
+<p><em>router5</em> exposes two methods: <code>registerComponent(name)</code> and <code>deregisterComponent(name)</code> for registering
+active components. If a registered component has a <code>canDeactivate(toState, fromState)</code> method, it will
+be invoked when trying to transition to a new route. Only one component per route segment can be registered
+at a time.</p>
+<p><code>canDeactivate</code> methods are invoked from bottom to top. If a User is navigating from route <code>A.1.a</code> to route <code>B</code>,
+<em>router5</em> will query registered components for segment <code>A.1.a</code>, then <code>A.1</code>, then <code>A</code>.</p>
+<h2 id="what-about-popstate-">What about popstate?</h2>
+<p>Popstate events cannot be prevented or reversed. In the event current route deactivation is blocked by
+a component, the non-deactivated state will be pushed again to the page history.</p>
+<h2 id="asynchronous-deactivation">Asynchronous deactivation</h2>
+<p>Currently, only <code>canDeactivate</code> functions returning synchronously a truthy or falsy result are supported.
+Support for promises will be added later, and better solutions regarding <em>popstate</em> events will
+be explored.</p>
 
     </main>
 

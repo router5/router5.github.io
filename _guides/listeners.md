@@ -62,8 +62,10 @@ is the apex node of a route change, i.e. the lowest node in a tree remaining act
 For example, when navigating from route name `A.1.a` to `A.1.b`, node `a.1` is the _apex node_. When navigating
 from `A.1.a` to `A.2`, `A` is the _apex_.
 
-This type of listeners can be used when using a __component tree__ to know from which component a re-render
+This type of listener is useful for __component trees__ to know from which component a re-render
 needs to happen. For removing a previously added listner, use `removeNodeListener(name, fn)`.
+
+`addNodeListener('', fn)` will add a listener for the router's unamed root node.
 
 ```javascript
 var node1 = new RouteNode('1', '/1', [

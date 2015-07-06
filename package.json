@@ -2,6 +2,9 @@
   "name": "router5.github.io",
   "version": "0.0.0",
   "description": "router5 website",
+  "scripts": {
+    "build": "node _scripts/build.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/router5/router5.github.io.git"
