@@ -7,7 +7,15 @@ You can specifying your routes when creating a router instance and / or use chai
 
 ## Router5 constructor
 
-__new Router5(routes, opts)__: routes can be:
+__new Router5(routes, opts)__:
+
+List of __options__ supported:
+
+- `useHash`: `true` or `false`. If `true`, a hash will be prepended to the route path.
+- `defaultRoute`: the default route, see [navigation guide](/docs/navigation.html).
+- `defaultParams`: the default route params.
+
+__Routes__ can be:
 
 - An array of RouteNode objects and plain objects.
 - A RouteNode Object or plain object: in that case.

@@ -75,7 +75,14 @@
 <p>There are a few ways to add routes to your router.</p>
 <p>You can specifying your routes when creating a router instance and / or use chainable <code>add</code> and <code>addNode</code> functions to add routes.</p>
 <h2 id="router5-constructor">Router5 constructor</h2>
-<p><strong>new Router5(routes, opts)</strong>: routes can be:</p>
+<p><strong>new Router5(routes, opts)</strong>:</p>
+<p>List of <strong>options</strong> supported:</p>
+<ul>
+<li><code>useHash</code>: <code>true</code> or <code>false</code>. If <code>true</code>, a hash will be prepended to the route path.</li>
+<li><code>defaultRoute</code>: the default route, see <a href="/docs/navigation.html">navigation guide</a>.</li>
+<li><code>defaultParams</code>: the default route params.</li>
+</ul>
+<p><strong>Routes</strong> can be:</p>
 <ul>
 <li>An array of RouteNode objects and plain objects.</li>
 <li>A RouteNode Object or plain object: in that case.</li>
