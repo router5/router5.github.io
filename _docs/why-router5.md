@@ -7,18 +7,14 @@ It is not always easy to see the potential of something straight away, or unders
 to try to tell you more about router5, why I decided to develop an entire new routing solution, and what problems it tries to solve.
 
 
-## The raise of Functional Reactive Programming
+## The raise of reactive programming
 
-With ES6 gaining every day more traction, observable patterns are becoming increasingly popular. There is also a lot of buzz around FRP
-(Functional Reactive Programming). If you have never heard about FRP, or if you are unfamiliar with it, I recommend reading
-[The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754).
-Like an increasing number of developers I see a future for non-monolithic solutions, made of loosely coupled building blocks with FRP gluing the parts
-together.
+Observable patterns are becoming increasingly popular, with both ES6 and FRP (Functional Reactive Programming)
+getting more traction everyday. If you have never heard about FRP, or if you are unfamiliar with it,
+I recommend reading [the introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754).
 
-I started to use React. Before React, I have heavily used Angular. I still do, and I'll probably continue to do so with
-Angular2. Coming from Angular, I started to look for a routing solution in React and used the most popular one: [react-router](https://github.com/rackt/react-router).
-React-router is a great tool, and it is easy to use: like in [ui-router](https://github.com/angular-ui/ui-router) or ngRoute, I can simply tell it
-what component / view to render on what route.
+Like an increasing number of developers I see a future for non-monolithic front-end development solutions, made of loosely coupled building blocks glued together by FRP. I started to use React. Before React, I have heavily used Angular. I still do, and I'll probably continue to do so with Angular2. Coming from Angular, I started to look for a routing solution in React and used the most popular one: [react-router](https://github.com/rackt/react-router).
+React-router is a great tool, and it is easy to use: like in [ui-router](https://github.com/angular-ui/ui-router) or ngRoute, I can simply tell it what component / view to render for each route.
 
 With FRP and Flux-like architectures, I became increasingly keen on using more observables and observers in my application.
 Very soon, I found my application disjointed: using nice observable patterns for data with sideways data loading, but giving away control on routing.
