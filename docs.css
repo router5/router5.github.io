@@ -68,6 +68,10 @@ table.params-table {
     border: 1px solid #eee;
 }
 
+table.params-table code {
+    white-space: nowrap;
+}
+
 table.params-table + table.params-table {
     margin-top: 1.5rem;
 }
