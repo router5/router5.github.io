@@ -72,7 +72,13 @@ table.params-table + table.params-table {
     margin-top: 1.5rem;
 }
 
-table.params-table * {
+table.params-table,
+table.params-table > thead,
+table.params-table > thead > tr,
+table.params-table > thead > tr > th,
+table.params-table > tbody,
+table.params-table > tbody > tr,
+table.params-table > tbody > tr > td {
     display: block;
 }
 
@@ -89,7 +95,14 @@ table.params-table > tbody.return > tr > td > code {
 }
 
 table.params-table > thead:first-child > tr:first-child > th {
+    font-weight: normal;
+    font-size: 0.85rem;
+}
+
+table.params-table > thead:first-child > tr:first-child > th > strong {
     color: #336699;
+    display: block;
+    font-size: 1rem;
 }
 
 table.params-table > tbody > tr {

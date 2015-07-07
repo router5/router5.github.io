@@ -60,7 +60,7 @@ module.exports = function (done) {
             .map(function (block, index) {
                 var block = {
                     name: block.context.name,
-                    description: block.comment.description,
+                    description: block.comment.description.replace(/(<p>|<\/p>)/g, '').trim(),
                     params: block.comment.tags.filter(filterTagByType('param')).map(normalizeParams),
                     returns: block.comment.tags.filter(filterTagByType('return')).map(normalizeParams)
                 };

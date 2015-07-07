@@ -116,7 +116,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.setOption(opt, val)</th>
+            <th colspan="3">
+                <strong>router5.setOption(opt, val)</strong>
+                Set an option value
+            </th>
         </tr>
 
         <tr>
@@ -148,7 +151,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.add(routes)</th>
+            <th colspan="3">
+                <strong>router5.add(routes)</strong>
+                Add route(s)
+            </th>
         </tr>
 
         <tr>
@@ -176,7 +182,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.addNode(name, path)</th>
+            <th colspan="3">
+                <strong>router5.addNode(name, path)</strong>
+                Add a route to the router.
+            </th>
         </tr>
 
         <tr>
@@ -208,7 +217,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.start()</th>
+            <th colspan="3">
+                <strong>router5.start()</strong>
+                Start the router
+            </th>
         </tr>
 
         
@@ -228,7 +240,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.stop()</th>
+            <th colspan="3">
+                <strong>router5.stop()</strong>
+                Stop the router
+            </th>
         </tr>
 
         
@@ -248,7 +263,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.getState()</th>
+            <th colspan="3">
+                <strong>router5.getState()</strong>
+                Return the current state object
+            </th>
         </tr>
 
         
@@ -268,7 +286,45 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.registerComponent(name, component)</th>
+            <th colspan="3">
+                <strong>router5.isActive(name, params)</strong>
+                Whether or not the given route name with specified params is active.
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr><tr>
+            <td><strong>params</strong></td>
+            <td><code>Object={}</code></td>
+            <td>The route parameters</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.registerComponent(name, component)</strong>
+                Register an active component for a specific route segment
+            </th>
         </tr>
 
         <tr>
@@ -300,7 +356,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.deregisterComponent(name)</th>
+            <th colspan="3">
+                <strong>router5.deregisterComponent(name)</strong>
+                Deregister an active component
+            </th>
         </tr>
 
         <tr>
@@ -328,7 +387,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.addListener(cb)</th>
+            <th colspan="3">
+                <strong>router5.addListener(cb)</strong>
+                Add a route change listener
+            </th>
         </tr>
 
         <tr>
@@ -356,7 +418,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.removeListener(cb)</th>
+            <th colspan="3">
+                <strong>router5.removeListener(cb)</strong>
+                Remove a route change listener
+            </th>
         </tr>
 
         <tr>
@@ -384,7 +449,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.addNodeListener(name, cb)</th>
+            <th colspan="3">
+                <strong>router5.addNodeListener(name, cb)</strong>
+                Add a node change listener
+            </th>
         </tr>
 
         <tr>
@@ -416,7 +484,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.removeNodeListener(name, cb)</th>
+            <th colspan="3">
+                <strong>router5.removeNodeListener(name, cb)</strong>
+                Remove a node change listener
+            </th>
         </tr>
 
         <tr>
@@ -448,7 +519,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.addRouteListener(name, cb)</th>
+            <th colspan="3">
+                <strong>router5.addRouteListener(name, cb)</strong>
+                Add a route change listener
+            </th>
         </tr>
 
         <tr>
@@ -480,7 +554,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.removeRouteListener(name, cb)</th>
+            <th colspan="3">
+                <strong>router5.removeRouteListener(name, cb)</strong>
+                Remove a route change listener
+            </th>
         </tr>
 
         <tr>
@@ -512,7 +589,11 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.buildPath(route, params)</th>
+            <th colspan="3">
+                <strong>router5.buildPath(route, params)</strong>
+                Generates a path from a route name and route params.
+The generated URL will be prefixed by
+            </th>
         </tr>
 
         <tr>
@@ -544,7 +625,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.matchPath(path)</th>
+            <th colspan="3">
+                <strong>router5.matchPath(path)</strong>
+                Match a path against the route tree.
+            </th>
         </tr>
 
         <tr>
@@ -572,7 +656,10 @@
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3">router5.navigate(name, params, opts)</th>
+            <th colspan="3">
+                <strong>router5.navigate(name, params, opts)</strong>
+                Navigate to a specific route
+            </th>
         </tr>
 
         <tr>
