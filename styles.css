@@ -37,12 +37,13 @@ h1 {
     font-size: 1.4rem;
 }
 
-h2, h3 {
+h2 {
     font-size: 1.2rem;
+    margin-top: 1.5rem;
 }
 
-h2 {
-    margin-top: 1.5rem;
+h3 {
+    font-size: 1rem;
 }
 
 p {
@@ -56,7 +57,8 @@ blockquote {
 }
 
 p > code,
-li > code {
+li > code,
+td > code {
     color: #336699;
     line-height: 1.5rem;
     font-size: 0.9rem;
@@ -69,6 +71,7 @@ li > code {
 body > header {
     background-color: #555;
     color: white;
+    font-size: 0.9rem;
     box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
 

@@ -74,480 +74,534 @@
 
 <h2>Constructor</h2>
 
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>/
-            <th>Description</th>
+            <th colspan="3">Router5(routes, opts)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
-        
+        <tr>
+            <td><strong>routes</strong></td>
+            <td><code>RouteNode[]</code><code>Object[]</code><code>RouteNode</code><code>Object</code></td>
+            <td>The router routes</td>
+        </tr><tr>
+            <td><strong>opts</strong></td>
+            <td><code>Object={}</code></td>
+            <td>The router options</td>
+        </tr>
+    </tbody>
+
+    
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
     </tbody>
 </table>
-
-<strong>Return:</strong>
 
 
 <h2>Methods</h2>
 
 
-<h3>setOption</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.setOption(opt, val)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>opt</td>
-            <td>String</td>
+            <td><strong>opt</strong></td>
+            <td><code>String</code></td>
             <td>The option to set</td>
         </tr><tr>
-            <td>val</td>
-            <td>AllLiteral</td>
+            <td><strong>val</strong></td>
+            <td><code>*</code></td>
             <td>The option value</td>
         </tr>
     </tbody>
-</table>
 
-<strong>Return:</strong>
-
-
-<h3>add</h3>
-
-<strong>Params:</strong>
-
-<table>
-    <thead>
+    <tbody class="return">
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
         </tr>
-    </thead>
-
-    <tbody>
-        
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>addNode</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.add(routes)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>name</td>
-            <td>String</td>
+            <td><strong>routes</strong></td>
+            <td><code>RouteNode[]</code><code>Object[]</code><code>RouteNode</code><code>Object</code></td>
+            <td>Route(s) to add</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">router5.addNode(name, path)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
             <td>The route name</td>
         </tr><tr>
-            <td>path</td>
-            <td>String</td>
+            <td><strong>path</strong></td>
+            <td><code>String</code></td>
             <td>The route path</td>
         </tr>
     </tbody>
-</table>
 
-<strong>Return:</strong>
-
-
-<h3>start</h3>
-
-<strong>Params:</strong>
-
-<table>
-    <thead>
+    <tbody class="return">
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
         </tr>
-    </thead>
-
-    <tbody>
-        
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>stop</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.start()</th>
         </tr>
+
+        
     </thead>
 
-    <tbody>
-        
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>getState</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.stop()</th>
         </tr>
+
+        
     </thead>
 
-    <tbody>
-        
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>registerComponent</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.getState()</th>
+        </tr>
+
+        
+    </thead>
+
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">router5.registerComponent(name, component)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>name</td>
-            <td>String</td>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
             <td>The route segment full name</td>
         </tr><tr>
-            <td>component</td>
-            <td>Object</td>
+            <td><strong>component</strong></td>
+            <td><code>Object</code></td>
             <td>The component instance</td>
         </tr>
     </tbody>
-</table>
 
-<strong>Return:</strong>
-
-
-<h3>deregisterComponent</h3>
-
-<strong>Params:</strong>
-
-<table>
-    <thead>
+    <tbody class="return">
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>name</td>
-            <td>String</td>
-            <td>The route segment full name</td>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
         </tr>
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>addListener</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.deregisterComponent(name)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>cb</td>
-            <td>Function</td>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route segment full name</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">router5.addListener(cb)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
             <td>The listener to add</td>
         </tr>
     </tbody>
-</table>
 
-<strong>Return:</strong>
-
-
-<h3>removeListener</h3>
-
-<strong>Params:</strong>
-
-<table>
-    <thead>
+    <tbody class="return">
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>cb</td>
-            <td>Function</td>
-            <td>The listener to remove</td>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
         </tr>
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>addNodeListener</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.removeListener(cb)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>name</td>
-            <td>String</td>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The listener to remove</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">router5.addNodeListener(name, cb)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
             <td>The route segment full name</td>
         </tr><tr>
-            <td>cb</td>
-            <td>Function</td>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
             <td>The listener to add</td>
         </tr>
     </tbody>
-</table>
 
-<strong>Return:</strong>
-
-
-<h3>removeNodeListener</h3>
-
-<strong>Params:</strong>
-
-<table>
-    <thead>
+    <tbody class="return">
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>name</td>
-            <td>String</td>
-            <td>The route segment full name</td>
-        </tr><tr>
-            <td>cb</td>
-            <td>Function</td>
-            <td>The listener to remove</td>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
         </tr>
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>addRouteListener</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.removeNodeListener(name, cb)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>name</td>
-            <td>String</td>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route segment full name</td>
+        </tr><tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The listener to remove</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">router5.addRouteListener(name, cb)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
             <td>The route name to listen to</td>
         </tr><tr>
-            <td>cb</td>
-            <td>Function</td>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
             <td>The listener to add</td>
         </tr>
     </tbody>
-</table>
 
-<strong>Return:</strong>
-
-
-<h3>removeRouteListener</h3>
-
-<strong>Params:</strong>
-
-<table>
-    <thead>
+    <tbody class="return">
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>name</td>
-            <td>String</td>
-            <td>The route name to listen to</td>
-        </tr><tr>
-            <td>cb</td>
-            <td>Function</td>
-            <td>The listener to remove</td>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
         </tr>
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>buildPath</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.removeRouteListener(name, cb)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>route</td>
-            <td>String</td>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route name to listen to</td>
+        </tr><tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The listener to remove</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">router5.buildPath(route, params)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>route</strong></td>
+            <td><code>String</code></td>
             <td>The route name</td>
         </tr><tr>
-            <td>params</td>
-            <td>Object</td>
+            <td><strong>params</strong></td>
+            <td><code>Object</code></td>
             <td>The route params (key-value pairs)</td>
         </tr>
     </tbody>
-</table>
 
-<strong>Return:</strong>
-
-
-<h3>matchPath</h3>
-
-<strong>Params:</strong>
-
-<table>
-    <thead>
+    <tbody class="return">
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td>path</td>
-            <td>String</td>
-            <td>The path / URL to match</td>
-        </tr><tr>
-            <td>The</td>
-            <td>Object</td>
-            <td>matched state object (null if no match)</td>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
         </tr>
     </tbody>
 </table>
 
-<strong>Return:</strong>
-
-
-<h3>navigate</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">router5.matchPath(path)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td>name</td>
-            <td>String</td>
+            <td><strong>path</strong></td>
+            <td><code>String</code></td>
+            <td>The path / URL to match</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">router5.navigate(name, params, opts)</th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
             <td>The route name</td>
         </tr><tr>
-            <td>params</td>
-            <td>Object</td>
+            <td><strong>params</strong></td>
+            <td><code>Object={}</code></td>
             <td>The route params</td>
         </tr><tr>
-            <td>opts</td>
-            <td>Object</td>
+            <td><strong>opts</strong></td>
+            <td><code>Object={}</code></td>
             <td>The route options (replace, reload)</td>
         </tr>
     </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
 </table>
-
-<strong>Return:</strong>
-
 
 
     </main>

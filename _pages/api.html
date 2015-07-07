@@ -3,54 +3,64 @@
 
 <h2>Constructor</h2>
 
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>/
-            <th>Description</th>
+            <th colspan="3">{{ class.signature }}</th>
         </tr>
+
+        {% if class.params.length %}<tr>
+            <th colspan="3">Params</th>
+        </tr>{% endif %}
     </thead>
 
-    <tbody>
+    {% if class.params.length %}<tbody>
         {% for param in class.params %}<tr>
-            <td>{{ param.name }}</td>
-            <td>{{ param.type }}</td>
+            <td><strong>{{ param.name }}</strong></td>
+            <td>{% for type in param.type %}<code>{{ type }}</code>{% endfor %}</td>
             <td>{{ param.description }}</td>
         </tr>{% endfor %}
-    </tbody>
-</table>
+    </tbody>{% endif %}
 
-<strong>Return:</strong>
+    {% if class.returns.length %}
+    <tbody class="return">
+        {% for param in class.returns %}<tr>
+            <td><strong>Return</strong></td>
+            <td>{% for type in param.type %}<code>{{ type }}</code>{% endfor %}</td>
+            <td>{{ param.description }}</td>
+        </tr>{% endfor %}
+    </tbody>{% endif %}
+</table>
 
 
 <h2>Methods</h2>
 
 {% for method in methods %}
-<h3>{{ method.name }}</h3>
-
-<strong>Params:</strong>
-
-<table>
+<table class="params-table">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
+            <th colspan="3">{{ method.signature }}</th>
         </tr>
+
+        {% if method.params.length %}<tr>
+            <th colspan="3">Params</th>
+        </tr>{% endif %}
     </thead>
 
-    <tbody>
+    {% if method.params.length %}<tbody>
         {% for param in method.params %}<tr>
-            <td>{{ param.name }}</td>
-            <td>{{ param.type }}</td>
+            <td><strong>{{ param.name }}</strong></td>
+            <td>{% for type in param.type %}<code>{{ type }}</code>{% endfor %}</td>
             <td>{{ param.description }}</td>
         </tr>{% endfor %}
-    </tbody>
+    </tbody>{% endif %}
+
+    {% if class.returns.length %}<tbody class="return">
+        {% for param in class.returns %}<tr>
+            <td><strong>Return</strong></td>
+            <td>{% for type in param.type %}<code>{{ type }}</code>{% endfor %}</td>
+            <td>{{ param.description }}</td>
+        </tr>{% endfor %}
+    </tbody>{% endif %}
 </table>
-
-<strong>Return:</strong>
-
 {% endfor %}
