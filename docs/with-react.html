@@ -23,8 +23,9 @@
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="docs.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/docs.css">
+    <link rel="stylesheet" href="/styles/examples.css">
     
 </head>
 
@@ -38,11 +39,11 @@
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
+            <a href="/docs/configuring-routes.html" class="">Guides</a>
 
             <a href="/docs/api-reference.html" class="">API</a>
 
-            <!-- <a href="/examples.html">Examples</a> -->
+            <a href="docs/with-react.html" class="active">Examples</a>
 
             <a href="https://github.com/router5/router5" target="_blank">See it on Github</a>
         </nav>
@@ -74,6 +75,10 @@
 
     <main>
         <h1 id="router5-with-react">Router5 with React</h1>
+<h2 id="example">Example</h2>
+<p>View the source <a href="https://github.com/router5/router5.github.io/blob/master/assets/router5-react-example.js">on GitHub</a></p>
+<div id="reactExample"></div>
+
 <h2 id="router5-react">router5-react</h2>
 <ul>
 <li><code>bower install router5-react</code></li>
@@ -81,11 +86,9 @@
 </ul>
 <p>Contains</p>
 <ul>
-<li>A link factory</li>
-<li>A mixin factory</li>
+<li>A link factory to create a <code>Link</code> function</li>
+<li>A mixin factory to create a <code>SegmentMixin</code> mixin</li>
 </ul>
-<h2 id="example">Example</h2>
-<div id="reactExample"></div>
 
     </main>
 
@@ -109,9 +112,13 @@
     <!-- Scripts -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script src="/assets/router5.0.0.1-alpha.9.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="/assets/router5.0.1.0-rc.5.min.js"></script>
+    <script src="/assets/router5-react.0.1.0-alpha.5.min.js"></script>
+    <script src="/assets/router5-react-example.js"></script>
+    
 
 
     <!-- Script files -->

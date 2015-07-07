@@ -35,8 +35,9 @@
     <!-- Scripts -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script src="/assets/router5.0.0.1-alpha.9.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    {% for script in scripts %}<script src="{{script}}"></script>
+    {% endfor %}
 
 {% endblock %}

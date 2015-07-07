@@ -1,5 +1,10 @@
 # Router5 with React
 
+## Example
+
+View the source [on GitHub](https://github.com/router5/router5.github.io/blob/master/assets/router5-react-example.js)
+
+<div id="reactExample"></div>
 
 ## router5-react
 
@@ -8,10 +13,6 @@
 
 Contains
 
-- A link factory
-- A mixin factory
+- A link factory to create a `Link` function
+- A mixin factory to create a `SegmentMixin` mixin
 
-
-## Example
-
-<div id="reactExample"></div>

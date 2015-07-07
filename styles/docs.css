@@ -1,44 +1,44 @@
-aside {
+body > aside {
     padding-top: 1.75rem;
     background-color: #f5f5f5;
     padding: 1rem 0;
     font-size: 0.9rem;
 }
 
-aside > nav > strong,
-aside > nav > a {
+body > aside > nav > strong,
+body > aside > nav > a {
     display: block;
     font-weight: 600;
 }
 
-aside > nav > a.link {
+body > aside > nav > a.link {
     color: inherit;
     padding: 0.2rem 1rem;
 }
 
-aside > nav > a.link:hover,
-aside > nav > a.link:focus,
-aside > nav > a.link.active {
+body > aside > nav > a.link:hover,
+body > aside > nav > a.link:focus,
+body > aside > nav > a.link.active {
     color: #E70756;
 }
 
-aside > nav > strong {
+body > aside > nav > strong {
     text-transform: uppercase;
     color: #336699;
     margin-top: 1rem;
     padding: 0.5rem 1rem;
 }
 
-aside + main {
+body > aside + main {
     padding: 1rem 2.5rem 1rem 1.5rem;
     max-width: 900px;
 }
 
-aside + main > p {
+body > aside + main > p {
     text-align: justify;
 }
 
-aside + main img {
+body > aside + main img {
     display: block;
     margin: 0 auto;
 }
@@ -48,7 +48,7 @@ aside + main img {
         padding-left: 320px;
     }
 
-    aside {
+    body > aside {
         position: fixed;
         z-index: 1;
         top: 60px;

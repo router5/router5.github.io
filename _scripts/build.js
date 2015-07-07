@@ -16,7 +16,7 @@ var env = nunjucks.configure(path.join(__dirname, '../'), {watch: false});
 
 var data = {
     pageTitle: 'router5 docs | simple yet powerful routing solution!',
-    styleSheets: ['//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai.min.css', 'styles.css']
+    styleSheets: ['//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai.min.css', '/styles/main.css']
 };
 
 function renderPage(page, customData) {
@@ -38,8 +38,9 @@ function renderDoc(dir, page, customData) {
             var docData = objectAssign({}, data, customData, {
                 styleSheets: [
                     '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css',
-                    'styles.css',
-                    'docs.css'
+                    '/styles/main.css',
+                    '/styles/docs.css',
+                    '/styles/examples.css'
                 ],
                 article: marked(md.toString())
             });
@@ -57,8 +58,8 @@ function renderApi(done) {
             var docData = objectAssign({}, data, {
                 styleSheets: [
                     '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css',
-                    'styles.css',
-                    'docs.css'
+                    '/styles/main.css',
+                    '/styles/docs.css'
                 ],
                 apiRef: true,
                 article: docHtml
@@ -72,7 +73,7 @@ function renderApi(done) {
 };
 
 async.parallel([
-    renderPage('index.html', {home: true, router5Version: '0.1.0-rc.4'}),
+    renderPage('index.html', {home: true, router5Version: '0.1.0-rc.5'}),
     renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
@@ -81,7 +82,12 @@ async.parallel([
     renderDoc('_guides', 'path-syntax.md', {pathSyntax: true, docs: true}),
     renderDoc('_guides', 'preventing-navigation.md', {preventNav: true, docs: true}),
     renderApi,
-    renderDoc('_docs', 'with-react.md', {react: true, docs: true})
+    renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
+        'https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js',
+        '/assets/router5.0.1.0-rc.5.min.js',
+        '/assets/router5-react.0.1.0-alpha.5.min.js',
+        '/assets/router5-react-example.js'
+    ]})
 ], function (err, res) {
     if (err) console.log(err);
     process.exit(err ? 1 : 0);
