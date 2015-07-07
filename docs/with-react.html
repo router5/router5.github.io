@@ -58,7 +58,7 @@
 
             <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
-            <a href="/docs/navigation.html" class="link active">Navigation</a>
+            <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
 
@@ -68,56 +68,24 @@
 
             <strong>Integration</strong>
 
-            <a href="/docs/with-react.html" class="link">With React</a>
+            <a href="/docs/with-react.html" class="link active">With React</a>
         </nav>
     </aside>
 
     <main>
-        <h1 id="navigation">Navigation</h1>
-<p>After configuring your routes, you need to <em>enable navigation</em>.</p>
-<h2 id="starting-your-router">Starting your router</h2>
-<pre><code class="lang-javascript">var myRouter = Router5()
-    .addNode(&#39;home&#39;, &#39;/home&#39;)
-    .addNode(&#39;about&#39;, &#39;/about&#39;)
-    .addNode(&#39;contact&#39;, &#39;/contact&#39;)
-    .start();
-</code></pre>
-<p>Invoking the <code>start</code> function will:</p>
+        <h1 id="router5-with-react">Router5 with React</h1>
+<h2 id="router5-react">router5-react</h2>
 <ul>
-<li>Navigate to the default route if the current URL does not match an existing route</li>
-<li>Start listening to <em>popstate</em> events (triggered by back and forward buttons, and a manual change in the URL bar)</li>
-<li>Enable navigation</li>
+<li><code>bower install router5-react</code></li>
+<li><code>npm install router5-react</code></li>
 </ul>
-<h2 id="defining-a-default-route">Defining a default route</h2>
-<p>A default route can be set in Router5 constructor options. The following example will cause your application to navigate
-to <code>/about</code>:</p>
-<pre><code class="lang-javascript">var myRouter = Router5([
-        new RouteNode(&#39;home&#39;, &#39;/home&#39;),
-        new RouteNode(&#39;section&#39;, &#39;/:section&#39;),
-    ], {
-        defaultRoute: &#39;section&#39;
-        defaultParams: {section: &#39;about&#39;}
-    })
-    .start();
-</code></pre>
-<h2 id="navigating-to-a-specific-route">Navigating to a specific route</h2>
-<p>Router5 exposes the following method: <code>navigate(routeName, routeParams, opts)</code>.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;});
-// Will navigate to &#39;/contact&#39;
-</code></pre>
-<p><strong>Forcing a reload</strong></p>
-<p>When trying to navigate to the current route nothing will happen unless <code>reload</code> is set to <code>true</code>.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;}, {reload: true});
-</code></pre>
-<p><strong>Replacing current state</strong></p>
-<p>Set <code>replace</code> to true for replacing the current state in history when navigating to a new route. Default
-behaviour is to add an entry in history.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;concact&#39;}, {replace: true});
-</code></pre>
-<h2 id="stoping-your-router">Stoping your router</h2>
-<p>At any time you can stop (pause) a router and it will prevent any navigation. To resume, simply invoke <code>start</code> again.</p>
-<pre><code class="lang-javascript">myRouter.stop();
-</code></pre>
+<p>Contains</p>
+<ul>
+<li>A link factory</li>
+<li>A mixin factory</li>
+</ul>
+<h2 id="example">Example</h2>
+<div id="reactExample"></div>
 
     </main>
 

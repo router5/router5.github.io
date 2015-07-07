@@ -80,7 +80,8 @@ async.parallel([
     renderDoc('_guides', 'listeners.md', {listeners: true, docs: true}),
     renderDoc('_guides', 'path-syntax.md', {pathSyntax: true, docs: true}),
     renderDoc('_guides', 'preventing-navigation.md', {preventNav: true, docs: true}),
-    renderApi
+    renderApi,
+    renderDoc('_docs', 'with-react.md', {react: true, docs: true})
 ], function (err, res) {
     if (err) console.log(err);
     process.exit(err ? 1 : 0);
