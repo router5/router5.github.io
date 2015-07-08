@@ -289,7 +289,7 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.isActive(name, params)</strong>
+                <strong>router5.isActive(name, params, equality)</strong>
                 Whether or not the given route name with specified params is active.
             </th>
         </tr>
@@ -308,6 +308,47 @@
             <td><strong>params</strong></td>
             <td><code>Object={}</code></td>
             <td>The route parameters</td>
+        </tr><tr>
+            <td><strong>equality</strong></td>
+            <td><code>Boolean=false</code></td>
+            <td>If set to false (default), isActive will return true
+                                    if the provided route name and params are descendants
+                                    of the active state.</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.areStatesDescendants(parentState, childState)</strong>
+                Whether two states are descendants
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>parentState</strong></td>
+            <td><code>Object</code></td>
+            <td>The parent state</td>
+        </tr><tr>
+            <td><strong>childState</strong></td>
+            <td><code>Object</code></td>
+            <td>The child state</td>
         </tr>
     </tbody>
 
@@ -592,9 +633,45 @@
     <thead>
         <tr>
             <th colspan="3">
+                <strong>router5.buildUrl(route, params)</strong>
+                Generates an URL from a route name and route params.
+The generated URL will be prefixed by hash if useHash is set to true
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>route</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr><tr>
+            <td><strong>params</strong></td>
+            <td><code>Object</code></td>
+            <td>The route params (key-value pairs)</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
                 <strong>router5.buildPath(route, params)</strong>
-                Generates a path from a route name and route params.
-The generated URL will be prefixed by
+                Build a path from a route name and route params
+The generated URL will be prefixed by hash if useHash is set to true
             </th>
         </tr>
 
