@@ -143,7 +143,7 @@ export Nav
 <p><code>SegmentMixin(routeName[, listener])</code> does the following:</p>
 <ul>
 <li>Register component with the router (navigation can be prevented if a <code>canDeactivate</code> function returns false)</li>
-<li>If a listener is supplied, it will added as a <em>node listener</em> to the router. See <a href="/docs/listeners.html">guide on listeners</a> for more information.</li>
+<li>If a listener is supplied, it will be added as a <em>node listener</em> to the router. See <a href="/docs/listeners.html">guide on listeners</a> for more information.</li>
 </ul>
 <pre><code class="lang-javascript">var Main = React.createClass({
     mixins: [SegmentMixin(&#39;&#39;, function (toState, fromState) {
