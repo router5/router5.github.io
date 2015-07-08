@@ -15,40 +15,8 @@
         </div>
     </main>
 
-    <section id="install">
-
-    </section>
-
-    <section>
-        <blockquote>Fully featured, easy to use, lightweight (4Kb g-zipped), for modern browsers (IE10+)</blockquote>
-
-        <ul>
-            <li>
-                <a><strong>Just a router</strong></a>
-
-                <i>router 5</i> is just a router, nothing else. It won't take care of updating your view,
-                and makes no demands regarding you app structure or how your code is organised.
-            </li>
-
-            <li>
-                <a><strong>Component trees in mind</strong></a>
-
-                <i>router5</i> is built to be framework agnostic, and was designed to provide a more flexible
-                and scalable solution for Single Page Applications routing, especially those made of a
-                component tree.
-            </li>
-
-            <li>
-                <a><strong>Be functional and reactive</strong></a>
-
-                <i>router5</i> exposes simple methods and mechanisms to observe route changes and react to them. You can then use it with your
-                favourite stream implementation, FRP library, in a flux-like architecture, etc...
-            </li>
-        </ul>
-    </section>
-
     <section class="no-v-border">
-        <blockquote>Sounds good? Below is a simple example (click on the nodes)</blockquote>
+        <blockquote>Organise your routes in a tree of named routes and be reactive to change</blockquote>
 
         <ul>
             <li id="svgRouteTree">
@@ -117,6 +85,34 @@ router.addListener(drawGraph);</code></pre>
     </section>
 
     <section>
+        <blockquote>Fully featured, easy to use, lightweight (4Kb g-zipped), for modern browsers (IE10+)</blockquote>
+
+        <ul>
+            <li>
+                <a><strong>Just a router</strong></a>
+
+                <i>router 5</i> is just a router, nothing else. It won't take care of updating your view,
+                and makes no demands regarding you app structure or how your code is organised.
+            </li>
+
+            <li>
+                <a><strong>Component trees in mind</strong></a>
+
+                <i>router5</i> is built to be framework agnostic, and was designed to provide a more flexible
+                and scalable solution for Single Page Applications routing, especially those made of a
+                component tree.
+            </li>
+
+            <li>
+                <a><strong>Be functional and reactive</strong></a>
+
+                <i>router5</i> exposes simple methods and mechanisms to observe route changes and react to them. You can then use it with your
+                favourite stream implementation, FRP library, in a flux-like architecture, etc...
+            </li>
+        </ul>
+    </section>
+
+    <section>
         <blockquote>Router5 is made of distinctive building blocks, each of them embrace the
         <i>Single Responsability Principle</i>.</blockquote>
 
@@ -172,7 +168,7 @@ router.addListener(drawGraph);</code></pre>
     <!-- Scripts -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script src="/assets/router5.0.1.0-rc.4.min.js"></script>
+    <script src="/assets/router5.{{ router5Version }}.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="/assets/draw-graph.js"></script>

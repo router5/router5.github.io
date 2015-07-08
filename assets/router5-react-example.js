@@ -1,7 +1,6 @@
 ////////////
 // Router //
 ////////////
-
 var router = new Router5()
     .setOption('useHash', true)
     .setOption('defaultRoute', 'inbox')
@@ -28,11 +27,35 @@ var Nav = React.createClass({
     }
 });
 
-///////////////////
-// App component //
-///////////////////
+/////////////////////
+// Inbox component //
+/////////////////////
+var Inbox = React.createClass({
+    getInitialState: function () {
+        return {
+            emails: [
+                {
+                    key: 1,
+                    mailFrom: 'Me',
+                    mailTitle: 'Hello',
+                    mailMessage: 'Have you checked the docs?'
+                }
+            ]
+        }
+    },
 
-var App = React.createClass({
+    render: function () {
+        var emails = this.state.emails;
+        return React.createElement('ul', null, emails.map(function (mail) {
+            return React.createElement('InboxItem', mail);
+        }));
+    }
+});
+
+///////////////
+// Main view //
+///////////////
+var Main = React.createClass({
     mixins: [SegmentMixin('', function (toState, fromState) {
         this.setState({routeState: toState});
     })],
@@ -46,9 +69,19 @@ var App = React.createClass({
     render: function () {
         var routeState = this.state.routeState;
         var routeName = routeState ? routeState.name : 'unknown';
+
+        return React.createElement('main', null, routeName);
+    }
+});
+
+///////////////////
+// App component //
+///////////////////
+var App = React.createClass({
+    render: function () {
         return React.createElement('div', {className: 'mail-client'},
-            React.createElement('aside', {}, React.createElement(Nav)),
-            React.createElement('main', {}, routeName)
+            React.createElement('aside', null, React.createElement(Nav)),
+            React.createElement(Main, null)
         );
     }
 });
@@ -56,5 +89,4 @@ var App = React.createClass({
 ////////////////
 // Render App //
 ////////////////
-
 React.render(React.createElement(App), document.getElementById('reactExample'));
