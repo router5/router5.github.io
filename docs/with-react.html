@@ -79,16 +79,99 @@
 <p>View the source <a href="https://github.com/router5/router5.github.io/blob/master/assets/router5-react-example.js">on GitHub</a></p>
 <div id="reactExample"></div>
 
+<p>The use of React with router5 is so far experimental. There is some boilerplate code which can probably be reduced. It also highlights the need to use a Flux-type architecture to tell the view <em>what to render</em> and
+<em>when to render it</em>, especially if one wants to have <em>data</em> and <em>component</em> loaded together.</p>
 <h2 id="router5-react">router5-react</h2>
-<ul>
-<li><code>bower install router5-react</code></li>
-<li><code>npm install router5-react</code></li>
-</ul>
-<p>Contains</p>
+<p>Installation:</p>
+<pre><code class="lang-sh">bower install router5-react
+npm install router5-react
+</code></pre>
 <ul>
 <li>A link factory to create a <code>Link</code> function</li>
-<li>A mixin factory to create a <code>SegmentMixin</code> mixin</li>
+<li>A mixin factory to create a <code>SegmentMixin</code> mixin (add a node listener for the specified route)</li>
 </ul>
+<p>The use of factories is to avoid using contexts. One way to use them is:</p>
+<pre><code class="lang-javascript">import React from &#39;react&#39;
+import {Router5} from &#39;router5&#39;
+import {linkFactory, segmentMixinFactory} from &#39;router5-react&#39;
+
+var router = new Router5()
+    .setOption(&#39;useHash&#39;, true)
+    .setOption(&#39;defaultRoute&#39;, &#39;inbox&#39;)
+    // Routes
+    .addNode(&#39;inbox&#39;,            &#39;/inbox&#39;)
+    .addNode(&#39;inbox.message&#39;,    &#39;/message/:id&#39;)
+    .addNode(&#39;compose&#39;,          &#39;/compose&#39;)
+    .addNode(&#39;contacts&#39;,         &#39;/contacts&#39;)
+    .start()
+
+var Link = linkFactory(router)
+var SegmentMixin = segmentMixinFactory(router)
+
+export {router, Link, SegmentMixin}
+</code></pre>
+<h3 id="link-component">Link component</h3>
+<p>Link components automatically register a listener with the router and apply an active class
+if there is a route match. Properties supported:</p>
+<ul>
+<li><code>routeName</code>: the route name the link navigates to</li>
+<li><code>routeParams</code>: the route params</li>
+<li><code>routeOptions</code>: reload, replace</li>
+<li><code>activeClassName</code>: the class name to use when active</li>
+<li><code>activeStrict</code>: default to false, whether the link is active if the router current route
+is exaclty the link route, or if it is one of its descendant.
+-</li>
+</ul>
+<pre><code class="lang-javascript">import React from &#39;react&#39;
+import {Link} from &#39;./router&#39;
+
+var Nav = React.createClass({
+    render: function () {
+        return (
+            &lt;nav&gt;
+                &lt;Link routeName=&quot;inbox&quot; routeOptions={reload: true}&gt;Inbox&lt;/Link&gt;
+                &lt;Link routeName=&quot;compose&quot;&gt;Compose&lt;/Link&gt;
+                &lt;Link routeName=&quot;contacts&quot;&gt;Contacts&lt;/Link&gt;
+            &lt;/nav&gt;
+        );
+    }
+});
+
+export Nav
+</code></pre>
+<h3 id="segment-mixin">Segment mixin</h3>
+<p><code>SegmentMixin(routeName[, listener])</code> does the following:</p>
+<ul>
+<li>Register component with the router (navigation can be prevented if a <code>canDeactivate</code> function returns false)</li>
+<li>If a listener is supplied, it will added as a <em>node listener</em> to the router. See <a href="/docs/listeners.html">guide on listeners</a> for more information.</li>
+</ul>
+<pre><code class="lang-javascript">var Main = React.createClass({
+    mixins: [SegmentMixin(&#39;&#39;, function (toState, fromState) {
+        this.setState({routeState: toState});
+    })],
+
+    getInitialState: function () {
+        return {
+            routeState: router.getState()
+        }
+    },
+
+    getComponent: function (routeState) {
+        var components = {
+            &#39;inbox&#39;:   Inbox,
+            &#39;compose&#39;: Compose
+        };
+        return routeState ? components[routeState.name.split(&#39;.&#39;)[0]] : undefined;
+    },
+
+    render: function () {
+        var routeState = this.state.routeState;
+        var Component = this.getComponent(routeState);
+
+        return element(Component || NotFound);
+    }
+});
+</code></pre>
 
     </main>
 
@@ -116,7 +199,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
     <script src="/assets/router5.0.1.0-rc.6.min.js"></script>
-    <script src="/assets/router5-react.0.1.0-alpha.6.min.js"></script>
+    <script src="/assets/router5-react.0.1.0-alpha.7.min.js"></script>
     <script src="/assets/router5-react-example.js"></script>
     
 

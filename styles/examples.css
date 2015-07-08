@@ -45,6 +45,10 @@ div.inbox {
     flex-direction: row;
 }
 
+div.not-found {
+    padding: .5rem 1rem;
+}
+
 ul.mail-list {
     list-style: none;
     margin: 0;
@@ -62,16 +66,22 @@ ul.mail-list > li:hover {
     background-color: #eee;
 }
 
-ul.mail-list > li > h4 {
+ul.mail-list > li > h4,
+section.mail > h4,
+div.compose > h4 {
     padding: .5rem 1rem 0;
     margin: 0;
 }
 
-ul.mail-list > li > p {
+ul.mail-list > li > p,
+section.mail > p {
     margin: 0;
     padding: 0 1rem .5rem;
     line-height: 1.5em;
     font-size: 0.85rem;
+}
+
+ul.mail-list > li > p {
     overflow: hidden;
     width: calc(100% - 2rem);
     white-space: nowrap;
@@ -81,4 +91,28 @@ ul.mail-list > li > p {
 section.mail {
     border-left: 1px solid #ddd;
     flex: 2;
+}
+
+div.compose > input,
+div.compose > textarea {
+    padding: .5rem;
+    line-height: 1.2rem;
+    font-size: 0.9rem;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+div.compose > textarea {
+    min-height: 200px;
+}
+
+div.compose > p {
+    color: red;
+    margin: 0;
+    padding: .5rem 1rem ;
+    line-height: 1.5em;
+    font-size: 0.9rem;
 }

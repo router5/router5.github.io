@@ -6,10 +6,9 @@ var router = new Router5()
     .setOption('defaultRoute', 'inbox')
     // Routes
     .addNode('inbox',            '/inbox')
-    .addNode('inbox.message',    '/inbox/message/:id')
-    .addNode('sent',             '/sent')
+    .addNode('inbox.message',    '/message/:id')
+    .addNode('compose',          '/compose')
     .addNode('contacts',         '/contacts')
-    .addNode('contacts.details', '/contacts/details/:id')
     .start();
 
 var Link = linkFactory(router);
@@ -23,12 +22,47 @@ var element = React.createElement;
 var Nav = React.createClass({
     render: function () {
         return element('nav', {},
-            element(Link, {routeName: 'inbox'},    'Inbox'),
-            element(Link, {routeName: 'sent'},     'Sent'),
+            element(Link, {routeName: 'inbox', routeOptions: {reload: true}}, 'Inbox'),
+            element(Link, {routeName: 'compose'},  'Compose'),
             element(Link, {routeName: 'contacts'}, 'Contacts')
         );
     }
 });
+
+//////////
+// Data //
+//////////
+function getEmails() {
+    return [
+        {
+            "id": "1",
+            "mailTitle": "Why router5?",
+            "mailMessage": "I imagine a lot of developers who will first see router5 will ask themselves the question: is it yet another router? is it any good? Why oh why do people keep writing new routers all the time? It is not always easy to see the potential of something straight away, or understand the motivations behind. I therefore decided to try to tell you more about router5, why I decided to develop an entire new routing solution, and what problems it tries to solve."
+        },
+        {
+            "id": "2",
+            "mailTitle": "Use with React",
+            "mailMessage": "I have just started playing with it. It does make sense to use a flux-like implementation, to provide a layer between the router and view updates."
+        },
+        {
+            "id": "3",
+            "mailTitle": "Compose a new message",
+            "mailMessage": "Click on compose, start to fill title and message fields and then try to navigate away by clicking on app links, or by using the back button."
+        }
+    ];
+}
+
+function getEmail(id) {
+    var emails = getEmails();
+    var index;
+
+    if (emails) {
+        for (index in emails) {
+            if (emails[index].id === id) return emails[index];
+        }
+    }
+    return null;
+}
 
 /////////////////////////
 // Mail Item component //
@@ -58,7 +92,7 @@ var InboxItem = React.createClass({
 /////////////////////////
 var InboxList = React.createClass({
     render: function () {
-        var emails = this.props.emails;
+        var emails = getEmails();
         return element('ul', {className: 'mail-list'}, emails.map(function (mail) {
             mail.key = mail.id;
             return element(InboxItem, mail);
@@ -81,8 +115,11 @@ var Message = React.createClass({
     },
 
     render: function () {
-        var id = this.state.routeState.params.id;
-        return element('section', {className: 'mail'}, id);
+        var email = getEmail(this.state.routeState.params.id);
+        return element('section', {className: 'mail'},
+            element('h4', null, email.mailTitle),
+            element('p', null, email.mailMessage)
+        );
     }
 });
 
@@ -96,26 +133,12 @@ var Inbox = React.createClass({
 
     getInitialState: function () {
         return {
-            routeState: router.getState(),
-            emails: [
-                {
-                    id: 1,
-                    mailFrom: 'Me',
-                    mailTitle: 'Hello',
-                    mailMessage: 'Have you checked the docs? Have you checked the docs? Have you checked the docs? Have you checked the docs? Have you checked the docs? Have you checked the docs? Have you checked the docs? Have you checked the docs?'
-                },
-                {
-                    id: 2,
-                    mailFrom: 'Me',
-                    mailTitle: 'Hello2',
-                    mailMessage: 'Have you checked the docs2?'
-                }
-            ]
+            routeState: router.getState()
         };
     },
 
     render: function () {
-        var emails = this.state.emails;
+        var emails = getEmails();
         var routeState = this.state.routeState;
 
         return element('div', {className: 'inbox'},
@@ -125,12 +148,53 @@ var Inbox = React.createClass({
     }
 });
 
+/////////////
+// Compose //
+/////////////
+var Compose = React.createClass({
+    mixins: [SegmentMixin('compose')],
+
+    getInitialState: function () {
+        return {
+            title: undefined,
+            message: undefined
+        }
+    },
+
+    canDeactivate: function () {
+        if (this.state.title || this.state.message) {
+            this.setState({warning: true})
+            return false;
+        }
+        return true;
+    },
+
+    changeTitle: function (evt) {
+        this.setState({title: evt.target.value, warning: false});
+    },
+
+    changeMessage: function (evt) {
+        this.setState({message: evt.target.value, warning: false});
+    },
+
+    render: function () {
+        var state = this.state;
+
+        return element('div', {className: 'compose'},
+            element('h4', null, 'Compose a new message'),
+            element('input', {name: 'title', value: state.title, onChange: this.changeTitle}),
+            element('textarea', {name: 'message', value: state.message, onChange: this.changeMessage}),
+            element('p', null, this.state.warning ? 'Clear inputs before continuing' : '')
+        );
+    }
+});
+
 ///////////////
 // Not found //
 ///////////////
 var NotFound = React.createClass({
     render: function () {
-        return element('div', null, 'Not found.');
+        return element('div', {className: 'not-found'}, 'Purposely Not found (not a bug)');
     }
 });
 
@@ -150,8 +214,8 @@ var Main = React.createClass({
 
     getComponent: function (routeState) {
         var components = {
-            'inbox': Inbox
-            // 'contacts': Inbox
+            'inbox':   Inbox,
+            'compose': Compose
         };
         return routeState ? components[routeState.name.split('.')[0]] : undefined;
     },
