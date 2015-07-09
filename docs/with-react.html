@@ -79,12 +79,12 @@
 <p>View the source <a href="https://github.com/router5/router5.github.io/blob/master/assets/router5-react-example.js">on GitHub</a></p>
 <div id="reactExample"></div>
 
-<p>The use of React with router5 is so far experimental. There is some boilerplate code which can probably be reduced. It also highlights the need to use a Flux-type architecture to tell the view <em>what to render</em> and
-<em>when to render it</em>, especially if one wants to have <em>data</em> and <em>component</em> loaded together.</p>
 <h2 id="router5-react">router5-react</h2>
 <p>Installation:</p>
-<pre><code class="lang-sh">bower install router5-react
-npm install router5-react
+<pre><code class="lang-sh">// Bower
+bower install router5-react --save
+// npm
+npm install router5-react --save-dev
 </code></pre>
 <ul>
 <li>A link factory to create a <code>Link</code> function</li>
@@ -109,6 +109,43 @@ var Link = linkFactory(router)
 var SegmentMixin = segmentMixinFactory(router)
 
 export {router, Link, SegmentMixin}
+</code></pre>
+<h3 id="segment-mixin">Segment mixin</h3>
+<p>The most relevant <a href="/docs/listeners.html">listener</a> for React is <code>addNodeListener(route, fn)</code>
+because you are most likely on a route change to want to target the component you&#39;ll need to
+e-render from.</p>
+<p><code>SegmentMixin(routeName[, listener])</code> does the following:</p>
+<ul>
+<li>Register component with the router (navigation can be prevented if a <code>canDeactivate</code> function returns false)</li>
+<li>If a listener is supplied, it will be added as a <em>node listener</em> to the router. See <a href="/docs/listeners.html">guide on listeners</a> for more information.</li>
+</ul>
+<pre><code class="lang-javascript">var Main = React.createClass({
+    mixins: [SegmentMixin(&#39;&#39;, function (toState) {
+        this.setState({routeState: toState});
+    })],
+
+    getInitialState: function () {
+        return {
+            routeState: router.getState()
+        }
+    },
+
+    getComponent: function (routeState) {
+        var components = {
+            &#39;inbox&#39;:   Inbox,
+            &#39;compose&#39;: Compose
+        };
+        return routeState ? components[routeState.name.split(&#39;.&#39;)[0]] : undefined;
+    },
+
+    render: function () {
+        var routeState = this.state.routeState;
+        var Component = this.getComponent(routeState);
+        var data = this.state.data;
+
+        return element(Component || NotFound);
+    }
+});
 </code></pre>
 <h3 id="link-component">Link component</h3>
 <p>Link components automatically register a listener with the router and apply an active class
@@ -138,39 +175,6 @@ var Nav = React.createClass({
 });
 
 export Nav
-</code></pre>
-<h3 id="segment-mixin">Segment mixin</h3>
-<p><code>SegmentMixin(routeName[, listener])</code> does the following:</p>
-<ul>
-<li>Register component with the router (navigation can be prevented if a <code>canDeactivate</code> function returns false)</li>
-<li>If a listener is supplied, it will be added as a <em>node listener</em> to the router. See <a href="/docs/listeners.html">guide on listeners</a> for more information.</li>
-</ul>
-<pre><code class="lang-javascript">var Main = React.createClass({
-    mixins: [SegmentMixin(&#39;&#39;, function (toState, fromState) {
-        this.setState({routeState: toState});
-    })],
-
-    getInitialState: function () {
-        return {
-            routeState: router.getState()
-        }
-    },
-
-    getComponent: function (routeState) {
-        var components = {
-            &#39;inbox&#39;:   Inbox,
-            &#39;compose&#39;: Compose
-        };
-        return routeState ? components[routeState.name.split(&#39;.&#39;)[0]] : undefined;
-    },
-
-    render: function () {
-        var routeState = this.state.routeState;
-        var Component = this.getComponent(routeState);
-
-        return element(Component || NotFound);
-    }
-});
 </code></pre>
 
     </main>

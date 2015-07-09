@@ -1,6 +1,6 @@
 .mail-client {
     widht: 100%;
-    height: 400px;
+    height: 450px;
     background-color: #f4f4f4;
     position: relative;
     border: 1px solid #CCC;
@@ -67,8 +67,7 @@ ul.mail-list > li:hover {
 }
 
 ul.mail-list > li > h4,
-section.mail > h4,
-div.compose > h4 {
+section.mail > h4 {
     padding: .5rem 1rem 0;
     margin: 0;
 }
@@ -95,15 +94,23 @@ section.mail {
     flex: 2;
 }
 
+div.compose {
+    padding: 0 1rem;
+}
+
+div.compose > h4 {
+    padding: .5rem 0;
+    margin: 0;
+}
+
 div.compose > input,
 div.compose > textarea {
     padding: .5rem;
     line-height: 1.2rem;
     font-size: 0.9rem;
     display: block;
-    width: 100%;
+    width: calc(100% - 2rem);
     max-width: 400px;
-    margin-left: 1rem;
     margin-top: 1rem;
 }
 
@@ -114,12 +121,12 @@ div.compose > textarea {
 div.compose > p {
     color: red;
     margin: 0;
-    padding: .5rem 1rem ;
+    padding: .5rem 0;
     line-height: 1.5em;
     font-size: 0.9rem;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1025px) {
     .mail-client > aside {
         height: auto;
         top: 0;
