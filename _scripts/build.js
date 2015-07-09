@@ -73,7 +73,7 @@ function renderApi(done) {
 };
 
 async.parallel([
-    renderPage('index.html', {home: true, router5Version: '0.1.0-rc.6'}),
+    renderPage('index.html', {home: true, router5Version: '0.1.0-rc.7'}),
     renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
@@ -84,7 +84,7 @@ async.parallel([
     renderApi,
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
         'https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js',
-        '/assets/router5.0.1.0-rc.6.min.js',
+        '/assets/router5.0.1.0-rc.7.min.js',
         '/assets/router5-react.0.1.0-alpha.7.min.js',
         '/assets/router5-react-example.js'
     ]})
