@@ -36,6 +36,15 @@
                       stroke: rgb(166, 226, 46);
                     }
 
+                    .node.active.apex circle {
+                      stroke: rgb(166, 226, 46);
+                      fill: #999;
+                    }
+
+                    .node.deactivated circle {
+                      stroke: #999;
+                    }
+
                     .node.active.match circle {
                       fill: rgb(166, 226, 46);
                       cursor: default;
@@ -49,6 +58,10 @@
 
                     .link.active {
                       stroke: rgb(166, 226, 46);
+                    }
+
+                    .link.deactivated {
+                      stroke: #999;
                     }
                 </style>
             </li>
@@ -66,11 +79,14 @@ var router = new Router5()
     .addNode('orders.completed', '/completed')
     .addNode('orders.pending',   '/pending')
     .addNode('orders.view',      '/details/:id')
+    // Listener
+    .addListener(drawGraph)
+    // Start
     .start();
 
-function drawGraph() { /* ... */ }
-
-router.addListener(drawGraph);</code></pre>
+function drawGraph(toState, fromState) { /* ... */ }
+// Init
+drawGraph(router.getState());</code></pre>
 
                 <!-- <a class="nav-link" route-name="users">Go to 'users'</a><br/>
                 <a class="nav-link" route-name="users.view" route-params="{'id': 1}">Go to 'users.view'</a><br/>

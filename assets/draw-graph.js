@@ -10,22 +10,8 @@ var router = new Router5()
     .addNode('orders.completed', '/completed')
     .addNode('orders.pending',   '/pending')
     .addNode('orders.view',      '/details/:id')
+    .addListener(drawGraph)
     .start();
-
-// Links
-// Array.prototype.slice
-//     .call(document.querySelectorAll('a.nav-link'))
-//     .forEach(function(link) {
-//         var routeName = link.getAttribute('route-name');
-//         var routeParams = JSON.parse((link.getAttribute('route-params') || '{}').replace(/'/g, '"'));
-
-//         link.setAttribute('href', router.buildPath(routeName, routeParams));
-
-//         link.addEventListener('click', function (evt) {
-//             evt.preventDefault();
-//             router.navigate(routeName, routeParams);
-//         }, false);
-//     });
 
 routeNodes = {
     name: '',
@@ -45,7 +31,10 @@ routeNodes = {
 var svg;
 var height = 380;
 // Draw graph
-function drawGraph() {
+function drawGraph(toState, fromState) {
+    toState = toState || {};
+    fromState = fromState || {};
+
     var width = Math.min(500, document.getElementById('svgRouteTree').clientWidth - 40);
     if (svg) {
         svg.remove();
@@ -72,9 +61,11 @@ function drawGraph() {
         .enter()
             .append("path")
             .attr("class", function (d) {
-                var currentState = router.getState() || {};
-                if (!currentState.name) return "link";
-                return currentState.name.indexOf(d.target.name) >= 0 && currentState.name.indexOf(d.source.name) >= 0 ? "link active" : "link";
+                if (!toState.name) return "link";
+                if (toState.name.indexOf(d.target.name) >= 0 && toState.name.indexOf(d.source.name) >= 0) return "link active";
+                if (fromState.name && fromState.name.indexOf(d.target.name) === 0 &&
+                    toState.name.indexOf(d.target.name) === -1) return 'link deactivated';
+                return "link";
             })
             .attr("d", diagonal);
 
@@ -83,9 +74,21 @@ function drawGraph() {
         .enter()
             .append("g")
             .attr("class", function(d) {
-                var currentState = router.getState() || {};
-                if (currentState.name === d.name) return 'node active match';
-                if (currentState.name && currentState.name.indexOf(d.name) === 0) return 'node active';
+                if (toState.name === d.name) return 'node active match';
+                if (fromState.name && fromState.name.indexOf(d.name) === 0 &&
+                    toState.name.indexOf(d.name) === 0) {
+                    var toSegments = toState.name.split('.');
+                    var fromSegments = fromState.name.split('.');
+                    for (var i = 0; Math.min(toSegments.length, fromSegments.length); i+=1) {
+                        if (toSegments[i] !== fromSegments[i]) break;
+                    }
+                    if (i === 0 && d.name === '') return 'node active apex';
+                    if (i > 0 && d.name === toSegments[i - 1]) return 'node active apex';
+                }
+                if (toState.name && toState.name.indexOf(d.name) === 0) return 'node active';
+                var segment = d.name.split('.').reverse()[0];
+                if (fromState.name && fromState.name.indexOf(d.name) === 0 &&
+                    toState.name.indexOf(d.name) === -1) return 'node deactivated';
                 return 'node';
             })
             .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
@@ -104,9 +107,7 @@ function drawGraph() {
         .style("text-anchor", function(d) { return d.children ? "end" : "middle"; })
         .text(function(d) { return d.segmentName || d.name; });
 }
-
-drawGraph();
-
-window.addEventListener('resize', drawGraph, false);
-
-router.addListener(drawGraph);
+drawGraph(router.getState(), null);
+window.addEventListener('resize', function () {
+    drawGraph(router.getState(), null);
+}, false);

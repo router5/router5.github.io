@@ -9,22 +9,22 @@
 .mail-client > aside {
     position: absolute;
     top: 0;
-    width: 150px;
-    bottom: 0;
+    right: 0;
+    height: 45px;
     left: 0;
-    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 
 .mail-client > main {
     position: absolute;
-    top: 0;
+    top: 46px;
     right: 0;
     bottom: 0;
-    left: 151px;
+    left: 0;
 }
 
 .mail-client > aside > nav > a {
-    display: block;
+    display: inline-block;
     padding: .5rem 1rem;
     color: #336699;
 }
@@ -81,6 +81,7 @@ section.mail > p {
     font-size: 0.85rem;
 }
 
+ul.mail-list > li > h4,
 ul.mail-list > li > p {
     overflow: hidden;
     width: calc(100% - 2rem);
@@ -90,6 +91,7 @@ ul.mail-list > li > p {
 
 section.mail {
     border-left: 1px solid #ddd;
+    overflow: auto;
     flex: 2;
 }
 
@@ -115,4 +117,27 @@ div.compose > p {
     padding: .5rem 1rem ;
     line-height: 1.5em;
     font-size: 0.9rem;
+}
+
+@media (min-width: 800px) {
+    .mail-client > aside {
+        height: auto;
+        top: 0;
+        width: 150px;
+        bottom: 0;
+        left: 0;
+        border-bottom: none;
+        border-right: 1px solid #ccc;
+    }
+
+    .mail-client > main {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 151px;
+    }
+
+    .mail-client > aside > nav > a {
+        display: block;
+    }
 }

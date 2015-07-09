@@ -3,6 +3,24 @@
 To be able to react to route changes, you will need to listen to them! With _router5_, you can
 add three types of listeners.
 
+![Navigation from 'users.view' to 'orders.completed'](/img/deactivation-activation-path.png)
+
+When navigation from _users.view_ to _orders.completed_:
+
+- &#x2713; `.addListener(fn)` will be called
+- &#x2713; `.addNodeListener('', fn)` will be called
+- &#x2713; `.addRouteListener('orders.completed', fn)` will be called
+
+
+![Navigation from 'orders.completed' to 'orders.pending'](/img/deactivation-activation-path-2.png)
+
+When navigation from orders.pending_ to _orders.pending_:
+
+- &#x2713; `.addListener(fn)` will be called
+- &#x2713; `.addNodeListener('orders', fn)` will be called
+- &#x2713; `.addRouteListener('orders.pending', fn)` will be called
+
+
 ## Arguments
 
 Listeners are invoked with two arguments:

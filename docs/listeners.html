@@ -77,6 +77,20 @@
         <h1 id="listeners">Listeners</h1>
 <p>To be able to react to route changes, you will need to listen to them! With <em>router5</em>, you can
 add three types of listeners.</p>
+<p><img src="/img/deactivation-activation-path.png" alt="Navigation from &#39;users.view&#39; to &#39;orders.completed&#39;"></p>
+<p>When navigation from <em>users.view</em> to <em>orders.completed</em>:</p>
+<ul>
+<li>&#x2713; <code>.addListener(fn)</code> will be called</li>
+<li>&#x2713; <code>.addNodeListener(&#39;&#39;, fn)</code> will be called</li>
+<li>&#x2713; <code>.addRouteListener(&#39;orders.completed&#39;, fn)</code> will be called</li>
+</ul>
+<p><img src="/img/deactivation-activation-path-2.png" alt="Navigation from &#39;orders.completed&#39; to &#39;orders.pending&#39;"></p>
+<p>When navigation from orders.pending<em> to _orders.pending</em>:</p>
+<ul>
+<li>&#x2713; <code>.addListener(fn)</code> will be called</li>
+<li>&#x2713; <code>.addNodeListener(&#39;orders&#39;, fn)</code> will be called</li>
+<li>&#x2713; <code>.addRouteListener(&#39;orders.pending&#39;, fn)</code> will be called</li>
+</ul>
 <h2 id="arguments">Arguments</h2>
 <p>Listeners are invoked with two arguments:</p>
 <ul>

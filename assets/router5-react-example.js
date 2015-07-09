@@ -5,10 +5,10 @@ var router = new Router5()
     .setOption('useHash', true)
     .setOption('defaultRoute', 'inbox')
     // Routes
-    .addNode('inbox',            '/inbox')
-    .addNode('inbox.message',    '/message/:id')
-    .addNode('compose',          '/compose')
-    .addNode('contacts',         '/contacts')
+    .addNode('inbox',         '/inbox')
+    .addNode('inbox.message', '/message/:id')
+    .addNode('compose',       '/compose')
+    .addNode('contacts',      '/contacts')
     .start();
 
 var Link = linkFactory(router);
@@ -169,11 +169,11 @@ var Compose = React.createClass({
         return true;
     },
 
-    changeTitle: function (evt) {
+    updateTitle: function (evt) {
         this.setState({title: evt.target.value, warning: false});
     },
 
-    changeMessage: function (evt) {
+    updateMessage: function (evt) {
         this.setState({message: evt.target.value, warning: false});
     },
 
@@ -182,8 +182,8 @@ var Compose = React.createClass({
 
         return element('div', {className: 'compose'},
             element('h4', null, 'Compose a new message'),
-            element('input', {name: 'title', value: state.title, onChange: this.changeTitle}),
-            element('textarea', {name: 'message', value: state.message, onChange: this.changeMessage}),
+            element('input', {name: 'title', value: state.title, onChange: this.updateTitle}),
+            element('textarea', {name: 'message', value: state.message, onChange: this.updateMessage}),
             element('p', null, this.state.warning ? 'Clear inputs before continuing' : '')
         );
     }
