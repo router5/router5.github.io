@@ -76,8 +76,8 @@
 
     <main>
         <h1 id="why-router5-">Why router5?</h1>
-<p>I imagine a lot of developers who will first see router5 will ask themselves the question: is it yet another router? is it any good? Why oh why
-do people keep writing new routers all the time?</p>
+<p>I imagine a lot of developers who will see for the first time <a href="http://router5.github.io">router5</a> will ask themselves the following question:
+is it yet another router? is it any good? Why oh why do people keep writing new routers all the time?</p>
 <p>It is not always easy to see the potential of something straight away, or understand the motivations behind. I therefore decided
 to try to tell you more about router5, why I decided to develop an entire new routing solution, and what problems it tries to solve.</p>
 <h2 id="the-raise-of-reactive-programming">The raise of reactive programming</h2>
@@ -89,8 +89,8 @@ React-router is a great tool, and it is easy to use: like in <a href="https://gi
 <p>With FRP and Flux-like architectures, I became increasingly keen on using more observables and observers in my application.
 Very soon, I found my application disjointed: using nice observable patterns for data with sideways data loading, but giving away control on routing.</p>
 <p>Looking at <a href="https://github.com/larrymyers/react-mini-router">react-mini-router</a> or <a href="https://github.com/asbjornenge/tiny-react-router">tiny-react-router</a>,
-I realised that in order to treat route changes like data changes, I would need a framework-agnostic router which would favour convention over
-configuration.</p>
+I realised that in order to treat route changes like data changes, I would need a framework-agnostic router which would favour <strong>convention over
+configuration</strong>.</p>
 <h2 id="existing-routers-are-black-boxes">Existing routers are black boxes</h2>
 <p>The most popular routers those days are tied to frameworks (or libraries) and are fairly large pieces of software, tightly coupled together.
 Angular2 and Aurelia, for example, include their own routing solution with exciting new functionalities: activation / deactivation, use
@@ -108,7 +108,7 @@ why not do sideways route loading, or compose the two?</p>
 <p>From routington came <a href="https://github.com/troch/router5">route-node</a>. I then needed to use a URL parsing library. I looked at
 <a href="https://github.com/rcs/route-parser">route-parser</a>, <a href="https://github.com/snd/url-pattern">url-pattern</a> and
 <a href="https://github.com/pillarjs/path-to-regexp">path-to-regexp</a>. Having routes in a tree, I needed a library which could match
-URLs as well as partially match URLs (going down the tree until a match is found), I also needed to build URLs by passing parameters.</p>
+URLs fully or partially (going down the tree until a match is found), I also needed to build URLs by passing parameters.</p>
 <p>None of the libraries mentioned could do all of that, so came <a href="https://github.com/troch/path-parser">path-parser</a>.</p>
 <p><img src="https://imgs.xkcd.com/comics/standards.png" alt="Standards"></p>
 <h2 id="router5">router5</h2>

@@ -1,7 +1,7 @@
 # Why router5?
 
-I imagine a lot of developers who will first see router5 will ask themselves the question: is it yet another router? is it any good? Why oh why
-do people keep writing new routers all the time?
+I imagine a lot of developers who will see for the first time [router5](http://router5.github.io) will ask themselves the following question:
+is it yet another router? is it any good? Why oh why do people keep writing new routers all the time?
 
 It is not always easy to see the potential of something straight away, or understand the motivations behind. I therefore decided
 to try to tell you more about router5, why I decided to develop an entire new routing solution, and what problems it tries to solve.
@@ -20,8 +20,8 @@ With FRP and Flux-like architectures, I became increasingly keen on using more o
 Very soon, I found my application disjointed: using nice observable patterns for data with sideways data loading, but giving away control on routing.
 
 Looking at [react-mini-router](https://github.com/larrymyers/react-mini-router) or [tiny-react-router](https://github.com/asbjornenge/tiny-react-router),
-I realised that in order to treat route changes like data changes, I would need a framework-agnostic router which would favour convention over
-configuration.
+I realised that in order to treat route changes like data changes, I would need a framework-agnostic router which would favour __convention over
+configuration__.
 
 
 ## Existing routers are black boxes
@@ -48,7 +48,7 @@ why not do sideways route loading, or compose the two?
 From routington came [route-node](https://github.com/troch/router5). I then needed to use a URL parsing library. I looked at
 [route-parser](https://github.com/rcs/route-parser), [url-pattern](https://github.com/snd/url-pattern) and
 [path-to-regexp](https://github.com/pillarjs/path-to-regexp). Having routes in a tree, I needed a library which could match
-URLs as well as partially match URLs (going down the tree until a match is found), I also needed to build URLs by passing parameters.
+URLs fully or partially (going down the tree until a match is found), I also needed to build URLs by passing parameters.
 
 None of the libraries mentioned could do all of that, so came [path-parser](https://github.com/troch/path-parser).
 
