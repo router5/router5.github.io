@@ -87,9 +87,11 @@ bower install router5-react --save
 // npm
 npm install router5-react --save-dev
 </code></pre>
+<p>It includes:</p>
 <ul>
-<li>A link factory to create a <code>Link</code> function</li>
-<li>A mixin factory to create a <code>SegmentMixin</code> mixin (add a node listener for the specified route)</li>
+<li>A link factory to create a <code>Link</code> component (for hyperlinks and buttons)</li>
+<li>A mixin factory to create a <code>SegmentMixin</code> mixin (add a node listener for the specified route, and register
+an active component instance with router)</li>
 </ul>
 <p>The use of factories is to avoid using contexts. One way to use them is:</p>
 <pre><code class="lang-javascript">import React from &#39;react&#39;
