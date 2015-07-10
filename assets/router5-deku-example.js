@@ -48,7 +48,7 @@ var Main = {
     render: function (component) {
         var currentRoute = component.state.currentRoute;
         console.log(currentRoute);
-        return element('main', {}, currentRoute ? currentRoute.name : '');
+        return element('main', {}, 'Current route is: ' + (currentRoute ? currentRoute.name : 'unkown'));
     }
 };
 Main = SegmentDecorator(Main, '', function (component, setState, toRoute, fromRoute) {
