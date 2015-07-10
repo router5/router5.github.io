@@ -47,8 +47,8 @@ function getEmails() {
         },
         {
             "id": "2",
-            "mailTitle": "Use with React",
-            "mailMessage": "I have just started playing with it. It does make sense to use a flux-like implementation, to provide a layer between the router and view updates."
+            "mailTitle": "Use with Deku",
+            "mailMessage": "I have just started playing with it. Ideas for asynchronous data loading have to be explored, similar to Flux (a node listener would have to load all data needed for descendants)."
         },
         {
             "id": "3",
