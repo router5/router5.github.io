@@ -87,6 +87,12 @@ async.parallel([
         '/assets/router5.0.1.0-rc.7.min.js',
         '/assets/router5-react.0.1.0-alpha.7.min.js',
         '/assets/router5-react-example.js'
+    ]}),
+    renderDoc('_docs', 'with-deku.md', {deku: true, examples: true, scripts: [
+        '/assets/deku.min.js',
+        '/assets/router5.0.1.0-rc.7.min.js',
+        '/assets/router5-deku.js',
+        '/assets/router5-deku-example.js'
     ]})
 ], function (err, res) {
     if (err) console.log(err);

@@ -39,11 +39,11 @@
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
+            <a href="/docs/configuring-routes.html" class="">Guides</a>
 
             <a href="/docs/api-reference.html" class="">API</a>
 
-            <a href="docs/with-react.html" class="">Examples</a>
+            <a href="docs/with-react.html" class="active">Examples</a>
 
             <a href="https://github.com/router5/router5" target="_blank">See it on Github</a>
         </nav>
@@ -59,7 +59,7 @@
 
             <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
-            <a href="/docs/navigation.html" class="link active">Navigation</a>
+            <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
 
@@ -70,56 +70,28 @@
             <strong>Integration</strong>
 
             <a href="/docs/with-react.html" class="link">With React</a>
-            <a href="/docs/with-deku.html" class="link">With Deku</a>
+            <a href="/docs/with-deku.html" class="link active">With Deku</a>
         </nav>
     </aside>
 
     <main>
-        <h1 id="navigation">Navigation</h1>
-<p>After configuring your routes, you need to <em>enable navigation</em>.</p>
-<h2 id="starting-your-router">Starting your router</h2>
-<pre><code class="lang-javascript">var myRouter = Router5()
-    .addNode(&#39;home&#39;, &#39;/home&#39;)
-    .addNode(&#39;about&#39;, &#39;/about&#39;)
-    .addNode(&#39;contact&#39;, &#39;/contact&#39;)
-    .start();
-</code></pre>
-<p>Invoking the <code>start</code> function will:</p>
-<ul>
-<li>Navigate to the default route if the current URL does not match an existing route</li>
-<li>Start listening to <em>popstate</em> events (triggered by back and forward buttons, and a manual change in the URL bar)</li>
-<li>Enable navigation</li>
-</ul>
-<h2 id="defining-a-default-route">Defining a default route</h2>
-<p>A default route can be set in Router5 constructor options. The following example will cause your application to navigate
-to <code>/about</code>:</p>
-<pre><code class="lang-javascript">var myRouter = Router5([
-        new RouteNode(&#39;home&#39;, &#39;/home&#39;),
-        new RouteNode(&#39;section&#39;, &#39;/:section&#39;),
-    ], {
-        defaultRoute: &#39;section&#39;
-        defaultParams: {section: &#39;about&#39;}
-    })
-    .start();
-</code></pre>
-<h2 id="navigating-to-a-specific-route">Navigating to a specific route</h2>
-<p>Router5 exposes the following method: <code>navigate(routeName, routeParams, opts)</code>.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;});
-// Will navigate to &#39;/contact&#39;
-</code></pre>
-<p><strong>Forcing a reload</strong></p>
-<p>When trying to navigate to the current route nothing will happen unless <code>reload</code> is set to <code>true</code>.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;}, {reload: true});
-</code></pre>
-<p><strong>Replacing current state</strong></p>
-<p>Set <code>replace</code> to true for replacing the current state in history when navigating to a new route. Default
-behaviour is to add an entry in history.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;concact&#39;}, {replace: true});
-</code></pre>
-<h2 id="stoping-your-router">Stoping your router</h2>
-<p>At any time you can stop (pause) a router and it will prevent any navigation. To resume, simply invoke <code>start</code> again.</p>
-<pre><code class="lang-javascript">myRouter.stop();
-</code></pre>
+        <h1 id="router5-with-react">Router5 with React</h1>
+<h2 id="example">Example</h2>
+<p>View the source <a href="https://github.com/router5/router5.github.io/blob/master/assets/router5-deku-example.js">on GitHub</a></p>
+<p>Done with a slightly altered version of Deku (experimental)</p>
+<div id="dekuExample"></div>
+
+<!-- ## router5-deku
+
+Installation:
+
+```sh
+// Bower
+bower install router5-deku --save
+// npm
+npm install router5-deku --save-dev
+```
+ -->
 
     </main>
 
@@ -145,6 +117,10 @@ behaviour is to add an entry in history.</p>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/assets/deku.min.js"></script>
+    <script src="/assets/router5.0.1.0-rc.7.min.js"></script>
+    <script src="/assets/router5-deku.js"></script>
+    <script src="/assets/router5-deku-example.js"></script>
     
 
 
