@@ -170,7 +170,6 @@ var Compose = SegmentDecorator({
         console.log(component, setState);
         if (component.state.title || component.state.message) {
             setState({warning: true})
-            console.log("warning");
             return false;
         }
         return true;
@@ -180,7 +179,6 @@ var Compose = SegmentDecorator({
         var state = component.state;
 
         function updateTitle(evt, component, setState) {
-            console.log(setState);
             setState({title: evt.target.value, warning: false});
         }
 
@@ -190,8 +188,8 @@ var Compose = SegmentDecorator({
 
         return element('div', {'class': 'compose'},
             element('h4', null, 'Compose a new message'),
-            element('input', {name: 'title', value: state.title, onChange: updateTitle}),
-            element('textarea', {name: 'message', value: state.message, onChange: updateMessage}),
+            element('input', {name: 'title', value: state.title, onInput: updateTitle}),
+            element('textarea', {name: 'message', value: state.message, onInput: updateMessage}),
             element('p', null, state.warning ? 'Clear inputs before continuing' : '')
         );
     }
