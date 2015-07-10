@@ -54,6 +54,7 @@ ul.mail-list {
     margin: 0;
     padding: 0;
     flex: 1;
+    overflow: hidden;
 }
 
 ul.mail-list > li {
