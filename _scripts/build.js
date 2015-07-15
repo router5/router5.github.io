@@ -73,7 +73,7 @@ function renderApi(done) {
 };
 
 async.parallel([
-    renderPage('index.html', {home: true, router5Version: '0.1.0-rc.7'}),
+    renderPage('index.html', {home: true, router5Version: '0.1.0'}),
     renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
@@ -84,13 +84,13 @@ async.parallel([
     renderApi,
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
         'https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js',
-        '/assets/router5.0.1.0-rc.7.min.js',
+        '/assets/router5.0.1.0.min.js',
         '/assets/router5-react.0.1.0-alpha.7.min.js',
         '/assets/router5-react-example.js'
     ]}),
     renderDoc('_docs', 'with-deku.md', {deku: true, examples: true, scripts: [
         '/assets/deku.min.js',
-        '/assets/router5.0.1.0-rc.7.min.js',
+        '/assets/router5.0.1.0.min.js',
         '/assets/router5-deku.0.1.0-alpha.2.js',
         '/assets/router5-deku-example.js'
     ]})

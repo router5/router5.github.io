@@ -12,6 +12,7 @@ __new Router5(routes, opts)__:
 List of __options__ supported:
 
 - `useHash`: `true` or `false`. If `true`, a hash will be prepended to the route path.
+- `hashPrefix`: a prefix to add to paths with hash. Set it to `!` for hashbang URLs.
 - `defaultRoute`: the default route, see [navigation guide](/docs/navigation.html).
 - `defaultParams`: the default route params.
 

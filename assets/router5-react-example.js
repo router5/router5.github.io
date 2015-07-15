@@ -3,6 +3,7 @@
 ////////////
 var router = new Router5()
     .setOption('useHash', true)
+    // .setOption('hashPrefix', '!')
     .setOption('defaultRoute', 'inbox')
     // Routes
     .addNode('inbox',         '/inbox')
