@@ -87,6 +87,10 @@ body > header > nav > a {
     color: white;
 }
 
+body > header > nav > iframe {
+    display: none;
+}
+
 body > header > nav > a:hover,
 /*body > header > nav > a:focus,*/
 body > header > nav > a.active {
@@ -161,7 +165,7 @@ code {
     line-height: 1.4em;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 840px) {
     body {
         padding-top: 60px;
     }
@@ -177,11 +181,19 @@ code {
 
     body > header > nav {
         padding: 0 1rem;
+        position: relative;
     }
 
     body > header > nav > a {
         display: inline-block;
         padding: 16px 0.5rem;
+    }
+
+    body > header > nav > iframe {
+        display: block;
+        position: absolute;
+        top: 19px;
+        right: 0;
     }
 
     body > main.jumbotron > div {

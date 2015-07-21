@@ -30,58 +30,32 @@ Listeners are invoked with two arguments:
 
 State objects contain the following properties: `name`, `params` and `path`.
 
-
-## Listen to any route change
-
-Listeners registered with `addListener(fn)` will be triggered on any route change, including route reloads (_toState_
-will be equal to _fromState_). You can remove a previously added listener by using `removeListener(fn)`.
-
-```javascript
-function callback(toState, fromState) {
-    renderComponent(toState.name);
-}
-
-myRouter.addListener(callback);
-
-myRouter.removeListener(callback);
-```
-
-## Listen to a specific route
-
-`addRouteListener(name, fn)` will register a listener which will be triggered when the router is navigating to
-the supplied route name.
-
-Listeners added with `addRouteListener(name, fn)` can be removed with `removeRouteListener(name, fn)`
-
-```javascript
-var myRouter = Router5()
-    .addNode('home', '/home')
-    .addNode('about', '/about')
-    .start();
-
-myRouter.addRouteListener('home', function (toState, fromState) {
-    alert('You have navigated to home');
-});
-
-myRouter.addRouteListener('about', function () {
-    alert('You have navigated to about');
-});
-
-myRouter.navigate('home');  // => alerts 'You have navigated to home'
-myRouter.navigate('about'); // => alerts 'You have navigated to about'
-```
-
+Additionally, a callback can be passed to node listeners (see below).
 
 ## Listen to a node change
 
-`addNodeListener(name, fn)` will register a listener which will be invoked when the specified route node name
-is the apex node of a route change, i.e. the lowest node in a tree remaining activated on a route change.
+`addNodeListener(name, fn)` will register a listener which will be invoked when the specified route node
+is the _apex_ node of a route change, i.e. the lowest node in a tree remaining activated on a route change (the lowest
+common node).
 
-For example, when navigating from route name `A.1.a` to `A.1.b`, node `a.1` is the _apex node_. When navigating
+For example, when navigating from route name `A.1.a` to `A.1.b`, node `a.1` is the _apex_ node. When navigating
 from `A.1.a` to `A.2`, `A` is the _apex_.
 
-This type of listener is useful for __component trees__ to know from which component a re-render
-needs to happen. For removing a previously added listner, use `removeNodeListener(name, fn)`.
+Node listeners are limited to one listener per node, and are the most useful listener for __component trees__:
+they allow to use high-order components and to re-render a view efficiently.
+
+Node listeners can be part of the transition phase: when using a node listener, you can return a promise,
+a boolean or invoke a done callback like for `canActivate` and `canDeactivate` methods. In that case:
+
+- The router will wait before updating the page URL and invoke other listeners (see below)
+- The router will fail the transition if a listener return a negative result (false, rejected
+promise or invoke callback with an error): __you are fully in control__, and you can decide
+for example if you want to share an error with the router and abort a route change.
+
+You can also choose to return nothing and in this case the router will consider the transition successful and
+won't wait for updating the page URL and invoke other listeners. Make sure your function doesn't take a callback as its
+last argument (`function nodeListener(toState, fromState)`: this will cause the router to wait for that callback
+to be invoked and the transition will never be completed.
 
 `addNodeListener('', fn)` will add a listener for the router's unamed root node.
 
@@ -103,11 +77,58 @@ myRouter.addNodeListener('A', function (toState, fromState) {
     console.log('re-render from A');
 });
 
-myRouter.addNodeListener('A.1', function (toState, fromState) {
+myRouter.addNodeListener('A.1', function (toState, fromState, done) {
     console.log('re-render from A.1');
+    // Perform some async operation
+    xhr.getData(function (err, res) {
+        // use data
+        // ...
+        // Notify router
+        done(err)
+    })
 });
 
 myRouter.navigate('A.1.a');
 myRouter.navigate('A.1.b'); // => logs 're-render from A.1'
 myRouter.navigate('A.2');   // => logs 're-render from A'
+```
+
+## Listen to any route change
+
+Listeners registered with `addListener(fn)` will be triggered on any route change, including route reloads (_toState_
+will be equal to _fromState_). You can remove a previously added listener by using `removeListener(fn)`.
+
+```javascript
+function callback(toState, fromState) {
+    renderComponent(toState.name);
+}
+
+myRouter.addListener(callback);
+
+myRouter.removeListener(callback);
+```
+
+## Listen to a specific route
+
+`addRouteListener(name, fn)` will register a listener which will be triggered when the router is navigating to
+the supplied route name.
+
+Listeners registered with `addRouteListener(name, fn)` can be removed later with `removeRouteListener(name, fn)`
+
+```javascript
+var myRouter = Router5()
+    .addNode('home', '/home')
+    .addNode('about', '/about')
+    .start();
+
+myRouter.addRouteListener('home', function (toState, fromState) {
+    alert('You have navigated to home');
+});
+
+myRouter.addRouteListener('about', function () {
+    alert('You have navigated to about');
+});
+
+myRouter.navigate('home');  // => alerts 'You have navigated to home'
+myRouter.navigate('about'); // => alerts 'You have navigated to about'
 ```

@@ -45,7 +45,9 @@
 
             <a href="docs/with-react.html" class="">Examples</a>
 
-            <a href="https://github.com/router5/router5" target="_blank">See it on Github</a>
+            <a href="https://github.com/router5/router5">See it on Github</a>
+
+            <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
     </header>
 
@@ -61,7 +63,7 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link active">Navigation</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
+            <a href="/docs/preventing-navigation.html" class="link">Allowing navigation</a>
 
             <strong>API Reference</strong>
 
@@ -84,7 +86,7 @@
     .addNode(&#39;contact&#39;, &#39;/contact&#39;)
     .start();
 </code></pre>
-<p>Invoking the <code>start</code> function will:</p>
+<p>Invoking the <code>.start()</code> function will:</p>
 <ul>
 <li>Navigate to the default route if the current URL does not match an existing route</li>
 <li>Start listening to <em>popstate</em> events (triggered by back and forward buttons, and a manual change in the URL bar)</li>
@@ -100,8 +102,11 @@ to <code>/about</code>:</p>
         defaultRoute: &#39;section&#39;
         defaultParams: {section: &#39;about&#39;}
     })
-    .start();
+    .start(function (err) {
+        /* ... */
+    });
 </code></pre>
+<p>A callback can be passed to start and will be invoked once the router has transitioned to the default route.</p>
 <h2 id="navigating-to-a-specific-route">Navigating to a specific route</h2>
 <p>Router5 exposes the following method: <code>navigate(routeName, routeParams, opts)</code>.</p>
 <pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;});
@@ -116,8 +121,14 @@ to <code>/about</code>:</p>
 behaviour is to add an entry in history.</p>
 <pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;concact&#39;}, {replace: true});
 </code></pre>
+<h2 id="knowing-when-a-transition-has-been-successful-or-not">Knowing when a transition has been successful or not</h2>
+<p>Like for <code>.start()</code>, <code>.navigate()</code> accepts a callback You can pass a callback as its last argument:</p>
+<pre><code class="lang-javascript">myRouter.navigate(&#39;route&#39;, {}, {}, function (err) {
+    /* ... */
+})
+</code></pre>
 <h2 id="stoping-your-router">Stoping your router</h2>
-<p>At any time you can stop (pause) a router and it will prevent any navigation. To resume, simply invoke <code>start</code> again.</p>
+<p>At any time you can stop (pause) a router and it will prevent any navigation. To resume, simply invoke <code>.start()</code> again.</p>
 <pre><code class="lang-javascript">myRouter.stop();
 </code></pre>
 
