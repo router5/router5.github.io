@@ -83,21 +83,65 @@ is in the middle of completing a form and data has not been saved, you might wan
 about data being lost or prevent them to leave the current view until data has been saved.</p>
 <h2 id="can-i-deactivate-">Can I deactivate?</h2>
 <p>Like Angular 2 and Aurelia routers, <em>router5</em> will ask active components which would be
-deactivated by a route change if they can be deactivated. If one of them returns a falsy value,
-transition will be prevented.</p>
+deactivated by a route change if they can be deactivated.</p>
 <p><em>router5</em> exposes two methods: <code>registerComponent(name)</code> and <code>deregisterComponent(name)</code> for registering
 active components. If a registered component has a <code>canDeactivate(toState, fromState)</code> method, it will
 be invoked when trying to transition to a new route. Only one component per route segment can be registered
 at a time.</p>
 <p><code>canDeactivate</code> methods are invoked from bottom to top. If a User is navigating from route <code>A.1.a</code> to route <code>B</code>,
 <em>router5</em> will query registered components for segment <code>A.1.a</code>, then <code>A.1</code>, then <code>A</code>.</p>
+<p>A <code>canDeactivate</code> method can return <code>true</code> or <code>false</code> for synchronous results, can
+return a thenable (<code>promise</code>) or can invoke a <code>done</code> callback. A resolved promise is equivalent
+to returning true, and a rejected promise will prevent a segment deactivation.</p>
+<p><em>router5</em> doesn&#39;t create any promise and therefore if you do not wish to use promises, you are not forced
+to support ES6 promises or use a polyfill.</p>
+<pre><code class="lang-javascript">let MyComponent = {
+    canDeactivate(toRoute, fromRoute) {
+        return new Promise((resolve, reject) =&gt; {
+            // If can deactivate
+            resolve()
+            // Or if cannot deactivate
+            reject()
+        })
+    }
+}
+</code></pre>
+<p>A callback takes two arguments: an error and a result. To allow or prevent a segment
+deactivation, simply invoke with the first argument (error) to a falsy or truthy value.</p>
+<pre><code class="lang-javascript">let MyComponent = {
+    canDeactivate(toRoute, fromRoute, done) {
+        // If can deactivate
+        done(null, true)
+        // Or if cannot deactivate
+        done(true, null)
+    }
+}
+</code></pre>
+<h2 id="can-i-activate-">Can I activate?</h2>
+<p>You can register a <code>canActivate(toRoute, fromRoute[, done])</code> function per node to allow or prevent access
+to a specific route and its descendents.</p>
+<p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same
+than <code>canDeactivate</code> methods: you can return a boolean value, return a promise or invoke a done callback.</p>
+<p>There are two ways to register <code>canActivate</code> functions: using <code>addNode</code> or <code>canActivate</code> methods:</p>
+<pre><code class="lang-javascript">let isAdmin = true
+
+function canAccessAdmin(toRoute, fromRoute, done) {
+    return isAdmin
+}
+
+myRouter.addNode(&#39;admin&#39;, &#39;/admin&#39;, canAccessAdmin)
+
+myRouter
+    .add({name: &#39;admin&#39;, path: &#39;/admin&#39;})
+    .canActivate(&#39;admin&#39;, canAccessAdmin)
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> if a can activate or can deactivate function doesn&#39;t return a boolean, a promise or doesn&#39;t call back,
+  the transition will not proceed</p>
+</blockquote>
 <h2 id="what-about-popstate-">What about popstate?</h2>
-<p>Popstate events cannot be prevented or reversed. In the event current route deactivation is blocked by
-a component, the non-deactivated state will be pushed again to the page history.</p>
-<h2 id="asynchronous-deactivation">Asynchronous deactivation</h2>
-<p>Currently, only <code>canDeactivate</code> functions returning synchronously a truthy or falsy result are supported.
-Support for promises will be added later, and better solutions regarding <em>popstate</em> events will
-be explored.</p>
+<p>Popstate events cannot be prevented or reversed. In the event current route activation or deactivation is not allowed,
+the previously known state will be pushed to the page history.</p>
 
     </main>
 

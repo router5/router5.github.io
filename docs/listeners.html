@@ -101,44 +101,27 @@ add three types of listeners.</p>
 <li><code>fromState</code>: the state object the router is navigating from</li>
 </ul>
 <p>State objects contain the following properties: <code>name</code>, <code>params</code> and <code>path</code>.</p>
-<h2 id="listen-to-any-route-change">Listen to any route change</h2>
-<p>Listeners registered with <code>addListener(fn)</code> will be triggered on any route change, including route reloads (<em>toState</em>
-will be equal to <em>fromState</em>). You can remove a previously added listener by using <code>removeListener(fn)</code>.</p>
-<pre><code class="lang-javascript">function callback(toState, fromState) {
-    renderComponent(toState.name);
-}
-
-myRouter.addListener(callback);
-
-myRouter.removeListener(callback);
-</code></pre>
-<h2 id="listen-to-a-specific-route">Listen to a specific route</h2>
-<p><code>addRouteListener(name, fn)</code> will register a listener which will be triggered when the router is navigating to
-the supplied route name.</p>
-<p>Listeners added with <code>addRouteListener(name, fn)</code> can be removed with <code>removeRouteListener(name, fn)</code></p>
-<pre><code class="lang-javascript">var myRouter = Router5()
-    .addNode(&#39;home&#39;, &#39;/home&#39;)
-    .addNode(&#39;about&#39;, &#39;/about&#39;)
-    .start();
-
-myRouter.addRouteListener(&#39;home&#39;, function (toState, fromState) {
-    alert(&#39;You have navigated to home&#39;);
-});
-
-myRouter.addRouteListener(&#39;about&#39;, function () {
-    alert(&#39;You have navigated to about&#39;);
-});
-
-myRouter.navigate(&#39;home&#39;);  // =&gt; alerts &#39;You have navigated to home&#39;
-myRouter.navigate(&#39;about&#39;); // =&gt; alerts &#39;You have navigated to about&#39;
-</code></pre>
+<p>Additionally, a callback can be passed to node listeners (see below).</p>
 <h2 id="listen-to-a-node-change">Listen to a node change</h2>
-<p><code>addNodeListener(name, fn)</code> will register a listener which will be invoked when the specified route node name
-is the apex node of a route change, i.e. the lowest node in a tree remaining activated on a route change.</p>
-<p>For example, when navigating from route name <code>A.1.a</code> to <code>A.1.b</code>, node <code>a.1</code> is the <em>apex node</em>. When navigating
+<p><code>addNodeListener(name, fn)</code> will register a listener which will be invoked when the specified route node
+is the <em>apex</em> node of a route change, i.e. the lowest node in a tree remaining activated on a route change (the lowest
+common node).</p>
+<p>For example, when navigating from route name <code>A.1.a</code> to <code>A.1.b</code>, node <code>a.1</code> is the <em>apex</em> node. When navigating
 from <code>A.1.a</code> to <code>A.2</code>, <code>A</code> is the <em>apex</em>.</p>
-<p>This type of listener is useful for <strong>component trees</strong> to know from which component a re-render
-needs to happen. For removing a previously added listner, use <code>removeNodeListener(name, fn)</code>.</p>
+<p>Node listeners are limited to one listener per node, and are the most useful listener for <strong>component trees</strong>:
+they allow to use high-order components and to re-render a view efficiently.</p>
+<p>Node listeners can be part of the transition phase: when using a node listener, you can return a promise,
+a boolean or invoke a done callback like for <code>canActivate</code> and <code>canDeactivate</code> methods. In that case:</p>
+<ul>
+<li>The router will wait before updating the page URL and invoke other listeners (see below)</li>
+<li>The router will fail the transition if a listener return a negative result (false, rejected
+promise or invoke callback with an error): <strong>you are fully in control</strong>, and you can decide
+for example if you want to share an error with the router and abort a route change.</li>
+</ul>
+<p>You can also choose to return nothing and in this case the router will consider the transition successful and
+won&#39;t wait for updating the page URL and invoke other listeners. Make sure your function doesn&#39;t take a callback as its
+last argument (<code>function nodeListener(toState, fromState)</code>: this will cause the router to wait for that callback
+to be invoked and the transition will never be completed.</p>
 <p><code>addNodeListener(&#39;&#39;, fn)</code> will add a listener for the router&#39;s unamed root node.</p>
 <pre><code class="lang-javascript">var node1 = new RouteNode(&#39;1&#39;, &#39;/1&#39;, [
     new RouteNode(&#39;a&#39;, &#39;/a&#39;)
@@ -157,13 +140,51 @@ myRouter.addNodeListener(&#39;A&#39;, function (toState, fromState) {
     console.log(&#39;re-render from A&#39;);
 });
 
-myRouter.addNodeListener(&#39;A.1&#39;, function (toState, fromState) {
+myRouter.addNodeListener(&#39;A.1&#39;, function (toState, fromState, done) {
     console.log(&#39;re-render from A.1&#39;);
+    // Perform some async operation
+    xhr.getData(function (err, res) {
+        // use data
+        // ...
+        // Notify router
+        done(err)
+    })
 });
 
 myRouter.navigate(&#39;A.1.a&#39;);
 myRouter.navigate(&#39;A.1.b&#39;); // =&gt; logs &#39;re-render from A.1&#39;
 myRouter.navigate(&#39;A.2&#39;);   // =&gt; logs &#39;re-render from A&#39;
+</code></pre>
+<h2 id="listen-to-any-route-change">Listen to any route change</h2>
+<p>Listeners registered with <code>addListener(fn)</code> will be triggered on any route change, including route reloads (<em>toState</em>
+will be equal to <em>fromState</em>). You can remove a previously added listener by using <code>removeListener(fn)</code>.</p>
+<pre><code class="lang-javascript">function callback(toState, fromState) {
+    renderComponent(toState.name);
+}
+
+myRouter.addListener(callback);
+
+myRouter.removeListener(callback);
+</code></pre>
+<h2 id="listen-to-a-specific-route">Listen to a specific route</h2>
+<p><code>addRouteListener(name, fn)</code> will register a listener which will be triggered when the router is navigating to
+the supplied route name.</p>
+<p>Listeners registered with <code>addRouteListener(name, fn)</code> can be removed later with <code>removeRouteListener(name, fn)</code></p>
+<pre><code class="lang-javascript">var myRouter = Router5()
+    .addNode(&#39;home&#39;, &#39;/home&#39;)
+    .addNode(&#39;about&#39;, &#39;/about&#39;)
+    .start();
+
+myRouter.addRouteListener(&#39;home&#39;, function (toState, fromState) {
+    alert(&#39;You have navigated to home&#39;);
+});
+
+myRouter.addRouteListener(&#39;about&#39;, function () {
+    alert(&#39;You have navigated to about&#39;);
+});
+
+myRouter.navigate(&#39;home&#39;);  // =&gt; alerts &#39;You have navigated to home&#39;
+myRouter.navigate(&#39;about&#39;); // =&gt; alerts &#39;You have navigated to about&#39;
 </code></pre>
 
     </main>
