@@ -58,8 +58,8 @@
         </tr>{% endfor %}
     </tbody>{% endif %}
 
-    {% if class.returns.length %}<tbody class="return">
-        {% for param in class.returns %}<tr>
+    {% if method.returns.length %}<tbody class="return">
+        {% for param in method.returns %}<tr>
             <td><strong>Return</strong></td>
             <td>{% for type in param.type %}<code>{{ type }}</code>{% endfor %}</td>
             <td>{{ param.description }}</td>
