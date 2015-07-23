@@ -188,7 +188,7 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.addNode(name, path, canActivate)</strong>
+                <strong>router5.addNode(name, path)</strong>
                 Add a route to the router.
             </th>
         </tr>
@@ -207,12 +207,6 @@
             <td><strong>path</strong></td>
             <td><code>String</code></td>
             <td>The route path</td>
-        </tr><tr>
-            <td><strong>canActivate</strong></td>
-            <td><code>Function</code></td>
-            <td>A function to determine if the route can be activated.
-                              It will be invoked during a transition with `toState`
-                              and `fromState` parameters.</td>
         </tr>
     </tbody>
 
@@ -229,23 +223,15 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.start(done)</strong>
+                <strong>router5.start()</strong>
                 Start the router
             </th>
         </tr>
 
-        <tr>
-            <th colspan="3">Params</th>
-        </tr>
+        
     </thead>
 
-    <tbody>
-        <tr>
-            <td><strong>done</strong></td>
-            <td><code>Function</code></td>
-            <td>An optional callback which will be called when starting is done</td>
-        </tr>
-    </tbody>
+    
 
     <tbody class="return">
         <tr>
@@ -644,42 +630,6 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.canActivate(name, canActivate)</strong>
-                [registerCanActivate description]
-            </th>
-        </tr>
-
-        <tr>
-            <th colspan="3">Params</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td><strong>name</strong></td>
-            <td><code>String</code></td>
-            <td>The route name to register the canActivate method for</td>
-        </tr><tr>
-            <td><strong>canActivate</strong></td>
-            <td><code>Function</code></td>
-            <td>The canActivate function. It should return `true`, `false`
-                               or a promise</td>
-        </tr>
-    </tbody>
-
-    <tbody class="return">
-        <tr>
-            <td><strong>Return</strong></td>
-            <td><code>Router5</code></td>
-            <td>The router instance</td>
-        </tr>
-    </tbody>
-</table>
-
-<table class="params-table">
-    <thead>
-        <tr>
-            <th colspan="3">
                 <strong>router5.buildUrl(route, params)</strong>
                 Generates an URL from a route name and route params.
 The generated URL will be prefixed by hash if useHash is set to true
@@ -783,7 +733,7 @@ The generated URL will be prefixed by hash if useHash is set to true
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.navigate(name, params, opts, done)</strong>
+                <strong>router5.navigate(name, params, opts)</strong>
                 Navigate to a specific route
             </th>
         </tr>
@@ -806,19 +756,14 @@ The generated URL will be prefixed by hash if useHash is set to true
             <td><strong>opts</strong></td>
             <td><code>Object={}</code></td>
             <td>The route options (replace, reload)</td>
-        </tr><tr>
-            <td><strong>done</strong></td>
-            <td><code>Function</code></td>
-            <td>A optional callback (err, res) to call when transition has been performed
-                               either successfully or unsuccessfully.</td>
         </tr>
     </tbody>
 
     <tbody class="return">
         <tr>
             <td><strong>Return</strong></td>
-            <td><code>Function</code></td>
-            <td>A cancellation function</td>
+            <td><code>Boolean</code></td>
+            <td>Whether or not transition was allowed</td>
         </tr>
     </tbody>
 </table>
