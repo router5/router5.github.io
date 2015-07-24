@@ -45,7 +45,7 @@ function normalizeParams(param) {
 
 // Parse a string or a buffer.
 module.exports = function (done) {
-    fs.readFile(path.join(__dirname, '..', 'node_modules/router5/modules/Router5.js'), function (err, res) {
+    fs.readFile(path.join(__dirname, '..', 'node_modules/router5/modules/router5.js'), function (err, res) {
         if (err) done(err);
 
         var blocks = docchi
