@@ -37,7 +37,12 @@ var RouteNode = r5.RouteNode;
 __Browser (globals)__
 
 `router5.js` and `router5.min.js` are available in `/dist/browser/`. All _router5_ dependencies (_route-node_ and _path-parser_)
-are packaged together, and `Router5` and `Router5Node` are made globally available.
+are packaged together, and `Router5` and `RouteNode` are made globally available.
+
+__AMD__
+
+`router5.js` and `router5.min.js` are available in `/dist/amd/`, it includes all router5 dependencies bundled
+together. `router5` returns an object containing `Router5` and `RouteNode`.
 
 <!-- __ES6__
 

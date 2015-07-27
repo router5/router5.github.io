@@ -64,6 +64,7 @@
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/listeners.html" class="link active">Listeners</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
+            <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
             <strong>API Reference</strong>
 
@@ -108,8 +109,9 @@ is the <em>apex</em> node of a route change, i.e. the lowest node in a tree rema
 common node).</p>
 <p>For example, when navigating from route name <code>A.1.a</code> to <code>A.1.b</code>, node <code>a.1</code> is the <em>apex</em> node. When navigating
 from <code>A.1.a</code> to <code>A.2</code>, <code>A</code> is the <em>apex</em>.</p>
-<p>Node listeners are limited to one listener per node, and are the most useful listener for <strong>component trees</strong>:
-they allow to use high-order components and to re-render a view efficiently.</p>
+<p>Node listeners are limited to <strong>one listener per node</strong>, and are the most useful listener for <strong>component trees</strong>:
+they allow to use high-order components and to re-render a view efficiently. <strong>Only one node listener will
+be invoked on a route change</strong>.</p>
 <p>Node listeners can be part of the transition phase: when using a node listener, you can return a promise,
 a boolean or invoke a done callback like for <code>canActivate</code> and <code>canDeactivate</code> methods. In that case:</p>
 <ul>

@@ -75,7 +75,7 @@ function renderApi(done) {
 };
 
 async.parallel([
-    renderPage('index.html', {home: true, router5Version: router5Version}),
+    renderPage('index.html', {home: true, router5Version: router5Version, pageTitle: data.pageTitle.replace(' docs ', ' ')}),
     renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
@@ -83,6 +83,7 @@ async.parallel([
     renderDoc('_guides', 'listeners.md', {listeners: true, docs: true}),
     renderDoc('_guides', 'path-syntax.md', {pathSyntax: true, docs: true}),
     renderDoc('_guides', 'preventing-navigation.md', {preventNav: true, docs: true}),
+    renderDoc('_guides', 'universal-applications.md', {universal: true, docs: true}),
     renderApi,
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
         'https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js',

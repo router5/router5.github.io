@@ -41,8 +41,9 @@ common node).
 For example, when navigating from route name `A.1.a` to `A.1.b`, node `a.1` is the _apex_ node. When navigating
 from `A.1.a` to `A.2`, `A` is the _apex_.
 
-Node listeners are limited to one listener per node, and are the most useful listener for __component trees__:
-they allow to use high-order components and to re-render a view efficiently.
+Node listeners are limited to __one listener per node__, and are the most useful listener for __component trees__:
+they allow to use high-order components and to re-render a view efficiently. __Only one node listener will
+be invoked on a route change__.
 
 Node listeners can be part of the transition phase: when using a node listener, you can return a promise,
 a boolean or invoke a done callback like for `canActivate` and `canDeactivate` methods. In that case:

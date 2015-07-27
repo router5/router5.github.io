@@ -37,7 +37,7 @@ function normalizeParams(param) {
         param.optional = true;
     }
     param.type = normalizeParam(param.type);
-    if (param.optional) {
+    if (param.optional && param.default !== undefined) {
         param.type[0] += '=' + param.default;
     }
     return param;
@@ -66,7 +66,7 @@ module.exports = function (done) {
                 };
 
                 block.signature = (index === 0 ? '' : 'router5.') + block.name + '(' + block.params.map(function (param) {
-                    return param.name;
+                    return !param.optional ? param.name : '[' + param.name + ']';
                 }).join(', ') + ')';
 
                 return block;
