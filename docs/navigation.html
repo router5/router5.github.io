@@ -106,7 +106,7 @@ to <code>/about</code>:</p>
         defaultRoute: &#39;section&#39;
         defaultParams: {section: &#39;about&#39;}
     })
-    .start(function (err) {
+    .start(function (err, state) {
         /* ... */
     });
 </code></pre>
@@ -126,8 +126,8 @@ behaviour is to add an entry in history.</p>
 <pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;concact&#39;}, {replace: true});
 </code></pre>
 <h2 id="knowing-when-a-transition-has-been-successful-or-not">Knowing when a transition has been successful or not</h2>
-<p>Like for <code>.start()</code>, <code>.navigate()</code> accepts a callback You can pass a callback as its last argument:</p>
-<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;route&#39;, {}, {}, function (err) {
+<p>Like for <code>.start()</code>, <code>.navigate()</code> accepts a callback (last argument):</p>
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;route&#39;, {}, {}, function (err, state) {
     /* ... */
 })
 </code></pre>

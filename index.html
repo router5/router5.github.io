@@ -155,7 +155,7 @@ drawGraph(router.getState());</code></pre>
                 <a><strong>Just a router</strong></a>
 
                 <i>router 5</i> is just a router, nothing else. It won't take care of updating your view,
-                and makes no demands regarding you app structure or how your code is organised.
+                and makes no demands regarding you implementation. And it works universally (<i>aka</i> isomorphically).
             </li>
 
             <li>
@@ -177,45 +177,25 @@ drawGraph(router.getState());</code></pre>
 
     <section>
         <blockquote>Router5 is made of distinctive building blocks, each of them embrace the
-        <i>Single Responsability Principle</i>.</blockquote>
+        <i>Single Responsability Principle</i>.<br/>On top of that, Helpers are being created to support the use of router5
+        with libraries and frameworks out there.</blockquote>
 
         <ul>
             <li>
-                <a href="https://github.com/troch/route-node"><strong>router5</strong></a>
+                <a><strong>route-node and path-parser</strong></a>
 
-                router5 is the last layer on top of route-node and path-parser. It adds navigation and history features, using RouteNode to store your application routes.
+                router5 is built on top of <a href="https://github.com/troch/route-node"><strong>route-node</strong></a> and
+                <a href="https://github.com/troch/path-parser"><strong>path-parser</strong></a>. route-node organises your routes in a tree. It uses path-parser to quickly find a matching route in a tree, or to build a path from a route name and params.
             </li>
 
             <li>
-                <a href="https://github.com/troch/route-node"><strong>route-node</strong></a>
+                <a href="https://github.com/router5/router5-react"><strong>Current integrations</strong></a>
 
-                RouteNode organises routes in a tree of nested named routes with each of its branch being a valid route. It uses PathParser to quickly find a matching route in a tree, or to build a path from a route name and params.
-            </li>
+                <a href="https://github.com/router5/router5-react">router-react</a>: in progress, currently
+                including a Mixin and a Link component.<br/>
 
-            <li>
-                <a href="https://github.com/troch/path-parser"><strong>path-parser</strong></a>
-
-                PathParser is responsible for parsing paths into tokens: it identifies segments, parameters, etc... It can match URL fragments or build them with supplied parameters.
-            </li>
-        </ul>
-    </section>
-
-    <section>
-        <blockquote>
-            Helpers are being created to support the use of router5 with libraries and frameworks out there, to reduce boilerplate code.
-        </blockquote>
-
-        <ul>
-            <li>
-                <a href="https://github.com/router5/router5-react"><strong>router5-react</strong></a>
-
-                In progress, currently including a Mixin and a Link component</p>
-            </li>
-
-            <li>
-                <a><strong>router5-deku</strong></a>
-
-                Will be added soon
+                <a href="https://github.com/router5/router5-deku">router5-deku</a>: experimental, uses a slightly
+                altered version of deku.
             </li>
 
             <li>
@@ -224,6 +204,7 @@ drawGraph(router.getState());</code></pre>
                 You would like router5 to integrate with your favourite framework or library?
                 <a href="https://github.com/router5/router5/issues">Open an issue</a> and say hi!
             </li>
+        </ul>
     </section>
 
     <footer>
