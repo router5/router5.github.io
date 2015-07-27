@@ -29,7 +29,7 @@ routeNodes = {
 };
 
 var svg;
-var height = 380;
+var height = 440;
 // Draw graph
 function drawGraph(toState, fromState) {
     toState = toState || {};
