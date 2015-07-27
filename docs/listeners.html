@@ -22,7 +22,7 @@
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/docs.css">
     <link rel="stylesheet" href="/styles/examples.css">
@@ -125,7 +125,7 @@ won&#39;t wait for updating the page URL and invoke other listeners. Make sure y
 last argument (<code>function nodeListener(toState, fromState)</code>: this will cause the router to wait for that callback
 to be invoked and the transition will never be completed.</p>
 <p><code>addNodeListener(&#39;&#39;, fn)</code> will add a listener for the router&#39;s unamed root node.</p>
-<pre><code class="lang-javascript">var node1 = new RouteNode(&#39;1&#39;, &#39;/1&#39;, [
+<pre><code class="lang-javascript javascript">var node1 = new RouteNode(&#39;1&#39;, &#39;/1&#39;, [
     new RouteNode(&#39;a&#39;, &#39;/a&#39;)
     new RouteNode(&#39;a&#39;, &#39;/a&#39;)
 ]);
@@ -160,7 +160,7 @@ myRouter.navigate(&#39;A.2&#39;);   // =&gt; logs &#39;re-render from A&#39;
 <h2 id="listen-to-any-route-change">Listen to any route change</h2>
 <p>Listeners registered with <code>addListener(fn)</code> will be triggered on any route change, including route reloads (<em>toState</em>
 will be equal to <em>fromState</em>). You can remove a previously added listener by using <code>removeListener(fn)</code>.</p>
-<pre><code class="lang-javascript">function callback(toState, fromState) {
+<pre><code class="lang-javascript javascript">function callback(toState, fromState) {
     renderComponent(toState.name);
 }
 
@@ -172,7 +172,7 @@ myRouter.removeListener(callback);
 <p><code>addRouteListener(name, fn)</code> will register a listener which will be triggered when the router is navigating to
 the supplied route name.</p>
 <p>Listeners registered with <code>addRouteListener(name, fn)</code> can be removed later with <code>removeRouteListener(name, fn)</code></p>
-<pre><code class="lang-javascript">var myRouter = Router5()
+<pre><code class="lang-javascript javascript">var myRouter = Router5()
     .addNode(&#39;home&#39;, &#39;/home&#39;)
     .addNode(&#39;about&#39;, &#39;/about&#39;)
     .start();

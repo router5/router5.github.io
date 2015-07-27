@@ -22,7 +22,7 @@
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/docs.css">
     <link rel="stylesheet" href="/styles/examples.css">
@@ -91,13 +91,13 @@ to the matched page URL or the default route.</li>
 </ul>
 <h2 id="create-your-router-client-server-">Create your router (client &amp; server)</h2>
 <p>You can use the same code for configuring your router on both client and server sides.</p>
-<pre><code class="lang-javascript">let router = new Router5()
+<pre><code class="lang-javascript javascript">let router = new Router5()
     .addNode(&#39;home&#39;, &#39;/home&#39;)
     .addNode(&#39;about&#39;, &#39;/about&#39;)
     .addNode(&#39;contact&#39;, &#39;/contact&#39;);
 </code></pre>
 <h2 id="on-the-server">On the server</h2>
-<pre><code class="lang-javascript">// With express, you would pass req.originalUrl
+<pre><code class="lang-javascript javascript">// With express, you would pass req.originalUrl
 router.start(serverUrl, function (err, state) {
     // Serialise state and send it in a &quot;&lt;script&gt;&lt;/script&gt;&quot; tag
     // so it can be retrieved on the client side
@@ -106,7 +106,7 @@ router.start(serverUrl, function (err, state) {
 </code></pre>
 <h2 id="in-the-browser">In the browser</h2>
 <p>Tell the router the app was already initialised:</p>
-<pre><code class="lang-javascript">// Read starting state
+<pre><code class="lang-javascript javascript">// Read starting state
 let startState = window.initialState;
 // Tell the router the application is already initialised with startState so
 // it won&#39;t try to transition to the current URL or default route.

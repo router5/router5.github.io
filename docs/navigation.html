@@ -22,7 +22,7 @@
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/docs.css">
     <link rel="stylesheet" href="/styles/examples.css">
@@ -81,22 +81,25 @@
         <h1 id="navigation">Navigation</h1>
 <p>After configuring your routes, you need to <em>enable navigation</em>.</p>
 <h2 id="starting-your-router">Starting your router</h2>
-<pre><code class="lang-javascript">var myRouter = Router5()
+<pre><code class="lang-javascript javascript">var myRouter = Router5()
     .addNode(&#39;home&#39;, &#39;/home&#39;)
     .addNode(&#39;about&#39;, &#39;/about&#39;)
     .addNode(&#39;contact&#39;, &#39;/contact&#39;)
     .start();
 </code></pre>
-<p>Invoking the <code>.start()</code> function will:</p>
+<p>Invoking the <code>.start([startPathOrState ,] done)</code> function will:</p>
 <ul>
-<li>Navigate to the default route if the current URL does not match an existing route</li>
+<li>Navigate to the default route if the current URL does not match an existing route, or if the matched route cannot be activated</li>
 <li>Start listening to <em>popstate</em> events (triggered by back and forward buttons, and a manual change in the URL bar)</li>
 <li>Enable navigation</li>
 </ul>
+<p>A start path can be supplied and the router will use it to match a route and navigate to it: it is designed to be used server-side
+for universal Javascript applications. You can also pass to <code>start()</code> an initial state which will set the router to that state, without
+navigating to it: see <a href="/docs/universal-applications.html">universal applications</a>.</p>
 <h2 id="defining-a-default-route">Defining a default route</h2>
 <p>A default route can be set in Router5 constructor options. The following example will cause your application to navigate
 to <code>/about</code>:</p>
-<pre><code class="lang-javascript">var myRouter = Router5([
+<pre><code class="lang-javascript javascript">var myRouter = Router5([
         new RouteNode(&#39;home&#39;, &#39;/home&#39;),
         new RouteNode(&#39;section&#39;, &#39;/:section&#39;),
     ], {
@@ -110,27 +113,27 @@ to <code>/about</code>:</p>
 <p>A callback can be passed to start and will be invoked once the router has transitioned to the default route.</p>
 <h2 id="navigating-to-a-specific-route">Navigating to a specific route</h2>
 <p>Router5 exposes the following method: <code>navigate(routeName, routeParams, opts)</code>.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;});
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;});
 // Will navigate to &#39;/contact&#39;
 </code></pre>
 <p><strong>Forcing a reload</strong></p>
 <p>When trying to navigate to the current route nothing will happen unless <code>reload</code> is set to <code>true</code>.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;}, {reload: true});
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;}, {reload: true});
 </code></pre>
 <p><strong>Replacing current state</strong></p>
 <p>Set <code>replace</code> to true for replacing the current state in history when navigating to a new route. Default
 behaviour is to add an entry in history.</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;concact&#39;}, {replace: true});
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;concact&#39;}, {replace: true});
 </code></pre>
 <h2 id="knowing-when-a-transition-has-been-successful-or-not">Knowing when a transition has been successful or not</h2>
 <p>Like for <code>.start()</code>, <code>.navigate()</code> accepts a callback You can pass a callback as its last argument:</p>
-<pre><code class="lang-javascript">myRouter.navigate(&#39;route&#39;, {}, {}, function (err) {
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;route&#39;, {}, {}, function (err) {
     /* ... */
 })
 </code></pre>
 <h2 id="stoping-your-router">Stoping your router</h2>
 <p>At any time you can stop (pause) a router and it will prevent any navigation. To resume, simply invoke <code>.start()</code> again.</p>
-<pre><code class="lang-javascript">myRouter.stop();
+<pre><code class="lang-javascript javascript">myRouter.stop();
 </code></pre>
 
     </main>

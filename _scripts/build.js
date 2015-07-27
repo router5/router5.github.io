@@ -39,7 +39,7 @@ function renderDoc(dir, page, customData) {
 
             var docData = objectAssign({}, data, customData, {
                 styleSheets: [
-                    '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css',
+                    '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css',
                     '/styles/main.css',
                     '/styles/docs.css',
                     '/styles/examples.css'
@@ -48,7 +48,7 @@ function renderDoc(dir, page, customData) {
             });
 
             nunjucks.render(path.join(__dirname, '../_pages/docs.html'), docData, function (err, res) {
-                fs.writeFile(path.join(__dirname, '..', 'docs', page.replace(/\.md$/, '.html')), res, done);
+                fs.writeFile(path.join(__dirname, '..', 'docs', page.replace(/\.md$/, '.html')), res.replace(/lang-javascript/g, 'lang-javascript javascript'), done);
             });
         });
     };
@@ -68,7 +68,7 @@ function renderApi(done) {
             });
 
             nunjucks.render(path.join(__dirname, '../_pages/docs.html'), docData, function (err, res) {
-                fs.writeFile(path.join(__dirname, '..', 'docs/api-reference.html'), res, done);
+                fs.writeFile(path.join(__dirname, '..', 'docs/api-reference.html'), res.replace(/lang-javascript/g, 'lang-javascript javascript'), done);
             });
         });
     })

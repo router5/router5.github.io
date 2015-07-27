@@ -22,7 +22,7 @@
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/docs.css">
     <link rel="stylesheet" href="/styles/examples.css">
@@ -103,7 +103,7 @@ then extend its path. If you pass to Router5 an array, it will automatically cre
 When nesting routes, they inherit from their parent. For example, a route named <code>b</code> with path <code>/b</code> added as a children of route named
 &#39;a&#39; (path <code>/a</code>) will be named <code>a.b</code> (its path will be <code>/a/b</code>).</p>
 <p><strong>Using RouteNode</strong></p>
-<pre><code class="lang-javascript">var myRouter = new Router5([
+<pre><code class="lang-javascript javascript">var myRouter = new Router5([
     new RouteNode(&#39;home&#39;, &#39;/home&#39;),
 
     new RouteNode(&#39;users&#39;, path: &#39;/users&#39;, [
@@ -113,7 +113,7 @@ When nesting routes, they inherit from their parent. For example, a route named 
 ]);
 </code></pre>
 <p><strong>Using POJOs</strong></p>
-<pre><code class="lang-javascript">var myRouter = new Router5([
+<pre><code class="lang-javascript javascript">var myRouter = new Router5([
     new RouteNode(&#39;home&#39;, &#39;/home&#39;),
 
     {name: &#39;users&#39;, path: &#39;/users&#39;, [
@@ -125,7 +125,7 @@ When nesting routes, they inherit from their parent. For example, a route named 
 <h2 id="adding-routes">Adding routes</h2>
 <p><strong>add(routes)</strong></p>
 <p>Like in Router5 constructor, routes can be a single node (RouteNode or plain object), or a list of nodes.</p>
-<pre><code class="lang-javascript">myRouter.add(new RouteNode(&#39;about&#39;, &#39;/about&#39;));
+<pre><code class="lang-javascript javascript">myRouter.add(new RouteNode(&#39;about&#39;, &#39;/about&#39;));
 // Or
 myRouter.add({name: &#39;about&#39;, path: &#39;/about&#39;});
 // Or
@@ -140,7 +140,7 @@ myRouter.add([
 ]);
 </code></pre>
 <p><strong>addNode(name, path)</strong></p>
-<pre><code class="lang-javascript">var rootNode = new RouteNode()
+<pre><code class="lang-javascript javascript">var rootNode = new RouteNode()
     .addNode(&#39;home&#39;,       &#39;/home&#39;)
     .addNode(&#39;users&#39;,      &#39;/users&#39;)
     .addNode(&#39;users.view&#39;, &#39;/view/:id&#39;)

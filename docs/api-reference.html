@@ -189,7 +189,7 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.addNode(name, path, [canActivate])</strong>
+                <strong>router5.addNode(name, path, canActivate)</strong>
                 Add a route to the router.
             </th>
         </tr>
@@ -212,8 +212,8 @@
             <td><strong>canActivate</strong></td>
             <td><code>Function</code></td>
             <td>A function to determine if the route can be activated.
-                                It will be invoked during a transition with `toState`
-                                and `fromState` parameters.</td>
+                              It will be invoked during a transition with `toState`
+                              and `fromState` parameters.</td>
         </tr>
     </tbody>
 
@@ -230,7 +230,7 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.start([startPathOrState], [done])</strong>
+                <strong>router5.start(done)</strong>
                 Start the router
             </th>
         </tr>
@@ -242,15 +242,9 @@
 
     <tbody>
         <tr>
-            <td><strong>startPathOrState</strong></td>
-            <td><code>String</code><code>Object</code></td>
-            <td>An optional start path or state
-                                           (use it for universal applications)</td>
-        </tr><tr>
             <td><strong>done</strong></td>
             <td><code>Function</code></td>
-            <td>An optional callback which will be called
-                                           when starting is done</td>
+            <td>An optional callback which will be called when starting is done</td>
         </tr>
     </tbody>
 
@@ -652,7 +646,7 @@
         <tr>
             <th colspan="3">
                 <strong>router5.canActivate(name, canActivate)</strong>
-                A function to determine whether or not a segment can be activated.
+                [registerCanActivate description]
             </th>
         </tr>
 

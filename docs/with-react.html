@@ -22,7 +22,7 @@
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/docs.css">
     <link rel="stylesheet" href="/styles/examples.css">
@@ -97,7 +97,7 @@ npm install router5-react --save-dev
 an active component instance with router)</li>
 </ul>
 <p>The use of factories is to avoid using contexts. One way to use them is:</p>
-<pre><code class="lang-javascript">import React from &#39;react&#39;
+<pre><code class="lang-javascript javascript">import React from &#39;react&#39;
 import {Router5} from &#39;router5&#39;
 import {linkFactory, segmentMixinFactory} from &#39;router5-react&#39;
 
@@ -125,7 +125,7 @@ e-render from.</p>
 <li>Register component with the router (navigation can be prevented if a <code>canDeactivate</code> function returns false)</li>
 <li>If a listener is supplied, it will be added as a <em>node listener</em> to the router. See <a href="/docs/listeners.html">guide on listeners</a> for more information.</li>
 </ul>
-<pre><code class="lang-javascript">var Main = React.createClass({
+<pre><code class="lang-javascript javascript">var Main = React.createClass({
     mixins: [SegmentMixin(&#39;&#39;, function (toState) {
         this.setState({routeState: toState});
     })],
@@ -165,7 +165,7 @@ if there is a route match. Properties supported:</p>
 is exaclty the link route, or if it is one of its descendant.
 -</li>
 </ul>
-<pre><code class="lang-javascript">import React from &#39;react&#39;
+<pre><code class="lang-javascript javascript">import React from &#39;react&#39;
 import {Link} from &#39;./router&#39;
 
 var Nav = React.createClass({

@@ -12,11 +12,15 @@ var myRouter = Router5()
     .start();
 ```
 
-Invoking the `.start()` function will:
+Invoking the `.start([startPathOrState ,] done)` function will:
 
-- Navigate to the default route if the current URL does not match an existing route
+- Navigate to the default route if the current URL does not match an existing route, or if the matched route cannot be activated
 - Start listening to _popstate_ events (triggered by back and forward buttons, and a manual change in the URL bar)
 - Enable navigation
+
+A start path can be supplied and the router will use it to match a route and navigate to it: it is designed to be used server-side
+for universal Javascript applications. You can also pass to `start()` an initial state which will set the router to that state, without
+navigating to it: see [universal applications](/docs/universal-applications.html).
 
 
 ## Defining a default route
@@ -32,7 +36,7 @@ var myRouter = Router5([
         defaultRoute: 'section'
         defaultParams: {section: 'about'}
     })
-    .start(function (err) {
+    .start(function (err, state) {
         /* ... */
     });
 ```
@@ -68,10 +72,10 @@ myRouter.navigate('section', {section: 'concact'}, {replace: true});
 
 ## Knowing when a transition has been successful or not
 
-Like for `.start()`, `.navigate()` accepts a callback You can pass a callback as its last argument:
+Like for `.start()`, `.navigate()` accepts a callback (last argument):
 
 ```javascript
-myRouter.navigate('route', {}, {}, function (err) {
+myRouter.navigate('route', {}, {}, function (err, state) {
     /* ... */
 })
 ```

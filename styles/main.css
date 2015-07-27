@@ -34,12 +34,12 @@ a.link:hover, a.link:hover {
 }
 
 h1 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 h2 {
     font-size: 1.2rem;
-    margin-top: 1.5rem;
+    margin: 2.5rem 0 1.8rem;
 }
 
 h3 {
@@ -52,7 +52,7 @@ p {
 }
 
 blockquote {
-    text-align: center;
+    text-align: left;
     margin: 0;
 }
 
@@ -161,8 +161,8 @@ body > footer {
 }
 
 code {
-    font-size: 14px;
-    line-height: 1.4em;
+    font-size: 0.9rem;
+    line-height: 1.5em;
 }
 
 @media (min-width: 840px) {

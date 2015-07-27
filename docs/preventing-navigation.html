@@ -22,7 +22,7 @@
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
     <!-- Stylsheets -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/docs.css">
     <link rel="stylesheet" href="/styles/examples.css">
@@ -96,7 +96,7 @@ return a thenable (<code>promise</code>) or can invoke a <code>done</code> callb
 to returning true, and a rejected promise will prevent a segment deactivation.</p>
 <p><em>router5</em> doesn&#39;t create any promise and therefore if you do not wish to use promises, you are not forced
 to support ES6 promises or use a polyfill.</p>
-<pre><code class="lang-javascript">let MyComponent = {
+<pre><code class="lang-javascript javascript">let MyComponent = {
     canDeactivate(toRoute, fromRoute) {
         return new Promise((resolve, reject) =&gt; {
             // If can deactivate
@@ -109,7 +109,7 @@ to support ES6 promises or use a polyfill.</p>
 </code></pre>
 <p>A callback takes two arguments: an error and a result. To allow or prevent a segment
 deactivation, simply invoke with the first argument (error) to a falsy or truthy value.</p>
-<pre><code class="lang-javascript">let MyComponent = {
+<pre><code class="lang-javascript javascript">let MyComponent = {
     canDeactivate(toRoute, fromRoute, done) {
         // If can deactivate
         done(null, true)
@@ -124,7 +124,7 @@ to a specific route and its descendents.</p>
 <p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same
 than <code>canDeactivate</code> methods: you can return a boolean value, return a promise or invoke a done callback.</p>
 <p>There are two ways to register <code>canActivate</code> functions: using <code>addNode</code> or <code>canActivate</code> methods:</p>
-<pre><code class="lang-javascript">let isAdmin = true
+<pre><code class="lang-javascript javascript">let isAdmin = true
 
 function canAccessAdmin(toRoute, fromRoute, done) {
     return isAdmin
