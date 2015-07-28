@@ -112,7 +112,8 @@ to <code>/about</code>:</p>
 </code></pre>
 <p>A callback can be passed to start and will be invoked once the router has transitioned to the default route.</p>
 <h2 id="navigating-to-a-specific-route">Navigating to a specific route</h2>
-<p>Router5 exposes the following method: <code>navigate(routeName, routeParams, opts)</code>.</p>
+<p>Router5 exposes the following method: <code>navigate(routeName, routeParams, opts)</code>. This method has to be
+called for navigating to a different route: <strong>clicks on links won&#39;t be intercepted by the router</strong>.</p>
 <pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;});
 // Will navigate to &#39;/contact&#39;
 </code></pre>
