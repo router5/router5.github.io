@@ -116,7 +116,7 @@ When nesting routes, they inherit from their parent. For example, a route named 
 <pre><code class="lang-javascript javascript">var myRouter = new Router5([
     new RouteNode(&#39;home&#39;, &#39;/home&#39;),
 
-    {name: &#39;users&#39;, path: &#39;/users&#39;, [
+    {name: &#39;users&#39;, path: &#39;/users&#39;, children: [
         {name: &#39;view&#39;, path: &#39;/view/:id&#39;},
         {name: &#39;list&#39;, path: &#39;/list&#39;},
     ]}
