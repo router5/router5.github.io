@@ -64,8 +64,8 @@
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/transition.html" class="link">Transition</a>
-            <a href="/docs/universal-applications.html" class="link active">Universal applications</a>
+            <a href="/docs/transition.html" class="link active">Transition</a>
+            <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
             <strong>API Reference</strong>
 
@@ -79,42 +79,22 @@
     </aside>
 
     <main>
-        <h1 id="universal-applications">Universal applications</h1>
-<p><em>Also called &quot;isomorphic&quot; applications.</em></p>
-<p>You can use <em>router5</em> in Node or the browser. You might want to initialise (render) your application
-on the server side before sending it to the browser. It is perfectly feasible with <em>router5</em> and
-you essentially need to do two things:</p>
-<ul>
-<li>On the server, pass to the router the current URL as it won&#39;t be able to guess it: <code>start(url, done)</code>.
-The <code>done</code> callback will return the initial state: you need to send it to the client (see below).</li>
-<li>On the client side, pass to the router the initial state so the router doesn&#39;t try to transition
-to the matched page URL or the default route.</li>
-</ul>
-<h2 id="create-your-router-client-server-">Create your router (client &amp; server)</h2>
-<p>You can use the same code for configuring your router on both client and server sides.</p>
-<pre><code class="lang-javascript javascript">let router = new Router5()
-    .addNode(&#39;home&#39;, &#39;/home&#39;)
-    .addNode(&#39;about&#39;, &#39;/about&#39;)
-    .addNode(&#39;contact&#39;, &#39;/contact&#39;);
+        <h1 id="transition">Transition</h1>
+<p>It is possible to register a &quot;middleware&quot; function: it can return a boolean, a promise or call
+a done callback.</p>
+<pre><code class="lang-javascript javascript">let onTransition = function (toState, fromState, done) {
+    // Let&#39;s fetch data and call done
+    done(null);
+};
+
+router.onTransition(onTransition)
 </code></pre>
-<h2 id="on-the-server">On the server</h2>
-<pre><code class="lang-javascript javascript">// With express, you would pass req.originalUrl
-router.start(serverUrl, function (err, state) {
-    // Serialise state and send it in a &quot;&lt;script&gt;&lt;/script&gt;&quot; tag
-    // so it can be retrieved on the client side
-    let script =  `&lt;script&gt;window.initialState = ${JSON.stringify(state)}&lt;/script&gt;`
-});
-</code></pre>
-<h2 id="in-the-browser">In the browser</h2>
-<p>Tell the router the app was already initialised:</p>
-<pre><code class="lang-javascript javascript">// Read starting state
-let startState = window.initialState;
-// Tell the router the application is already initialised with startState so
-// it won&#39;t try to transition to the current URL or default route.
-router.start(startState, function (err, state) {
-    // ...
-});
-</code></pre>
+<p>This type of function is ideal to remove data loading logic from components, and is a good fit
+for applications aiming at having a centralised state object.</p>
+<p>Sometimes a simple flow chart is way better than many confusing paragraphs.</p>
+<p><img src="/img/flow-graph-1.png" alt="Going from &#39;users.view&#39;"></p>
+<p><img src="/img/flow-transition.png" alt="Transition flow chart"></p>
+<p><img src="/img/flow-graph-2.png" alt="To &#39;orders.view&#39;"></p>
 
     </main>
 
