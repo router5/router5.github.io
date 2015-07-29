@@ -1,7 +1,10 @@
 # Transition
 
-It is possible to register a "middleware" function: it can return a boolean, a promise or call
-a done callback.
+As seen in [Listeners](/docs/listeners.html) and [Preventing navigation](/docs/listeners), `canDeactivate`
+and `canActivate` are part of the transition phase. Additionaly, node listeners can be included in the transition phase.
+
+It is also possible to register an __asynchronous "middleware" function__: it can return a boolean for synchronous results, a promise or call
+a done callback for asynchronous operations.
 
 ```javascript
 let onTransition = function (toState, fromState, done) {
