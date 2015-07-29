@@ -50,7 +50,7 @@ __Using POJOs__
 var myRouter = new Router5([
     new RouteNode('home', '/home'),
 
-    {name: 'users', path: '/users', [
+    {name: 'users', path: '/users', children: [
         {name: 'view', path: '/view/:id'},
         {name: 'list', path: '/list'},
     ]}

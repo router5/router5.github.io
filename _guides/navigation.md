@@ -46,7 +46,8 @@ A callback can be passed to start and will be invoked once the router has transi
 
 ## Navigating to a specific route
 
-Router5 exposes the following method: `navigate(routeName, routeParams, opts)`.
+Router5 exposes the following method: `navigate(routeName, routeParams, opts)`. This method has to be
+called for navigating to a different route: __clicks on links won't be intercepted by the router__.
 
 ```javascript
 myRouter.navigate('section', {section: 'contact'});
