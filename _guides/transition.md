@@ -17,8 +17,6 @@ for applications aiming at having a centralised state object.
 
 Sometimes a simple flow chart is way better than many confusing paragraphs.
 
-![Going from 'users.view'](/img/flow-graph-1.png)
+![Going from 'users.view' to 'orders.view'](/img/flow-graph.png)
 
 ![Transition flow chart](/img/flow-transition.png)
-
-![To 'orders.view'](/img/flow-graph-2.png)
