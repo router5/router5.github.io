@@ -93,9 +93,19 @@ router.onTransition(onTransition)
 </code></pre>
 <p>This type of function is ideal to remove data loading logic from components, and is a good fit
 for applications aiming at having a centralised state object.</p>
+<h2 id="flow-chart">Flow chart</h2>
 <p>Sometimes a simple flow chart is way better than many confusing paragraphs.</p>
 <p><img src="/img/flow-graph.png" alt="Going from &#39;users.view&#39; to &#39;orders.view&#39;"></p>
 <p><img src="/img/flow-transition.png" alt="Transition flow chart"></p>
+<h2 id="transition-hooks">Transition hooks</h2>
+<p>You can listen to specific transition events, mostly for debugging purposes.</p>
+<ul>
+<li><strong>Start:</strong> <code>.onTransitionStart(cb)</code>, <code>.offTransitionStart(cb)</code></li>
+<li><strong>Cancel:</strong> <code>.onTransitionCancel(cb)</code>, <code>.offTransitionCancel(cb)</code></li>
+<li><strong>Error:</strong> <code>.onTransitionError(cb)</code>, <code>.offTransitionError(cb)</code></li>
+</ul>
+<p>Listeners are of the following form: <code>function (toState, fromState) { }</code>. Transition error listeners are called with
+an extra <code>err</code> argument.</p>
 
     </main>
 

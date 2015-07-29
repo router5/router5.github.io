@@ -190,31 +190,6 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.onTransition(fn)</strong>
-                Set a transition middleware function
-            </th>
-        </tr>
-
-        <tr>
-            <th colspan="3">Params</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <tr>
-            <td><strong>fn</strong></td>
-            <td><code>Function</code></td>
-            <td>The middleware function</td>
-        </tr>
-    </tbody>
-
-    
-</table>
-
-<table class="params-table">
-    <thead>
-        <tr>
-            <th colspan="3">
                 <strong>router5.addNode(name, path, [canActivate])</strong>
                 Add a route to the router.
             </th>
@@ -250,6 +225,31 @@
             <td>The Router5 instance</td>
         </tr>
     </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.onTransition(fn)</strong>
+                Set a transition middleware function
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>fn</strong></td>
+            <td><code>Function</code></td>
+            <td>The middleware function</td>
+        </tr>
+    </tbody>
+
+    
 </table>
 
 <table class="params-table">
@@ -601,6 +601,192 @@
             <td><strong>cb</strong></td>
             <td><code>Function</code></td>
             <td>The listener to remove</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.onTransitionStart(cb)</strong>
+                Add a transition start callback
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The callback</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.offTransitionStart(cb)</strong>
+                Remove a transition start callback
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The callback</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.onTransitionCancel(cb)</strong>
+                Add a transition cancel callback
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The callback</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.offTransitionCancel(cb)</strong>
+                Remove a transition cancel callback
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The callback</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.onTransitionError(cb)</strong>
+                Add a transition error callback
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The callback</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Router5</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.offTransitionError(cb)</strong>
+                Remove a transition error callback
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>cb</strong></td>
+            <td><code>Function</code></td>
+            <td>The callback</td>
         </tr>
     </tbody>
 
