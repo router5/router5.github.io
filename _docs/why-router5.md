@@ -7,7 +7,7 @@ It is not always easy to see the potential of something straight away, or unders
 to try to tell you more about router5, why I decided to develop an entire new routing solution, and what problems it tries to solve.
 
 
-## The raise of reactive programming
+## The rise of reactive programming
 
 Observable patterns are becoming increasingly popular, with both ES6 and FRP (Functional Reactive Programming)
 getting more traction everyday. If you have never heard about FRP, or if you are unfamiliar with it,

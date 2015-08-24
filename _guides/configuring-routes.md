@@ -2,7 +2,7 @@
 
 There are a few ways to add routes to your router.
 
-You can specifying your routes when creating a router instance and / or use chainable `add` and `addNode` functions to add routes.
+You can specify your routes when creating a router instance and / or use chainable `add` and `addNode` functions to add routes.
 
 
 ## Router5 constructor
