@@ -16,6 +16,7 @@ List of __options__ supported:
 - `defaultRoute`: the default route, see [navigation guide](/docs/navigation.html).
 - `defaultParams`: the default route params.
 - `base`: specify the base path of your application.
+- `trailingSlash`: set to a truthy value for allowing optional trailing slashes
 
 __Routes__ can be:
 
