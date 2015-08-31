@@ -985,7 +985,69 @@ The generated URL will be prefixed by hash if useHash is set to true
         <tr>
             <td><strong>path</strong></td>
             <td><code>String</code></td>
-            <td>The path / URL to match</td>
+            <td>The path to match</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The matched state object (null if no match)</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.urlToPath(url)</strong>
+                Parse / extract a path from an url
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>url</strong></td>
+            <td><code>String</code></td>
+            <td>The URL</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>String</code></td>
+            <td>The extracted path</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.matchUrl(url)</strong>
+                Parse path from an url and match it against the route tree.
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>url</strong></td>
+            <td><code>String</code></td>
+            <td>The URL to match</td>
         </tr>
     </tbody>
 
