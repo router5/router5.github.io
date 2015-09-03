@@ -81,7 +81,7 @@ myRouter.navigate('route', {}, {}, function (err, state) {
 })
 ```
 
-## Stoping your router
+## Stopping your router
 
 At any time you can stop (pause) a router and it will prevent any navigation. To resume, simply invoke `.start()` again.
 
