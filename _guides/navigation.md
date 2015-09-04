@@ -14,13 +14,16 @@ var myRouter = Router5()
 
 Invoking the `.start([startPathOrState ,] done)` function will:
 
-- Navigate to the default route if the current URL does not match an existing route, or if the matched route cannot be activated
+- Attempt to navigate to `startPathOrState` if provided
+- Attempt to match the current URL if no `startPathorState` was provided, or navigation failed
+- Attempt to navigate to the default route if it could not match the current URL or if `startPathorState` was not provided / failed
+
+And will:
+
 - Start listening to _popstate_ events (triggered by back and forward buttons, and a manual change in the URL bar)
 - Enable navigation
 
-A start path can be supplied and the router will use it to match a route and navigate to it: it is designed to be used server-side
-for universal Javascript applications. You can also pass to `start()` an initial state which will set the router to that state, without
-navigating to it: see [universal applications](/docs/universal-applications.html).
+Providing a `startPathOrState` is designed to be used for universal Javascript applications: see [universal applications](/docs/universal-applications.html).
 
 
 ## Defining a default route
