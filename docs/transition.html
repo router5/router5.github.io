@@ -145,6 +145,16 @@ an extra <code>err</code> argument.</p>
       ga('create', 'UA-64765998-1', 'auto');
       ga('send', 'pageview');
     </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            if (window.document.body.scrollTop > 0) {
+                window.document.body.classList.add('scrolled');
+            } else {
+                window.document.body.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -4,11 +4,11 @@ body, html {
     font-size: 18px;
     font-family: 'Open Sans', sans-serif;
     line-height: 1.5rem;
-    color: #333;
+    color: #000;
 }
 
 a {
-    color: #E70756;
+    color: #336699;
     text-decoration: none;
 }
 
@@ -16,10 +16,18 @@ a.link:hover, a.link:hover {
     text-decoration: underline;
 }
 
+.highlight {
+    color: #E70756;
+}
+
+.lowlight {
+    color: #AAA;
+}
+
 .btn {
     display: inline-block;
     color: #fff;
-    background-color: #555;
+    background-color: #336699;
     line-height: 1.5rem;
     font-size: 1rem;
     border: none;
@@ -35,6 +43,7 @@ a.link:hover, a.link:hover {
 
 h1 {
     font-size: 1.5rem;
+    line-height: 2rem;
 }
 
 h2 {
@@ -73,10 +82,7 @@ td > code {
 }
 
 body > header {
-    background-color: #555;
-    color: white;
     font-size: 0.9rem;
-    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
 }
 
 body > header > nav {
@@ -88,7 +94,7 @@ body > header > nav {
 body > header > nav > a {
     display: block;
     padding: 0.5rem 1rem;
-    color: white;
+    color: #000;
 }
 
 body > header > nav > iframe {
@@ -99,19 +105,18 @@ body > header > nav > a:hover,
 /*body > header > nav > a:focus,*/
 body > header > nav > a.active {
     text-decoration: none;
-    background-color: #777;
 }
 
 body > main.jumbotron {
-    background-color: #336699;
-    color: white;
-    /*width: 100%;*/
-    text-align: center;
+    max-width: 650px;
+    margin: 0 auto;
     padding: 2rem 1rem 1rem;
 }
 
-body > main.jumbotron > blockquote {
-    padding: 0.2rem;
+body > main.jumbotron > img.logo {
+    display: block;
+    width: 128px;
+    margin: 0 auto;
 }
 
 body > main.jumbotron > div {
@@ -128,33 +133,27 @@ body > main.jumbotron > div > .btn + .btn {
 
 body > section {
     width: 100%;
-    max-width: 1200px;
+    max-width: 650px;
     margin: 0 auto;
-}
-
-body > section > blockquote {
-    font-weight: 600;
-    padding: 1rem;
-    border-top: 1px solid #EEE;
-    border-bottom: 1px solid #EEE;
-    background-color: #fcfcfc;
 }
 
 body > section > ul {
     list-style: none;
-    margin: 0;
+    width: auto;
+    display: inline-block;
+    margin: 0 auto;
     padding: 0;
 }
 
-body > section > ul > li {
-    padding: 0.5rem 1rem 0.75rem;
-    text-align: justify;
+body > section > ul > li::before {
+    content: '\2714';
+    color: #336699;
+    margin-right: 0.5rem;
 }
 
-body > section > ul > li > a:first-child {
-    display: block;
-    text-align: center;
-    line-height: 2rem;
+body > section > ul > li {
+    line-height: 2.2rem;
+    text-align: justify;
 }
 
 body > footer {
@@ -178,9 +177,15 @@ code {
         position: fixed;
         top: 0;
         right: 0;
-        height: 60px;
+        height: 52px;
         left: 0;
         z-index: 2;
+        background-color: #fff;
+        transition: box-shadow 0.5s;
+    }
+
+    body.scrolled > header {
+        box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.17);
     }
 
     body > header > nav {
@@ -190,7 +195,14 @@ code {
 
     body > header > nav > a {
         display: inline-block;
-        padding: 16px 0.5rem;
+        padding: 16px 0.5rem 6px 0.5rem;
+        border-bottom: 3px solid white;
+        transition: border-bottom 0.5s;
+    }
+
+    body > header > nav > a:hover,
+    body > header > nav > a.active {
+        border-bottom: 3px solid #336699;
     }
 
     body > header > nav > iframe {
@@ -210,20 +222,6 @@ code {
     body > main.jumbotron > div > .btn + .btn {
         margin-top: 0;
         margin-left: 1rem;
-    }
-
-    body > section > ul {
-        display: flex;
-        flex-direction: row;
-    }
-
-    body > section > ul > li {
-        flex: 1;
-    }
-
-    body > section:not(.no-v-border) > ul > li {
-        border-left:  1px solid #F1F1F1;
-        border-right: 1px solid #FAFAFA;
     }
 
     body > section > ul > li:first-child { border-left: none; }

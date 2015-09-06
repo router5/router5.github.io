@@ -51,9 +51,9 @@
 
 
     <main class="jumbotron">
-        <img src="/logo/r5_128.png">
+        <img src="/logo/r5_128.png" class="logo">
 
-        <h1>router5 is an HTML5 router, simple and powerful.</h1>
+        <h1><span class="highlight">router5</span> <span class="lowlight">//</span> HTML5 router for reactive applications</h1>
 
         <div>
             <a href="https://github.com/router5/router5/archive/v0.6.0.zip"  class="btn" download>Download (v0.6.0)</a>
@@ -62,152 +62,85 @@
         </div>
     </main>
 
-    <section class="no-v-border">
-        <blockquote>Organise your routes in a tree of named routes and be reactive to change</blockquote>
+    <section class="section principles">
+        <h2><span class="highlight">principles</span> <span class="lowlight">//</span> just a router</h2>
 
         <ul>
-            <li id="svgRouteTree">
-                <style>
-                    .node circle {
-                      fill: #fff;
-                      stroke: #336699;
-                      stroke-width: 4px;
-                      cursor: pointer;
-                    }
-
-                    .node {
-                      font-size: 14px;
-                    }
-
-                    .node.active circle {
-                      stroke: rgb(166, 226, 46);
-                    }
-
-                    .node.active.apex circle {
-                      stroke: rgb(166, 226, 46);
-                      fill: #999;
-                    }
-
-                    .node.deactivated circle {
-                      stroke: #999;
-                    }
-
-                    .node.active.match circle {
-                      fill: rgb(166, 226, 46);
-                      cursor: default;
-                    }
-
-                    .link {
-                      fill: none;
-                      stroke: #336699;
-                      stroke-width: 3px;
-                    }
-
-                    .link.active {
-                      stroke: rgb(166, 226, 46);
-                    }
-
-                    .link.deactivated {
-                      stroke: #999;
-                    }
-                </style>
-            </li>
-
-            <li>
-                <pre><code class="home javascript">// Route definitions
-var router = new Router5()
-    .setOption('useHash', true)
-    // Users
-    .addNode('users',      '/users')
-    .addNode('users.view', '/view/:id')
-    .addNode('users.list', '/list')
-    // Orders
-    .addNode('orders',           '/orders')
-    .addNode('orders.completed', '/completed')
-    .addNode('orders.pending',   '/pending')
-    .addNode('orders.view',      '/details/:id')
-    // Listener
-    .addListener(drawGraph)
-    // Start
-    .start();
-
-function drawGraph(toState, fromState) { /* ... */ }
-// Init
-drawGraph(router.getState());</code></pre>
-
-                <!-- <a class="nav-link" route-name="users">Go to 'users'</a><br/>
-                <a class="nav-link" route-name="users.view" route-params="{'id': 1}">Go to 'users.view'</a><br/>
-                <a class="nav-link" route-name="users.list">Go to 'users.list'</a><br/>
-
-                <a class="nav-link" route-name="orders">Go to 'orders'</a><br/>
-                <a class="nav-link" route-name="orders.view" route-params="{'id': 123}">Go to 'orders.view'</a><br/>
-                <a class="nav-link" route-name="orders.completed">Go to 'orders.completed'</a><br/>
-                <a class="nav-link" route-name="orders.pending">Go to 'orders.pending'</a><br/> -->
-            </li>
-        </ul>
+            <li>Implementation and framework agnostic</li>
+            <li>No inversion of control: you are fully in control</li>
+            <li>Designed with component trees in mind</li>
+        <ul>
     </section>
 
-    <section>
-        <blockquote>Fully featured, easy to use, lightweight (4Kb g-zipped), for modern browsers (IE10+)</blockquote>
+    <section class="section features">
+        <h2><span class="highlight">features</span> <span class="lowlight">//</span> a toolbox for your app</h2>
 
         <ul>
-            <li>
-                <a><strong>Just a router</strong></a>
-
-                <i>router 5</i> is just a router, nothing else. It won't take care of updating your view,
-                and makes no demands regarding you implementation. And it works universally (<i>aka</i> isomorphically).
-            </li>
-
-            <li>
-                <a><strong>Component trees in mind</strong></a>
-
-                <i>router5</i> is built to be framework agnostic, and was designed to provide a more flexible
-                and scalable solution for Single Page Applications routing, especially those made of a
-                component tree.
-            </li>
-
-            <li>
-                <a><strong>Be functional and reactive</strong></a>
-
-                <i>router5</i> exposes simple methods and mechanisms to observe route changes and react to them. You can then use it with your
-                favourite stream implementation, FRP library, in a flux-like architecture, etc...
-            </li>
-        </ul>
+            <li>Nested routes</li>
+            <li>Allow or prevent activation and deactivation of routes</li>
+            <li>Advanced route change listeners</li>
+            <li>Universal JavaScript support</li>
+            <li>Based on <a href="https://github.com/troch/route-node">route-node</a> and <a href="https://github.com/troch/path-parser">path-parser</a></li>
+        <ul>
     </section>
 
-    <section>
-        <blockquote>Router5 is made of distinctive building blocks, each of them embrace the
-        <i>Single Responsability Principle</i>.<br/>On top of that, Helpers are being created to support the use of router5
-        with libraries and frameworks out there.</blockquote>
+    <section class="section integrations">
+        <h2><span class="highlight">integrations</span> <span class="lowlight">//</span> with existing libraries</h2>
 
         <ul>
-            <li>
-                <a><strong>route-node and path-parser</strong></a>
+            <li><a href="https://github.com/router5/router5-react">router5-react</a></li>
+            <li><a href="https://github.com/router5/router5-deku">router5-deku</a></li>
+            <li><a href="https://github.com/axefrog/cycle-router5">cycle-router5</a></li>
+        <ul>
+    </section>
 
-                router5 is built on top of <a href="https://github.com/troch/route-node"><strong>route-node</strong></a> and
-                <a href="https://github.com/troch/path-parser"><strong>path-parser</strong></a>. route-node organises your routes in a tree. It uses path-parser to quickly find a matching route in a tree, or to build a path from a route name and params.
-            </li>
+    <section class="section">
+        <div id="svgRouteTree">
+            <style>
+                .node circle {
+                  fill: #fff;
+                  stroke: #336699;
+                  stroke-width: 4px;
+                  cursor: pointer;
+                }
 
-            <li>
-                <a href="https://github.com/router5/router5-react"><strong>Current integrations</strong></a>
+                .node {
+                  font-size: 14px;
+                }
 
-                <a href="https://github.com/router5/router5-react">router-react</a>: in progress, currently
-                including a Mixin and a Link component.<br/>
+                .node.active circle {
+                  stroke: rgb(166, 226, 46);
+                }
 
-                <a href="https://github.com/axefrog/cycle-router5">cycle-router5</a>: a source/sink driver for <a href="http://cycle.js.org/">Cycle.js</a>,
-                maintained by <a href="https://github.com/axefrog">axefrog</a><br/>
+                .node.active.apex circle {
+                  stroke: rgb(166, 226, 46);
+                  fill: #999;
+                }
 
-                <a href="https://github.com/router5/router5-deku">router5-deku</a>: experimental, uses a slightly
-                altered version of deku.
-            </li>
+                .node.deactivated circle {
+                  stroke: #999;
+                }
 
-            <li>
-                <a href="https://github.com/router5/router5/issues"><strong>Your favourite framework</strong></a>
+                .node.active.match circle {
+                  fill: rgb(166, 226, 46);
+                  cursor: default;
+                }
 
-                You would like router5 to integrate with your favourite framework or library?
-                <a href="https://github.com/router5/router5/issues">Open an issue</a> and say hi!
-            </li>
-        </ul>
+                .link {
+                  fill: none;
+                  stroke: #336699;
+                  stroke-width: 3px;
+                }
+
+                .link.active {
+                  stroke: rgb(166, 226, 46);
+                }
+
+                .link.deactivated {
+                  stroke: #999;
+                }
+            </style>
+        </div>
     </section>
 
     <footer>
@@ -247,6 +180,16 @@ drawGraph(router.getState());</code></pre>
 
       ga('create', 'UA-64765998-1', 'auto');
       ga('send', 'pageview');
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            if (window.document.body.scrollTop > 0) {
+                window.document.body.classList.add('scrolled');
+            } else {
+                window.document.body.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 
