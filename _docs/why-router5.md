@@ -21,7 +21,7 @@ updating specific branches and leafs of your tree.
 Some time ago, I started to use React. Before React, I have heavily used Angular. I still do, and I'll probably continue to do so with Angular2.
 Coming from Angular, I started to look for a routing solution in React and used the most popular one: [react-router](https://github.com/rackt/react-router).
 React-router is a great tool, and I felt right at home with it. Like in [ui-router](https://github.com/angular-ui/ui-router) or ngRoute, you can simply tell
-it what component / view to render for each route. React-router uses the concept of higher order components to wraps your components and build a tree for you.
+it what component / view to render for each route. React-router uses the concept of higher order components to wrap your components and build a tree for you.
 
 Playing around with different patterns, I found my playground application disjointed: I felt I had full control over data within a route but I was
 giving away control on routing and my component tree mutations. Ideally a router would never update a view, but would provide the tools to do so
