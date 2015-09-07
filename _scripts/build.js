@@ -17,7 +17,7 @@ marked.setOptions({
 var env = nunjucks.configure(path.join(__dirname, '../'), {watch: false});
 
 var data = {
-    pageTitle: 'router5 docs | simple yet powerful routing solution!',
+    pageTitle: 'router5 | HTML5 router for reactive applications',
     styleSheets: ['//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai.min.css', '/styles/main.css']
 };
 
