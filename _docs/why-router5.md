@@ -7,24 +7,30 @@ It is not always easy to see the potential of something straight away, or unders
 to try to tell you more about router5, why I decided to develop an entire new routing solution, and what problems it tries to solve.
 
 
-## The rise of reactive programming
+## The rise of reactive applications
 
-Observable patterns are becoming increasingly popular, with both ES6 and FRP (Functional Reactive Programming)
-getting more traction everyday. If you have never heard about FRP, or if you are unfamiliar with it,
-I recommend reading [the introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754).
+Functional programming is becoming increasingly popular, as well as having reactive applications. With functional programming comes architectures
+based around components, where components are organised in a tree. Those components can apparent themselves to functions and vocabulary around them
+is identical to functional programming: components are predictable, free of side-effects, they are composable, you can use higher order components...
 
-Like an increasing number of developers I see a future for non-monolithic front-end development solutions, made of loosely coupled building blocks glued together by FRP. I started to use React. Before React, I have heavily used Angular. I still do, and I'll probably continue to do so with Angular2. Coming from Angular, I started to look for a routing solution in React and used the most popular one: [react-router](https://github.com/rackt/react-router).
-React-router is a great tool, and it is easy to use: like in [ui-router](https://github.com/angular-ui/ui-router) or ngRoute, I can simply tell it what component / view to render for each route.
+Simultaneously, observable patterns are gaining more and more traction. Flux-like libraries are in full bloom and all share some core concepts:
+whatever your implementation. a component shouldn't hold state but instead should be passed _something_ it can get data from over time and therefore
+react to changes. You have a nice tree of components that you render initially and then you perform sideways data loading for
+updating specific branches and leafs of your tree.
 
-With FRP and Flux-like architectures, I became increasingly keen on using more observables and observers in my application.
-Very soon, I found my application disjointed: using nice observable patterns for data with sideways data loading, but giving away control on routing.
+Some time ago, I started to use React. Before React, I have heavily used Angular. I still do, and I'll probably continue to do so with Angular2.
+Coming from Angular, I started to look for a routing solution in React and used the most popular one: [react-router](https://github.com/rackt/react-router).
+React-router is a great tool, and I felt right at home with it. Like in [ui-router](https://github.com/angular-ui/ui-router) or ngRoute, you can simply tell
+it what component / view to render for each route. React-router uses the concept of higher order components to wraps your components and build a tree for you.
 
-Looking at [react-mini-router](https://github.com/larrymyers/react-mini-router) or [tiny-react-router](https://github.com/asbjornenge/tiny-react-router),
-I realised that in order to treat route changes like data changes, I would need a framework-agnostic router which would favour __convention over
-configuration__.
+Playing around with different patterns, I found my playground application disjointed: I felt I had full control over data within a route but I was
+giving away control on routing and my component tree mutations. Ideally a router would never update a view, but would provide the tools to do so
+efficiently: a reactive application, reacting to data changes _including_ route changes.
+
+> After all, why treat route changes any different than data changes?
 
 
-## Existing routers are black boxes
+## Existing routers are monoblocks
 
 The most popular routers those days are tied to frameworks (or libraries) and are fairly large pieces of software, tightly coupled together.
 Angular2 and Aurelia, for example, include their own routing solution with exciting new functionalities: activation / deactivation, use
@@ -36,28 +42,21 @@ to navigation and history management. They all share similar concepts or technic
 
 ## Making the same mistake?
 
-Let's go back to observables and component-based applications. Thanks to [DailyJS](http://dailyjs.com/),
-I came across [routington](https://github.com/pillarjs/routington). It is a trie-based URL router: it organises URLs in a tree. The concept is
-great, and I thought it could be enhanced by organising named routes in a tree rather than URL segments. That way, every branch of a named
-routes tree is a valid route. From an application point of view, it also means it is more maintainable: you reference routes by name rather
-than URL.
+I came across [routington](https://github.com/pillarjs/routington) which is
+a trie-based URL router: it organises URLs in a tree. The concept is great, and I thought it could be enhanced by organising named routes
+in a tree rather than URL segments. That way, every branch of a named routes tree is a valid route. From an application point of view,
+it also means it is more maintainable: you reference routes by name rather than URL. Using a tree makes building and matching paths easy,
+it also goes hand in hand with a component tree and makes it easy to reason about route changes. From routington came
+[route-node](https://github.com/troch/router5).
 
-Using a tree makes building and matching paths easy. It also goes hand in hand with a component tree. If one can do sideways data loading,
-why not do sideways route loading, or compose the two?
-
-From routington came [route-node](https://github.com/troch/router5). I then needed to use a URL parsing library. I looked at
-[route-parser](https://github.com/rcs/route-parser), [url-pattern](https://github.com/snd/url-pattern) and
-[path-to-regexp](https://github.com/pillarjs/path-to-regexp). Having routes in a tree, I needed a library which could match
-URLs fully or partially (going down the tree until a match is found), I also needed to build URLs by passing parameters.
-
-None of the libraries mentioned could do all of that, so came [path-parser](https://github.com/troch/path-parser).
+I then needed to use a URL matching / building library. I looked at [route-parser](https://github.com/rcs/route-parser),
+[url-pattern](https://github.com/snd/url-pattern) and [path-to-regexp](https://github.com/pillarjs/path-to-regexp).
+Having routes in a tree, I needed a library which could match URLs fully or partially (going down the tree until a match is found).
+None of the libraries mentioned could do it, so came [path-parser](https://github.com/troch/path-parser).
 
 ![Standards](https://imgs.xkcd.com/comics/standards.png)
 
 ## router5
 
 Once route-node and path-parser were written, router5 could be designed. It delegates route management and route matching / building
-and focus on navigation, history and triggering listeners.
-
-By only supporting IE10, it means only browsers with HTML5 history are supported. It makes the library lighter by not having to add
-polyfills or fallbacks.
+and focus on navigation, history and triggering the right listeners.

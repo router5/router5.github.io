@@ -24,6 +24,18 @@ a.link:hover, a.link:hover {
     color: #AAA;
 }
 
+blockquote {
+    border-left: 3px solid #336699;
+    background-color: rgba(51, 102, 153, 0.1);
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+}
+
+blockquote > p {
+    margin: 0;
+    padding: 0;
+}
+
 .btn {
     display: inline-block;
     color: #fff;
