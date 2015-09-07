@@ -79,7 +79,6 @@ body > header {
 
 body > header > nav {
     width: 100%;
-    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -124,7 +123,6 @@ body > main.jumbotron > div > .btn + .btn {
 
 body > section {
     width: 100%;
-    max-width: 900px;
     margin: 0 auto;
     padding: 0 1rem;
     display: flex;
@@ -189,6 +187,10 @@ code {
         position: relative;
     }
 
+    body > header > nav.index {
+        max-width: 900px;
+    }
+
     body > header > nav > a {
         display: inline-block;
         padding: 16px 0.5rem 6px 0.5rem;
@@ -221,6 +223,7 @@ code {
     }
 
     body > section {
+        max-width: 900px;
         flex-direction: row;
         justify-content: space-around;
         align-items: flex-start;

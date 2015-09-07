@@ -8,18 +8,18 @@ body > aside {
 body > aside > nav > strong,
 body > aside > nav > a {
     display: block;
-    font-weight: 600;
 }
 
 body > aside > nav > a.link {
     color: inherit;
-    padding: 0.2rem 1rem;
+    padding: 0.2rem 1rem 0.2rem 2rem;
 }
 
 body > aside > nav > a.link:hover,
 body > aside > nav > a.link:focus,
 body > aside > nav > a.link.active {
     color: #E70756;
+    text-decoration: none;
 }
 
 body > aside > nav > strong {
@@ -30,7 +30,7 @@ body > aside > nav > strong {
 }
 
 body > aside + main {
-    padding: 1rem 2.5rem 1rem 1.5rem;
+    padding: 1rem 1.5rem 1rem 1.5rem;
     max-width: 900px;
 }
 
@@ -44,21 +44,24 @@ body > aside + main img {
     max-width: 100%;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 840px) {
     body {
-        padding-left: 320px;
+        padding-left: 260px;
     }
 
     body > aside {
         position: fixed;
         z-index: 1;
         top: 60px;
-        width: 300px;
+        width: 240px;
         bottom: 0;
         left: 0;
-        border-right: 1px solid #eee;
         background-color: #fff;
         padding: 1.75rem 0;
+    }
+
+    body > aside + main {
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.14);
     }
 }
 

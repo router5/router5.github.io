@@ -7,27 +7,16 @@ You can specify your routes when creating a router instance and / or use chainab
 
 ## Router5 constructor
 
-__new Router5(routes, opts)__:
-
-List of __options__ supported:
-
-- `useHash`: `true` or `false`. If `true`, a hash will be prepended to the route path.
-- `hashPrefix`: a prefix to add to paths with hash. Set it to `!` for hashbang URLs.
-- `defaultRoute`: the default route, see [navigation guide](/docs/navigation.html).
-- `defaultParams`: the default route params.
-- `base`: specify the base path of your application.
-- `trailingSlash`: set to a truthy value for allowing optional trailing slashes
-
-__Routes__ can be:
+When using Router5 contstructor `new Router5(routes, opts)`, __routes__ can be:
 
 - An array of RouteNode objects and plain objects.
-- A RouteNode Object or plain object: in that case.
+- A RouteNode Object or plain object (not recommended)
 
 If passing a RouteNode object (or a plain object), that node will become your router's root node. All routes added later will
-then extend its path. If you pass to Router5 an array, it will automatically create a rootNode with an empty name and empty path
-(`new RouteNode('', '')`), which is the recommended way.
+then extend its path. This is __not recommended__ mostly because it is untested. Instead, passing to Router5 an array (of plain
+objects or RouteNode objects) will automatically create a rootNode with an empty name and empty path (`new RouteNode('', '')`).
 
-When configuring routes, RouteNode and POJOs can be mixed. The two compulsory information needed to create a route are name and path.
+When configuring routes, RouteNode and POJOs can be mixed. The two compulsory information needed to create a route are a name and a path.
 When nesting routes, they inherit from their parent. For example, a route named `b` with path `/b` added as a children of route named
 'a' (path `/a`) will be named `a.b` (its path will be `/a/b`).
 
