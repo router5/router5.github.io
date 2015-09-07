@@ -1,19 +1,5 @@
 // Router
-var router = new Router5()
-    .setOption('useHash', true)
-    // Users
-    .addNode('users',      '/users')
-    .addNode('users.view', '/view/:id')
-    .addNode('users.list', '/list')
-    // Orders
-    .addNode('orders',           '/orders')
-    .addNode('orders.completed', '/completed')
-    .addNode('orders.pending',   '/pending')
-    .addNode('orders.view',      '/details/:id')
-    .addListener(drawGraph)
-    .start();
-
-routeNodes = {
+var routeNodes = {
     name: '',
     children: [
         {name: 'users', children: [
@@ -29,7 +15,23 @@ routeNodes = {
 };
 
 var svg;
-var height = 440;
+var height = 400;
+
+var router = new Router5()
+    .setOption('useHash', true)
+    // Users
+    .addNode('users',      '/users')
+    .addNode('users.view', '/view/:id')
+    .addNode('users.list', '/list')
+    // Orders
+    .addNode('orders',           '/orders')
+    .addNode('orders.completed', '/completed')
+    .addNode('orders.pending',   '/pending')
+    .addNode('orders.view',      '/details/:id')
+    .addListener(drawGraph)
+    .start(function (err, state) {
+        drawGraph(state, null);
+    });
 // Draw graph
 function drawGraph(toState, fromState) {
     toState = toState || {};
@@ -53,8 +55,8 @@ function drawGraph(toState, fromState) {
         .append('g')
         .attr('transform', 'translate(0, 30)');
 
-    var nodes = cluster.nodes(routeNodes),
-        links = cluster.links(nodes);
+    var nodes = cluster.nodes(routeNodes);
+    var links = cluster.links(nodes);
 
     var link = svg.selectAll(".link")
         .data(links)
@@ -107,7 +109,7 @@ function drawGraph(toState, fromState) {
         .style("text-anchor", function(d) { return d.children ? "end" : "middle"; })
         .text(function(d) { return d.segmentName || d.name; });
 }
-drawGraph(router.getState(), null);
+
 window.addEventListener('resize', function () {
     drawGraph(router.getState(), null);
 }, false);

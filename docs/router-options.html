@@ -60,8 +60,8 @@
             <strong>Guides</strong>
 
             <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
-            <a href="/docs/router-options.html" class="link">Router options</a>
-            <a href="/docs/path-syntax.html" class="link active">Path syntax</a>
+            <a href="/docs/router-options.html" class="link active">Router options</a>
+            <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
@@ -80,24 +80,38 @@
     </aside>
 
     <main>
-        <h1 id="path-syntax">Path syntax</h1>
-<h2 id="defining-parameters">Defining parameters</h2>
-<p><em>router5</em> uses <a href="https://github.com/troch/path-parser">path-parser</a> for parsing, matching and generating URLs. It supports four parameter types:</p>
+        <h1 id="options">Options</h1>
+<p>When constructing your router instance, you can pass several options to the constructor.</p>
+<pre><code class="lang-javascript javascript">var router = new Router5([], {
+    useHash: true,
+    hashPrefix: &#39;!&#39;,
+    defaultRoute: &#39;home&#39;,
+    defaultParams: {},
+    base: &#39;&#39;,
+    trailingSlash: false
+});
+</code></pre>
+<h2 id="use-of-hash-part-of-url">Use of hash part of URL</h2>
+<p>Router5 only support HTML5 browsers with the history API. It means the router will use <code>history.pushState</code> and <code>history.replaceState</code> to modify the history of a page, and
+will listen to <code>popstate</code> events caused by a manual edit of the URL or a click on back and forward buttons. The router won&#39;t listen to <code>hashchange</code> events, but that doesn&#39;t
+mean you cannot use <code>#</code> in your URL.</p>
+<blockquote>
+<p>The decision to whether or not use a <code>#</code> is a question of server configuration and not a decision based on browser support.</p>
+</blockquote>
+<p>Set <code>useHash</code> to <code>true</code> if you want the paths of your routes to be prefixed with a hash. You can also choose a <code>hashPrefix</code> which will be inserted between the path of a route
+and the hash.</p>
+<h2 id="default-route">Default route</h2>
+<p>When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:</p>
 <ul>
-<li><code>:param</code>: url parameters</li>
-<li><code>;matrix</code>: matrix parameters</li>
-<li><code>*splat</code>: for parameters spanning over multiple segments. Splat parameters are greedy and could swallow a
-large part of your URL. It is recommended to handle with care and to ONLY use on routes without children.</li>
-<li><code>?param1&amp;param2</code> or <code>?:param1&amp;:param2</code>: query parameters</li>
+<li><code>defaultRoute</code>: the default route.</li>
+<li><code>defaultParams</code>: the default route params (default to <code>{}</code>)</li>
 </ul>
-<h2 id="constrained-parameters">Constrained parameters</h2>
-<p>Url and matrix parameters can be constrained with a regular expression. Backslashes need to be escaped.</p>
-<ul>
-<li><code>:param&lt;\\d+&gt;</code> will match numbers only for parameter param</li>
-<li><code>;id&lt;[a-fA-F0-9]{8}&gt;</code> will match 8 characters hexadecimal strings for parameter id</li>
-</ul>
-<p>Constraints are also applied when building paths: when passing incorrect params to <code>.navigate()</code>,
-an error will be thrown.</p>
+<p>See <a href="/docs/navigation.html">navigation guide</a> for more information.</p>
+<h2 id="base-path">Base path</h2>
+<p>You can specify what the base path of your application is. By default <code>base</code> is set to an empty string, meaning your route paths won&#39;t be prefixed by any
+path.</p>
+<h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
+<p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
 
     </main>
 

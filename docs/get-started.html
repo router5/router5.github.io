@@ -32,7 +32,7 @@
 <body>
     
         <header>
-        <nav>
+        <nav class="">
             <a href="/" class="">Home</a>
 
             <a href="/docs/why-router5.html" class="">Why router5?</a>
@@ -60,6 +60,7 @@
             <strong>Guides</strong>
 
             <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
+            <a href="/docs/router-options.html" class="link">Router options</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
@@ -158,6 +159,16 @@ The UMD format (accessible in `/dist/umd`) covers AMD, CommonJS and Globals.
 
       ga('create', 'UA-64765998-1', 'auto');
       ga('send', 'pageview');
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            if (window.document.body.scrollTop > 0) {
+                window.document.body.classList.add('scrolled');
+            } else {
+                window.document.body.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 

@@ -32,7 +32,7 @@
 <body>
     
         <header>
-        <nav>
+        <nav class="">
             <a href="/" class="">Home</a>
 
             <a href="/docs/why-router5.html" class="">Why router5?</a>
@@ -60,6 +60,7 @@
             <strong>Guides</strong>
 
             <a href="/docs/configuring-routes.html" class="link active">Configuring routes</a>
+            <a href="/docs/router-options.html" class="link">Router options</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
@@ -83,25 +84,15 @@
 <p>There are a few ways to add routes to your router.</p>
 <p>You can specify your routes when creating a router instance and / or use chainable <code>add</code> and <code>addNode</code> functions to add routes.</p>
 <h2 id="router5-constructor">Router5 constructor</h2>
-<p><strong>new Router5(routes, opts)</strong>:</p>
-<p>List of <strong>options</strong> supported:</p>
-<ul>
-<li><code>useHash</code>: <code>true</code> or <code>false</code>. If <code>true</code>, a hash will be prepended to the route path.</li>
-<li><code>hashPrefix</code>: a prefix to add to paths with hash. Set it to <code>!</code> for hashbang URLs.</li>
-<li><code>defaultRoute</code>: the default route, see <a href="/docs/navigation.html">navigation guide</a>.</li>
-<li><code>defaultParams</code>: the default route params.</li>
-<li><code>base</code>: specify the base path of your application.</li>
-<li><code>trailingSlash</code>: set to a truthy value for allowing optional trailing slashes</li>
-</ul>
-<p><strong>Routes</strong> can be:</p>
+<p>When using Router5 contstructor <code>new Router5(routes, opts)</code>, <strong>routes</strong> can be:</p>
 <ul>
 <li>An array of RouteNode objects and plain objects.</li>
-<li>A RouteNode Object or plain object: in that case.</li>
+<li>A RouteNode Object or plain object (not recommended)</li>
 </ul>
 <p>If passing a RouteNode object (or a plain object), that node will become your router&#39;s root node. All routes added later will
-then extend its path. If you pass to Router5 an array, it will automatically create a rootNode with an empty name and empty path
-(<code>new RouteNode(&#39;&#39;, &#39;&#39;)</code>), which is the recommended way.</p>
-<p>When configuring routes, RouteNode and POJOs can be mixed. The two compulsory information needed to create a route are name and path.
+then extend its path. This is <strong>not recommended</strong> mostly because it is untested. Instead, passing to Router5 an array (of plain
+objects or RouteNode objects) will automatically create a rootNode with an empty name and empty path (<code>new RouteNode(&#39;&#39;, &#39;&#39;)</code>).</p>
+<p>When configuring routes, RouteNode and POJOs can be mixed. The two compulsory information needed to create a route are a name and a path.
 When nesting routes, they inherit from their parent. For example, a route named <code>b</code> with path <code>/b</code> added as a children of route named
 &#39;a&#39; (path <code>/a</code>) will be named <code>a.b</code> (its path will be <code>/a/b</code>).</p>
 <p><strong>Using RouteNode</strong></p>
@@ -186,6 +177,16 @@ myRouter.add([
 
       ga('create', 'UA-64765998-1', 'auto');
       ga('send', 'pageview');
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            if (window.document.body.scrollTop > 0) {
+                window.document.body.classList.add('scrolled');
+            } else {
+                window.document.body.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 
