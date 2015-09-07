@@ -133,6 +133,10 @@ body > section {
     align-items: center;
 }
 
+#svgRouteTree {
+    width: 100%;
+}
+
 body > section ul {
     list-style: none;
     padding: 0;

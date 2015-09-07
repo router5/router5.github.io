@@ -15,7 +15,7 @@ var routeNodes = {
 };
 
 var svg;
-var height = 440;
+var height = 400;
 
 var router = new Router5()
     .setOption('useHash', true)
