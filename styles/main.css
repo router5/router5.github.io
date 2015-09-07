@@ -222,7 +222,8 @@ code {
         align-items: flex-start;
     }
 
-    body > section > section {
+    #svgRouteTree {
+        flex: 1;
     }
 }
 
