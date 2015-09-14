@@ -38,7 +38,7 @@ __Using POJOs__
 
 ```javascript
 var myRouter = new Router5([
-    new RouteNode('home', '/home'),
+    {name: 'home', path: '/home'},
 
     {name: 'users', path: '/users', children: [
         {name: 'view', path: '/view/:id'},
