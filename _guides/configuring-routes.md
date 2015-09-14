@@ -27,10 +27,10 @@ __Using RouteNode__
 var myRouter = new Router5([
     new RouteNode('home', '/home'),
 
-    new RouteNode('users', path: '/users', [
+    new RouteNode('users', '/users', [
         new RouteNode('view', '/view/:id'),
         new RouteNode('list', 'list'),
-    ]}
+    ]),
 ]);
 ```
 
