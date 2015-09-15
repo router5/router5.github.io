@@ -105,18 +105,8 @@ var InboxList = React.createClass({
 // Mail Component //
 ////////////////////
 var Message = React.createClass({
-    mixins: [SegmentMixin('inbox.message', function (toState, fromState) {
-        this.setState({routeState: toState});
-    })],
-
-    getInitialState: function () {
-        return {
-            routeState: router.getState()
-        };
-    },
-
     render: function () {
-        var email = getEmail(this.state.routeState.params.id);
+        var email = getEmail(this.props.messageId);
         return element('section', {className: 'mail'},
             element('h4', null, email.mailTitle),
             element('p', null, email.mailMessage)
@@ -144,7 +134,7 @@ var Inbox = React.createClass({
 
         return element('div', {className: 'inbox'},
             element(InboxList, {emails: emails}),
-            routeState.name === 'inbox.message' ? element(Message) : null
+            routeState.name === 'inbox.message' ? element(Message, {messageId: routeState.params.id}) : null
         );
     }
 });

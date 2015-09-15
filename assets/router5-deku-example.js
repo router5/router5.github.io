@@ -112,14 +112,8 @@ var InboxList = {
 // Mail Component //
 ////////////////////
 var Message = {
-    initialState: function (component) {
-        return {
-            routeState: router.getState()
-        };
-    },
-
     render: function (component) {
-        var email = getEmail(component.state.routeState.params.id);
+        var email = getEmail(component.props.messageId);
         return element('section', {'class': 'mail'},
             element('h4', null, email.mailTitle),
             element('p', null, email.mailMessage)
@@ -146,7 +140,7 @@ var Inbox = {
 
         return element('div', {class: 'inbox'},
             element(InboxList, {emails: emails}),
-            routeState.name === 'inbox.message' ? element(Message) : null
+            routeState.name === 'inbox.message' ? element(Message, {messageId: routeState.params.id}) : null
         );
     }
 };
