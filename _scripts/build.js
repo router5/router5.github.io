@@ -90,7 +90,7 @@ async.parallel([
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
         'https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js',
         '/assets/router5.' + router5Version + '.min.js',
-        '/assets/router5-react.0.1.4.js',
+        '/assets/router5-react.0.1.5.js',
         '/assets/router5-react-example.js'
     ]}),
     renderDoc('_docs', 'with-deku.md', {deku: true, examples: true, scripts: [
