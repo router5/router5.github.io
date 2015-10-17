@@ -25,11 +25,11 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/docs.css">
-    
+
 </head>
 
 <body>
-    
+
         <header>
         <nav>
             <a href="/" class="">Home</a>
@@ -106,7 +106,7 @@
         </tr>
     </tbody>
 
-    
+
     <tbody class="return">
         <tr>
             <td><strong>Return</strong></td>
@@ -249,7 +249,7 @@
         </tr>
     </tbody>
 
-    
+
 </table>
 
 <table class="params-table">
@@ -298,10 +298,10 @@
             </th>
         </tr>
 
-        
+
     </thead>
 
-    
+
 
     <tbody class="return">
         <tr>
@@ -321,10 +321,10 @@
             </th>
         </tr>
 
-        
+
     </thead>
 
-    
+
 
     <tbody class="return">
         <tr>
@@ -339,7 +339,7 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router5.isActive(name, [params], [equality])</strong>
+                <strong>router5.isActive(name, [params], [strictEquality], [ignoreQueryParams])</strong>
                 Whether or not the given route name with specified params is active.
             </th>
         </tr>
@@ -359,11 +359,17 @@
             <td><code>Object={}</code></td>
             <td>The route parameters</td>
         </tr><tr>
-            <td><strong>equality</strong></td>
+            <td><strong>strictEquality</strong></td>
             <td><code>Boolean=false</code></td>
             <td>If set to false (default), isActive will return true
                                     if the provided route name and params are descendants
                                     of the active state.</td>
+        </tr><tr>
+            <td><strong>ignoreQueryParams</strong></td>
+            <td><code>Boolean=true</code></td>
+            <td>Whether or not to ignore URL query parameters when
+                                                  comparing the two states together.
+                                                  query parameters when comparing two states together.</td>
         </tr>
     </tbody>
 
@@ -825,7 +831,7 @@
         </tr>
     </tbody>
 
-    
+
 </table>
 
 <table class="params-table">
@@ -1129,7 +1135,7 @@ The generated URL will be prefixed by hash if useHash is set to true
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    
+
 
 
     <!-- Script files -->
