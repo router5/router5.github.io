@@ -12,7 +12,7 @@ A plugin is simply an object with a name and at least one of the following metho
 - __onStart()__: invoked when `router.start()` is called
 - __onStop()__: invoked when `router.stop()` is called
 - __onTransitionStart(toState, fromState)__
-- __onTransitionCancelled(toState, fromState)__
+- __onTransitionCancel(toState, fromState)__
 - __onTransitionError(toState, fromState, err)__
 - __onTransitionSuccess(toState, fromState, opts)__ (options contains `replace` and `reload` boolean flags)
 
