@@ -36,6 +36,13 @@ const router = new Router5()
 
 ## Plugin examples
 
-- [router5-listeners](/router5/router5-listeners)
-- [router5-history](/router5/router5-history)
-- [Logger](./modules/plugins/logger.js)
+- [router5-listeners](https://github.com/router5/router5-listeners)
+- [router5-history](https://github.com/router5/router5-history)
+- [Logger](https://github.com/router5/router5/blob/master/modules/logger.js)
+
+Router5 includes a logging plugin that you can use to help development
+
+```javascript
+const router = new Router()
+    .usePlugin(Router5.loggerPlugin());
+```

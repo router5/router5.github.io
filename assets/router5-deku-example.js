@@ -11,6 +11,7 @@ var router = new Router5()
     .addNode('compose',       '/compose')
     .addNode('contacts',      '/contacts')
     // Plugins
+    .usePlugin(Router5.loggerPlugin())
     .usePlugin(router5ListenersPlugin())
     .usePlugin(router5HistoryPlugin())
     .start();
