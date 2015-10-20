@@ -10,6 +10,9 @@ var router = new Router5()
     .addNode('inbox.message', '/message/:id')
     .addNode('compose',       '/compose')
     .addNode('contacts',      '/contacts')
+    // Plugins
+    .usePlugin(router5ListenersPlugin())
+    .usePlugin(router5HistoryPlugin())
     .start();
 
 var tree = deku.tree;
