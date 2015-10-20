@@ -39,7 +39,9 @@
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
+            <a href="/docs/configuring-routes.html" class="">Guides</a>
+
+            <a href="/docs/listeners.html" class="active">Plugins</a>
 
             <a href="/docs/api-reference.html" class="">API</a>
 
@@ -64,9 +66,14 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/listeners.html" class="link active">Listeners</a>
-            <a href="/docs/transition.html" class="link">Transition</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/plugins.html" class="link">Plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
+
+            <strong>Plugins</strong>
+
+            <a href="/docs/listeners.html" class="link active">Listeners</a>
+            <a href="/docs/history.html" class="link">History</a>
 
             <strong>API Reference</strong>
 
@@ -80,9 +87,14 @@
     </aside>
 
     <main>
-        <h1 id="listeners">Listeners</h1>
-<p>To be able to react to route changes, you will need to listen to them! With <em>router5</em>, you can
-add three types of listeners.</p>
+        <h1 id="listeners-plugin">Listeners plugin</h1>
+<p>To be able to react to route changes, you will need to listen to them! <em>router5-listeners</em> plugin offers a
+way to update a component tree with the use of three types of listeners.</p>
+<pre><code class="lang-javascript javascript">import listenersPlugin from &#39;router5-listeners&#39;;
+
+const router = new Router5()
+    .usePlugin(listenersPlugin());
+</code></pre>
 <p><img src="/img/deactivation-activation-path.png" alt="Navigation from &#39;users.view&#39; to &#39;orders.completed&#39;"></p>
 <p>When navigation from <em>users.view</em> to <em>orders.completed</em>:</p>
 <ul>

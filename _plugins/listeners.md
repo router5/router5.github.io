@@ -1,7 +1,14 @@
-# Listeners
+# Listeners plugin
 
-To be able to react to route changes, you will need to listen to them! With _router5_, you can
-add three types of listeners.
+To be able to react to route changes, you will need to listen to them! _router5-listeners_ plugin offers a
+way to update a component tree with the use of three types of listeners.
+
+```javascript
+import listenersPlugin from 'router5-listeners';
+
+const router = new Router5()
+    .usePlugin(listenersPlugin());
+```
 
 ![Navigation from 'users.view' to 'orders.completed'](/img/deactivation-activation-path.png)
 

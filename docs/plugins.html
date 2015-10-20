@@ -39,13 +39,13 @@
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="">Guides</a>
+            <a href="/docs/configuring-routes.html" class="active">Guides</a>
 
             <a href="/docs/listeners.html" class="">Plugins</a>
 
             <a href="/docs/api-reference.html" class="">API</a>
 
-            <a href="docs/with-react.html" class="active">Examples</a>
+            <a href="docs/with-react.html" class="">Examples</a>
 
             <a href="https://github.com/router5/router5">See it on Github</a>
 
@@ -67,7 +67,7 @@
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
-            <a href="/docs/plugins.html" class="link">Plugins</a>
+            <a href="/docs/plugins.html" class="link active">Plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
             <strong>Plugins</strong>
@@ -82,82 +82,44 @@
             <strong>Integration</strong>
 
             <a href="/docs/with-react.html" class="link">With React</a>
-            <a href="/docs/with-deku.html" class="link active">With Deku</a>
+            <a href="/docs/with-deku.html" class="link">With Deku</a>
         </nav>
     </aside>
 
     <main>
-        <h1 id="router5-with-deku">Router5 with Deku</h1>
-<h2 id="example">Example</h2>
-<p>View the source <a href="https://github.com/router5/router5.github.io/blob/master/assets/router5-deku-example.js">on GitHub</a></p>
-<p>Done with a slightly altered version of Deku (experimental)</p>
-<div id="dekuExample"></div>
-
-<h2 id="router5-deku">router5-deku</h2>
-<p>Installation:</p>
-<pre><code class="lang-sh">// Bower
-bower install router5-deku --save
-// npm
-npm install router5-deku --save-dev
-</code></pre>
-<p>It includes:</p>
+        <h1 id="using-plugins">Using plugins</h1>
+<p>Router5 is extensible with the use of plugins. Plugins can decorate a route instance and do things
+on specific router and transition events.</p>
+<h2 id="plugin-requirements">Plugin requirements</h2>
+<p>A plugin is simply an object with a name and at least one of the following methods:</p>
 <ul>
-<li>A router plugin which sets and update environment data (source) <code>currentRoute</code></li>
-<li>A link factory to create a <code>Link</code> function (for hyperlinks and buttons)</li>
-<li>A decorator factory to create a <code>SegmentDecorator</code> decorator (add a node listener for the specified route, and register component
-with router when active)</li>
+<li><strong>init(router)</strong>: invoked when a plugin is registered with a router instance. The router instance is passed to it so it can be decorated or more...</li>
+<li><strong>onStart()</strong>: invoked when <code>router.start()</code> is called</li>
+<li><strong>onStop()</strong>: invoked when <code>router.stop()</code> is called</li>
+<li><strong>onTransitionStart(toState, fromState)</strong></li>
+<li><strong>onTransitionCancelled(toState, fromState)</strong></li>
+<li><strong>onTransitionError(toState, fromState, err)</strong></li>
+<li><strong>onTransitionSuccess(toState, fromState, opts)</strong> (options contains <code>replace</code> and <code>reload</code> boolean flags)</li>
 </ul>
-<p>The use of factories is to be able to access <code>app</code> and <code>router</code> objects easily:</p>
-<pre><code class="lang-javascript javascript">import {Router5} from &#39;router5&#39;
-import {routerPlugin, linkFactory, segmentDecoratorFactory} from &#39;router5-deku&#39;
-
-var router = new Router5()
-    .setOption(&#39;useHash&#39;, true)
-    .setOption(&#39;defaultRoute&#39;, &#39;inbox&#39;)
-    // Routes
-    .addNode(&#39;inbox&#39;,            &#39;/inbox&#39;)
-    .addNode(&#39;inbox.message&#39;,    &#39;/message/:id&#39;)
-    .addNode(&#39;compose&#39;,          &#39;/compose&#39;)
-    .addNode(&#39;contacts&#39;,         &#39;/contacts&#39;)
-    .start()
-
-var Link = linkFactory(router)
-
-var app = tree().use(routerPlugin(router))
-
-var SegmentDecorator = segmentDecoratorFactory(router, app)
-
-export {app, router, Link, SegmentDecorator}
-</code></pre>
-<h3 id="router-plugin">Router plugin</h3>
-<p>Simply use it with <em>app.use</em>: <code>app.use(routerPlugin(router))</code></p>
-<h3 id="segment-decorator">Segment decorator</h3>
-<p>In the absence of mixins, the segment decorator will mutate a component definition to enhance its <code>afterMount</code> and <code>beforeUnmount</code> functions
-(already defined functions will be preserved).</p>
-<p><code>SegmentDecorator(component, routeName[, listener])</code>:</p>
-<pre><code class="lang-javascript javascript">var RootComponent = {
-    initialState: function (props) {
-        return {
-            currentRoute: router.getState()
-        };
-    },
-
-    render: function (component) {
-        var currentRoute = component.state.currentRoute;
-        return element(&#39;div&#39;, {}, currentRoute ? currentRoute.name : &#39;Not found&#39;);
-    }
-};
-SegmentDecorator(RootComponent, &#39;&#39;, function (component, setState, toRoute, fromRoute) {
-    setState({currentRoute: toRoute})
-});
-</code></pre>
-<h3 id="link">Link</h3>
-<p>You can specify <em>button</em> (default to false, whether it should render a hyperlink or button), <em>routeName</em> (required), <em>routeParams</em>, <em>routeOptions</em>
-and <em>activeClass</em>.</p>
-<pre><code class="lang-javascript javascript">function render() {
-    return &lt;Link routeName=&quot;inbox&quot; routeOptions={reload: true}&gt;Go to Inbox&lt;/Link&gt;
+<h2 id="registering-a-plugin">Registering a plugin</h2>
+<pre><code class="lang-javascript javascript">const myPlugin = function () {
+    return {
+        name: &#39;MY_CUSTOM_PLUGIN&#39;,
+        onTransitionSuccess: (toState, fromState) =&gt; {
+            console.log(&#39;Yippee, navigation to &#39; + toState.name + &#39; was successful!&#39;);
+        }
+    };
 }
+
+const router = new Router5()
+    .usePlugin(myPlugin);
 </code></pre>
+<h2 id="plugin-examples">Plugin examples</h2>
+<ul>
+<li><a href="/router5/router5-listeners">router5-listeners</a></li>
+<li><a href="/router5/router5-history">router5-history</a></li>
+<li><a href="./modules/plugins/logger.js">Logger</a></li>
+</ul>
 
     </main>
 
@@ -183,10 +145,6 @@ and <em>activeClass</em>.</p>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/assets/deku.min.js"></script>
-    <script src="/assets/router5.0.9.1.min.js"></script>
-    <script src="/assets/router5-deku.0.1.0-alpha.2.js"></script>
-    <script src="/assets/router5-deku-example.js"></script>
     
 
 

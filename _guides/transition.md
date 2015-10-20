@@ -1,18 +1,23 @@
 # Transition
 
-As seen in [Listeners](/docs/listeners.html) and [Preventing navigation](/docs/listeners), `canDeactivate`
-and `canActivate` are part of the transition phase. Additionaly, node listeners can be included in the transition phase.
+As seen in [Preventing navigation](/docs/listeners), `canDeactivate`
+and `canActivate` are part of the transition phase.
 
-It is also possible to register an __asynchronous "middleware" function__: it can return a boolean for synchronous results, a promise or call
+It is also possible to register an __asynchronous "middleware" functions__: it can return a boolean for synchronous results, a promise or call
 a done callback for asynchronous operations.
 
 ```javascript
-let onTransition = function (toState, fromState, done) {
+let mware1 = function (toState, fromState, done) {
     // Let's fetch data and call done
     done(null);
 };
 
-router.onTransition(onTransition)
+let mware2 = function (toState, fromState, done) {
+    // Let's fetch data and call done
+    done(null);
+};
+
+router.useMiddleware(mware1, mware2);
 ```
 
 This type of function is ideal to remove data loading logic from components, and is a good fit

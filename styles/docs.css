@@ -50,11 +50,10 @@ body > aside + main img {
     }
 
     body > aside {
-        position: fixed;
+        position: absolute;
         z-index: 1;
         top: 60px;
         width: 240px;
-        bottom: 0;
         left: 0;
         background-color: #fff;
         padding: 1.75rem 0;

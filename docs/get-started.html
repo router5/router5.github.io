@@ -41,6 +41,8 @@
 
             <a href="/docs/configuring-routes.html" class="">Guides</a>
 
+            <a href="/docs/listeners.html" class="">Plugins</a>
+
             <a href="/docs/api-reference.html" class="">API</a>
 
             <a href="docs/with-react.html" class="">Examples</a>
@@ -64,9 +66,14 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/transition.html" class="link">Transition</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/plugins.html" class="link">Plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
+
+            <strong>Plugins</strong>
+
+            <a href="/docs/listeners.html" class="link">Listeners</a>
+            <a href="/docs/history.html" class="link">History</a>
 
             <strong>API Reference</strong>
 
@@ -81,7 +88,7 @@
 
     <main>
         <h1 id="get-started">Get started</h1>
-<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>AMD</strong>, <strong>CommonJS</strong> and <strong>globals</strong>.</p>
+<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>AMD</strong>, <strong>CommonJS</strong>, <strong>globals</strong> and <strong>UMD</strong>.</p>
 <p>It can be installed using <strong>npm</strong> or <strong>bower</strong>. Alternatively, you can download a specific version
 from <a href="https://github.com/router5/router5/releases">github</a>. Whether you install <em>router5</em> from npm, bower or github,
 you will have access to the same files.</p>
@@ -93,12 +100,9 @@ you will have access to the same files.</p>
 <pre><code class="lang-sh">npm install router5
 </code></pre>
 <h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
-<p><strong>Node.js (CommonJS)</strong></p>
+<p><strong>CommonJS / ES6</strong></p>
 <p>Files are available in <code>/dist/commonjs/</code>.</p>
-<pre><code class="lang-javascript javascript">var r5 = require(&#39;router5&#39;);
-
-var Router5   = r5.Router5;
-var RouteNode = r5.RouteNode;
+<pre><code class="lang-javascript javascript">import { Router5, RouteNode } from &#39;router5&#39;;
 </code></pre>
 <p><strong>Browser (globals)</strong></p>
 <p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/browser/</code>. All <em>router5</em> dependencies (<em>route-node</em> and <em>path-parser</em>)
@@ -106,6 +110,22 @@ are packaged together, and <code>Router5</code> and <code>RouteNode</code> are m
 <p><strong>AMD</strong></p>
 <p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/amd/</code>, it includes all router5 dependencies bundled
 together. <code>router5</code> returns an object containing <code>Router5</code> and <code>RouteNode</code>.</p>
+<p><strong>UMD</strong></p>
+<p>UMD files are available in <code>/dist/umd</code>.</p>
+<h2 id="plugins">Plugins</h2>
+<p><code>router5-listeners</code> and <code>router5-history</code> are both available through npm and bower too.</p>
+<pre><code class="lang-sh"># Listeners plugin
+npm install router5-listeners
+bower install router5-listeners
+
+# History plugin
+npm install router5-history
+bower install router5-history
+</code></pre>
+<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
+bundle is named <code>router5ListenersPlugin</code>.</p>
+<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
+bundle is named <code>router5ListenersPlugin</code>.</p>
 <!-- __ES6__
 
 _router5_ and its dependencies are written in ES6 and transpiled to ES5. If you wish to include ES6 sources directly
