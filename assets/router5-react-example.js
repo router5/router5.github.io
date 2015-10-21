@@ -137,24 +137,12 @@ var Inbox = routeNode('inbox')(React.createClass({
 /////////////
 // Compose //
 /////////////
-var Compose = React.createClass({
+var Compose = routeNode('compose', true)(React.createClass({
     getInitialState: function () {
         return {
             title: undefined,
             message: undefined
         }
-    },
-
-    contextTypes: {
-        router: React.PropTypes.object.isRequired
-    },
-
-    componentDidMount() {
-        this.context.router.registerComponent('compose', this);
-    },
-
-    componentWillUnmount() {
-        this.context.router.deregisterComponent('compose', this);
     },
 
     canDeactivate: function () {
@@ -183,7 +171,7 @@ var Compose = React.createClass({
             element('p', null, this.state.warning ? 'Clear inputs before continuing' : '')
         );
     }
-});
+}));
 
 ///////////////
 // Not found //
