@@ -16,10 +16,11 @@ var router = new Router5()
     .usePlugin(router5HistoryPlugin())
     .start();
 
-var Link = linkFactory(router);
-var SegmentMixin = segmentMixinFactory(router);
-
 var element = React.createElement;
+
+var routeNode = reactRouter5.routeNode;
+var Link      = reactRouter5.Link;
+var Router    = reactRouter5.Router;
 
 ///////////////////
 // Nav component //
@@ -121,39 +122,39 @@ var Message = React.createClass({
 /////////////////////
 // Inbox component //
 /////////////////////
-var Inbox = React.createClass({
-    mixins: [SegmentMixin('inbox', function (toState, fromState) {
-        this.setState({routeState: toState});
-    })],
-
-    getInitialState: function () {
-        return {
-            routeState: router.getState()
-        };
-    },
-
+var Inbox = routeNode('inbox')(React.createClass({
     render: function () {
         var emails = getEmails();
-        var routeState = this.state.routeState;
+        var route = this.props.route;
 
         return element('div', {className: 'inbox'},
             element(InboxList, {emails: emails}),
-            routeState.name === 'inbox.message' ? element(Message, {messageId: routeState.params.id}) : null
+            route.name === 'inbox.message' ? element(Message, {messageId: route.params.id, key: route.params.id}) : null
         );
     }
-});
+}));
 
 /////////////
 // Compose //
 /////////////
 var Compose = React.createClass({
-    mixins: [SegmentMixin('compose')],
-
     getInitialState: function () {
         return {
             title: undefined,
             message: undefined
         }
+    },
+
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
+
+    componentDidMount() {
+        this.context.router.registerComponent('compose', this);
+    },
+
+    componentWillUnmount() {
+        this.context.router.deregisterComponent('compose', this);
     },
 
     canDeactivate: function () {
@@ -196,32 +197,26 @@ var NotFound = React.createClass({
 ///////////////////
 // Main viewport //
 ///////////////////
-var Main = React.createClass({
-    mixins: [SegmentMixin('', function (toState, fromState) {
-        this.setState({routeState: toState});
-    })],
-
+var Main = routeNode('')(React.createClass({
     getInitialState: function () {
         return {
             routeState: router.getState()
         }
     },
 
-    getComponent: function (routeState) {
+    getComponent: function (route) {
         var components = {
             'inbox':   Inbox,
             'compose': Compose
         };
-        return routeState ? components[routeState.name.split('.')[0]] : undefined;
+        return route ? components[route.name.split('.')[0]] : undefined;
     },
 
     render: function () {
-        var routeState = this.state.routeState;
-        var Component = this.getComponent(routeState);
-
+        var Component = this.getComponent(this.props.route);
         return element(Component || NotFound);
     }
-});
+}));
 
 ///////////////////
 // App component //
@@ -238,4 +233,4 @@ var App = React.createClass({
 ////////////////
 // Render App //
 ////////////////
-React.render(element(App), document.getElementById('reactExample'));
+ReactDOM.render(element(Router, {router: router, children: element(App)}), document.getElementById('reactExample'));

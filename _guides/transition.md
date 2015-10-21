@@ -9,12 +9,12 @@ a done callback for asynchronous operations.
 ```javascript
 let mware1 = function (toState, fromState, done) {
     // Let's fetch data and call done
-    done(null);
+    done();
 };
 
 let mware2 = function (toState, fromState, done) {
     // Let's fetch data and call done
-    done(null);
+    done();
 };
 
 router.useMiddleware(mware1, mware2);

@@ -90,9 +90,10 @@ async.parallel([
     renderDoc('_guides', 'universal-applications.md', {universal: true, docs: true}),
     // renderApi,
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
-        'https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js',
         '/assets/router5.' + router5Version + '.min.js',
-        '/assets/router5-react.0.1.5.js',
+        '/assets/react-router5.1.0.0.min.js',
         '/assets/router5-react-example.js'
     ]}),
     renderDoc('_docs', 'with-deku.md', {deku: true, examples: true, scripts: [
