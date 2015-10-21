@@ -3,6 +3,8 @@
 As seen in [Preventing navigation](/docs/listeners), `canDeactivate`
 and `canActivate` are part of the transition phase.
 
+## Registering middleware functions
+
 It is also possible to register an __asynchronous "middleware" functions__: it can return a boolean for synchronous results, a promise or call
 a done callback for asynchronous operations.
 
@@ -31,14 +33,3 @@ Sometimes a simple flow chart is way better than many confusing paragraphs.
 
 ![Transition flow chart](/img/flow-transition.png)
 
-
-## Transition hooks
-
-You can listen to specific transition events, mostly for debugging purposes.
-
-- __Start:__ `.onTransitionStart(cb)`, `.offTransitionStart(cb)`
-- __Cancel:__ `.onTransitionCancel(cb)`, `.offTransitionCancel(cb)`
-- __Error:__ `.onTransitionError(cb)`, `.offTransitionError(cb)`
-
-Listeners are of the following form: `function (toState, fromState) { }`. Transition error listeners are called with
-an extra `err` argument.

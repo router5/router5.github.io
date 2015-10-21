@@ -30,9 +30,9 @@ let MyComponent = {
     canDeactivate(toRoute, fromRoute) {
         return new Promise((resolve, reject) => {
             // If can deactivate
-            resolve()
+            resolve();
             // Or if cannot deactivate
-            reject()
+            reject();
         })
     }
 }
@@ -45,11 +45,18 @@ deactivation, simply invoke with the first argument (error) to a falsy or truthy
 let MyComponent = {
     canDeactivate(toRoute, fromRoute, done) {
         // If can deactivate
-        done(null, true)
+        done(null, true);
         // Or if cannot deactivate
-        done(true, null)
+        done(true, null);
     }
 }
+```
+
+A shortcut method is available and can be used if `options.autoCleanUp` is set to true.
+
+```
+const isDirty = true;
+router.canDeactivate('routeName', !isDirty);
 ```
 
 ## Can I activate?

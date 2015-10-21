@@ -9,7 +9,8 @@ var router = new Router5([], {
     defaultRoute: 'home',
     defaultParams: {},
     base: '',
-    trailingSlash: false
+    trailingSlash: false,
+    autoCleanUp: true
 });
 ```
 
@@ -44,3 +45,11 @@ path.
 ## Optional trailing slashes
 
 By default, the router is in "strict match" mode. If you want trailing slashes to be optional, you can set `trailingSlash` to a truthy value.
+
+
+## Automatic clean up
+
+When you register a component with the router (using `.registerComponent(routeName, component)`) and if `autoCleanUp` is set to true, the router will automatically deregister that
+component if `routeName` is no longer active. It saves you having to call `.deregisterComponent`.
+
+The same logic is applied with node listeners (and not route or global listeners) in router5 listeners plugin.

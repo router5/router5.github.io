@@ -107,9 +107,9 @@ to support ES6 promises or use a polyfill.</p>
     canDeactivate(toRoute, fromRoute) {
         return new Promise((resolve, reject) =&gt; {
             // If can deactivate
-            resolve()
+            resolve();
             // Or if cannot deactivate
-            reject()
+            reject();
         })
     }
 }
@@ -119,13 +119,16 @@ deactivation, simply invoke with the first argument (error) to a falsy or truthy
 <pre><code class="lang-javascript javascript">let MyComponent = {
     canDeactivate(toRoute, fromRoute, done) {
         // If can deactivate
-        done(null, true)
+        done(null, true);
         // Or if cannot deactivate
-        done(true, null)
+        done(true, null);
     }
 }
 </code></pre>
-<h2 id="can-i-activate-">Can I activate?</h2>
+<p>A shortcut method is available and can be used if <code>options.autoCleanUp</code> is set to true.</p>
+<pre><code>const isDirty = true;
+router.canDeactivate(&#39;routeName&#39;, !isDirty);
+</code></pre><h2 id="can-i-activate-">Can I activate?</h2>
 <p>You can register a <code>canActivate(toRoute, fromRoute[, done])</code> function per node to allow or prevent access
 to a specific route and its descendents.</p>
 <p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same

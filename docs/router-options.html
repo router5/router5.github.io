@@ -93,7 +93,8 @@
     defaultRoute: &#39;home&#39;,
     defaultParams: {},
     base: &#39;&#39;,
-    trailingSlash: false
+    trailingSlash: false,
+    autoCleanUp: true
 });
 </code></pre>
 <h2 id="use-of-hash-part-of-url">Use of hash part of URL</h2>
@@ -117,6 +118,10 @@ and the hash.</p>
 path.</p>
 <h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
 <p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
+<h2 id="automatic-clean-up">Automatic clean up</h2>
+<p>When you register a component with the router (using <code>.registerComponent(routeName, component)</code>) and if <code>autoCleanUp</code> is set to true, the router will automatically deregister that
+component if <code>routeName</code> is no longer active. It saves you having to call <code>.deregisterComponent</code>.</p>
+<p>The same logic is applied with node listeners (and not route or global listeners) in router5 listeners plugin.</p>
 
     </main>
 

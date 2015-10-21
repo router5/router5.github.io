@@ -88,6 +88,7 @@
         <h1 id="transition">Transition</h1>
 <p>As seen in <a href="/docs/listeners">Preventing navigation</a>, <code>canDeactivate</code>
 and <code>canActivate</code> are part of the transition phase.</p>
+<h2 id="registering-middleware-functions">Registering middleware functions</h2>
 <p>It is also possible to register an <strong>asynchronous &quot;middleware&quot; functions</strong>: it can return a boolean for synchronous results, a promise or call
 a done callback for asynchronous operations.</p>
 <pre><code class="lang-javascript javascript">let mware1 = function (toState, fromState, done) {
@@ -108,15 +109,6 @@ for applications aiming at having a centralised state object.</p>
 <p>Sometimes a simple flow chart is way better than many confusing paragraphs.</p>
 <p><img src="/img/flow-graph.png" alt="Going from &#39;users.view&#39; to &#39;orders.view&#39;"></p>
 <p><img src="/img/flow-transition.png" alt="Transition flow chart"></p>
-<h2 id="transition-hooks">Transition hooks</h2>
-<p>You can listen to specific transition events, mostly for debugging purposes.</p>
-<ul>
-<li><strong>Start:</strong> <code>.onTransitionStart(cb)</code>, <code>.offTransitionStart(cb)</code></li>
-<li><strong>Cancel:</strong> <code>.onTransitionCancel(cb)</code>, <code>.offTransitionCancel(cb)</code></li>
-<li><strong>Error:</strong> <code>.onTransitionError(cb)</code>, <code>.offTransitionError(cb)</code></li>
-</ul>
-<p>Listeners are of the following form: <code>function (toState, fromState) { }</code>. Transition error listeners are called with
-an extra <code>err</code> argument.</p>
 
     </main>
 
