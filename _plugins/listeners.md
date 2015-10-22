@@ -1,7 +1,6 @@
 # Listeners plugin
 
-To be able to react to route changes, you will need to listen to them! _router5-listeners_ plugin offers a
-way to update a component tree with the use of three types of listeners.
+> To be able to react to route changes, you might need to add listeners. `router5-listeners` plugin provides different ways to listen to router state changes.
 
 ```javascript
 import listenersPlugin from 'router5-listeners';
@@ -9,6 +8,9 @@ import listenersPlugin from 'router5-listeners';
 const router = new Router5()
     .usePlugin(listenersPlugin());
 ```
+
+
+## Three types of listeners
 
 ![Navigation from 'users.view' to 'orders.completed'](/img/deactivation-activation-path.png)
 
@@ -28,72 +30,34 @@ When navigation from _orders.pending_ to _orders.pending_:
 - &#x2713; `.addRouteListener('orders.pending', fn)` will be called
 
 
-## Arguments
+### Listener Arguments
 
-Listeners are invoked with two arguments:
-
-- `toState`: the state object the router is navigating to
-- `fromState`: the state object the router is navigating from
-
+Listeners will be called with `toState` and `fromState` arguments.
 State objects contain the following properties: `name`, `params` and `path`.
 
-Additionally, a callback can be passed to node listeners (see below).
 
 ## Listen to a node change
 
 `addNodeListener(name, fn)` will register a listener which will be invoked when the specified route node
-is the _apex_ node of a route change, i.e. the lowest node in a tree remaining activated on a route change (the lowest
+is the "intersection" node of a route change, i.e. the lowest node in a tree remaining activated on a route change (the lowest
 common node).
 
 For example, when navigating from route name `A.1.a` to `A.1.b`, node `a.1` is the _apex_ node. When navigating
 from `A.1.a` to `A.2`, `A` is the _apex_.
 
 Node listeners are limited to __one listener per node__, and are the most useful listener for __component trees__:
-they allow to use high-order components and to re-render a view efficiently. __Only one node listener will
-be invoked on a route change__.
+they allow to use wrapping components and to re-render a view efficiently at a specific node. Using `addNodeListener('', fn)`
+will add a listener for the router's unamed root node.
 
-Node listeners can be part of the transition phase: when using a node listener, you can return a promise,
-a boolean or invoke a done callback like for `canActivate` and `canDeactivate` methods. In that case:
-
-- The router will wait before updating the page URL and invoke other listeners (see below)
-- The router will fail the transition if a listener return a negative result (false, rejected
-promise or invoke callback with an error): __you are fully in control__, and you can decide
-for example if you want to share an error with the router and abort a route change.
-
-You can also choose to return nothing and in this case the router will consider the transition successful and
-won't wait for updating the page URL and invoke other listeners. Make sure your function doesn't take a callback as its
-last argument (`function nodeListener(toState, fromState)`: this will cause the router to wait for that callback
-to be invoked and the transition will never be completed.
-
-`addNodeListener('', fn)` will add a listener for the router's unamed root node.
+> If `autoCleanUp` option is set to true, node listeners are automatically removed when their associated node no longer exists.
 
 ```javascript
-var node1 = new RouteNode('1', '/1', [
-    new RouteNode('a', '/a')
-    new RouteNode('a', '/a')
-]);
-
-var nodeA = new RouteNode('A', '/A', [
-    node1,
-    new RouteNode('2', '/2')
-]);
-
-var myRouter = Router5([nodeA])
-    .start();
-
 myRouter.addNodeListener('A', function (toState, fromState) {
     console.log('re-render from A');
 });
 
-myRouter.addNodeListener('A.1', function (toState, fromState, done) {
+myRouter.addNodeListener('A.1', function (toState, fromState) {
     console.log('re-render from A.1');
-    // Perform some async operation
-    xhr.getData(function (err, res) {
-        // use data
-        // ...
-        // Notify router
-        done(err)
-    })
 });
 
 myRouter.navigate('A.1.a');

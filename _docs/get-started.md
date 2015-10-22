@@ -9,26 +9,24 @@ you will have access to the same files.
 
 ## Installation
 
-__Bower__
-
 ```sh
+# bower
 bower install router5
-```
-
-__npm__
-
-```sh
+# npm
 npm install router5
 ```
 
 ## Include _router5_ in your application
 
-__CommonJS / ES6__
+__CommonJS__
 
 Files are available in `/dist/commonjs/`.
 
 ```javascript
-import { Router5, RouteNode } from 'router5';
+var router5 = require('router5');
+
+// router5.Router5
+// router5.RouteNode
 ```
 
 __Browser (globals)__

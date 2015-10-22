@@ -54,8 +54,8 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link">Why router5?</a>
 
             <strong>Guides</strong>
 
@@ -101,8 +101,12 @@ at a time.</p>
 <p>A <code>canDeactivate</code> method can return <code>true</code> or <code>false</code> for synchronous results, can
 return a thenable (<code>promise</code>) or can invoke a <code>done</code> callback. A resolved promise is equivalent
 to returning true, and a rejected promise will prevent a segment deactivation.</p>
+<blockquote>
+<p><strong>Note:</strong> if a canActivate or canDeactivate function doesn&#39;t return a boolean, a promise or doesn&#39;t call back,
+  the transition will not proceed</p>
+</blockquote>
 <p><em>router5</em> doesn&#39;t create any promise and therefore if you do not wish to use promises, you are not forced
-to support ES6 promises or use a polyfill.</p>
+to use a polyfill or promise implementation in your app.</p>
 <pre><code class="lang-javascript javascript">let MyComponent = {
     canDeactivate(toRoute, fromRoute) {
         return new Promise((resolve, reject) =&gt; {
@@ -146,13 +150,6 @@ myRouter
     .add({name: &#39;admin&#39;, path: &#39;/admin&#39;})
     .canActivate(&#39;admin&#39;, canAccessAdmin)
 </code></pre>
-<blockquote>
-<p><strong>Note:</strong> if a can activate or can deactivate function doesn&#39;t return a boolean, a promise or doesn&#39;t call back,
-  the transition will not proceed</p>
-</blockquote>
-<h2 id="what-about-popstate-">What about popstate?</h2>
-<p>Popstate events cannot be prevented or reversed. In the event current route activation or deactivation is not allowed,
-the previously known state will be pushed to the page history.</p>
 
     </main>
 

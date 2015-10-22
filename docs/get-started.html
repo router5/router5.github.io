@@ -54,8 +54,8 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
             <a href="/docs/get-started.html" class="link active">Getting started</a>
+            <a href="/docs/why-router5.html" class="link">Why router5?</a>
 
             <strong>Guides</strong>
 
@@ -93,16 +93,18 @@
 from <a href="https://github.com/router5/router5/releases">github</a>. Whether you install <em>router5</em> from npm, bower or github,
 you will have access to the same files.</p>
 <h2 id="installation">Installation</h2>
-<p><strong>Bower</strong></p>
-<pre><code class="lang-sh">bower install router5
-</code></pre>
-<p><strong>npm</strong></p>
-<pre><code class="lang-sh">npm install router5
+<pre><code class="lang-sh"># bower
+bower install router5
+# npm
+npm install router5
 </code></pre>
 <h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
-<p><strong>CommonJS / ES6</strong></p>
+<p><strong>CommonJS</strong></p>
 <p>Files are available in <code>/dist/commonjs/</code>.</p>
-<pre><code class="lang-javascript javascript">import { Router5, RouteNode } from &#39;router5&#39;;
+<pre><code class="lang-javascript javascript">var router5 = require(&#39;router5&#39;);
+
+// router5.Router5
+// router5.RouteNode
 </code></pre>
 <p><strong>Browser (globals)</strong></p>
 <p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/browser/</code>. All <em>router5</em> dependencies (<em>route-node</em> and <em>path-parser</em>)

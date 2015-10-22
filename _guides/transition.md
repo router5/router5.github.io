@@ -1,12 +1,11 @@
 # Transition
 
-As seen in [Preventing navigation](/docs/listeners), `canDeactivate`
-and `canActivate` are part of the transition phase.
+> As seen in [Preventing navigation](/docs/listeners), `canDeactivate` and `canActivate` are part of the transition phase. Additionally you can register multiple middleware in order to perform asynchronous operations as part of the transition process.
 
 ## Registering middleware functions
 
-It is also possible to register an __asynchronous "middleware" functions__: it can return a boolean for synchronous results, a promise or call
-a done callback for asynchronous operations.
+A middleware function can return a boolean for synchronous results, a promise or call
+a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.
 
 ```javascript
 let mware1 = function (toState, fromState, done) {

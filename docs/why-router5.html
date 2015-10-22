@@ -54,8 +54,8 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link active">Why router5?</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link active">Why router5?</a>
 
             <strong>Guides</strong>
 
@@ -108,11 +108,11 @@ efficiently: a reactive application, reacting to data changes <em>including</em>
 <blockquote>
 <p>After all, why treat route changes any different than data changes?</p>
 </blockquote>
-<h2 id="existing-routers-are-monoblocks">Existing routers are monoblocks</h2>
+<h2 id="existing-routers-are-monolihic">Existing routers are monolihic</h2>
 <p>The most popular routers those days are tied to frameworks (or libraries) and are fairly large pieces of software, tightly coupled together.
 Angular2 and Aurelia, for example, include their own routing solution with exciting new functionalities: activation / deactivation, use
 of pipelines, etc...</p>
-<p>Routers in Angular1, Angular2, Aurelia, Ember, React... have all something in common: they implement everything from path recognition
+<p>Routers in Angular, Angular 2, Aurelia, Ember, React... all implement everything from path recognition
 to navigation and history management. They all share similar concepts or technical hurdles, but share very little code or conventions.</p>
 <h2 id="making-the-same-mistake-">Making the same mistake?</h2>
 <p>I came across <a href="https://github.com/pillarjs/routington">routington</a> which is
@@ -128,7 +128,7 @@ None of the libraries mentioned could do it, so came <a href="https://github.com
 <p><img src="https://imgs.xkcd.com/comics/standards.png" alt="Standards"></p>
 <h2 id="router5">router5</h2>
 <p>Once route-node and path-parser were written, router5 could be designed. It delegates route management and route matching / building
-and focus on navigation, history and triggering the right listeners.</p>
+and focus on navigation, taking instructions and updating its state. Plugins can be added to extend its features (browser history, listeners, etc...).</p>
 
     </main>
 

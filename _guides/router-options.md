@@ -1,17 +1,19 @@
 # Options
 
-When constructing your router instance, you can pass several options to the constructor.
+> You can configure your router instance by passing options to the constructor or by using `.setOption(optName, optValue)`.
 
 ```javascript
 var router = new Router5([], {
-    useHash: true,
-    hashPrefix: '!',
-    defaultRoute: 'home',
-    defaultParams: {},
-    base: '',
-    trailingSlash: false,
-    autoCleanUp: true
-});
+        useHash: true,
+        hashPrefix: '!',
+        defaultRoute: 'home',
+        defaultParams: {},
+        base: '',
+        trailingSlash: false,
+        autoCleanUp: true
+    })
+    .setOption('useHash', false)
+    .setOption('hashPrefix', '');
 ```
 
 ## Use of hash part of URL

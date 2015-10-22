@@ -1,8 +1,10 @@
 # Path syntax
 
+> _router5_ uses [path-parser](https://github.com/troch/path-parser) for parsing, matching and generating URLs
+
 ## Defining parameters
 
-_router5_ uses [path-parser](https://github.com/troch/path-parser) for parsing, matching and generating URLs. It supports four parameter types:
+Four parameter types are supported:
 
 - `:param`: url parameters
 - `;matrix`: matrix parameters

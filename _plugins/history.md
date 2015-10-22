@@ -15,4 +15,4 @@ const router = new Router5()
     .start();
 ```
 
-For more information on how to install, look at [Get started](/docs/get-started.html);
+For more information on how to install, look at [Get started](/docs/get-started.html).

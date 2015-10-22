@@ -54,8 +54,8 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link">Why router5?</a>
 
             <strong>Guides</strong>
 
@@ -86,13 +86,15 @@
 
     <main>
         <h1 id="listeners-plugin">Listeners plugin</h1>
-<p>To be able to react to route changes, you will need to listen to them! <em>router5-listeners</em> plugin offers a
-way to update a component tree with the use of three types of listeners.</p>
+<blockquote>
+<p>To be able to react to route changes, you might need to add listeners. <code>router5-listeners</code> plugin provides different ways to listen to router state changes.</p>
+</blockquote>
 <pre><code class="lang-javascript javascript">import listenersPlugin from &#39;router5-listeners&#39;;
 
 const router = new Router5()
     .usePlugin(listenersPlugin());
 </code></pre>
+<h2 id="three-types-of-listeners">Three types of listeners</h2>
 <p><img src="/img/deactivation-activation-path.png" alt="Navigation from &#39;users.view&#39; to &#39;orders.completed&#39;"></p>
 <p>When navigation from <em>users.view</em> to <em>orders.completed</em>:</p>
 <ul>
@@ -107,62 +109,27 @@ const router = new Router5()
 <li>&#x2713; <code>.addNodeListener(&#39;orders&#39;, fn)</code> will be called</li>
 <li>&#x2713; <code>.addRouteListener(&#39;orders.pending&#39;, fn)</code> will be called</li>
 </ul>
-<h2 id="arguments">Arguments</h2>
-<p>Listeners are invoked with two arguments:</p>
-<ul>
-<li><code>toState</code>: the state object the router is navigating to</li>
-<li><code>fromState</code>: the state object the router is navigating from</li>
-</ul>
-<p>State objects contain the following properties: <code>name</code>, <code>params</code> and <code>path</code>.</p>
-<p>Additionally, a callback can be passed to node listeners (see below).</p>
+<h3 id="listener-arguments">Listener Arguments</h3>
+<p>Listeners will be called with <code>toState</code> and <code>fromState</code> arguments.
+State objects contain the following properties: <code>name</code>, <code>params</code> and <code>path</code>.</p>
 <h2 id="listen-to-a-node-change">Listen to a node change</h2>
 <p><code>addNodeListener(name, fn)</code> will register a listener which will be invoked when the specified route node
-is the <em>apex</em> node of a route change, i.e. the lowest node in a tree remaining activated on a route change (the lowest
+is the &quot;intersection&quot; node of a route change, i.e. the lowest node in a tree remaining activated on a route change (the lowest
 common node).</p>
 <p>For example, when navigating from route name <code>A.1.a</code> to <code>A.1.b</code>, node <code>a.1</code> is the <em>apex</em> node. When navigating
 from <code>A.1.a</code> to <code>A.2</code>, <code>A</code> is the <em>apex</em>.</p>
 <p>Node listeners are limited to <strong>one listener per node</strong>, and are the most useful listener for <strong>component trees</strong>:
-they allow to use high-order components and to re-render a view efficiently. <strong>Only one node listener will
-be invoked on a route change</strong>.</p>
-<p>Node listeners can be part of the transition phase: when using a node listener, you can return a promise,
-a boolean or invoke a done callback like for <code>canActivate</code> and <code>canDeactivate</code> methods. In that case:</p>
-<ul>
-<li>The router will wait before updating the page URL and invoke other listeners (see below)</li>
-<li>The router will fail the transition if a listener return a negative result (false, rejected
-promise or invoke callback with an error): <strong>you are fully in control</strong>, and you can decide
-for example if you want to share an error with the router and abort a route change.</li>
-</ul>
-<p>You can also choose to return nothing and in this case the router will consider the transition successful and
-won&#39;t wait for updating the page URL and invoke other listeners. Make sure your function doesn&#39;t take a callback as its
-last argument (<code>function nodeListener(toState, fromState)</code>: this will cause the router to wait for that callback
-to be invoked and the transition will never be completed.</p>
-<p><code>addNodeListener(&#39;&#39;, fn)</code> will add a listener for the router&#39;s unamed root node.</p>
-<pre><code class="lang-javascript javascript">var node1 = new RouteNode(&#39;1&#39;, &#39;/1&#39;, [
-    new RouteNode(&#39;a&#39;, &#39;/a&#39;)
-    new RouteNode(&#39;a&#39;, &#39;/a&#39;)
-]);
-
-var nodeA = new RouteNode(&#39;A&#39;, &#39;/A&#39;, [
-    node1,
-    new RouteNode(&#39;2&#39;, &#39;/2&#39;)
-]);
-
-var myRouter = Router5([nodeA])
-    .start();
-
-myRouter.addNodeListener(&#39;A&#39;, function (toState, fromState) {
+they allow to use wrapping components and to re-render a view efficiently at a specific node. Using <code>addNodeListener(&#39;&#39;, fn)</code>
+will add a listener for the router&#39;s unamed root node.</p>
+<blockquote>
+<p>If <code>autoCleanUp</code> option is set to true, node listeners are automatically removed when their associated node no longer exists.</p>
+</blockquote>
+<pre><code class="lang-javascript javascript">myRouter.addNodeListener(&#39;A&#39;, function (toState, fromState) {
     console.log(&#39;re-render from A&#39;);
 });
 
-myRouter.addNodeListener(&#39;A.1&#39;, function (toState, fromState, done) {
+myRouter.addNodeListener(&#39;A.1&#39;, function (toState, fromState) {
     console.log(&#39;re-render from A.1&#39;);
-    // Perform some async operation
-    xhr.getData(function (err, res) {
-        // use data
-        // ...
-        // Notify router
-        done(err)
-    })
 });
 
 myRouter.navigate(&#39;A.1.a&#39;);

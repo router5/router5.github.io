@@ -30,13 +30,13 @@ efficiently: a reactive application, reacting to data changes _including_ route 
 > After all, why treat route changes any different than data changes?
 
 
-## Existing routers are monoblocks
+## Existing routers are monolihic
 
 The most popular routers those days are tied to frameworks (or libraries) and are fairly large pieces of software, tightly coupled together.
 Angular2 and Aurelia, for example, include their own routing solution with exciting new functionalities: activation / deactivation, use
 of pipelines, etc...
 
-Routers in Angular1, Angular2, Aurelia, Ember, React... have all something in common: they implement everything from path recognition
+Routers in Angular, Angular 2, Aurelia, Ember, React... all implement everything from path recognition
 to navigation and history management. They all share similar concepts or technical hurdles, but share very little code or conventions.
 
 
@@ -59,4 +59,4 @@ None of the libraries mentioned could do it, so came [path-parser](https://githu
 ## router5
 
 Once route-node and path-parser were written, router5 could be designed. It delegates route management and route matching / building
-and focus on navigation, history and triggering the right listeners.
+and focus on navigation, taking instructions and updating its state. Plugins can be added to extend its features (browser history, listeners, etc...).
