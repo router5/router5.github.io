@@ -35,7 +35,7 @@
         <nav class="">
             <a href="/" class="">Home</a>
 
-            <a href="/docs/why-router5.html" class="">Why router5?</a>
+            <!-- <a href="/docs/why-router5.html" class="">Why router5?</a> -->
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
@@ -56,6 +56,7 @@
         <nav>
             <a href="/docs/get-started.html" class="link">Getting started</a>
             <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
 
             <strong>Guides</strong>
 
@@ -89,7 +90,15 @@
 <blockquote>
 <p>There are a few ways to add routes to your router. You can specify your routes when creating a router instance and / or use chainable <code>add</code> and <code>addNode</code> functions to add routes.</p>
 </blockquote>
-<h2 id="router5-constructor">Router5 constructor</h2>
+<h2 id="with-addnode">With addNode</h2>
+<p>You can add routes node by node, specifying a node name and its segment path. With the following example, <code>users.view</code> full path will be <code>/users/view/:id</code>.</p>
+<pre><code class="lang-javascript javascript">var router = new Router5()
+    .addNode(&#39;home&#39;,       &#39;/home&#39;)
+    .addNode(&#39;users&#39;,      &#39;/users&#39;)
+    .addNode(&#39;users.view&#39;, &#39;/view/:id&#39;)
+    .addNode(&#39;users.list&#39;, &#39;/list&#39;);
+</code></pre>
+<h2 id="alternative-ways">Alternative ways</h2>
 <p>When using Router5 contstructor <code>new Router5(routes, opts)</code>, <strong>routes</strong> can be:</p>
 <ul>
 <li>An array of RouteNode objects and plain objects.</li>
@@ -121,7 +130,6 @@ When nesting routes, they inherit from their parent. For example, a route named 
     ]}
 ]);
 </code></pre>
-<h2 id="adding-routes">Adding routes</h2>
 <p><strong>add(routes)</strong></p>
 <p>Like in Router5 constructor, routes can be a single node (RouteNode or plain object), or a list of nodes.</p>
 <pre><code class="lang-javascript javascript">myRouter.add(new RouteNode(&#39;about&#39;, &#39;/about&#39;));
@@ -137,13 +145,6 @@ myRouter.add([
     {name: &#39;about&#39;,   path: &#39;/about&#39;},
     {name: &#39;contact&#39;, path: &#39;/contact&#39;},
 ]);
-</code></pre>
-<p><strong>addNode(name, path)</strong></p>
-<pre><code class="lang-javascript javascript">var rootNode = new RouteNode()
-    .addNode(&#39;home&#39;,       &#39;/home&#39;)
-    .addNode(&#39;users&#39;,      &#39;/users&#39;)
-    .addNode(&#39;users.view&#39;, &#39;/view/:id&#39;)
-    .addNode(&#39;users.list&#39;, &#39;/list&#39;);
 </code></pre>
 
     </main>
