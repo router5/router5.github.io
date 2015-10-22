@@ -1,7 +1,6 @@
 # Using plugins
 
-Router5 is extensible with the use of plugins. Plugins can decorate a route instance and do things
-on specific router and transition events.
+> Router5 is extensible with the use of plugins. Plugins can decorate a route instance and do things on specific router and transition events.
 
 
 ## Plugin requirements

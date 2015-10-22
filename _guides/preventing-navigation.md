@@ -1,8 +1,6 @@
 # Preventing navigation
 
-It is a common case to want to allow / prevent navigation away from a view or component: if a User
-is in the middle of completing a form and data has not been saved, you might want to warn them
-about data being lost or prevent them to leave the current view until data has been saved.
+> It is a common case to want to allow / prevent navigation away from a view or component: if a User is in the middle of completing a form and data has not been saved, you might want to warn them about data being lost or prevent them to leave the current view until data has been saved.
 
 
 ## Can I deactivate?
@@ -22,8 +20,11 @@ A `canDeactivate` method can return `true` or `false` for synchronous results, c
 return a thenable (`promise`) or can invoke a `done` callback. A resolved promise is equivalent
 to returning true, and a rejected promise will prevent a segment deactivation.
 
+> __Note:__ if a canActivate or canDeactivate function doesn't return a boolean, a promise or doesn't call back,
+  the transition will not proceed
+
 _router5_ doesn't create any promise and therefore if you do not wish to use promises, you are not forced
-to support ES6 promises or use a polyfill.
+to use a polyfill or promise implementation in your app.
 
 ```javascript
 let MyComponent = {
@@ -83,10 +84,3 @@ myRouter
     .canActivate('admin', canAccessAdmin)
 ```
 
-> __Note:__ if a can activate or can deactivate function doesn't return a boolean, a promise or doesn't call back,
-  the transition will not proceed
-
-## What about popstate?
-
-Popstate events cannot be prevented or reversed. In the event current route activation or deactivation is not allowed,
-the previously known state will be pushed to the page history.

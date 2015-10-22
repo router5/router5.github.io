@@ -16,14 +16,7 @@ var router = new Router5([], {
 
 ## Use of hash part of URL
 
-Router5 only support HTML5 browsers with the history API. It means the router will use `history.pushState` and `history.replaceState` to modify the history of a page, and
-will listen to `popstate` events caused by a manual edit of the URL or a click on back and forward buttons. The router won't listen to `hashchange` events, but that doesn't
-mean you cannot use `#` in your URL.
-
-> The decision to whether or not use a `#` is a question of server configuration and not a decision based on browser support.
-
-Set `useHash` to `true` if you want the paths of your routes to be prefixed with a hash. You can also choose a `hashPrefix` which will be inserted between the path of a route
-and the hash.
+Set `useHash` to `true` if you want the paths of your routes to be prefixed with a hash. You can also choose a `hashPrefix` which will be inserted between the path of a route and the hash. Those options will mostly be used by plugins such as `router5-history`.
 
 
 ## Default route
