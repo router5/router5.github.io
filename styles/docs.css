@@ -52,7 +52,7 @@ body > aside + main img {
     body > aside {
         position: absolute;
         z-index: 1;
-        top: 60px;
+        top: 45px;
         width: 240px;
         left: 0;
         background-color: #fff;
