@@ -89,76 +89,13 @@
 
     <main>
         <h1 id="router5-with-deku">Router5 with Deku</h1>
+<blockquote>
+<p>To use router5 with deku, you can use <code>router5-deku</code> which includes a few components and higher-order components. Note that registering of <code>canDeactivate</code> function is not supported for now.</p>
+</blockquote>
+<h3 id="-router5-deku-readme-https-github-com-router5-router5-deku-"><a href="https://github.com/router5/router5-deku">router5-deku README</a></h3>
 <h2 id="example">Example</h2>
-<p>View the source <a href="https://github.com/router5/router5.github.io/blob/master/assets/router5-deku-example.js">on GitHub</a></p>
-<p>Done with a slightly altered version of Deku (experimental)</p>
-<div id="dekuExample"></div>
-
-<h2 id="router5-deku">router5-deku</h2>
-<p>Installation:</p>
-<pre><code class="lang-sh">// Bower
-bower install router5-deku --save
-// npm
-npm install router5-deku --save-dev
-</code></pre>
-<p>It includes:</p>
-<ul>
-<li>A router plugin which sets and update environment data (source) <code>currentRoute</code></li>
-<li>A link factory to create a <code>Link</code> function (for hyperlinks and buttons)</li>
-<li>A decorator factory to create a <code>SegmentDecorator</code> decorator (add a node listener for the specified route, and register component
-with router when active)</li>
-</ul>
-<p>The use of factories is to be able to access <code>app</code> and <code>router</code> objects easily:</p>
-<pre><code class="lang-javascript javascript">import {Router5} from &#39;router5&#39;
-import {routerPlugin, linkFactory, segmentDecoratorFactory} from &#39;router5-deku&#39;
-
-var router = new Router5()
-    .setOption(&#39;useHash&#39;, true)
-    .setOption(&#39;defaultRoute&#39;, &#39;inbox&#39;)
-    // Routes
-    .addNode(&#39;inbox&#39;,            &#39;/inbox&#39;)
-    .addNode(&#39;inbox.message&#39;,    &#39;/message/:id&#39;)
-    .addNode(&#39;compose&#39;,          &#39;/compose&#39;)
-    .addNode(&#39;contacts&#39;,         &#39;/contacts&#39;)
-    .start()
-
-var Link = linkFactory(router)
-
-var app = tree().use(routerPlugin(router))
-
-var SegmentDecorator = segmentDecoratorFactory(router, app)
-
-export {app, router, Link, SegmentDecorator}
-</code></pre>
-<h3 id="router-plugin">Router plugin</h3>
-<p>Simply use it with <em>app.use</em>: <code>app.use(routerPlugin(router))</code></p>
-<h3 id="segment-decorator">Segment decorator</h3>
-<p>In the absence of mixins, the segment decorator will mutate a component definition to enhance its <code>afterMount</code> and <code>beforeUnmount</code> functions
-(already defined functions will be preserved).</p>
-<p><code>SegmentDecorator(component, routeName[, listener])</code>:</p>
-<pre><code class="lang-javascript javascript">var RootComponent = {
-    initialState: function (props) {
-        return {
-            currentRoute: router.getState()
-        };
-    },
-
-    render: function (component) {
-        var currentRoute = component.state.currentRoute;
-        return element(&#39;div&#39;, {}, currentRoute ? currentRoute.name : &#39;Not found&#39;);
-    }
-};
-SegmentDecorator(RootComponent, &#39;&#39;, function (component, setState, toRoute, fromRoute) {
-    setState({currentRoute: toRoute})
-});
-</code></pre>
-<h3 id="link">Link</h3>
-<p>You can specify <em>button</em> (default to false, whether it should render a hyperlink or button), <em>routeName</em> (required), <em>routeParams</em>, <em>routeOptions</em>
-and <em>activeClass</em>.</p>
-<pre><code class="lang-javascript javascript">function render() {
-    return &lt;Link routeName=&quot;inbox&quot; routeOptions={reload: true}&gt;Go to Inbox&lt;/Link&gt;
-}
-</code></pre>
+<p>View the source <a href="https://github.com/router5/examples/tree/master/apps/deku">on GitHub</a>.</p>
+<div id="app"></div>
 
     </main>
 
@@ -184,9 +121,6 @@ and <em>activeClass</em>.</p>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/assets/deku.min.js"></script>
-    <script src="/assets/router5.1.0.0.min.js"></script>
-    <script src="/assets/router5-deku.0.1.0-alpha.2.js"></script>
     <script src="/assets/router5-deku-example.js"></script>
     
 
