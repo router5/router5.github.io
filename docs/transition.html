@@ -68,6 +68,7 @@
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
             <a href="/docs/transition.html" class="link active">Transition phase</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
             <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
@@ -90,27 +91,10 @@
     <main>
         <h1 id="transition">Transition</h1>
 <blockquote>
-<p>As seen in <a href="/docs/listeners">Preventing navigation</a>, <code>canDeactivate</code> and <code>canActivate</code> are part of the transition phase. Additionally you can register multiple middleware in order to perform asynchronous operations as part of the transition process.</p>
+<p>The following flowchart illustrates a transition process between two states.</p>
 </blockquote>
 <p><img src="/img/flow-graph.png" alt="Going from &#39;users.view&#39; to &#39;orders.view&#39;"></p>
 <p><img src="/img/flow-transition.png" alt="Transition flow chart"></p>
-<h2 id="registering-middleware-functions">Registering middleware functions</h2>
-<p>A middleware function can return a boolean for synchronous results, a promise or call
-a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.</p>
-<p>This type of function is ideal to remove data loading logic from components, and is a good fit
-for applications aiming at having a centralised state object.</p>
-<pre><code class="lang-javascript javascript">let mware1 = function (toState, fromState, done) {
-    // Let&#39;s fetch data and call done
-    done();
-};
-
-let mware2 = function (toState, fromState, done) {
-    // Let&#39;s fetch data and call done
-    done();
-};
-
-router.useMiddleware(mware1, mware2);
-</code></pre>
 
     </main>
 
