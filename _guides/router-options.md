@@ -1,28 +1,24 @@
 # Options
 
-When constructing your router instance, you can pass several options to the constructor.
+> You can configure your router instance by passing options to the constructor or by using `.setOption(optName, optValue)`.
 
 ```javascript
 var router = new Router5([], {
-    useHash: true,
-    hashPrefix: '!',
-    defaultRoute: 'home',
-    defaultParams: {},
-    base: '',
-    trailingSlash: false
-});
+        useHash: true,
+        hashPrefix: '!',
+        defaultRoute: 'home',
+        defaultParams: {},
+        base: '',
+        trailingSlash: false,
+        autoCleanUp: true
+    })
+    .setOption('useHash', false)
+    .setOption('hashPrefix', '');
 ```
 
 ## Use of hash part of URL
 
-Router5 only support HTML5 browsers with the history API. It means the router will use `history.pushState` and `history.replaceState` to modify the history of a page, and
-will listen to `popstate` events caused by a manual edit of the URL or a click on back and forward buttons. The router won't listen to `hashchange` events, but that doesn't
-mean you cannot use `#` in your URL.
-
-> The decision to whether or not use a `#` is a question of server configuration and not a decision based on browser support.
-
-Set `useHash` to `true` if you want the paths of your routes to be prefixed with a hash. You can also choose a `hashPrefix` which will be inserted between the path of a route
-and the hash.
+Set `useHash` to `true` if you want the paths of your routes to be prefixed with a hash. You can also choose a `hashPrefix` which will be inserted between the path of a route and the hash. Those options will mostly be used by plugins such as `router5-history`.
 
 
 ## Default route
@@ -44,3 +40,11 @@ path.
 ## Optional trailing slashes
 
 By default, the router is in "strict match" mode. If you want trailing slashes to be optional, you can set `trailingSlash` to a truthy value.
+
+
+## Automatic clean up
+
+When you register a component with the router (using `.registerComponent(routeName, component)`) and if `autoCleanUp` is set to true, the router will automatically deregister that
+component if `routeName` is no longer active. It saves you having to call `.deregisterComponent`.
+
+The same logic is applied with node listeners (and not route or global listeners) in router5 listeners plugin.

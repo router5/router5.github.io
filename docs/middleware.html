@@ -37,9 +37,9 @@
 
             <!-- <a href="/docs/why-router5.html" class="">Why router5?</a> -->
 
-            <a href="/docs/get-started.html" class="active">Get started</a>
+            <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="">Guides</a>
+            <a href="/docs/configuring-routes.html" class="active">Guides</a>
 
             <a href="/docs/listeners.html" class="">Plugins</a>
 
@@ -56,7 +56,7 @@
         <nav>
             <strong>Router5</strong>
 
-            <a href="/docs/get-started.html" class="link active">Getting started</a>
+            <a href="/docs/get-started.html" class="link">Getting started</a>
             <a href="/docs/why-router5.html" class="link">Why router5?</a>
             <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
             <a href="/docs/api-reference.html" class="link">Router5</a>
@@ -69,7 +69,7 @@
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
-            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/middleware.html" class="link active">Middleware functions</a>
             <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
@@ -87,66 +87,53 @@
     </aside>
 
     <main>
-        <h1 id="get-started">Get started</h1>
+        <h1 id="middleware-functions">Middleware functions</h1>
 <blockquote>
-<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>AMD</strong>, <strong>CommonJS</strong>, <strong>globals</strong> and <strong>UMD</strong>.</p>
+<p>Multiple middleware functions can be registered with a router instance. They are invoked in series after the router has made sure active
+route segments can be deactivated and future active route segments can be activated. Middleware functions are a great way to load data for your routes.</p>
 </blockquote>
-<p>It can be installed using <strong>npm</strong> or <strong>bower</strong>. Alternatively, you can download a specific version
-from <a href="https://github.com/router5/router5/releases">github</a>. Whether you install <em>router5</em> from npm, bower or github,
-you will have access to the same files.</p>
-<h2 id="installation">Installation</h2>
-<pre><code class="lang-sh"># bower
-bower install router5
-# npm
-npm install router5
-</code></pre>
-<h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
-<p><strong>CommonJS</strong></p>
-<p>Files are available in <code>/dist/commonjs/</code>.</p>
-<pre><code class="lang-javascript javascript">var router5 = require(&#39;router5&#39;);
+<h2 id="registering-middleware-functions">Registering middleware functions</h2>
+<p>A middleware function can return a boolean for synchronous results, a promise or call
+a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.</p>
+<p>This type of function is ideal to remove data loading logic from components, and is a good fit
+for applications aiming at having a centralised state object.</p>
+<pre><code class="lang-javascript javascript">const mware1 = function (toState, fromState, done) {
+    // Let&#39;s fetch data and call done
+    done();
+};
 
-// router5.Router5
-// router5.RouteNode
+const mware2 = function (toState, fromState, done) {
+    // Let&#39;s fetch data and call done
+    done();
+};
+
+router.useMiddleware(mware1, mware2);
 </code></pre>
-<p><strong>Browser (globals)</strong></p>
-<p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/browser/</code>. All <em>router5</em> dependencies (<em>route-node</em> and <em>path-parser</em>)
-are packaged together, and <code>Router5</code> and <code>RouteNode</code> are made globally available.</p>
-<p><strong>AMD</strong></p>
-<p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/amd/</code>, it includes all router5 dependencies bundled
-together. <code>router5</code> returns an object containing <code>Router5</code> and <code>RouteNode</code>.</p>
-<p><strong>UMD</strong></p>
-<p>UMD files are available in <code>/dist/umd</code>.</p>
-<h2 id="plugins">Plugins</h2>
 <blockquote>
-<p><code>router5-listeners</code> and <code>router5-history</code> are both available through npm and bower too.</p>
+<p>Calling <code>useMiddleware</code> again will cause previously registered middleware functions to be deregistered.</p>
 </blockquote>
-<pre><code class="lang-sh"># Listeners plugin
-npm install router5-listeners
-bower install router5-listeners
+<h2 id="adding-data-to-state">Adding data to state</h2>
+<p>It is possible to mutate the <code>toState</code> object by adding properties, or to pass a new state object in callbacks or promises.
+When passing a new object, the router will ignore it if initial state properties (<code>name</code>, <code>params</code> and <code>path</code>) are changed.</p>
+<pre><code class="lang-javascript javascript">import { getData } from &#39;./dataApi&#39;;
 
-# History plugin
-npm install router5-history
-bower install router5-history
+const dataLoader = function (toState, fromState) {
+    // toState object will be extended with data values
+    return getData().then(data =&gt; ({ ...toState, ...data }));
+};
 </code></pre>
-<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
-bundle is named <code>router5ListenersPlugin</code>.</p>
-<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
-bundle is named <code>router5ListenersPlugin</code>.</p>
-<!-- __ES6__
-
-_router5_ and its dependencies are written in ES6 and transpiled to ES5. If you wish to include ES6 sources directly
-in your application, files are located in `/modules`. It is planned to release ES6 sources by default through __jspm__.
-
-For now, ES6 sources can be accessed using `npm`.
-
-```javascript
-import {Router5, RouteNode} from 'router5/dist/es6'
-```
-
-__Univeral Module Loader__
-
-The UMD format (accessible in `/dist/umd`) covers AMD, CommonJS and Globals.
- -->
+<h2 id="custom-errors">Custom errors</h2>
+<p>When failing a transition in a middleware function, custom errors can be returned. Custom errors can be a string or an object:</p>
+<ul>
+<li>when a string, the router will return <code>{ code: &#39;TRANSITION_ERR&#39;, error: &#39;&lt;your string&gt;&#39;}</code></li>
+<li>when an object, the returned error object will be extended with your error object <code>{ code: &#39;TRANSITION_ERR&#39;, ...errorObject }</code></li>
+</ul>
+<h2 id="context">Context</h2>
+<p>Context is binded to middleware functions, containing</p>
+<ul>
+<li><code>cancel</code>: a cancellation function
+= <code>router</code>: the router instance</li>
+</ul>
 
     </main>
 

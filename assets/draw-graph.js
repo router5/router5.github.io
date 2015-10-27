@@ -28,6 +28,8 @@ var router = new Router5()
     .addNode('orders.completed', '/completed')
     .addNode('orders.pending',   '/pending')
     .addNode('orders.view',      '/details/:id')
+    .usePlugin(router5ListenersPlugin())
+    .usePlugin(router5HistoryPlugin())
     .addListener(drawGraph)
     .start(function (err, state) {
         drawGraph(state, null);

@@ -35,17 +35,17 @@
         <nav class="">
             <a href="/" class="">Home</a>
 
-            <a href="/docs/why-router5.html" class="">Why router5?</a>
+            <!-- <a href="/docs/why-router5.html" class="">Why router5?</a> -->
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
             <a href="/docs/configuring-routes.html" class="active">Guides</a>
 
+            <a href="/docs/listeners.html" class="">Plugins</a>
+
             <a href="/docs/api-reference.html" class="">API</a>
 
             <a href="docs/with-react.html" class="">Examples</a>
-
-            <a href="https://github.com/router5/router5">See it on Github</a>
 
             <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
@@ -54,8 +54,12 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <strong>Router5</strong>
+
             <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/api-reference.html" class="link">Router5</a>
 
             <strong>Guides</strong>
 
@@ -64,42 +68,43 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/transition.html" class="link">Transition</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
-            <strong>API Reference</strong>
+            <strong>Plugins</strong>
 
-            <a href="/docs/api-reference.html" class="link">Router5</a>
+            <a href="/docs/listeners.html" class="link">Listeners</a>
+            <a href="/docs/history.html" class="link">History</a>
 
             <strong>Integration</strong>
 
             <a href="/docs/with-react.html" class="link">With React</a>
+            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
         </nav>
     </aside>
 
     <main>
         <h1 id="options">Options</h1>
-<p>When constructing your router instance, you can pass several options to the constructor.</p>
+<blockquote>
+<p>You can configure your router instance by passing options to the constructor or by using <code>.setOption(optName, optValue)</code>.</p>
+</blockquote>
 <pre><code class="lang-javascript javascript">var router = new Router5([], {
-    useHash: true,
-    hashPrefix: &#39;!&#39;,
-    defaultRoute: &#39;home&#39;,
-    defaultParams: {},
-    base: &#39;&#39;,
-    trailingSlash: false
-});
+        useHash: true,
+        hashPrefix: &#39;!&#39;,
+        defaultRoute: &#39;home&#39;,
+        defaultParams: {},
+        base: &#39;&#39;,
+        trailingSlash: false,
+        autoCleanUp: true
+    })
+    .setOption(&#39;useHash&#39;, false)
+    .setOption(&#39;hashPrefix&#39;, &#39;&#39;);
 </code></pre>
 <h2 id="use-of-hash-part-of-url">Use of hash part of URL</h2>
-<p>Router5 only support HTML5 browsers with the history API. It means the router will use <code>history.pushState</code> and <code>history.replaceState</code> to modify the history of a page, and
-will listen to <code>popstate</code> events caused by a manual edit of the URL or a click on back and forward buttons. The router won&#39;t listen to <code>hashchange</code> events, but that doesn&#39;t
-mean you cannot use <code>#</code> in your URL.</p>
-<blockquote>
-<p>The decision to whether or not use a <code>#</code> is a question of server configuration and not a decision based on browser support.</p>
-</blockquote>
-<p>Set <code>useHash</code> to <code>true</code> if you want the paths of your routes to be prefixed with a hash. You can also choose a <code>hashPrefix</code> which will be inserted between the path of a route
-and the hash.</p>
+<p>Set <code>useHash</code> to <code>true</code> if you want the paths of your routes to be prefixed with a hash. You can also choose a <code>hashPrefix</code> which will be inserted between the path of a route and the hash. Those options will mostly be used by plugins such as <code>router5-history</code>.</p>
 <h2 id="default-route">Default route</h2>
 <p>When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:</p>
 <ul>
@@ -112,6 +117,10 @@ and the hash.</p>
 path.</p>
 <h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
 <p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
+<h2 id="automatic-clean-up">Automatic clean up</h2>
+<p>When you register a component with the router (using <code>.registerComponent(routeName, component)</code>) and if <code>autoCleanUp</code> is set to true, the router will automatically deregister that
+component if <code>routeName</code> is no longer active. It saves you having to call <code>.deregisterComponent</code>.</p>
+<p>The same logic is applied with node listeners (and not route or global listeners) in router5 listeners plugin.</p>
 
     </main>
 

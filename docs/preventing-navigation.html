@@ -35,17 +35,17 @@
         <nav class="">
             <a href="/" class="">Home</a>
 
-            <a href="/docs/why-router5.html" class="">Why router5?</a>
+            <!-- <a href="/docs/why-router5.html" class="">Why router5?</a> -->
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
             <a href="/docs/configuring-routes.html" class="active">Guides</a>
 
+            <a href="/docs/listeners.html" class="">Plugins</a>
+
             <a href="/docs/api-reference.html" class="">API</a>
 
             <a href="docs/with-react.html" class="">Examples</a>
-
-            <a href="https://github.com/router5/router5">See it on Github</a>
 
             <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
@@ -54,8 +54,12 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <strong>Router5</strong>
+
             <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/api-reference.html" class="link">Router5</a>
 
             <strong>Guides</strong>
 
@@ -64,26 +68,29 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link active">Preventing navigation</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/transition.html" class="link">Transition</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
-            <strong>API Reference</strong>
+            <strong>Plugins</strong>
 
-            <a href="/docs/api-reference.html" class="link">Router5</a>
+            <a href="/docs/listeners.html" class="link">Listeners</a>
+            <a href="/docs/history.html" class="link">History</a>
 
             <strong>Integration</strong>
 
             <a href="/docs/with-react.html" class="link">With React</a>
+            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
         </nav>
     </aside>
 
     <main>
         <h1 id="preventing-navigation">Preventing navigation</h1>
-<p>It is a common case to want to allow / prevent navigation away from a view or component: if a User
-is in the middle of completing a form and data has not been saved, you might want to warn them
-about data being lost or prevent them to leave the current view until data has been saved.</p>
+<blockquote>
+<p>It is a common case to want to allow / prevent navigation away from a view or component: if a User is in the middle of completing a form and data has not been saved, you might want to warn them about data being lost or prevent them to leave the current view until data has been saved.</p>
+</blockquote>
 <h2 id="can-i-deactivate-">Can I deactivate?</h2>
 <p>Like Angular 2 and Aurelia routers, <em>router5</em> will ask active components which would be
 deactivated by a route change if they can be deactivated.</p>
@@ -96,15 +103,19 @@ at a time.</p>
 <p>A <code>canDeactivate</code> method can return <code>true</code> or <code>false</code> for synchronous results, can
 return a thenable (<code>promise</code>) or can invoke a <code>done</code> callback. A resolved promise is equivalent
 to returning true, and a rejected promise will prevent a segment deactivation.</p>
+<blockquote>
+<p><strong>Note:</strong> if a canActivate or canDeactivate function doesn&#39;t return a boolean, a promise or doesn&#39;t call back,
+  the transition will not proceed</p>
+</blockquote>
 <p><em>router5</em> doesn&#39;t create any promise and therefore if you do not wish to use promises, you are not forced
-to support ES6 promises or use a polyfill.</p>
+to use a polyfill or promise implementation in your app.</p>
 <pre><code class="lang-javascript javascript">let MyComponent = {
     canDeactivate(toRoute, fromRoute) {
         return new Promise((resolve, reject) =&gt; {
             // If can deactivate
-            resolve()
+            resolve();
             // Or if cannot deactivate
-            reject()
+            reject();
         })
     }
 }
@@ -114,13 +125,16 @@ deactivation, simply invoke with the first argument (error) to a falsy or truthy
 <pre><code class="lang-javascript javascript">let MyComponent = {
     canDeactivate(toRoute, fromRoute, done) {
         // If can deactivate
-        done(null, true)
+        done(null, true);
         // Or if cannot deactivate
-        done(true, null)
+        done(true, null);
     }
 }
 </code></pre>
-<h2 id="can-i-activate-">Can I activate?</h2>
+<p>A shortcut method is available and can be used if <code>options.autoCleanUp</code> is set to true.</p>
+<pre><code>const isDirty = true;
+router.canDeactivate(&#39;routeName&#39;, !isDirty);
+</code></pre><h2 id="can-i-activate-">Can I activate?</h2>
 <p>You can register a <code>canActivate(toRoute, fromRoute[, done])</code> function per node to allow or prevent access
 to a specific route and its descendents.</p>
 <p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same
@@ -138,13 +152,6 @@ myRouter
     .add({name: &#39;admin&#39;, path: &#39;/admin&#39;})
     .canActivate(&#39;admin&#39;, canAccessAdmin)
 </code></pre>
-<blockquote>
-<p><strong>Note:</strong> if a can activate or can deactivate function doesn&#39;t return a boolean, a promise or doesn&#39;t call back,
-  the transition will not proceed</p>
-</blockquote>
-<h2 id="what-about-popstate-">What about popstate?</h2>
-<p>Popstate events cannot be prevented or reversed. In the event current route activation or deactivation is not allowed,
-the previously known state will be pushed to the page history.</p>
 
     </main>
 

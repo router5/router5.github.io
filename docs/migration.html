@@ -37,7 +37,7 @@
 
             <!-- <a href="/docs/why-router5.html" class="">Why router5?</a> -->
 
-            <a href="/docs/get-started.html" class="active">Get started</a>
+            <a href="/docs/get-started.html" class="">Get started</a>
 
             <a href="/docs/configuring-routes.html" class="">Guides</a>
 
@@ -56,9 +56,9 @@
         <nav>
             <strong>Router5</strong>
 
-            <a href="/docs/get-started.html" class="link active">Getting started</a>
+            <a href="/docs/get-started.html" class="link">Getting started</a>
             <a href="/docs/why-router5.html" class="link">Why router5?</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration.html" class="link active">Migrating from 0.x</a>
             <a href="/docs/api-reference.html" class="link">Router5</a>
 
             <strong>Guides</strong>
@@ -87,66 +87,45 @@
     </aside>
 
     <main>
-        <h1 id="get-started">Get started</h1>
+        <h1 id="migrating-from-0-x-to-1-x">Migrating from 0.x to 1.x</h1>
 <blockquote>
-<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>AMD</strong>, <strong>CommonJS</strong>, <strong>globals</strong> and <strong>UMD</strong>.</p>
+<p><strong>router5@1.0.0</strong> now uses plugins for managing browser history and handling listeners. Installling and using <code>router5-listeners</code> and <code>router5-history</code> will result in an almost identical behaviour.</p>
 </blockquote>
-<p>It can be installed using <strong>npm</strong> or <strong>bower</strong>. Alternatively, you can download a specific version
-from <a href="https://github.com/router5/router5/releases">github</a>. Whether you install <em>router5</em> from npm, bower or github,
-you will have access to the same files.</p>
-<h2 id="installation">Installation</h2>
-<pre><code class="lang-sh"># bower
-bower install router5
-# npm
-npm install router5
+<h2 id="new-features">New features</h2>
+<ul>
+<li>New <code>autoCleanUp</code> option for automatically deregistering components when their associated route is no longer active (also applies to route node listeners)</li>
+<li>New <code>canDeactivate</code> method as a shortcut for <code>registerComponent</code></li>
+<li>Plugins and built-in logger plugin</li>
+<li>Support for multiple middleware functions</li>
+</ul>
+<h2 id="breaking-change">Breaking change</h2>
+<ul>
+<li>Transition errors are now objects with a code property, and not strings</li>
+<li><code>onTransition()</code> is now deprecated in favour of <code>useMiddleware()</code></li>
+<li>history is now managed by a plugin (<code>router5-history</code>)</li>
+<li>listeners is now managed by a plugin (<code>router5-history</code>), API remains the same</li>
+</ul>
+<h2 id="code-example">Code example</h2>
+<pre><code class="lang-javascript javascript">import { Router5 } from &#39;router5&#39;;
+import historyPlugin from &#39;router5-history&#39;;
+import listenersPlugin from &#39;router5-listeners&#39;;
+
+const router = new Router()
+    .addNode(&#39;home&#39;, &#39;/home&#39;)
+    .usePlugin(historyPlugin())
+    .usePlugin(listenersPlugin())
+    // Development helper
+    .usePlugin(Router5.loggerPlugin())
+    .start();
 </code></pre>
-<h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
-<p><strong>CommonJS</strong></p>
-<p>Files are available in <code>/dist/commonjs/</code>.</p>
-<pre><code class="lang-javascript javascript">var router5 = require(&#39;router5&#39;);
-
-// router5.Router5
-// router5.RouteNode
+<pre><code class="lang-javascript javascript">router.canDeactivate(&#39;home&#39;, true);
+// is the equivalent of
+router.registerComponent(&#39;home&#39;, {
+    canDeactivate: function () {
+        return true;
+    }
+});
 </code></pre>
-<p><strong>Browser (globals)</strong></p>
-<p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/browser/</code>. All <em>router5</em> dependencies (<em>route-node</em> and <em>path-parser</em>)
-are packaged together, and <code>Router5</code> and <code>RouteNode</code> are made globally available.</p>
-<p><strong>AMD</strong></p>
-<p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/amd/</code>, it includes all router5 dependencies bundled
-together. <code>router5</code> returns an object containing <code>Router5</code> and <code>RouteNode</code>.</p>
-<p><strong>UMD</strong></p>
-<p>UMD files are available in <code>/dist/umd</code>.</p>
-<h2 id="plugins">Plugins</h2>
-<blockquote>
-<p><code>router5-listeners</code> and <code>router5-history</code> are both available through npm and bower too.</p>
-</blockquote>
-<pre><code class="lang-sh"># Listeners plugin
-npm install router5-listeners
-bower install router5-listeners
-
-# History plugin
-npm install router5-history
-bower install router5-history
-</code></pre>
-<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
-bundle is named <code>router5ListenersPlugin</code>.</p>
-<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
-bundle is named <code>router5ListenersPlugin</code>.</p>
-<!-- __ES6__
-
-_router5_ and its dependencies are written in ES6 and transpiled to ES5. If you wish to include ES6 sources directly
-in your application, files are located in `/modules`. It is planned to release ES6 sources by default through __jspm__.
-
-For now, ES6 sources can be accessed using `npm`.
-
-```javascript
-import {Router5, RouteNode} from 'router5/dist/es6'
-```
-
-__Univeral Module Loader__
-
-The UMD format (accessible in `/dist/umd`) covers AMD, CommonJS and Globals.
- -->
 
     </main>
 

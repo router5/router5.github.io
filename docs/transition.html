@@ -35,17 +35,17 @@
         <nav class="">
             <a href="/" class="">Home</a>
 
-            <a href="/docs/why-router5.html" class="">Why router5?</a>
+            <!-- <a href="/docs/why-router5.html" class="">Why router5?</a> -->
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
             <a href="/docs/configuring-routes.html" class="active">Guides</a>
 
+            <a href="/docs/listeners.html" class="">Plugins</a>
+
             <a href="/docs/api-reference.html" class="">API</a>
 
             <a href="docs/with-react.html" class="">Examples</a>
-
-            <a href="https://github.com/router5/router5">See it on Github</a>
 
             <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
@@ -54,8 +54,12 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <strong>Router5</strong>
+
             <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/api-reference.html" class="link">Router5</a>
 
             <strong>Guides</strong>
 
@@ -64,49 +68,31 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/transition.html" class="link active">Transition</a>
+            <a href="/docs/transition.html" class="link active">Transition phase</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
-            <strong>API Reference</strong>
+            <strong>Plugins</strong>
 
-            <a href="/docs/api-reference.html" class="link">Router5</a>
+            <a href="/docs/listeners.html" class="link">Listeners</a>
+            <a href="/docs/history.html" class="link">History</a>
 
             <strong>Integration</strong>
 
             <a href="/docs/with-react.html" class="link">With React</a>
+            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
         </nav>
     </aside>
 
     <main>
         <h1 id="transition">Transition</h1>
-<p>As seen in <a href="/docs/listeners.html">Listeners</a> and <a href="/docs/listeners">Preventing navigation</a>, <code>canDeactivate</code>
-and <code>canActivate</code> are part of the transition phase. Additionaly, node listeners can be included in the transition phase.</p>
-<p>It is also possible to register an <strong>asynchronous &quot;middleware&quot; function</strong>: it can return a boolean for synchronous results, a promise or call
-a done callback for asynchronous operations.</p>
-<pre><code class="lang-javascript javascript">let onTransition = function (toState, fromState, done) {
-    // Let&#39;s fetch data and call done
-    done(null);
-};
-
-router.onTransition(onTransition)
-</code></pre>
-<p>This type of function is ideal to remove data loading logic from components, and is a good fit
-for applications aiming at having a centralised state object.</p>
-<h2 id="flow-chart">Flow chart</h2>
-<p>Sometimes a simple flow chart is way better than many confusing paragraphs.</p>
+<blockquote>
+<p>The following flowchart illustrates a transition process between two states.</p>
+</blockquote>
 <p><img src="/img/flow-graph.png" alt="Going from &#39;users.view&#39; to &#39;orders.view&#39;"></p>
 <p><img src="/img/flow-transition.png" alt="Transition flow chart"></p>
-<h2 id="transition-hooks">Transition hooks</h2>
-<p>You can listen to specific transition events, mostly for debugging purposes.</p>
-<ul>
-<li><strong>Start:</strong> <code>.onTransitionStart(cb)</code>, <code>.offTransitionStart(cb)</code></li>
-<li><strong>Cancel:</strong> <code>.onTransitionCancel(cb)</code>, <code>.offTransitionCancel(cb)</code></li>
-<li><strong>Error:</strong> <code>.onTransitionError(cb)</code>, <code>.offTransitionError(cb)</code></li>
-</ul>
-<p>Listeners are of the following form: <code>function (toState, fromState) { }</code>. Transition error listeners are called with
-an extra <code>err</code> argument.</p>
 
     </main>
 

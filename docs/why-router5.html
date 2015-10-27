@@ -35,17 +35,17 @@
         <nav class="">
             <a href="/" class="">Home</a>
 
-            <a href="/docs/why-router5.html" class="active">Why router5?</a>
+            <!-- <a href="/docs/why-router5.html" class="active">Why router5?</a> -->
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
             <a href="/docs/configuring-routes.html" class="">Guides</a>
 
+            <a href="/docs/listeners.html" class="">Plugins</a>
+
             <a href="/docs/api-reference.html" class="">API</a>
 
             <a href="docs/with-react.html" class="">Examples</a>
-
-            <a href="https://github.com/router5/router5">See it on Github</a>
 
             <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
@@ -54,8 +54,12 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link active">Why router5?</a>
+            <strong>Router5</strong>
+
             <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link active">Why router5?</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/api-reference.html" class="link">Router5</a>
 
             <strong>Guides</strong>
 
@@ -64,17 +68,20 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/transition.html" class="link">Transition</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
-            <strong>API Reference</strong>
+            <strong>Plugins</strong>
 
-            <a href="/docs/api-reference.html" class="link">Router5</a>
+            <a href="/docs/listeners.html" class="link">Listeners</a>
+            <a href="/docs/history.html" class="link">History</a>
 
             <strong>Integration</strong>
 
             <a href="/docs/with-react.html" class="link">With React</a>
+            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
         </nav>
     </aside>
@@ -103,11 +110,11 @@ efficiently: a reactive application, reacting to data changes <em>including</em>
 <blockquote>
 <p>After all, why treat route changes any different than data changes?</p>
 </blockquote>
-<h2 id="existing-routers-are-monoblocks">Existing routers are monoblocks</h2>
+<h2 id="existing-routers-are-monolihic">Existing routers are monolihic</h2>
 <p>The most popular routers those days are tied to frameworks (or libraries) and are fairly large pieces of software, tightly coupled together.
 Angular2 and Aurelia, for example, include their own routing solution with exciting new functionalities: activation / deactivation, use
 of pipelines, etc...</p>
-<p>Routers in Angular1, Angular2, Aurelia, Ember, React... have all something in common: they implement everything from path recognition
+<p>Routers in Angular, Angular 2, Aurelia, Ember, React... all implement everything from path recognition
 to navigation and history management. They all share similar concepts or technical hurdles, but share very little code or conventions.</p>
 <h2 id="making-the-same-mistake-">Making the same mistake?</h2>
 <p>I came across <a href="https://github.com/pillarjs/routington">routington</a> which is
@@ -123,7 +130,7 @@ None of the libraries mentioned could do it, so came <a href="https://github.com
 <p><img src="https://imgs.xkcd.com/comics/standards.png" alt="Standards"></p>
 <h2 id="router5">router5</h2>
 <p>Once route-node and path-parser were written, router5 could be designed. It delegates route management and route matching / building
-and focus on navigation, history and triggering the right listeners.</p>
+and focus on navigation, taking instructions and updating its state. Plugins can be added to extend its features (browser history, listeners, etc...).</p>
 
     </main>
 

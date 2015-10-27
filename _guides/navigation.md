@@ -1,6 +1,6 @@
 # Navigation
 
-After configuring your routes, you need to _enable navigation_.
+> After configuring your routes, you need to _enable navigation_ by starting your router instance.
 
 ## Starting your router
 

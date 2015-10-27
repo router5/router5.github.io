@@ -35,17 +35,17 @@
         <nav class="">
             <a href="/" class="">Home</a>
 
-            <a href="/docs/why-router5.html" class="">Why router5?</a>
+            <!-- <a href="/docs/why-router5.html" class="">Why router5?</a> -->
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
             <a href="/docs/configuring-routes.html" class="">Guides</a>
 
+            <a href="/docs/listeners.html" class="">Plugins</a>
+
             <a href="/docs/api-reference.html" class="">API</a>
 
             <a href="docs/with-react.html" class="active">Examples</a>
-
-            <a href="https://github.com/router5/router5">See it on Github</a>
 
             <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
@@ -54,8 +54,12 @@
 
     <aside>
         <nav>
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <strong>Router5</strong>
+
             <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/api-reference.html" class="link">Router5</a>
 
             <strong>Guides</strong>
 
@@ -64,126 +68,33 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/transition.html" class="link">Transition</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
-            <strong>API Reference</strong>
+            <strong>Plugins</strong>
 
-            <a href="/docs/api-reference.html" class="link">Router5</a>
+            <a href="/docs/listeners.html" class="link">Listeners</a>
+            <a href="/docs/history.html" class="link">History</a>
 
             <strong>Integration</strong>
 
             <a href="/docs/with-react.html" class="link active">With React</a>
+            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
         </nav>
     </aside>
 
     <main>
         <h1 id="router5-with-react">Router5 with React</h1>
+<blockquote>
+<p>To use router5 with React, you can use <code>react-router5</code> which includes a few components and higher-order components.</p>
+</blockquote>
+<h3 id="-react-router5-readme-https-github-com-router5-react-router5-"><a href="https://github.com/router5/react-router5">react-router5 README</a></h3>
 <h2 id="example">Example</h2>
-<p>View the source <a href="https://github.com/router5/router5.github.io/blob/master/assets/router5-react-example.js">on GitHub</a></p>
-<div id="reactExample"></div>
-
-<h2 id="router5-react">router5-react</h2>
-<p>Installation:</p>
-<pre><code class="lang-sh">// Bower
-bower install router5-react --save
-// npm
-npm install router5-react --save-dev
-</code></pre>
-<p>It includes:</p>
-<ul>
-<li>A link factory to create a <code>Link</code> component (for hyperlinks and buttons)</li>
-<li>A mixin factory to create a <code>SegmentMixin</code> mixin (add a node listener for the specified route, and register
-an active component instance with router)</li>
-</ul>
-<p>The use of factories is to avoid using contexts. One way to use them is:</p>
-<pre><code class="lang-javascript javascript">import React from &#39;react&#39;
-import {Router5} from &#39;router5&#39;
-import {linkFactory, segmentMixinFactory} from &#39;router5-react&#39;
-
-var router = new Router5()
-    .setOption(&#39;useHash&#39;, true)
-    .setOption(&#39;defaultRoute&#39;, &#39;inbox&#39;)
-    // Routes
-    .addNode(&#39;inbox&#39;,            &#39;/inbox&#39;)
-    .addNode(&#39;inbox.message&#39;,    &#39;/message/:id&#39;)
-    .addNode(&#39;compose&#39;,          &#39;/compose&#39;)
-    .addNode(&#39;contacts&#39;,         &#39;/contacts&#39;)
-    .start()
-
-var Link = linkFactory(router)
-var SegmentMixin = segmentMixinFactory(router)
-
-export {router, Link, SegmentMixin}
-</code></pre>
-<h3 id="segment-mixin">Segment mixin</h3>
-<p>The most relevant <a href="/docs/listeners.html">listener</a> for React is <code>addNodeListener(route, fn)</code>
-because you are most likely on a route change to want to target the component you&#39;ll need to
-e-render from.</p>
-<p><code>SegmentMixin(routeName[, listener])</code> does the following:</p>
-<ul>
-<li>Register component with the router (navigation can be prevented if a <code>canDeactivate</code> function returns false)</li>
-<li>If a listener is supplied, it will be added as a <em>node listener</em> to the router. See <a href="/docs/listeners.html">guide on listeners</a> for more information.</li>
-</ul>
-<pre><code class="lang-javascript javascript">var Main = React.createClass({
-    mixins: [SegmentMixin(&#39;&#39;, function (toState) {
-        this.setState({routeState: toState});
-    })],
-
-    getInitialState: function () {
-        return {
-            routeState: router.getState()
-        }
-    },
-
-    getComponent: function (routeState) {
-        var components = {
-            &#39;inbox&#39;:   Inbox,
-            &#39;compose&#39;: Compose
-        };
-        return routeState ? components[routeState.name.split(&#39;.&#39;)[0]] : undefined;
-    },
-
-    render: function () {
-        var routeState = this.state.routeState;
-        var Component = this.getComponent(routeState);
-        var data = this.state.data;
-
-        return element(Component || NotFound);
-    }
-});
-</code></pre>
-<h3 id="link-component">Link component</h3>
-<p>Link components automatically register a listener with the router and apply an active class
-if there is a route match. Properties supported:</p>
-<ul>
-<li><code>routeName</code>: the route name the link navigates to</li>
-<li><code>routeParams</code>: the route params</li>
-<li><code>routeOptions</code>: reload, replace</li>
-<li><code>activeClassName</code>: the class name to use when active</li>
-<li><code>activeStrict</code>: default to false, whether the link is active if the router current route
-is exaclty the link route, or if it is one of its descendant.
--</li>
-</ul>
-<pre><code class="lang-javascript javascript">import React from &#39;react&#39;
-import {Link} from &#39;./router&#39;
-
-var Nav = React.createClass({
-    render: function () {
-        return (
-            &lt;nav&gt;
-                &lt;Link routeName=&quot;inbox&quot; routeOptions={reload: true}&gt;Inbox&lt;/Link&gt;
-                &lt;Link routeName=&quot;compose&quot;&gt;Compose&lt;/Link&gt;
-                &lt;Link routeName=&quot;contacts&quot;&gt;Contacts&lt;/Link&gt;
-            &lt;/nav&gt;
-        );
-    }
-});
-
-export Nav
-</code></pre>
+<p>View the source <a href="https://github.com/router5/examples/tree/master/apps/react">on GitHub</a>.</p>
+<div id="app"></div>
 
     </main>
 
@@ -209,9 +120,6 @@ export Nav
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
-    <script src="/assets/router5.0.9.3.min.js"></script>
-    <script src="/assets/router5-react.0.1.5.js"></script>
     <script src="/assets/router5-react-example.js"></script>
     
 

@@ -1,11 +1,22 @@
 # Configuring routes
 
-There are a few ways to add routes to your router.
-
-You can specify your routes when creating a router instance and / or use chainable `add` and `addNode` functions to add routes.
+> There are a few ways to add routes to your router. You can specify your routes when creating a router instance and / or use chainable `add` and `addNode` functions to add routes.
 
 
-## Router5 constructor
+## With addNode
+
+You can add routes node by node, specifying a node name and its segment path. With the following example, `users.view` full path will be `/users/view/:id`.
+
+```javascript
+var router = new Router5()
+    .addNode('home',       '/home')
+    .addNode('users',      '/users')
+    .addNode('users.view', '/view/:id')
+    .addNode('users.list', '/list');
+```
+
+
+## Alternative ways
 
 When using Router5 contstructor `new Router5(routes, opts)`, __routes__ can be:
 
@@ -47,8 +58,6 @@ var myRouter = new Router5([
 ]);
 ```
 
-## Adding routes
-
 __add(routes)__
 
 Like in Router5 constructor, routes can be a single node (RouteNode or plain object), or a list of nodes.
@@ -68,15 +77,3 @@ myRouter.add([
     {name: 'contact', path: '/contact'},
 ]);
 ```
-
-__addNode(name, path)__
-
-
-```javascript
-var rootNode = new RouteNode()
-    .addNode('home',       '/home')
-    .addNode('users',      '/users')
-    .addNode('users.view', '/view/:id')
-    .addNode('users.list', '/list');
-```
-

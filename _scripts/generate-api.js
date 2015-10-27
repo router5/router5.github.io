@@ -3,8 +3,9 @@ var fs       = require('fs');
 var path     = require('path');
 
 function filterTagByType(type) {
+    type = Array.isArray(type) ? type : [type];
     return function (tag) {
-        return tag.title === type;
+        return type.indexOf(tag.title) !== -1;
     };
 }
 
@@ -53,31 +54,36 @@ module.exports = function (done) {
             .output()
             .filter(function (block) {
                 if (block.comment.tags) {
-                    return !block.comment.tags.some(filterTagByType('private'));
+                    return !block.comment.tags.some(filterTagByType(['private']));
                 }
                 return true;
             })
             .map(function (block, index) {
                 var block = {
+                    type: block.context.type,
+                    static: block.context.static,
                     name: block.context.name,
                     description: block.comment.description.replace(/(<p>|<\/p>)/g, '').trim(),
                     params: block.comment.tags.filter(filterTagByType('param')).map(normalizeParams),
                     returns: block.comment.tags.filter(filterTagByType('return')).map(normalizeParams)
                 };
-
-                block.signature = (index === 0 ? '' : 'router5.') + block.name + '(' + block.params.map(function (param) {
-                    return !param.optional ? param.name : '[' + param.name + ']';
-                }).join(', ') + ')';
+                block.signature = (index === 0 ? '' : (block.static ? 'Router5.' : 'router5.')) + block.name;
+                if (block.type !== 'property') {
+                    block.signature += '(' + block.params.map(function (param) {
+                        return !param.optional ? param.name : '[' + param.name + ']';
+                    }).join(', ') + ')';
+                }
 
                 return block;
             });
 
         var classBlock   = blocks[0];
-        var methodBlocks = blocks.slice(1);
+        var methodBlocks = blocks.slice(1, -3);
+        var staticBlocks = blocks.slice(-2);
         // .sort(function (a, b) {
         //     return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
         // });
 
-        done(null, {'class': classBlock, methods: methodBlocks});
+        done(null, {'class': classBlock, methods: methodBlocks, staticMethods: staticBlocks});
     });
 };
