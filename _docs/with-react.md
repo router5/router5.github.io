@@ -1,8 +1,8 @@
 # Router5 with React
 
-> To use router5 with React, you can use `router5-react` which includes a few components and higher-order components.
+> To use router5 with React, you can use `react-router5` which includes a few components and higher-order components.
 
-### [router5-react README](https://github.com/router5/router5-react)
+### [react-router5 README](https://github.com/router5/react-router5)
 
 ## Example
 
