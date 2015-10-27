@@ -25,8 +25,8 @@ body > aside > nav > a.link.active {
 body > aside > nav > strong {
     text-transform: uppercase;
     color: #336699;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
+    margin-top: .5rem;
+    padding: 0.4rem 1rem;
 }
 
 body > aside + main {

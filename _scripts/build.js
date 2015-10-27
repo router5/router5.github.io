@@ -94,6 +94,9 @@ async.parallel([
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
         '/assets/router5-react-example.js'
     ]}),
+    renderDoc('_docs', 'with-react-redux.md', {reactRedux: true, examples: true, scripts: [
+        '/assets/router5-react-redux-example.js'
+    ]}),
     renderDoc('_docs', 'with-deku.md', {deku: true, examples: true, scripts: [
         '/assets/router5-deku-example.js'
     ]})
