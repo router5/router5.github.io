@@ -26,10 +26,10 @@ const router = new Router5()
 	.setOption( 'defaultRoute', '404' )
 	.usePlugin( historyPlugin() )
 	.usePlugin( listenersPlugin() )
-    .addNode( 'home', '/home' )
-    .addNode( 'about', '/about' )
-    .addNode( 'contact', '/contact' )
-    .addNode( '404', '/404' );
+	.addNode( 'home', '/home' )
+	.addNode( 'about', '/about' )
+	.addNode( 'contact', '/contact' )
+	.addNode( '404', '/404' );
 ```
 
 ## Server-side Routing
