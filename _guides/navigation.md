@@ -15,8 +15,8 @@ var myRouter = Router5()
 Invoking the `.start([startPathOrState ,] done)` function will:
 
 - Attempt to navigate to `startPathOrState` if provided
-- Attempt to match the current URL if no `startPathorState` was provided, or navigation failed
-- Attempt to navigate to the default route if it could not match the current URL or if `startPathorState` was not provided / failed
+- Attempt to match the current URL if no `startPathOrState` was provided, or navigation failed
+- Attempt to navigate to the default route if it could not match the current URL or if `startPathOrState` was not provided / failed
 
 And will:
 

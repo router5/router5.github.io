@@ -26,7 +26,7 @@ Set `useHash` to `true` if you want the paths of your routes to be prefixed with
 When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:
 
 - `defaultRoute`: the default route.
-- `defaultParams`: the default route params (default to `{}`)
+- `defaultParams`: the default route params (defaults to `{}`)
 
 See [navigation guide](/docs/navigation.html) for more information.
 
