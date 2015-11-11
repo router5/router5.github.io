@@ -9,7 +9,7 @@ This is essentially done via two steps:
  1. **Server-side** - Pass _Router5_ the current URL (since there's no `location` object on the server).
  2. **Client-side** - Pass _Router5_ a starting state (via the `done` callback of _Step 1_) so that _Router5_ doesn't try to transition to the already activated page.
 
-####Below is a more in-depth tutorial
+#### Below is a more in-depth tutorial
 
 ## Create your router (client & server)
 
@@ -69,17 +69,17 @@ app.get( '*', function loadSite( req, res ) {
 
 	// Start Router5 and send it the original URL from Express
 	router.start( req.originalUrl, function done( state ) {
-	
+
 		// Send our JSON-encoded state to Swig
 		res.render( 'base', {
 			initialState: JSON.stringify( state )
 		} );
-		
+
 		// Stop the router when we're done
 		router.stop();
-		
+
 	});
-	
+
 } );
 
 /**
@@ -124,7 +124,7 @@ app.listen( 8080, function logServerStart() {
 
 ```
 
-From here forth, you can continue to use Router5 as if it was a regular Single-Page Application. 
+From here forth, you can continue to use Router5 as if it was a regular Single-Page Application.
 
 ### Important to Remember - Pass in an Object
 It is important to remember that `Router5.start()` **does NOT** parse your starting state for you. If you pass in a `String` instead of an `Object` _Router5_ will attempt to navigate to the path of that string.

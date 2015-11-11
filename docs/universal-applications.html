@@ -87,42 +87,126 @@
     </aside>
 
     <main>
-        <h1 id="universal-applications">Universal applications</h1>
-<p><em>Also called &quot;isomorphic&quot; applications.</em></p>
-<p>You can use <em>router5</em> in Node or the browser. You might want to initialise (render) your application
-on the server side before sending it to the browser. It is perfectly feasible with <em>router5</em> and
-you essentially need to do two things:</p>
-<ul>
-<li>On the server, pass to the router the current URL as it won&#39;t be able to guess it: <code>start(url, done)</code>.
-The <code>done</code> callback will return the initial state: you need to send it to the client (see below).</li>
-<li>On the client side, pass to the router the initial state so the router doesn&#39;t try to transition
-to the matched page URL or the default route.</li>
-</ul>
+        <h1 id="universal-isomorphic-apps">Universal/Isomorphic Apps</h1>
+<blockquote>
+<p>JavaScript applications which run both client-side and server-side, typically sharing all or most of the same codebase.</p>
+</blockquote>
+<p><em>Router5</em> is just as capable on the server versus in the browser. This enables you to reuse the same routes for both your client-side navigating and your server-side pre-render.</p>
+<p>This is essentially done via two steps:</p>
+<ol>
+<li><strong>Server-side</strong> - Pass <em>Router5</em> the current URL (since there&#39;s no <code>location</code> object on the server).</li>
+<li><strong>Client-side</strong> - Pass <em>Router5</em> a starting state (via the <code>done</code> callback of <em>Step 1</em>) so that <em>Router5</em> doesn&#39;t try to transition to the already activated page.</li>
+</ol>
+<h4 id="below-is-a-more-in-depth-tutorial">Below is a more in-depth tutorial</h4>
 <h2 id="create-your-router-client-server-">Create your router (client &amp; server)</h2>
 <p>You can use the same code for configuring your router on both client and server sides.</p>
-<pre><code class="lang-javascript javascript">let router = new Router5()
-    .addNode(&#39;home&#39;, &#39;/home&#39;)
-    .addNode(&#39;about&#39;, &#39;/about&#39;)
-    .addNode(&#39;contact&#39;, &#39;/contact&#39;);
+<pre><code class="lang-js">const Router5 = require( &#39;router5&#39; ).Router5;
+const listenersPlugin = require( &#39;router5-listeners&#39; );
+const historyPlugin = require( &#39;router5-history&#39; );
+
+const router = new Router5()
+    .setOption( &#39;useHash&#39;, false )
+    .setOption( &#39;trailingSlash&#39;, true )
+    .setOption( &#39;defaultRoute&#39;, &#39;404&#39; )
+    .usePlugin( historyPlugin() )
+    .usePlugin( listenersPlugin() )
+    .addNode( &#39;home&#39;, &#39;/home&#39; )
+    .addNode( &#39;about&#39;, &#39;/about&#39; )
+    .addNode( &#39;contact&#39;, &#39;/contact&#39; )
+    .addNode( &#39;404&#39;, &#39;/404&#39; );
 </code></pre>
-<h2 id="on-the-server">On the server</h2>
-<pre><code class="lang-javascript javascript">// With express, you would pass req.originalUrl
-router.start(serverUrl, function (err, state) {
-    // Serialise state and send it in a &quot;&lt;script&gt;&lt;/script&gt;&quot; tag
-    // so it can be retrieved on the client side
-    let script =  `&lt;script&gt;window.initialState = ${JSON.stringify(state)}&lt;/script&gt;`
-});
+<h2 id="server-side-routing">Server-side Routing</h2>
+<blockquote>
+<p>This example is an <a href="http://expressjs.com/">Express</a> with <a href="http://paularmstrong.github.io/swig/">Swig</a> application. Make changes were needed to suit your preferred frameworks.</p>
+</blockquote>
+<p><strong><code>server.js</code></strong></p>
+<pre><code class="lang-javascript javascript">&#39;use strict&#39;;
+
+/**
+ * Add our Imports
+ */
+const express = require( &#39;express&#39; );
+const swig = require( &#39;swig&#39; );
+const router = require( &#39;./js/router.js&#39; );
+
+/**
+ * Init an app
+ */
+const app = express();
+
+/**
+ * Set Swig as the HTML engine
+ */
+app.engine( &#39;html&#39;, swig.renderFile );
+
+/**
+ * Use Swig on our HTML
+ */
+app.set( &#39;view engine&#39;, &#39;html&#39; );
+app.set( &#39;views&#39;, &#39;./views&#39; );
+
+/**
+ * Listen to any and all URLs
+ */
+app.get( &#39;*&#39;, function loadSite( req, res ) {
+
+    // Start Router5 and send it the original URL from Express
+    router.start( req.originalUrl, function done( state ) {
+
+        // Send our JSON-encoded state to Swig
+        res.render( &#39;base&#39;, {
+            initialState: JSON.stringify( state )
+        } );
+
+        // Stop the router when we&#39;re done
+        router.stop();
+
+    });
+
+} );
+
+/**
+ * Start the App
+ */
+app.listen( 8080, function logServerStart() {
+    console.log( &#39;Server is listening on port 8080...&#39; );
+} );
 </code></pre>
-<h2 id="in-the-browser">In the browser</h2>
-<p>Tell the router the app was already initialised:</p>
-<pre><code class="lang-javascript javascript">// Read starting state
-let startState = window.initialState;
-// Tell the router the application is already initialised with startState so
-// it won&#39;t try to transition to the current URL or default route.
-router.start(startState, function (err, state) {
-    // ...
-});
+<p><strong><code>base.html</code></strong></p>
+<pre><code class="lang-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en-US&quot;&gt;
+
+    &lt;head&gt;
+        &lt;title&gt;Example Server-side Routing&lt;/title&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;script src=&quot;/js/router.js&quot;&gt;&lt;/script&gt;
+        &lt;script type=&quot;text/javascript&quot;&gt;
+            /**
+             * Load the App&#39;s inital state from the server
+             * @type {JSON}
+             */
+            var initialState = JSON.parse(&#39;{{ initialState | safe }}&#39;);
+
+
+            /**
+             * Start our Router
+             * @param  {Error} error  Router start error
+             * @param  {Object} state State Object
+             * @return {undefined}
+             */
+            app.router.start(initialState, function(error, state) {
+                if (error) console.error(&#39;router error&#39;, error);
+            });
+        &lt;/script&gt;
+    &lt;/body&gt;
+
+&lt;/html&gt;
 </code></pre>
+<p>From here forth, you can continue to use Router5 as if it was a regular Single-Page Application.</p>
+<h3 id="important-to-remember-pass-in-an-object">Important to Remember - Pass in an Object</h3>
+<p>It is important to remember that <code>Router5.start()</code> <strong>does NOT</strong> parse your starting state for you. If you pass in a <code>String</code> instead of an <code>Object</code> <em>Router5</em> will attempt to navigate to the path of that string.</p>
 
     </main>
 
