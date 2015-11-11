@@ -110,7 +110,7 @@ efficiently: a reactive application, reacting to data changes <em>including</em>
 <blockquote>
 <p>After all, why treat route changes any different than data changes?</p>
 </blockquote>
-<h2 id="existing-routers-are-monolihic">Existing routers are monolihic</h2>
+<h2 id="existing-routers-are-monolithic">Existing routers are monolithic</h2>
 <p>The most popular routers those days are tied to frameworks (or libraries) and are fairly large pieces of software, tightly coupled together.
 Angular2 and Aurelia, for example, include their own routing solution with exciting new functionalities: activation / deactivation, use
 of pipelines, etc...</p>
@@ -122,7 +122,7 @@ a trie-based URL router: it organises URLs in a tree. The concept is great, and 
 in a tree rather than URL segments. That way, every branch of a named routes tree is a valid route. From an application point of view,
 it also means it is more maintainable: you reference routes by name rather than URL. Using a tree makes building and matching paths easy,
 it also goes hand in hand with a component tree and makes it easy to reason about route changes. From routington came
-<a href="https://github.com/troch/router5">route-node</a>.</p>
+<a href="https://github.com/troch/route-node">route-node</a>.</p>
 <p>I then needed to use a URL matching / building library. I looked at <a href="https://github.com/rcs/route-parser">route-parser</a>,
 <a href="https://github.com/snd/url-pattern">url-pattern</a> and <a href="https://github.com/pillarjs/path-to-regexp">path-to-regexp</a>.
 Having routes in a tree, I needed a library which could match URLs fully or partially (going down the tree until a match is found).

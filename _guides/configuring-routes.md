@@ -18,7 +18,7 @@ var router = new Router5()
 
 ## Alternative ways
 
-When using Router5 contstructor `new Router5(routes, opts)`, __routes__ can be:
+When using Router5 constructor `new Router5(routes, opts)`, __routes__ can be:
 
 - An array of RouteNode objects and plain objects.
 - A RouteNode Object or plain object (not recommended)

@@ -30,7 +30,7 @@ efficiently: a reactive application, reacting to data changes _including_ route 
 > After all, why treat route changes any different than data changes?
 
 
-## Existing routers are monolihic
+## Existing routers are monolithic
 
 The most popular routers those days are tied to frameworks (or libraries) and are fairly large pieces of software, tightly coupled together.
 Angular2 and Aurelia, for example, include their own routing solution with exciting new functionalities: activation / deactivation, use
@@ -47,7 +47,7 @@ a trie-based URL router: it organises URLs in a tree. The concept is great, and 
 in a tree rather than URL segments. That way, every branch of a named routes tree is a valid route. From an application point of view,
 it also means it is more maintainable: you reference routes by name rather than URL. Using a tree makes building and matching paths easy,
 it also goes hand in hand with a component tree and makes it easy to reason about route changes. From routington came
-[route-node](https://github.com/troch/router5).
+[route-node](https://github.com/troch/route-node).
 
 I then needed to use a URL matching / building library. I looked at [route-parser](https://github.com/rcs/route-parser),
 [url-pattern](https://github.com/snd/url-pattern) and [path-to-regexp](https://github.com/pillarjs/path-to-regexp).
