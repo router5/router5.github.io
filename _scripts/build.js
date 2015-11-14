@@ -99,6 +99,9 @@ async.parallel([
     ]}),
     renderDoc('_docs', 'with-deku.md', {deku: true, examples: true, scripts: [
         '/assets/router5-deku-example.js'
+    ]}),
+    renderDoc('_docs', 'with-deku-redux.md', {dekuRedux: true, examples: true, scripts: [
+        '/assets/router5-deku-redux-example.js'
     ]})
 ], function (err, res) {
     if (err) console.log(err);

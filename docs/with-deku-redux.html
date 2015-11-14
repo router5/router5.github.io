@@ -39,13 +39,13 @@
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
+            <a href="/docs/configuring-routes.html" class="">Guides</a>
 
             <a href="/docs/listeners.html" class="">Plugins</a>
 
             <a href="/docs/api-reference.html" class="">API</a>
 
-            <a href="docs/with-react.html" class="">Examples</a>
+            <a href="docs/with-react.html" class="active">Examples</a>
 
             <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
@@ -70,7 +70,7 @@
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
             <a href="/docs/middleware.html" class="link">Middleware functions</a>
-            <a href="/docs/plugins.html" class="link active">Using plugins</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
             <strong>Plugins</strong>
@@ -83,49 +83,19 @@
             <a href="/docs/with-react.html" class="link">With React</a>
             <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
-            <a href="/docs/with-deku-redux.html" class="link">With Deku and Redux</a>
+            <a href="/docs/with-deku-redux.html" class="link active">With Deku and Redux</a>
         </nav>
     </aside>
 
     <main>
-        <h1 id="using-plugins">Using plugins</h1>
+        <h1 id="router5-with-react-and-redux">Router5 with React and Redux</h1>
 <blockquote>
-<p>Router5 is extensible with the use of plugins. Plugins can decorate a route instance and do things on specific router and transition events.</p>
+<p>To use router5 with Deku and Redux, you can use <code>redux-router5</code> combined with <code>deku-redux</code>.</p>
 </blockquote>
-<h2 id="plugin-requirements">Plugin requirements</h2>
-<p>A plugin is simply an object with a name and at least one of the following methods:</p>
-<ul>
-<li><strong>init(router)</strong>: invoked when a plugin is registered with a router instance. The router instance is passed to it so it can be decorated or more...</li>
-<li><strong>onStart()</strong>: invoked when <code>router.start()</code> is called</li>
-<li><strong>onStop()</strong>: invoked when <code>router.stop()</code> is called</li>
-<li><strong>onTransitionStart(toState, fromState)</strong></li>
-<li><strong>onTransitionCancel(toState, fromState)</strong></li>
-<li><strong>onTransitionError(toState, fromState, err)</strong></li>
-<li><strong>onTransitionSuccess(toState, fromState, opts)</strong> (options contains <code>replace</code> and <code>reload</code> boolean flags)</li>
-</ul>
-<h2 id="registering-a-plugin">Registering a plugin</h2>
-<pre><code class="lang-javascript javascript">const myPlugin = function () {
-    return {
-        name: &#39;MY_CUSTOM_PLUGIN&#39;,
-        onTransitionSuccess: (toState, fromState) =&gt; {
-            console.log(&#39;Yippee, navigation to &#39; + toState.name + &#39; was successful!&#39;);
-        }
-    };
-}
-
-const router = new Router5()
-    .usePlugin(myPlugin);
-</code></pre>
-<h2 id="plugin-examples">Plugin examples</h2>
-<ul>
-<li><a href="https://github.com/router5/router5-listeners">router5-listeners</a></li>
-<li><a href="https://github.com/router5/router5-history">router5-history</a></li>
-<li><a href="https://github.com/router5/router5/blob/master/modules/logger.js">Logger</a></li>
-</ul>
-<p>Router5 includes a logging plugin that you can use to help development</p>
-<pre><code class="lang-javascript javascript">const router = new Router()
-    .usePlugin(Router5.loggerPlugin());
-</code></pre>
+<h3 id="-redux-router5-readme-https-github-com-router5-redux-router5-"><a href="https://github.com/router5/redux-router5">redux-router5 README</a></h3>
+<h2 id="example">Example</h2>
+<p>View the source <a href="https://github.com/router5/examples/tree/master/apps/deku-redux">on GitHub</a>.</p>
+<div id="app"></div>
 
     </main>
 
@@ -151,6 +121,7 @@ const router = new Router5()
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/assets/router5-deku-redux-example.js"></script>
     
 
 
