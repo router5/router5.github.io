@@ -141,10 +141,10 @@ to a specific route and its descendents.</p>
 <p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same
 than <code>canDeactivate</code> methods: you can return a boolean value, return a promise or invoke a done callback.</p>
 <p>There are two ways to register <code>canActivate</code> functions: using <code>addNode</code> or <code>canActivate</code> methods:</p>
-<pre><code class="lang-javascript javascript">let isAdmin = true
+<pre><code class="lang-javascript javascript">const isAdmin = true
 
 function canAccessAdmin(toRoute, fromRoute, done) {
-    return isAdmin
+    return isAdmin;
 }
 
 myRouter.addNode(&#39;admin&#39;, &#39;/admin&#39;, canAccessAdmin)
@@ -152,6 +152,14 @@ myRouter.addNode(&#39;admin&#39;, &#39;/admin&#39;, canAccessAdmin)
 myRouter
     .add({name: &#39;admin&#39;, path: &#39;/admin&#39;})
     .canActivate(&#39;admin&#39;, canAccessAdmin)
+</code></pre>
+<h2 id="additional-arguments">Additional arguments</h2>
+<p>You can specify additional arguments which will be passed to <code>canActivate</code> and <code>canDeactivate</code> functions.</p>
+<pre><code class="lang-javascript javascript">myRouter.setAdditionalArgs([a, b]);
+
+myRouter.canActivate(&#39;route&#39;, function(a, b, toState, fromState) {
+    return true;
+});
 </code></pre>
 
     </main>

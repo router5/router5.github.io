@@ -71,10 +71,10 @@ than `canDeactivate` methods: you can return a boolean value, return a promise o
 There are two ways to register `canActivate` functions: using `addNode` or `canActivate` methods:
 
 ```javascript
-let isAdmin = true
+const isAdmin = true
 
 function canAccessAdmin(toRoute, fromRoute, done) {
-    return isAdmin
+    return isAdmin;
 }
 
 myRouter.addNode('admin', '/admin', canAccessAdmin)
@@ -84,3 +84,14 @@ myRouter
     .canActivate('admin', canAccessAdmin)
 ```
 
+## Additional arguments
+
+You can specify additional arguments which will be passed to `canActivate` and `canDeactivate` functions.
+
+```javascript
+myRouter.setAdditionalArgs([a, b]);
+
+myRouter.canActivate('route', function(a, b, toState, fromState) {
+    return true;
+});
+```
