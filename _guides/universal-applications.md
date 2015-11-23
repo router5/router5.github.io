@@ -68,12 +68,15 @@ app.set( 'views', './views' );
 app.get( '*', function loadSite( req, res ) {
 
 	// Start Router5 and send it the original URL from Express
-	router.start( req.originalUrl, function done( state ) {
-
-		// Send our JSON-encoded state to Swig
-		res.render( 'base', {
-			initialState: JSON.stringify( state )
-		} );
+	router.start( req.originalUrl, function done( error, state ) {
+		if ( error ) {
+			res.status( 500 ).send( error );
+		} else {
+			// Send our JSON-encoded state to Swig
+			res.render( 'base', {
+				initialState: JSON.stringify( state )
+			} );
+		}
 
 		// Stop the router when we're done
 		router.stop();
