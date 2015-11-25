@@ -29,7 +29,7 @@ const myPlugin = function () {
 }
 
 const router = new Router5()
-    .usePlugin(myPlugin);
+    .usePlugin(myPlugin());
 ```
 
 
