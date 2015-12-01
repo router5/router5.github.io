@@ -39,13 +39,13 @@
 
             <a href="/docs/get-started.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
+            <a href="/docs/configuring-routes.html" class="">Guides</a>
 
             <a href="/docs/listeners.html" class="">Plugins</a>
 
             <a href="/docs/api-reference.html" class="">API</a>
 
-            <a href="docs/with-react.html" class="">Examples</a>
+            <a href="docs/with-react.html" class="active">Examples</a>
 
             <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
@@ -60,12 +60,12 @@
             <a href="/docs/why-router5.html" class="link">Why router5?</a>
             <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
-            <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
+            <a href="/docs/ecosystem.html" class="link active">Ecosystem</a>
 
             <strong>Guides</strong>
 
             <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
-            <a href="/docs/router-options.html" class="link active">Router options</a>
+            <a href="/docs/router-options.html" class="link">Router options</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
@@ -89,40 +89,28 @@
     </aside>
 
     <main>
-        <h1 id="options">Options</h1>
+        <h1 id="ecosystem">Ecosystem</h1>
 <blockquote>
-<p>You can configure your router instance by passing options to the constructor or by using <code>.setOption(optName, optValue)</code>.</p>
+<p>A list of repositories and links related to router5. If you want to add an item to the list, raise an issue <a href="https://github.com/router5/router5.github.io/issues">https://github.com/router5/router5.github.io/issues</a></p>
 </blockquote>
-<pre><code class="lang-javascript javascript">var router = new Router5([], {
-        useHash: true,
-        hashPrefix: &#39;!&#39;,
-        defaultRoute: &#39;home&#39;,
-        defaultParams: {},
-        base: &#39;&#39;,
-        trailingSlash: false,
-        autoCleanUp: true
-    })
-    .setOption(&#39;useHash&#39;, false)
-    .setOption(&#39;hashPrefix&#39;, &#39;&#39;);
-</code></pre>
-<h2 id="use-of-hash-part-of-url">Use of hash part of URL</h2>
-<p>Set <code>useHash</code> to <code>true</code> if you want the paths of your routes to be prefixed with a hash. You can also choose a <code>hashPrefix</code> which will be inserted between the path of a route and the hash. Those options will mostly be used by plugins such as <code>router5-history</code>.</p>
-<h2 id="default-route">Default route</h2>
-<p>When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:</p>
+<h2 id="plugins-middleware-components-etc-">Plugins, middleware, components, etc...</h2>
 <ul>
-<li><code>defaultRoute</code>: the default route.</li>
-<li><code>defaultParams</code>: the default route params (defaults to <code>{}</code>)</li>
+<li><a href="https://github.com/router5/react-router5">react-router5</a> integration with react</li>
+<li><a href="https://github.com/router5/redux-router5">redux-router5</a> integration with redux</li>
+<li><a href="https://github.com/router5/deku-router5">deku-router5</a> integration with deku</li>
+<li><a href="https://github.com/jas-chen/router5-link-interceptor">router5-link-interceptor</a> link interceptor (page.js style)</li>
+<li><a href="https://github.com/axefrog/cycle-router5">cycle-router5</a> integration with cyclejs (out of date)</li>
 </ul>
-<p>See <a href="/docs/navigation.html">navigation guide</a> for more information.</p>
-<h2 id="base-path">Base path</h2>
-<p>You can specify what the base path of your application is. By default <code>base</code> is set to an empty string, meaning your route paths won&#39;t be prefixed by any
-path.</p>
-<h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
-<p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
-<h2 id="automatic-clean-up">Automatic clean up</h2>
-<p>When you register a component with the router (using <code>.registerComponent(routeName, component)</code>) and if <code>autoCleanUp</code> is set to true, the router will automatically deregister that
-component if <code>routeName</code> is no longer active. It saves you having to call <code>.deregisterComponent</code>.</p>
-<p>The same logic is applied with node listeners (and not route or global listeners) in router5 listeners plugin.</p>
+<h2 id="examples">Examples</h2>
+<ul>
+<li><a href="https://github.com/router5/examples">Examples</a></li>
+<li><a href="https://github.com/StevenIseki/redux-examples">redux-examples</a> <em>from @StevenIseki</em>, contains a router5 example</li>
+</ul>
+<h2 id="boilerplate">Boilerplate</h2>
+<ul>
+<li><a href="https://github.com/sitepack/router5-boilerplate">router5-boilerplace</a></li>
+<li><a href="https://github.com/nanopx/universal-react-redux-hapi">universal-react-redux-hapi</a></li>
+</ul>
 
     </main>
 

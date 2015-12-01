@@ -91,6 +91,7 @@ async.parallel([
     renderDoc('_guides', 'preventing-navigation.md', {preventNav: true, docs: true}),
     renderDoc('_guides', 'universal-applications.md', {universal: true, docs: true}),
     // renderApi,
+    renderDoc('_docs', 'ecosystem.md', {ecosystem: true, examples: true}),
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
         '/assets/router5-react-example.js'
     ]}),

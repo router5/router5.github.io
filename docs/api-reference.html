@@ -4,7 +4,7 @@
 
 <head>
     <base href="/">
-    <title>router5 | HTML5 router for reactive applications</title>
+    <title>router5 | flexible and powerful routing solution for web applications</title>
     <!-- Meta -->
     <meta name="description" content="router5 is an HTML5 router, simple but powerful.">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -53,9 +53,13 @@
 
     <aside>
         <nav>
+            <strong>Router5</strong>
+
             <a href="/docs/get-started.html" class="link">Getting started</a>
             <a href="/docs/why-router5.html" class="link">Why router5?</a>
             <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/api-reference.html" class="link active">Router5 API</a>
+            <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
             <strong>Guides</strong>
 
@@ -65,6 +69,7 @@
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
             <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
 
@@ -73,14 +78,12 @@
             <a href="/docs/listeners.html" class="link">Listeners</a>
             <a href="/docs/history.html" class="link">History</a>
 
-            <strong>API Reference</strong>
-
-            <a href="/docs/api-reference.html" class="link active">Router5</a>
-
-            <strong>Integration</strong>
+            <strong>Examples</strong>
 
             <a href="/docs/with-react.html" class="link">With React</a>
+            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
+            <a href="/docs/with-deku-redux.html" class="link">With Deku and Redux</a>
         </nav>
     </aside>
 
@@ -218,6 +221,49 @@ intersection route name, route names to deactivate, route names to activate
             <td>The Router5 instance</td>
         </tr>
     </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.setAdditionalArgs(args)</strong>
+                Set additional arguments used in lifecycle functions.
+Additional arguments are used in canActivate and canDeactivate in first positions (before <code>toState</code>).
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>args</strong></td>
+            <td><code>Array</code></td>
+            <td>The additional arguments</td>
+        </tr>
+    </tbody>
+
+    
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.getAdditionalArgs()</strong>
+                Return additional arguments used in lifecycle functions
+            </th>
+        </tr>
+
+        
+    </thead>
+
+    
+
+    
 </table>
 
 <table class="params-table">
@@ -656,6 +702,41 @@ The generated URL will be prefixed by hash if useHash is set to true
                 <strong>router5.buildPath(route, params)</strong>
                 Build a path from a route name and route params
 The generated URL will be prefixed by hash if useHash is set to true
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>route</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr><tr>
+            <td><strong>params</strong></td>
+            <td><code>Object</code></td>
+            <td>The route params (key-value pairs)</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>String</code></td>
+            <td>The built Path</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router5.buildState(route, params)</strong>
+                Build a state object from a route name and route params
             </th>
         </tr>
 
