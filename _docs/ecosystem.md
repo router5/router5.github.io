@@ -23,5 +23,5 @@
 
 ## Boilerplate
 
-- [router5-boilerplace](https://github.com/sitepack/router5-boilerplate)
+- [router5-boilerplate](https://github.com/sitepack/router5-boilerplate)
 - [universal-react-redux-hapi](https://github.com/nanopx/universal-react-redux-hapi)
