@@ -5,6 +5,9 @@
 
 ## Plugins, middleware, components, etc...
 
+- [router5-logger](https://github.com/router5/router5-logger)
+- [router5-listeners](https://github.com/router5/router5-listeners)
+- [router5-history](https://github.com/router5/router5-history)
 - [react-router5](https://github.com/router5/react-router5) integration with react
 - [redux-router5](https://github.com/router5/redux-router5) integration with redux
 - [deku-router5](https://github.com/router5/deku-router5) integration with deku
