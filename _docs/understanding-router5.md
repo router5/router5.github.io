@@ -69,7 +69,7 @@ Below is an example of associated route and component nodes, when `admin.users` 
 
 ![Relation between router and view](/img/router-view.png)
 
-In slightly more complicated cases, you might have other parts of your screens to re-render. For example, you might have a header, a main menu or a side panel to update on a route change: in that case you can listen to any route change or a specific route change, and re-render that specific portion of a screen. Keep transition nodes for your "main" content update.
+In slightly more complicated cases, you might have other parts of your screen to re-render. For example, you might have a header, a main menu or a side panel to update on a route change: in that case you can listen to any route change or a specific route change, and re-render that specific portion of a screen. Keep transition nodes for your "main" content update.
 
 
 ## What is router5 best suited for?
