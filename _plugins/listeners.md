@@ -39,8 +39,7 @@ State objects contain the following properties: `name`, `params` and `path`.
 ## Listen to a node change
 
 `addNodeListener(name, fn)` will register a listener which will be invoked when the specified route node
-is the "intersection" node of a route change, i.e. the lowest node in a tree remaining activated on a route change (the lowest
-common node).
+is the __transition node__ of a route change, i.e. the intersection between deactivated and activated segments.
 
 For example, when navigating from route name `A.1.a` to `A.1.b`, node `a.1` is the _apex_ node. When navigating
 from `A.1.a` to `A.2`, `A` is the _apex_.

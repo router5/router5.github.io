@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <base href="/">
+    <title>router5 | flexible and powerful routing solution for web applications</title>
+    <!-- Meta -->
+    <meta name="description" content="router5 is an HTML5 router, simple but powerful.">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="router5">
+    <meta name="twitter:description" content="Simple, framework-agnostic, powerful and functional HTML5 routing solution.">
+    <meta name="twitter:creator" content="@tcroch">
+    <meta name="twitter:image" content="http://router5.github.io/logo/r5_128.png">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="router5">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://router5.github.io">
+    <meta property="og:description" content="Simple, framework-agnostic, powerful and functional HTML5 routing solution.">
+    <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
+    <!-- Stylsheets -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/docs.css">
+    <link rel="stylesheet" href="/styles/examples.css">
+    
+</head>
+
+<body>
+    
+        <header>
+        <nav class="">
+            <a href="/" class="">Home</a>
+
+            <a href="/docs/understanding-router5.html" class="active">Key concepts</a>
+
+            <a href="/docs/get-started.html" class="">Get started</a>
+
+            <a href="/docs/configuring-routes.html" class="">Guides</a>
+
+            <a href="/docs/listeners.html" class="">Plugins</a>
+
+            <a href="/docs/api-reference.html" class="">API</a>
+
+            <a href="docs/with-react.html" class="">Examples</a>
+
+            <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
+        </nav>
+    </header>
+
+
+    <aside>
+        <nav>
+            <strong>Router5</strong>
+
+            <a href="/docs/why-router5.html" class="link">Why router5?</a>
+            <a href="/docs/understanding-router5.html" class="link active">Understanding router5</a>
+            <a href="/docs/get-started.html" class="link">Getting started</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/api-reference.html" class="link">Router5 API</a>
+            <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
+
+            <strong>Guides</strong>
+
+            <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
+            <a href="/docs/router-options.html" class="link">Router options</a>
+            <a href="/docs/path-syntax.html" class="link">Path syntax</a>
+            <a href="/docs/navigation.html" class="link">Navigation</a>
+            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
+            <a href="/docs/universal-applications.html" class="link">Universal applications</a>
+
+            <strong>Plugins</strong>
+
+            <a href="/docs/listeners.html" class="link">Listeners</a>
+            <a href="/docs/history.html" class="link">History</a>
+
+            <strong>Examples</strong>
+
+            <a href="/docs/with-react.html" class="link">With React</a>
+            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
+            <a href="/docs/with-deku.html" class="link">With Deku</a>
+            <a href="/docs/with-deku-redux.html" class="link">With Deku and Redux</a>
+        </nav>
+    </aside>
+
+    <main>
+        <h1 id="understanding-router5">Understanding Router5</h1>
+<blockquote>
+<p>The main idea behind router5 is to treat routes like any other application data / state. This guide&#39;s aim is to take you through router5&#39;s key concepts.</p>
+</blockquote>
+<p>In &quot;traditional&quot; routing, a specific route is associated with a <em>route handler</em>. Such handlers would return your application tree or would link your route to a specific view / component. With router5 it is reversed: rather than the router updating the view, it is up to the view to listen / bind / subscribe to route changes in order to update itself.</p>
+<h2 id="the-state">The state</h2>
+<p><a href="https://github.com/router5/router5">router5</a> is the core repository. Once you have defined your routes and started your router, it only does one thing: it takes navigation instructions and output state updates.</p>
+<p><img src="/img/router.png" alt="Router"></p>
+<p>Updating your browser history or listening to URL changes is considered a side-effect, because they are specific to an environment where your application might run (the browser). You can use <a href="https://github.com/router5/router5-history">router5-history</a> to update the browser URL and translate popstate events to routing instructions.</p>
+<p>A state object will contain:</p>
+<ul>
+<li>The <code>name</code> of the route</li>
+<li>The parameters (<code>params</code>) of the route</li>
+<li>The <code>path</code> of the route</li>
+</ul>
+<h3 id="tree-of-routes">Tree of routes</h3>
+<p>Your routes are organised in a tree, made of segments and nodes. At the top will always be an unnamed root node (its name is an empty string <code>&#39;&#39;</code>).</p>
+<p>For the rest of this article, we will use the following simple example of a few nested routes:</p>
+<p><img src="/img/routes-tree.png" alt="Tree of routes"></p>
+<h3 id="transition">Transition</h3>
+<p>During a transition phase, the router will follow a <strong>transition path</strong>: it will deactivate some segments and activate some new ones. The intersection node between deactivated and activated segments is the <strong>transition node</strong>. The <strong>transition node</strong> is very important for your view, as we are about to discover.</p>
+<p>Using the tree of routes shown above, let&#39;s consider we transition from <code>home</code> to <code>admin.users</code>: the transition node will be <em>the unamed root node</em>, we will deactivate <code>home</code> and activate <code>admin</code> and <code>admin.users</code>.</p>
+<p><img src="/img/routes-tree-transition-1.png" alt="Transition example #1"></p>
+<p>Now let&#39;s see another example: a transition from <code>admin.roles</code> to <code>admin.users</code>. The transition node will be <code>admin</code>, and the admin segment will remain activated. <code>admin.roles</code> will be deactivated and <code>admin.users</code> will be activated.</p>
+<p><img src="/img/routes-tree-transition-2.png" alt="Transition example #1"></p>
+<h2 id="the-view">The view</h2>
+<blockquote>
+<p>The router is unaware of your view and you need to bind your view to your router&#39;s state updates.</p>
+</blockquote>
+<p>This is where you need to forget about route handlers and linking routes to components. On the left you have state updates coming from your router, and on the right you have your application view. Your application view is already in a certain state, and will now have to update to reflect the latest state updates.</p>
+<p>On a route change, you only need to re-render a portion of your app. Depending on where your come from, for the same given route, a smaller or larger part of your application view will need to be re-rendered. This is why route handlers are not helpful: routing is not about mapping a route to a component, it is about going from A to B.</p>
+<h3 id="binding-to-route-changes">Binding to route changes</h3>
+<p>Your view will need to subscribe to route updates, or specific route updates. There are three types of events you might want to react to, depending on what information you are after:</p>
+<ul>
+<li>The router has navigated to a route (any route)</li>
+<li>The router has navigated to a specified route</li>
+<li>A specified node is the transition node</li>
+</ul>
+<p>The last point is the main one. We have seen your routes are organised in a tree. Your components are also organised in a tree, like DOM elements of a page are. In your application, each route node (when active) will have corresponding component node. Those components are the ones your view should be re-rendered from when their associated node is the transition node of a route change.</p>
+<p>Below is an example of associated route and component nodes, when <code>admin.users</code> is active:</p>
+<p><img src="/img/routes-tree-components.png" alt="Transition nodes"></p>
+<blockquote>
+<p>The <strong>transition node</strong> (as explained above), <em>is</em> the node to re-render your view from.</p>
+</blockquote>
+<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> makes possible to register those three types of listeners: <em>&quot;any change&quot;</em> listener, route listener and node listener. Note that router5-listeners has a limit of one node listener per node (<em>router5-listeners</em> uses <a href="https://github.com/router5/transition-path">router5.transition-path</a> to compute the transition path between two router5 states).</p>
+<p><img src="/img/router-view.png" alt="Relation between router and view"></p>
+<p>In slightly more complicated cases, you might have other parts of your screens to re-render. For example, you might have a header, a main menu or a side panel to update on a route change: in that case you can listen to any route change or a specific route change, and re-render that specific portion of a screen. Keep transition nodes for your &quot;main&quot; content update.</p>
+<h2 id="what-is-router5-best-suited-for-">What is router5 best suited for?</h2>
+<p>Router 5 is best suited for trees of components, where components can easily be composed together. It works best with React, deku, cyclejs, etc...</p>
+<p>It also works very well with state containers like <a href="http://rackt.org/redux/index.html">redux</a>: your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don&#39;t need to use <a href="https://github.com/router5/router5-listeners">router5-listeners</a> plugin.</p>
+<ul>
+<li><a href="https://github.com/router5/react-router5">react-router5</a> and <a href="https://github.com/router5/deku-router5">deku-router5</a> provide <code>routeNode(nodeName)</code> higher-order components for re-rendering from a node down when</li>
+<li><a href="https://github.com/router5/redux-router">redux-router5</a> provides a selector <code>routeNode(nodeName)</code> which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with <code>connect</code> from <a href="https://github.com/rackt/react-redux">react-redux</a> or <a href="https://github.com/troch/deku-redux">deku-redux</a>.</li>
+</ul>
+<p><img src="/img/router-redux.png" alt="With redux"></p>
+
+    </main>
+
+    <footer class="">
+    &copy; Thomas Roch
+
+    |
+
+    <a href="https://github.com/router5/router5/blob/master/LICENSE">Licence MIT</a>
+
+    |
+
+    <a href="https://github.com/router5/router5/graphs/contributors">Contributors</a>
+
+    |
+
+    <a href="https://github.com/router5/router5/issues">issues</a>
+</footer>
+
+
+    <!-- Scripts -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+
+    <!-- Script files -->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-64765998-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            if (window.document.body.scrollTop > 0) {
+                window.document.body.classList.add('scrolled');
+            } else {
+                window.document.body.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+
+</html>
