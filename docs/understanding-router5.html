@@ -131,6 +131,7 @@
 <p>The last point is the main one. We have seen your routes are organised in a tree. Your components are also organised in a tree, like DOM elements of a page are. In your application, each route node (when active) will have corresponding component node. Those components are the ones your view should be re-rendered from when their associated node is the transition node of a route change.</p>
 <p>Below is an example of associated route and component nodes, when <code>admin.users</code> is active:</p>
 <p><img src="/img/routes-tree-components.png" alt="Transition nodes"></p>
+<p>The current route is <code>admin.users</code>. If we were to navigate to <code>home</code>, <code>Main</code> would be the component associated to the route node <code>&#39;&#39;</code>. It would re-render to output a <code>Home</code> component instance rather than an <code>Admin</code> one, discarding the whole admin view.</p>
 <blockquote>
 <p>The <strong>transition node</strong> (as explained above), <em>is</em> the node to re-render your view from.</p>
 </blockquote>

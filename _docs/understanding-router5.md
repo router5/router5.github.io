@@ -63,6 +63,8 @@ Below is an example of associated route and component nodes, when `admin.users` 
 
 ![Transition nodes](/img/routes-tree-components.png)
 
+The current route is `admin.users`. If we were to navigate to `home`, `Main` would be the component associated to the route node `''`. It would re-render to output a `Home` component instance rather than an `Admin` one, discarding the whole admin view.
+
 > The __transition node__ (as explained above), _is_ the node to re-render your view from.
 
 [router5-listeners](https://github.com/router5/router5-listeners) makes possible to register those three types of listeners: _"any change"_ listener, route listener and node listener. Note that router5-listeners has a limit of one node listener per node (_router5-listeners_ uses [router5.transition-path](https://github.com/router5/transition-path) to compute the transition path between two router5 states).
