@@ -2584,9 +2584,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.74329897"
-     inkscape:cx="282.23894"
-     inkscape:cy="1252.9834"
+     inkscape:zoom="1.0511835"
+     inkscape:cx="1399.2975"
+     inkscape:cy="533.53446"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -3618,7 +3618,7 @@
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"
-       transform="matrix(0.59629374,0,0,0.59629374,652.03651,124.1859)" />
+       transform="matrix(0.59629374,0,0,0.59629374,632.03651,90.1859)" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:8.38512897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter27461)"
        d="m 1648.9276,336.16741 -40,80"
@@ -3627,7 +3627,7 @@
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"
-       transform="matrix(0.59629374,0,0,0.59629374,652.03651,124.1859)" />
+       transform="matrix(0.59629374,0,0,0.59629374,632.03651,90.1859)" />
     <path
        inkscape:connector-curvature="0"
        id="path28755"
@@ -3636,7 +3636,7 @@
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"
-       transform="matrix(0.59629374,0,0,0.59629374,652.03651,124.1859)" />
+       transform="matrix(0.59629374,0,0,0.59629374,632.03651,90.1859)" />
     <circle
        r="20"
        cy="434.34418"
@@ -3646,7 +3646,7 @@
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"
-       transform="matrix(0.59629374,0,0,0.59629374,652.03651,124.1859)" />
+       transform="matrix(0.59629374,0,0,0.59629374,632.03651,90.1859)" />
     <circle
        style="fill:none;fill-opacity:1;stroke:#e70756;stroke-width:8.38512897;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27381)"
        id="circle28759"
@@ -3656,7 +3656,7 @@
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"
-       transform="matrix(0.59629374,0,0,0.59629374,652.03651,124.1859)" />
+       transform="matrix(0.59629374,0,0,0.59629374,632.03651,90.1859)" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:8.38512897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter27401)"
        d="m 1731.6166,450.16741 40,80"
@@ -3665,19 +3665,9 @@
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"
-       transform="matrix(0.59629374,0,0,0.59629374,652.03651,124.1859)" />
-    <circle
-       r="20"
-       cy="548.34418"
-       cx="1776.5573"
-       id="circle28767"
-       style="fill:none;fill-opacity:1;stroke:#80b419;stroke-width:8.38512897;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27321)"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
-       inkscape:export-xdpi="75.091797"
-       inkscape:export-ydpi="75.091797"
-       transform="matrix(0.59629374,0,0,0.59629374,652.03651,124.1859)" />
+       transform="matrix(0.59629374,0,0,0.59629374,632.03651,90.1859)" />
     <path
-       transform="matrix(0.59629374,0,0,0.59629374,686.89859,192.22837)"
+       transform="matrix(0.59629374,0,0,0.59629374,666.89859,158.22837)"
        inkscape:export-ydpi="75.091797"
        inkscape:export-xdpi="75.091797"
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
@@ -3686,7 +3676,7 @@
        id="path28791"
        inkscape:connector-curvature="0" />
     <path
-       transform="matrix(0.59629374,0,0,0.59629374,686.89859,192.22837)"
+       transform="matrix(0.59629374,0,0,0.59629374,666.89859,158.22837)"
        inkscape:export-ydpi="75.091797"
        inkscape:export-xdpi="75.091797"
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
@@ -3695,7 +3685,7 @@
        d="m 1731.6166,450.16741 40,80"
        style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:8.38512897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter27401)" />
     <circle
-       transform="matrix(0.59629374,0,0,0.59629374,686.89859,192.22837)"
+       transform="matrix(0.59629374,0,0,0.59629374,666.89859,158.22837)"
        inkscape:export-ydpi="75.091797"
        inkscape:export-xdpi="75.091797"
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
@@ -3705,7 +3695,7 @@
        id="circle28795"
        style="fill:none;fill-opacity:1;stroke:#336699;stroke-width:8.38512897;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27341)" />
     <circle
-       transform="matrix(0.59629374,0,0,0.59629374,686.89859,192.22837)"
+       transform="matrix(0.59629374,0,0,0.59629374,632.89859,90.22837)"
        inkscape:export-ydpi="75.091797"
        inkscape:export-xdpi="75.091797"
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
@@ -3717,15 +3707,15 @@
     <text
        sodipodi:linespacing="125%"
        id="text28799"
-       y="318.31155"
-       x="1665.5822"
+       y="284.31155"
+       x="1645.5822"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"><tspan
-         y="318.31155"
-         x="1665.5822"
+         y="284.31155"
+         x="1645.5822"
          id="tspan28801"
          sodipodi:role="line"
          style="font-size:22.5px">App</tspan></text>
@@ -3735,42 +3725,42 @@
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1698.8779"
-       y="384.42752"
+       x="1678.8779"
+       y="350.42752"
        id="text28803"
        sodipodi:linespacing="125%"><tspan
          style="font-size:22.5px;fill:#000000;fill-opacity:1"
          sodipodi:role="line"
          id="tspan28805"
-         x="1698.8779"
-         y="384.42752">Main</tspan></text>
+         x="1678.8779"
+         y="350.42752">Main</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text28811"
-       y="387.75711"
-       x="1501.0056"
+       y="353.75711"
+       x="1481.0056"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"><tspan
-         y="387.75711"
-         x="1501.0056"
+         y="353.75711"
+         x="1481.0056"
          id="tspan28813"
          sodipodi:role="line"
          style="font-size:22.5px">Header</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text28815"
-       y="456.25134"
-       x="1735.5033"
+       y="422.25134"
+       x="1715.5033"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        inkscape:export-xdpi="75.091797"
        inkscape:export-ydpi="75.091797"><tspan
-         y="456.25134"
-         x="1735.5033"
+         y="422.25134"
+         x="1715.5033"
          id="tspan28817"
          sodipodi:role="line"
          style="font-size:22.5px;fill:#000000;fill-opacity:1">Admin</tspan></text>
@@ -3780,30 +3770,30 @@
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1767.8478"
-       y="527.59949"
+       x="1747.8478"
+       y="493.59949"
        id="text28819"
        sodipodi:linespacing="125%"><tspan
          style="font-size:22.5px"
          sodipodi:role="line"
          id="tspan28821"
-         x="1767.8478"
-         y="527.59949">Users</tspan></text>
+         x="1747.8478"
+         y="493.59949">AdminMain</tspan></text>
     <text
        inkscape:export-ydpi="75.091797"
        inkscape:export-xdpi="75.091797"
        inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="1523.3616"
-       y="527.59949"
+       x="1503.3616"
+       y="493.59949"
        id="text28833"
        sodipodi:linespacing="125%"><tspan
          style="font-size:22.5px"
          sodipodi:role="line"
          id="tspan28835"
-         x="1523.3616"
-         y="527.59949">AdminMenu</tspan></text>
+         x="1503.3616"
+         y="493.59949">AdminMenu</tspan></text>
     <g
        inkscape:export-ydpi="75.091797"
        inkscape:export-xdpi="75.091797"
@@ -3823,9 +3813,9 @@
          inkscape:connector-curvature="0" />
     </g>
     <g
-       inkscape:export-ydpi="75"
-       inkscape:export-xdpi="75"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
+       inkscape:export-ydpi="60.04393"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
        style="stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke:#e70756;stroke-opacity:1"
        id="g28851"
        transform="matrix(0,-1,1,0,115.44365,-64.486646)">
@@ -3841,9 +3831,9 @@
          inkscape:connector-curvature="0" />
     </g>
     <text
-       inkscape:export-ydpi="75"
-       inkscape:export-xdpi="75"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
+       inkscape:export-ydpi="60.04393"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
        sodipodi:linespacing="125%"
        id="text28871"
        y="-360.34247"
@@ -3859,9 +3849,9 @@
        transform="translate(-27.714284,-318.93205)"
        id="g28883"
        style="stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke:#e70756;stroke-opacity:1"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75">
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393">
       <path
          inkscape:connector-curvature="0"
          id="path28885"
@@ -3880,17 +3870,17 @@
        height="120"
        x="161.09566"
        y="-229.8015"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393"
        transform="matrix(1.8034751,0,0,1.8034751,-114.9738,194.2815)" />
     <g
        id="g28897"
        transform="translate(358.41332,-344.31345)"
        style="stroke:#e70756;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter27233)"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75">
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393">
       <path
          inkscape:connector-curvature="0"
          id="path28899"
@@ -3905,18 +3895,18 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="289.70871"
+       x="205.70871"
        y="-35.266132"
        id="text28903"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75"><tspan
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393"><tspan
          sodipodi:role="line"
          id="tspan28905"
-         x="289.70871"
+         x="205.70871"
          y="-35.266132"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">store</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">redux store</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -3924,9 +3914,9 @@
        y="-100.56432"
        id="text28907"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75"><tspan
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393"><tspan
          sodipodi:role="line"
          x="93.26693"
          y="-100.56432"
@@ -3942,9 +3932,9 @@
        y="-98.497719"
        id="text28911"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75"><tspan
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393"><tspan
          sodipodi:role="line"
          id="tspan28913"
          x="576.57977"
@@ -3956,9 +3946,9 @@
        y="-153.65727"
        id="text28917"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75"><tspan
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393"><tspan
          sodipodi:role="line"
          id="tspan28919"
          x="339.93466"
@@ -3976,49 +3966,55 @@
        height="120"
        x="250.65182"
        y="-200.20372"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75" />
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393" />
     <rect
        style="fill:none;fill-opacity:1;stroke:#e70756;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter28955)"
        id="rect28931"
        width="40"
        height="120"
        x="194.6907"
-       y="-202.43671" />
+       y="-202.43671"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393" />
     <rect
        y="-199.746"
        x="443.58115"
        height="120"
        width="40"
        id="rect28933"
-       style="fill:none;fill-opacity:1;stroke:#e70756;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter28935)" />
+       style="fill:none;fill-opacity:1;stroke:#e70756;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter28935)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393" />
     <text
        transform="matrix(0,-1,1,0,0,0)"
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:164.99999762%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="375.7681"
-       y="161.05777"
+       y="157.05777"
        id="text29007"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75"><tspan
+       sodipodi:linespacing="165%"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393"><tspan
          sodipodi:role="line"
          x="375.7681"
-         y="161.05777"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
+         y="157.05777"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:164.99999762%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
          id="tspan29011">redux</tspan><tspan
          sodipodi:role="line"
          x="375.7681"
-         y="211.05777"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
+         y="206.55777"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:164.99999762%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
          id="tspan29015">plugin</tspan></text>
     <rect
        transform="matrix(1.8034751,0,0,1.8034751,-117.66451,-70.753175)"
-       inkscape:export-ydpi="75"
-       inkscape:export-xdpi="75"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
+       inkscape:export-ydpi="60.04393"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
        y="-229.8015"
        x="161.09566"
        height="120"
@@ -4031,7 +4027,10 @@
        width="120"
        height="180"
        x="118"
-       y="-467.63782" />
+       y="-467.63782"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -4039,9 +4038,9 @@
        y="-231.18852"
        id="text29047"
        sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       inkscape:export-xdpi="75"
-       inkscape:export-ydpi="75"><tspan
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393"><tspan
          sodipodi:role="line"
          id="tspan29049"
          x="366.466"
@@ -4050,7 +4049,10 @@
     <g
        id="g29055"
        style="stroke:#336699;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter29059)"
-       transform="translate(-8,-14)">
+       transform="translate(-8,-14)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393">
       <path
          inkscape:connector-curvature="0"
          id="path29051"
@@ -4064,9 +4066,9 @@
          style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <text
-       inkscape:export-ydpi="75"
-       inkscape:export-xdpi="75"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
+       inkscape:export-ydpi="60.04393"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
        sodipodi:linespacing="125%"
        id="text29079"
        y="-261.89859"
@@ -4087,32 +4089,35 @@
        height="180"
        width="120"
        id="rect29105"
-       style="fill:none;fill-opacity:1;stroke:#336699;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter29027)" />
+       style="fill:none;fill-opacity:1;stroke:#336699;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter29027)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393" />
     <text
-       inkscape:export-ydpi="75"
-       inkscape:export-xdpi="75"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
-       sodipodi:linespacing="125%"
+       inkscape:export-ydpi="60.04393"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       sodipodi:linespacing="165%"
        id="text29107"
-       y="485.05777"
+       y="481.05777"
        x="375.7681"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;font-size:30px;line-height:164.99999762%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"
        transform="matrix(0,-1,1,0,0,0)"><tspan
          id="tspan29109"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
-         y="485.05777"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:164.99999762%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
+         y="481.05777"
          x="375.7681"
          sodipodi:role="line">history</tspan><tspan
          id="tspan29111"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
-         y="535.05774"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:164.99999762%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
+         y="530.55774"
          x="375.7681"
          sodipodi:role="line">plugin</tspan></text>
     <g
-       inkscape:export-ydpi="75"
-       inkscape:export-xdpi="75"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
+       inkscape:export-ydpi="60.04393"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
        style="stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter27233);stroke:#336699;stroke-opacity:1"
        transform="translate(421.681,-617.42025)"
        id="g29113">
@@ -4128,9 +4133,9 @@
          inkscape:connector-curvature="0" />
     </g>
     <text
-       inkscape:export-ydpi="75"
-       inkscape:export-xdpi="75"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
+       inkscape:export-ydpi="60.04393"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
        sodipodi:linespacing="125%"
        id="text29119"
        y="-371.60452"
@@ -4142,7 +4147,10 @@
          id="tspan29121"
          sodipodi:role="line">url</tspan></text>
     <g
-       id="g29171">
+       id="g29171"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-ydpi="60.04393">
       <path
          inkscape:connector-curvature="0"
          id="path29123"
@@ -4155,9 +4163,9 @@
          style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter29127)" />
     </g>
     <text
-       inkscape:export-ydpi="75"
-       inkscape:export-xdpi="75"
-       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router.png"
+       inkscape:export-ydpi="60.04393"
+       inkscape:export-xdpi="60.04393"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-redux.png"
        sodipodi:linespacing="125%"
        id="text29167"
        y="-571.56299"
@@ -4169,5 +4177,395 @@
          x="322.06934"
          id="tspan29169"
          sodipodi:role="line">popstate route</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1278.8239"
+       y="-345.54358"
+       id="text29181"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749"><tspan
+         sodipodi:role="line"
+         id="tspan29183"
+         x="1278.8239"
+         y="-345.54358"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">router</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#336699;stroke-width:2.77242541;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27253)"
+       id="rect29231"
+       width="180"
+       height="120"
+       x="161.09566"
+       y="-229.8015"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749"
+       transform="matrix(1.8034751,0,0,1.8034751,888.10525,-55.954285)" />
+    <rect
+       y="-452.83893"
+       x="1123.7698"
+       height="180"
+       width="120"
+       id="rect29233"
+       style="fill:none;fill-opacity:1;stroke:#336699;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter29027)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749" />
+    <g
+       transform="translate(997.7698,0.79889041)"
+       style="stroke:#336699;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter29059)"
+       id="g29239"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749">
+      <path
+         sodipodi:nodetypes="cccc"
+         style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 124.8405,-327.63782 -24.8405,0 0,180 80,0"
+         id="path29241"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 160,-167.63782 20,20 -20,20"
+         id="path29243"
+         inkscape:connector-curvature="0" />
+    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#336699;stroke-width:5;stroke-linejoin:miter;stroke-miterlimit:5;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter29027)"
+       id="rect29251"
+       width="120"
+       height="180"
+       x="1443.7698"
+       y="-452.83893"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749" />
+    <g
+       id="g29259"
+       transform="translate(1427.4508,-602.62136)"
+       style="stroke:#336699;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter27233)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749">
+      <path
+         inkscape:connector-curvature="0"
+         id="path29261"
+         d="m 140,232.36218 60,0 -20,-20"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#336699;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path29263"
+         d="m 200,232.36218 -20,20"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#336699;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1645.6172"
+       y="-356.80563"
+       id="text29265"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749"><tspan
+         sodipodi:role="line"
+         id="tspan29267"
+         x="1645.6172"
+         y="-356.80563">url</tspan></text>
+    <g
+       id="g29269"
+       transform="translate(1005.7698,14.79889)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter29147)"
+         d="m 560,-427.63782 60,0 0,-120 -280,0 0,60 -20,-20"
+         id="path29271"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter29127)"
+         d="m 340,-487.63782 20,-20"
+         id="path29273"
+         inkscape:connector-curvature="0" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1327.8391"
+       y="-556.7641"
+       id="text29275"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749"><tspan
+         sodipodi:role="line"
+         id="tspan29277"
+         x="1327.8391"
+         y="-556.7641"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">popstate route</tspan></text>
+    <text
+       transform="matrix(0,-1,1,0,0,0)"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:30px;line-height:164.99999762%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="365.00528"
+       y="1162.1841"
+       id="text29279"
+       sodipodi:linespacing="165%"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749"><tspan
+         sodipodi:role="line"
+         x="365.00528"
+         y="1162.1841"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:164.99999762%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
+         id="tspan29281">listeners</tspan><tspan
+         sodipodi:role="line"
+         x="365.00528"
+         y="1211.6841"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:164.99999762%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
+         id="tspan29283">plugin</tspan></text>
+    <text
+       inkscape:export-ydpi="59.928749"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       sodipodi:linespacing="165%"
+       id="text29285"
+       y="1486.1841"
+       x="365.00528"
+       style="font-style:normal;font-weight:normal;font-size:30px;line-height:164.99999762%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         id="tspan29287"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:164.99999762%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
+         y="1486.1841"
+         x="365.00528"
+         sodipodi:role="line">history</tspan><tspan
+         id="tspan29289"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:164.99999762%;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle"
+         y="1535.6841"
+         x="365.00528"
+         sodipodi:role="line">plugin</tspan></text>
+    <rect
+       transform="matrix(1.8034751,0,0,1.8034751,895.0262,222.2815)"
+       inkscape:export-ydpi="59.928749"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       y="-229.8015"
+       x="161.09566"
+       height="120"
+       width="180"
+       id="rect29291"
+       style="fill:none;fill-opacity:1;stroke:#e70756;stroke-width:2.77242541;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27253)" />
+    <text
+       inkscape:export-ydpi="59.928749"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       sodipodi:linespacing="125%"
+       id="text29293"
+       y="-77.543579"
+       x="1300.8239"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+         y="-77.543579"
+         x="1300.8239"
+         id="tspan29295"
+         sodipodi:role="line">View</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1078.468"
+       y="-256.51718"
+       id="text29297"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749"><tspan
+         id="tspan29301"
+         sodipodi:role="line"
+         x="1078.468"
+         y="-256.51718">route change</tspan><tspan
+         sodipodi:role="line"
+         x="1078.468"
+         y="-206.51718"
+         id="tspan29305">events</tspan></text>
+    <g
+       transform="matrix(0,-1,1,0,1115.4437,-48.486646)"
+       id="g29307"
+       style="stroke:#e70756;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-ydpi="59.928749">
+      <path
+         inkscape:connector-curvature="0"
+         id="path29309"
+         d="m 140,232.36218 60,0 -20,-20"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#e70756;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path29311"
+         d="m 200,232.36218 -20,20"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#e70756;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <text
+       inkscape:export-ydpi="59.928749"
+       inkscape:export-xdpi="59.928749"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/router-view.png"
+       sodipodi:linespacing="125%"
+       id="text29313"
+       y="-213.18852"
+       x="1376.4661"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace"
+         y="-213.18852"
+         x="1376.4661"
+         id="tspan29315"
+         sodipodi:role="line">route</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#336699;stroke-width:8.38512897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter27401)"
+       d="m 1731.6166,450.16741 40,80"
+       id="path29317"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-ydpi="75.091797"
+       transform="matrix(0.59629374,0,0,0.59629374,700.89859,228.22837)" />
+    <circle
+       r="20"
+       cy="548.34418"
+       cx="1776.5573"
+       id="circle29319"
+       style="fill:none;fill-opacity:1;stroke:#336699;stroke-width:8.38512897;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27321)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-ydpi="75.091797"
+       transform="matrix(0.59629374,0,0,0.59629374,700.89859,228.22837)" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text29323"
+       y="562.94482"
+       x="1780.4663"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-ydpi="75.091797"><tspan
+         y="562.94482"
+         x="1780.4663"
+         id="tspan29325"
+         sodipodi:role="line"
+         style="font-size:22.5px">UsersList</tspan></text>
+    <circle
+       r="20"
+       cy="548.34418"
+       cx="1776.5573"
+       id="circle28767"
+       style="fill:none;fill-opacity:1;stroke:#80b419;stroke-width:8.38512897;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27321)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-ydpi="75.091797"
+       transform="matrix(0.59629374,0,0,0.59629374,670.03651,160.1859)" />
+    <path
+       transform="matrix(0.59629374,0,0,0.59629374,632.74885,89.63676)"
+       inkscape:export-ydpi="75.091797"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       style="fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:8.38512897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:8.38512911, 8.38512911;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27361)"
+       d="m 1706.9276,450.16741 -40,80"
+       id="path29329"
+       inkscape:connector-curvature="0" />
+    <circle
+       transform="matrix(0.59629374,0,0,0.59629374,594.08154,157.15578)"
+       inkscape:export-ydpi="75.091797"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       r="20"
+       cy="434.34418"
+       cx="1718.5573"
+       id="circle29331"
+       style="fill:none;fill-opacity:1;stroke:#999999;stroke-width:8.38512897;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:8.38512911, 8.38512911;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27381)" />
+    <text
+       inkscape:export-ydpi="75.091797"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1529.5033"
+       y="422.25134"
+       id="text29333"
+       sodipodi:linespacing="125%"><tspan
+         style="font-size:22.5px;fill:#999999;fill-opacity:1"
+         sodipodi:role="line"
+         id="tspan29335"
+         x="1529.5033"
+         y="422.25134">Home</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path29337"
+       d="m 1706.9276,450.16741 -40,80"
+       style="fill:none;fill-rule:evenodd;stroke:#999999;stroke-width:8.38512897;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:8.38512911, 8.38512911;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27361)"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-ydpi="75.091797"
+       transform="matrix(0.59629374,0,0,0.59629374,706.57266,228.52783)" />
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#999999;stroke-width:8.38512897;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:8.38512911, 8.38512911;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter27381)"
+       id="circle29339"
+       cx="1718.5573"
+       cy="434.34418"
+       r="20"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-ydpi="75.091797"
+       transform="matrix(0.59629374,0,0,0.59629374,667.90535,296.04685)" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text29341"
+       y="563.43457"
+       x="1570.0836"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-ydpi="75.091797"><tspan
+         y="563.43457"
+         x="1570.0836"
+         id="tspan29343"
+         sodipodi:role="line"
+         style="font-size:22.5px;fill:#999999;fill-opacity:1">RolesList</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text29345"
+       y="557.03815"
+       x="955.49542"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-ydpi="75.091797"><tspan
+         y="557.03815"
+         x="955.49542"
+         id="tspan29347"
+         sodipodi:role="line"
+         style="font-size:22.5px;fill:#999999;fill-opacity:1">'admin.roles'</tspan></text>
+    <text
+       inkscape:export-ydpi="75.091797"
+       inkscape:export-xdpi="75.091797"
+       inkscape:export-filename="/home/thomas/Development/router5.github.io/img/routes-tree-components.png"
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#999999;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="977.49542"
+       y="441.03815"
+       id="text29349"
+       sodipodi:linespacing="125%"><tspan
+         style="font-size:22.5px;fill:#999999;fill-opacity:1"
+         sodipodi:role="line"
+         id="tspan29351"
+         x="977.49542"
+         y="441.03815">home</tspan></text>
   </g>
 </svg>
