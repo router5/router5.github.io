@@ -51,4 +51,4 @@ When failing a transition in a middleware function, custom errors can be returne
 
 Context is binded to middleware functions, containing
 - `cancel`: a cancellation function
-= `router`: the router instance
+- `router`: the router instance
