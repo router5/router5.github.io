@@ -13,7 +13,7 @@ There are many ways to handle data coming from a router and from an API:
 - your components can reveice a route update first and decide to load data
 - etc...
 
-Router5 doesn't provide an opinionated way of handling async data, instead this article demonstrates the tools router5 can provide to help you loading data. You shouldn't view those examples as _the_ way to load data, their purpose is purely illustrative and they don't cover every case (including error handling). Instead you should aim to do things and organise your code the way you think is best for you and your application.
+Router5 doesn't provide an opinionated way of handling async data, instead this article demonstrates the tools router5 can provide to help you loading data. You shouldn't view those examples as _the_ way to load data, their purpose is purely illustrative and they don't cover every case (error handling, server-side data loading, etc...). Instead you should aim to do things and organise your code the way you think is best for you and your application.
 
 ## Using a middleware
 
