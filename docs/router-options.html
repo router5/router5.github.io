@@ -103,7 +103,8 @@
         defaultParams: {},
         base: &#39;&#39;,
         trailingSlash: false,
-        autoCleanUp: true
+        autoCleanUp: true,
+        strictQueryParams: true
     })
     .setOption(&#39;useHash&#39;, false)
     .setOption(&#39;hashPrefix&#39;, &#39;&#39;);
@@ -126,6 +127,9 @@ path.</p>
 <p>When you register a component with the router (using <code>.registerComponent(routeName, component)</code>) and if <code>autoCleanUp</code> is set to true, the router will automatically deregister that
 component if <code>routeName</code> is no longer active. It saves you having to call <code>.deregisterComponent</code>.</p>
 <p>The same logic is applied with node listeners (and not route or global listeners) in router5 listeners plugin.</p>
+<h2 id="strict-query-parameters">Strict query parameters</h2>
+<p>Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.</p>
+<p>If you want the router to still match routes if extra query parameters are present, set <code>strictQueryParams</code> to <code>false</code>.</p>
 
     </main>
 

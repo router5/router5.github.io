@@ -10,7 +10,8 @@ var router = new Router5([], {
         defaultParams: {},
         base: '',
         trailingSlash: false,
-        autoCleanUp: true
+        autoCleanUp: true,
+        strictQueryParams: true
     })
     .setOption('useHash', false)
     .setOption('hashPrefix', '');
@@ -48,3 +49,9 @@ When you register a component with the router (using `.registerComponent(routeNa
 component if `routeName` is no longer active. It saves you having to call `.deregisterComponent`.
 
 The same logic is applied with node listeners (and not route or global listeners) in router5 listeners plugin.
+
+## Strict query parameters
+
+Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.
+
+If you want the router to still match routes if extra query parameters are present, set `strictQueryParams` to `false`.
