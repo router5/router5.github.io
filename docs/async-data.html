@@ -143,8 +143,8 @@ const dataMiddleware = (routes) =&gt; (toState) =&gt; {
     const { toActivate } = transitionPath(toState, fromState);
     const onActivateHandlers =
         toActivate
-            .map(segment =&gt; routes.find(r =&gt; r.name === segment.name))
-            .filter(() =&gt; segment.onActivate !== undefined)
+            .map(segment =&gt; routes.find(r =&gt; r.name === segment))
+            .filter(segment =&gt; segment.onActivate !== undefined)
             .map(segment =&gt; segment.onActivate);
 
     return Promise
