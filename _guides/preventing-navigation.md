@@ -8,10 +8,8 @@
 Like Angular 2 and Aurelia routers, _router5_ will ask active components which would be
 deactivated by a route change if they can be deactivated.
 
-_router5_ exposes two methods: `registerComponent(name)` and `deregisterComponent(name)` for registering
-active components. If a registered component has a `canDeactivate(toState, fromState)` method, it will
-be invoked when trying to transition to a new route. Only one component per route segment can be registered
-at a time.
+You can register a `canDeactivate(toRoute, fromRoute[, done])` function per node to allow or prevent access
+to a specific route and its descendents. _router5_ exposes a `.canDeactivate(segment, function)` method for registering them. It will. be invoked when trying to transition to a new route. Alternatively, instead of passing a function, you can pass a boolean.
 
 `canDeactivate` methods are invoked from bottom to top. If a User is navigating from route `A.1.a` to route `B`,
 _router5_ will query registered components for segment `A.1.a`, then `A.1`, then `A`.
@@ -21,43 +19,20 @@ return a thenable (`promise`) or can invoke a `done` callback. A resolved promis
 to returning true, and a rejected promise will prevent a segment deactivation.
 
 > __Note:__ if a canActivate or canDeactivate function doesn't return a boolean, a promise or doesn't call back,
-  the transition will not proceed
+  the transition will not proceed.
 
 _router5_ doesn't create any promise and therefore if you do not wish to use promises, you are not forced
 to use a polyfill or promise implementation in your app.
 
-```javascript
-let MyComponent = {
-    canDeactivate(toRoute, fromRoute) {
-        return new Promise((resolve, reject) => {
-            // If can deactivate
-            resolve();
-            // Or if cannot deactivate
-            reject();
-        })
-    }
-}
-```
+> When option `autoCleanUp` is set to true, canDeactivate methods are removed when their associated segment is no longer active.
 
-A callback takes two arguments: an error and a result. To allow or prevent a segment
-deactivation, simply invoke with the first argument (error) to a falsy or truthy value.
-
-```javascript
-let MyComponent = {
-    canDeactivate(toRoute, fromRoute, done) {
-        // If can deactivate
-        done(null, true);
-        // Or if cannot deactivate
-        done(true, null);
-    }
-}
-```
-
-A shortcut method is available and can be used if `options.autoCleanUp` is set to true.
+One way to use `canDeactivate` is to update it with the state of your application.
 
 ```
-const isDirty = true;
-router.canDeactivate('routeName', !isDirty);
+const onChange = () => {
+    const isDirty = isFormDirty();
+    router.canDeactivate('routeName', !isDirty);
+};
 ```
 
 ## Can I activate?
@@ -68,8 +43,6 @@ to a specific route and its descendents.
 `canActivate` functions are called from top to bottom on newly activated segments. They behave the same
 than `canDeactivate` methods: you can return a boolean value, return a promise or invoke a done callback.
 
-There are two ways to register `canActivate` functions: using `addNode` or `canActivate` methods:
-
 ```javascript
 const isAdmin = true
 
@@ -77,11 +50,7 @@ function canAccessAdmin(toRoute, fromRoute, done) {
     return isAdmin;
 }
 
-myRouter.addNode('admin', '/admin', canAccessAdmin)
-
-myRouter
-    .add({name: 'admin', path: '/admin'})
-    .canActivate('admin', canAccessAdmin)
+myRouter.add({ name: 'admin', path: '/admin', canActivate: canAccessAdmin });
 ```
 
 ## Additional arguments

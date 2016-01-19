@@ -57,10 +57,10 @@
         <nav>
             <strong>Router5</strong>
 
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link active">Getting started</a>
             <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -108,17 +108,24 @@ npm install router5
 <h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
 <p><strong>CommonJS</strong></p>
 <p>Files are available in <code>/dist/commonjs/</code>.</p>
-<pre><code class="lang-javascript javascript">var router5 = require(&#39;router5&#39;);
+<pre><code class="lang-javascript javascript">// ES2015+
+import Router5, { RouteNode, errCodes, transitionPath, loggerPlugin } from &#39;router5&#39;;
 
-// router5.Router5
-// router5.RouteNode
+// ES5
+var router5 = require(&#39;router5&#39;);
+
+var Router5 = router5.default;
+var RouteNode = router5.RouteNode;
+var errCodes = router5.transitionPath;
+var transitionPath = router5.transitionPath;
+var loggerPlugin = router5.loggerPlugin;
 </code></pre>
 <p><strong>Browser (globals)</strong></p>
 <p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/browser/</code>. All <em>router5</em> dependencies (<em>route-node</em> and <em>path-parser</em>)
-are packaged together, and <code>Router5</code> and <code>RouteNode</code> are made globally available.</p>
+are packaged together. A <code>router5</code> object is registered globablly. See above for what it contains.</p>
 <p><strong>AMD</strong></p>
 <p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/amd/</code>, it includes all router5 dependencies bundled
-together. <code>router5</code> returns an object containing <code>Router5</code> and <code>RouteNode</code>.</p>
+together. <code>router5</code> returns an object, same as CommonJS.</p>
 <p><strong>UMD</strong></p>
 <p>UMD files are available in <code>/dist/umd</code>.</p>
 <h2 id="plugins">Plugins</h2>
@@ -132,26 +139,16 @@ bower install router5-listeners
 # History plugin
 npm install router5-history
 bower install router5-history
+
+# Persistent params plugin
+npm install router5-persistent-params
+bower install router5-persistent-params
 </code></pre>
+<p><a href="https://github.com/router5/router5-history">router5-history</a> global bundle adds <code>router5HistoryPlugin</code> to the global scope. The AMD
+bundle is named <code>router5HistoryPlugin</code>.</p>
 <p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
 bundle is named <code>router5ListenersPlugin</code>.</p>
-<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
-bundle is named <code>router5ListenersPlugin</code>.</p>
-<!-- __ES6__
-
-_router5_ and its dependencies are written in ES6 and transpiled to ES5. If you wish to include ES6 sources directly
-in your application, files are located in `/modules`. It is planned to release ES6 sources by default through __jspm__.
-
-For now, ES6 sources can be accessed using `npm`.
-
-```javascript
-import {Router5, RouteNode} from 'router5/dist/es6'
-```
-
-__Univeral Module Loader__
-
-The UMD format (accessible in `/dist/umd`) covers AMD, CommonJS and Globals.
- -->
+<p><a href="https://github.com/router5/router5-persistent-params">router5-persistent-params</a> global bundle adds <code>router5PersistentParamsPlugin</code> to the global scope. The AMD bundle is named <code>router5PersistentParamsPlugin</code>.</p>
 
     </main>
 

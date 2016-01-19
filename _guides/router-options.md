@@ -45,10 +45,8 @@ By default, the router is in "strict match" mode. If you want trailing slashes t
 
 ## Automatic clean up
 
-When you register a component with the router (using `.registerComponent(routeName, component)`) and if `autoCleanUp` is set to true, the router will automatically deregister that
-component if `routeName` is no longer active. It saves you having to call `.deregisterComponent`.
+If `autoCleanUp` is set to true, the router will automatically clear `canDeactivate` functions / booleans when their associated segment becomes unactive.
 
-The same logic is applied with node listeners (and not route or global listeners) in router5 listeners plugin.
 
 ## Strict query parameters
 

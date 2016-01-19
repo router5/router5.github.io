@@ -3,10 +3,15 @@
 > A list of repositories and links related to router5. If you want to add an item to the list, raise an issue [https://github.com/router5/router5.github.io/issues](https://github.com/router5/router5.github.io/issues)
 
 
-## Plugins, middleware, components, etc...
+## Plugins
 
 - [router5-listeners](https://github.com/router5/router5-listeners)
 - [router5-history](https://github.com/router5/router5-history)
+- [router5-persistent-params](https://github.com/router5/router5-persistent-params)
+
+
+## Middleware, bindings, components, etc...
+
 - [react-router5](https://github.com/router5/react-router5) integration with react
 - [redux-router5](https://github.com/router5/redux-router5) integration with redux
 - [deku-router5](https://github.com/router5/deku-router5) integration with deku

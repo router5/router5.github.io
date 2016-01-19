@@ -23,21 +23,28 @@ __CommonJS__
 Files are available in `/dist/commonjs/`.
 
 ```javascript
+// ES2015+
+import Router5, { RouteNode, errCodes, transitionPath, loggerPlugin } from 'router5';
+
+// ES5
 var router5 = require('router5');
 
-// router5.Router5
-// router5.RouteNode
+var Router5 = router5.default;
+var RouteNode = router5.RouteNode;
+var errCodes = router5.transitionPath;
+var transitionPath = router5.transitionPath;
+var loggerPlugin = router5.loggerPlugin;
 ```
 
 __Browser (globals)__
 
 `router5.js` and `router5.min.js` are available in `/dist/browser/`. All _router5_ dependencies (_route-node_ and _path-parser_)
-are packaged together, and `Router5` and `RouteNode` are made globally available.
+are packaged together. A `router5` object is registered globablly. See above for what it contains.
 
 __AMD__
 
 `router5.js` and `router5.min.js` are available in `/dist/amd/`, it includes all router5 dependencies bundled
-together. `router5` returns an object containing `Router5` and `RouteNode`.
+together. `router5` returns an object, same as CommonJS.
 
 __UMD__
 
@@ -56,26 +63,16 @@ bower install router5-listeners
 # History plugin
 npm install router5-history
 bower install router5-history
+
+# Persistent params plugin
+npm install router5-persistent-params
+bower install router5-persistent-params
 ```
+
+[router5-history](https://github.com/router5/router5-history) global bundle adds `router5HistoryPlugin` to the global scope. The AMD
+bundle is named `router5HistoryPlugin`.
 
 [router5-listeners](https://github.com/router5/router5-listeners) global bundle adds `router5ListenersPlugin` to the global scope. The AMD
 bundle is named `router5ListenersPlugin`.
 
-[router5-listeners](https://github.com/router5/router5-listeners) global bundle adds `router5ListenersPlugin` to the global scope. The AMD
-bundle is named `router5ListenersPlugin`.
-
-<!-- __ES6__
-
-_router5_ and its dependencies are written in ES6 and transpiled to ES5. If you wish to include ES6 sources directly
-in your application, files are located in `/modules`. It is planned to release ES6 sources by default through __jspm__.
-
-For now, ES6 sources can be accessed using `npm`.
-
-```javascript
-import {Router5, RouteNode} from 'router5/dist/es6'
-```
-
-__Univeral Module Loader__
-
-The UMD format (accessible in `/dist/umd`) covers AMD, CommonJS and Globals.
- -->
+[router5-persistent-params](https://github.com/router5/router5-persistent-params) global bundle adds `router5PersistentParamsPlugin` to the global scope. The AMD bundle is named `router5PersistentParamsPlugin`.

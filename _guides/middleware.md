@@ -5,6 +5,8 @@ route segments can be deactivated and future active route segments can be activa
 
 ## Registering middleware functions
 
+A middleware is a function taking a router instance and returning a function which will be called on each transition (unless a transition failed at the _canActivate_ or _canDeactivate_ state).
+
 A middleware function can return a boolean for synchronous results, a promise or call
 a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.
 
@@ -12,12 +14,12 @@ This type of function is ideal to remove data loading logic from components, and
 for applications aiming at having a centralised state object.
 
 ```javascript
-const mware1 = function (toState, fromState, done) {
+const mware1 = router => (toState, fromState, done) => {
     // Let's fetch data and call done
     done();
 };
 
-const mware2 = function (toState, fromState, done) {
+const mware2 = router => (toState, fromState, done) {
     // Let's fetch data and call done
     done();
 };
@@ -35,10 +37,10 @@ When passing a new object, the router will ignore it if initial state properties
 ```javascript
 import { getData } from './dataApi';
 
-const dataLoader = function (toState, fromState) {
-    // toState object will be extended with data values
-    return getData().then(data => ({ ...toState, ...data }));
-};
+const dataLoader = router =>
+    (toState, fromState) =>
+        // toState object will be extended with data values
+        getData().then(data => ({ ...toState, ...data }));
 ```
 
 ## Custom errors
@@ -46,9 +48,3 @@ const dataLoader = function (toState, fromState) {
 When failing a transition in a middleware function, custom errors can be returned. Custom errors can be a string or an object:
 - when a string, the router will return ```{ code: 'TRANSITION_ERR', error: '<your string>'}```
 - when an object, the returned error object will be extended with your error object ```{ code: 'TRANSITION_ERR', ...errorObject }```
-
-## Context
-
-Context is binded to middleware functions, containing
-- `cancel`: a cancellation function
-- `router`: the router instance

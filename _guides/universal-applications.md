@@ -16,7 +16,7 @@ This is essentially done via two steps:
 You can use the same code for configuring your router on both client and server sides.
 
 ```js
-const Router5 = require( 'router5' ).Router5;
+const Router5 = require( 'router5' ).default;
 const listenersPlugin = require( 'router5-listeners' );
 const historyPlugin = require( 'router5-history' );
 
@@ -130,4 +130,5 @@ app.listen( 8080, function logServerStart() {
 From here forth, you can continue to use Router5 as if it was a regular Single-Page Application.
 
 ### Important to Remember - Pass in an Object
+
 It is important to remember that `Router5.start()` **does NOT** parse your starting state for you. If you pass in a `String` instead of an `Object` _Router5_ will attempt to navigate to the path of that string.

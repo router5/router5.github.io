@@ -76,9 +76,9 @@ function renderApi(done) {
 
 async.parallel([
     renderPage('index.html', {home: true, router5Version: router5Version, pageTitle: data.pageTitle.replace(' docs ', ' ')}),
-    renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
     renderDoc('_docs', 'get-started.md', {getStarted: true}),
     renderDoc('_docs', 'migration.md', {migration: true}),
+    renderDoc('_docs', 'migration-2.md', {migration2: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
     renderDoc('_guides', 'router-options.md', {options: true, docs: true}),
     renderDoc('_guides', 'navigation.md', {navigation: true, docs: true}),

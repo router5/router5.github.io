@@ -1,79 +1,65 @@
 # Configuring routes
 
-> There are a few ways to add routes to your router. You can specify your routes when creating a router instance and / or use chainable `add` and `addNode` functions to add routes.
+> There are a few ways to add routes to your router. You can specify your routes when creating a router instance and / or use chainable `add` and `addNode` methods to add routes.
 
+## Defining your routes as POJOs
 
-## With addNode
+You can define your routes as a flat array or nested array of routes
+- When using a flat array of routes, nested route names need to have their full name specified.
+- For each route, as well as `path` and `name`, you can specify a `canActivate` method which will be automatically registered.
 
-You can add routes node by node, specifying a node name and its segment path. With the following example, `users.view` full path will be `/users/view/:id`.
+__Flat array of routes__
 
 ```javascript
-var router = new Router5()
-    .addNode('home',       '/home')
-    .addNode('users',      '/users')
-    .addNode('users.view', '/view/:id')
-    .addNode('users.list', '/list');
+const routes = [
+    { name: 'users',      path: '/users'},
+    { name: 'users.view', path: '/list'},
+    { name: 'users.list', path: '/view'}
+];
 ```
 
-
-## Alternative ways
-
-When using Router5 constructor `new Router5(routes, opts)`, __routes__ can be:
-
-- An array of RouteNode objects and plain objects.
-- A RouteNode Object or plain object (not recommended)
-
-If passing a RouteNode object (or a plain object), that node will become your router's root node. All routes added later will
-then extend its path. This is __not recommended__ mostly because it is untested. Instead, passing to Router5 an array (of plain
-objects or RouteNode objects) will automatically create a rootNode with an empty name and empty path (`new RouteNode('', '')`).
-
-When configuring routes, RouteNode and POJOs can be mixed. The two compulsory information needed to create a route are a name and a path.
-When nesting routes, they inherit from their parent. For example, a route named `b` with path `/b` added as a children of route named
-'a' (path `/a`) will be named `a.b` (its path will be `/a/b`).
-
-__Using RouteNode__
+__Nested arrays of routes__
 
 
 ```javascript
-var myRouter = new Router5([
-    new RouteNode('home', '/home'),
-
-    new RouteNode('users', '/users', [
-        new RouteNode('view', '/view/:id'),
-        new RouteNode('list', 'list'),
-    ]),
-]);
-```
-
-__Using POJOs__
-
-```javascript
-var myRouter = new Router5([
-    {name: 'home', path: '/home'},
-
-    {name: 'users', path: '/users', children: [
-        {name: 'view', path: '/view/:id'},
-        {name: 'list', path: '/list'},
+const routes = [
+    { name: 'users', path: '/users', children: [
+        { name: 'view', path: '/list'},
+        { name: 'list', path: '/view'}
     ]}
-]);
+];
+```
+
+## Adding routes to your router
+
+You can add all your routes at once using Router5 constructor or `router.add`.
+
+__new Router5(routes, options)__
+
+```javascript
+const router = new Router5(routes, options);
 ```
 
 __add(routes)__
 
-Like in Router5 constructor, routes can be a single node (RouteNode or plain object), or a list of nodes.
+`.add()` accepts single nodes, flat or nested arrays.
 
 ```javascript
-myRouter.add(new RouteNode('about', '/about'));
-// Or
-myRouter.add({name: 'about', path: '/about'});
-// Or
-myRouter.add([
-    new RouteNode('about',   '/about'),
-    new RouteNode('contact', '/contact'),
-]);
+myRouter.add({ name: 'about', path: '/about' });
 // Or
 myRouter.add([
     {name: 'about',   path: '/about'},
     {name: 'contact', path: '/contact'},
 ]);
+```
+
+__addNode(name, path[, canActivate])__
+
+You can add routes node by node, specifying a node name and its segment path.
+
+```javascript
+var router = new Router5()
+    .addNode('users',      '/users')
+    .addNode('users.view', '/view/:id')
+    .addNode('users.list', '/list');
 ```
