@@ -78,12 +78,11 @@ module.exports = function (done) {
             });
 
         var classBlock   = blocks[0];
-        var methodBlocks = blocks.slice(1, -3);
-        var staticBlocks = blocks.slice(-2);
+        var methodBlocks = blocks.slice(1);
         // .sort(function (a, b) {
         //     return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
         // });
 
-        done(null, {'class': classBlock, methods: methodBlocks, staticMethods: staticBlocks});
+        done(null, {'class': classBlock, methods: methodBlocks});
     });
 };
