@@ -139,7 +139,7 @@ const routes = [
 <p>Then we create a middleware function which will invoke data for the activated segments on a route change. In this example, data are loaded in parallel using <code>Promise.all</code>. You can proceed differently by loading data in series, or by implementing dependencies between your <code>onActivate</code> handlers.</p>
 <pre><code class="lang-javascript javascript">import transitionPath from &#39;router5.transition-path&#39;;
 
-const dataMiddleware = (routes) =&gt; (toState) =&gt; {
+const dataMiddleware = routes =&gt; router =&gt; toState =&gt; {
     const { toActivate } = transitionPath(toState, fromState);
     const onActivateHandlers =
         toActivate
@@ -201,11 +201,11 @@ import transitionPath from &#39;router5.transition-path&#39;;
 
 const onRouteActivateMiddleware = routes =&gt; ({ dispatch }) =&gt; next =&gt; action =&gt; {
     if (action.type === actionTypes.TRANSITION_SUCCESS) {
-        const { toActivate } = transitionPath(action.route, action.previousRoute);
+        const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
         toActivate.forEach(segment =&gt; {
             const routeSegment = routes.find(r =&gt; r.name === segment);
             if (routeSegment &amp;&amp; routeSegment.onActivate) {
-                routeSegment.onActivate(dispatch)(action.route.params);
+                routeSegment.onActivate(dispatch)(action.payload.route.params);
             }
         });
     }

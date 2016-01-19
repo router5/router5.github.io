@@ -50,7 +50,7 @@ Then we create a middleware function which will invoke data for the activated se
 ```javascript
 import transitionPath from 'router5.transition-path';
 
-const dataMiddleware = (routes) => (toState) => {
+const dataMiddleware = routes => router => toState => {
     const { toActivate } = transitionPath(toState, fromState);
     const onActivateHandlers =
         toActivate
@@ -123,11 +123,11 @@ import transitionPath from 'router5.transition-path';
 
 const onRouteActivateMiddleware = routes => ({ dispatch }) => next => action => {
     if (action.type === actionTypes.TRANSITION_SUCCESS) {
-        const { toActivate } = transitionPath(action.route, action.previousRoute);
+        const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
         toActivate.forEach(segment => {
             const routeSegment = routes.find(r => r.name === segment);
             if (routeSegment && routeSegment.onActivate) {
-                routeSegment.onActivate(dispatch)(action.route.params);
+                routeSegment.onActivate(dispatch)(action.payload.route.params);
             }
         });
     }
