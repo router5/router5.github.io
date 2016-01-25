@@ -31,7 +31,7 @@ var router5 = require('router5');
 
 var Router5 = router5.default;
 var RouteNode = router5.RouteNode;
-var errCodes = router5.transitionPath;
+var errCodes = router5.errCodes;
 var transitionPath = router5.transitionPath;
 var loggerPlugin = router5.loggerPlugin;
 ```
@@ -39,7 +39,7 @@ var loggerPlugin = router5.loggerPlugin;
 __Browser (globals)__
 
 `router5.js` and `router5.min.js` are available in `/dist/browser/`. All _router5_ dependencies (_route-node_ and _path-parser_)
-are packaged together. A `router5` object is registered globablly. See above for what it contains.
+are packaged together. A `router5` object is registered globally. See above for what it contains.
 
 __AMD__
 

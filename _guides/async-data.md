@@ -10,7 +10,7 @@ The way data loading can work with routing depends on what you might call your "
 There are many ways to handle data coming from a router and from an API:
 - your components can receive them both at the same time
 - your components can receive a route update first and then a data update later
-- your components can reveice a route update first and decide to load data
+- your components can receive a route update first and decide to load data
 - etc...
 
 Router5 doesn't provide an opinionated way of handling async data, instead this article demonstrates the tools router5 can provide to help you loading data. You shouldn't view those examples as _the_ way to load data, their purpose is purely illustrative and they don't cover every case (error handling, server-side data loading, etc...). Instead you should aim to do things and organise your code the way you think is best for you and your application.
@@ -20,7 +20,7 @@ Router5 doesn't provide an opinionated way of handling async data, instead this 
 > You can use your router state objects as a container for route-specific data.
 
 You can use a middleware if you want your router to wait for data updates and/or prevent a route transition to happen if data loading fails.
-When doing so, you can use `toState` state object as a container for your route-specific data: [router5-listeners](https://github.com/router5/router5-listeners) will pass it to your view (with the data you attached to it). You shouldn't mutate `toState` if you don't explicitely ask the router to wait by either calling a `done` callback or by returning a promise.
+When doing so, you can use `toState` state object as a container for your route-specific data: [router5-listeners](https://github.com/router5/router5-listeners) will pass it to your view (with the data you attached to it). You shouldn't mutate `toState` if you don't explicitly ask the router to wait by either calling a `done` callback or by returning a promise.
 
 First, we need to define what data need to be loaded for which route segment:
 

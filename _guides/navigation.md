@@ -23,7 +23,7 @@ And will:
 - Start listening to _popstate_ events (triggered by back and forward buttons, and a manual change in the URL bar)
 - Enable navigation
 
-Providing a `startPathOrState` is designed to be used for universal Javascript applications: see [universal applications](/docs/universal-applications.html).
+Providing a `startPathOrState` is designed to be used for universal JavaScript applications: see [universal applications](/docs/universal-applications.html).
 
 
 ## Defining a default route
@@ -71,7 +71,7 @@ Set `replace` to true for replacing the current state in history when navigating
 behaviour is to add an entry in history.
 
 ```javascript
-myRouter.navigate('section', {section: 'concact'}, {replace: true});
+myRouter.navigate('section', {section: 'contact'}, {replace: true});
 ```
 
 ## Knowing when a transition has been successful or not
