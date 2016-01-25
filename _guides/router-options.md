@@ -45,7 +45,7 @@ By default, the router is in "strict match" mode. If you want trailing slashes t
 
 ## Automatic clean up
 
-If `autoCleanUp` is set to true, the router will automatically clear `canDeactivate` functions / booleans when their associated segment becomes unactive.
+If `autoCleanUp` is set to true, the router will automatically clear `canDeactivate` functions / booleans when their associated segment becomes inactive.
 
 
 ## Strict query parameters

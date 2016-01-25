@@ -1,6 +1,6 @@
 # Router5 with Deku
 
-> To use router5 with deku, you can use `deku-router5` which includes a few components and higher-order components. Note that autommatic registration of `canDeactivate` functions is not supported for now.
+> To use router5 with deku, you can use `deku-router5` which includes a few components and higher-order components. Note that automatic registration of `canDeactivate` functions is not supported for now.
 
 ### [deku-router5 README](https://github.com/router5/deku-router5)
 

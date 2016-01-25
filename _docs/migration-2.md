@@ -42,7 +42,7 @@ __ES5__
 ```javascript
 var router5 = require('router5');
 var Router5 = router5.default;
-var loogerPlugin = router5.loggerPlugin;
+var loggerPlugin = router5.loggerPlugin;
 
 var historyPlugin = require('router5-history');
 var listenersPlugin = require('router5-listeners');
