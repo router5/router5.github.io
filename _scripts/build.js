@@ -92,7 +92,7 @@ async.parallel([
     renderDoc('_guides', 'universal-applications.md', {universal: true, docs: true}),
     renderDoc('_docs', 'understanding-router5.md', {understanding: true}),
     renderDoc('_guides', 'async-data.md', {asyncData: true, docs: true}),
-    renderApi,
+    // renderApi,
     renderDoc('_docs', 'ecosystem.md', {ecosystem: true, examples: true}),
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
         '/assets/router5-react-example.js'
@@ -105,6 +105,9 @@ async.parallel([
     ]}),
     renderDoc('_docs', 'with-deku-redux.md', {dekuRedux: true, examples: true, scripts: [
         '/assets/router5-deku-redux-example.js'
+    ]}),
+    renderDoc('_docs', 'with-cycle.md', {cycle: true, examples: true, scripts: [
+        '/assets/router5-cycle-example.js'
     ]})
 ], function (err, res) {
     if (err) console.log(err);

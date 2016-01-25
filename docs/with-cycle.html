@@ -38,7 +38,7 @@
 
             <a href="/docs/understanding-router5.html" class="">Key concepts</a>
 
-            <a href="/docs/get-started.html" class="active">Get started</a>
+            <a href="/docs/get-started.html" class="">Get started</a>
 
             <a href="/docs/configuring-routes.html" class="">Guides</a>
 
@@ -46,7 +46,7 @@
 
             <a href="/docs/api-reference.html" class="">API</a>
 
-            <a href="docs/with-react.html" class="">Examples</a>
+            <a href="docs/with-react.html" class="active">Examples</a>
 
             <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
         </nav>
@@ -58,7 +58,7 @@
             <strong>Router5</strong>
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
-            <a href="/docs/get-started.html" class="link active">Getting started</a>
+            <a href="/docs/get-started.html" class="link">Getting started</a>
             <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
             <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
@@ -88,68 +88,18 @@
             <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
             <a href="/docs/with-deku-redux.html" class="link">With Deku and Redux</a>
-            <a href="/docs/with-cycle.html" class="link">With Cycle</a>
+            <a href="/docs/with-cycle.html" class="link active">With Cycle</a>
         </nav>
     </aside>
 
     <main>
-        <h1 id="get-started">Get started</h1>
+        <h1 id="router5-with-cycle">Router5 with Cycle</h1>
 <blockquote>
-<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>AMD</strong>, <strong>CommonJS</strong>, <strong>globals</strong> and <strong>UMD</strong>.</p>
+<p>Work in progress.</p>
 </blockquote>
-<p>It can be installed using <strong>npm</strong> or <strong>bower</strong>. Alternatively, you can download a specific version
-from <a href="https://github.com/router5/router5/releases">github</a>. Whether you install <em>router5</em> from npm, bower or github,
-you will have access to the same files.</p>
-<h2 id="installation">Installation</h2>
-<pre><code class="lang-sh"># bower
-bower install router5
-# npm
-npm install router5
-</code></pre>
-<h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
-<p><strong>CommonJS</strong></p>
-<p>Files are available in <code>/dist/commonjs/</code>.</p>
-<pre><code class="lang-javascript javascript">// ES2015+
-import Router5, { RouteNode, errCodes, transitionPath, loggerPlugin } from &#39;router5&#39;;
-
-// ES5
-var router5 = require(&#39;router5&#39;);
-
-var Router5 = router5.default;
-var RouteNode = router5.RouteNode;
-var errCodes = router5.transitionPath;
-var transitionPath = router5.transitionPath;
-var loggerPlugin = router5.loggerPlugin;
-</code></pre>
-<p><strong>Browser (globals)</strong></p>
-<p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/browser/</code>. All <em>router5</em> dependencies (<em>route-node</em> and <em>path-parser</em>)
-are packaged together. A <code>router5</code> object is registered globablly. See above for what it contains.</p>
-<p><strong>AMD</strong></p>
-<p><code>router5.js</code> and <code>router5.min.js</code> are available in <code>/dist/amd/</code>, it includes all router5 dependencies bundled
-together. <code>router5</code> returns an object, same as CommonJS.</p>
-<p><strong>UMD</strong></p>
-<p>UMD files are available in <code>/dist/umd</code>.</p>
-<h2 id="plugins">Plugins</h2>
-<blockquote>
-<p><code>router5-listeners</code> and <code>router5-history</code> are both available through npm and bower too.</p>
-</blockquote>
-<pre><code class="lang-sh"># Listeners plugin
-npm install router5-listeners
-bower install router5-listeners
-
-# History plugin
-npm install router5-history
-bower install router5-history
-
-# Persistent params plugin
-npm install router5-persistent-params
-bower install router5-persistent-params
-</code></pre>
-<p><a href="https://github.com/router5/router5-history">router5-history</a> global bundle adds <code>router5HistoryPlugin</code> to the global scope. The AMD
-bundle is named <code>router5HistoryPlugin</code>.</p>
-<p><a href="https://github.com/router5/router5-listeners">router5-listeners</a> global bundle adds <code>router5ListenersPlugin</code> to the global scope. The AMD
-bundle is named <code>router5ListenersPlugin</code>.</p>
-<p><a href="https://github.com/router5/router5-persistent-params">router5-persistent-params</a> global bundle adds <code>router5PersistentParamsPlugin</code> to the global scope. The AMD bundle is named <code>router5PersistentParamsPlugin</code>.</p>
+<h2 id="example">Example</h2>
+<p>View the source <a href="https://github.com/router5/examples/tree/master/apps/cycle">on GitHub</a>.</p>
+<div id="app"></div>
 
     </main>
 
@@ -175,6 +125,7 @@ bundle is named <code>router5ListenersPlugin</code>.</p>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/assets/router5-cycle-example.js"></script>
     
 
 
