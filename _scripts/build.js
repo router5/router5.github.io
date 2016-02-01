@@ -29,6 +29,20 @@ function renderPage(page, customData) {
     };
 }
 
+function renderExample(name, customData) {
+    var pageData = {
+        styleSheets: [
+            '/styles/example-nested.css'
+        ]
+    };
+
+    return function (done) {
+        nunjucks.render(path.join(__dirname, '../_pages/example.html'), objectAssign({}, data, pageData, customData), function (err, res) {
+            fs.writeFile(path.join(__dirname, '..', name), res, done);
+        });
+    };
+}
+
 function renderDoc(dir, page, customData) {
     return function (done) {
         fs.readFile(path.join(__dirname, '..', dir, page), function (err, md) {
@@ -108,6 +122,9 @@ async.parallel([
     ]}),
     renderDoc('_docs', 'with-cycle.md', {cycle: true, examples: true, scripts: [
         '/assets/router5-cycle-example.js'
+    ]}),
+    renderExample('example-cycle.html', { scripts: [
+        '/assets/router5-cycle2-example.js'
     ]})
 ], function (err, res) {
     if (err) console.log(err);
