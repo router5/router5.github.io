@@ -61,6 +61,7 @@
             <a href="/docs/get-started.html" class="link">Getting started</a>
             <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
             <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
+            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -71,6 +72,7 @@
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
+            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
             <a href="/docs/middleware.html" class="link">Middleware functions</a>
             <a href="/docs/plugins.html" class="link active">Using plugins</a>
@@ -127,8 +129,10 @@ const router = new Router5()
 <li><a href="https://github.com/router5/router5/blob/master/modules/logger.js">Logger</a></li>
 </ul>
 <p>Router5 includes a logging plugin that you can use to help development</p>
-<pre><code class="lang-javascript javascript">const router = new Router()
-    .usePlugin(Router5.loggerPlugin());
+<pre><code class="lang-javascript javascript">import { loggerPlugin } from &#39;router5&#39;;
+
+const router = new Router()
+    .usePlugin(loggerPlugin());
 </code></pre>
 
     </main>

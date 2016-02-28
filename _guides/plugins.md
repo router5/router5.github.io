@@ -41,6 +41,8 @@ const router = new Router5()
 Router5 includes a logging plugin that you can use to help development
 
 ```javascript
+import { loggerPlugin } from 'router5';
+
 const router = new Router()
-    .usePlugin(Router5.loggerPlugin());
+    .usePlugin(loggerPlugin());
 ```
