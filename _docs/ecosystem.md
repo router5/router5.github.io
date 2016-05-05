@@ -23,6 +23,7 @@
 
 - [Examples](https://github.com/router5/examples)
 - [redux-examples](https://github.com/StevenIseki/redux-examples) _from @StevenIseki_, contains a router5 example
+- [router5-example](https://github.com/DavidStrada/router5-example) _from @DavidStrada_, an example using jspm and jQuery
 
 
 ## Boilerplate
