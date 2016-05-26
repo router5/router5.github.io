@@ -148,7 +148,7 @@
 <p>It also works very well with state containers like <a href="http://rackt.org/redux/index.html">redux</a>: your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don&#39;t need to use <a href="https://github.com/router5/router5-listeners">router5-listeners</a> plugin.</p>
 <ul>
 <li><a href="https://github.com/router5/react-router5">react-router5</a> and <a href="https://github.com/router5/deku-router5">deku-router5</a> both provide a <code>routeNode(nodeName)(BaseComponent)</code> higher-order component for re-rendering from a node down when the given node is the transition node.</li>
-<li><a href="https://github.com/router5/redux-router">redux-router5</a> provides a selector <code>routeNode(nodeName)</code> which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with <code>connect</code> from <a href="https://github.com/rackt/react-redux">react-redux</a> or <a href="https://github.com/troch/deku-redux">deku-redux</a>.</li>
+<li><a href="https://github.com/router5/redux-router5">redux-router5</a> provides a selector <code>routeNode(nodeName)</code> which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with <code>connect</code> from <a href="https://github.com/rackt/react-redux">react-redux</a> or <a href="https://github.com/troch/deku-redux">deku-redux</a>.</li>
 </ul>
 <p><img src="/img/router-redux.png" alt="With redux"></p>
 
