@@ -59,9 +59,10 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
             <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
+            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -71,13 +72,14 @@
             <a href="/docs/router-options.html" class="link">Router options</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
-            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
-            <a href="/docs/transition.html" class="link">Transition phase</a>
-            <a href="/docs/middleware.html" class="link">Middleware functions</a>
-            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
             <a href="/docs/async-data.html" class="link active">Loading async data</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
+            <a href="/docs/injectables.html" class="link">Injectables</a>
 
             <strong>Plugins</strong>
 
@@ -142,7 +144,7 @@ const routes = [
 <p>Then we create a middleware function which will invoke data for the activated segments on a route change. In this example, data are loaded in parallel using <code>Promise.all</code>. You can proceed differently by loading data in series, or by implementing dependencies between your <code>onActivate</code> handlers.</p>
 <pre><code class="lang-javascript javascript">import transitionPath from &#39;router5.transition-path&#39;;
 
-const dataMiddleware = routes =&gt; router =&gt; toState =&gt; {
+const dataMiddlewareFactory = routes =&gt; router =&gt; toState =&gt; {
     const { toActivate } = transitionPath(toState, fromState);
     const onActivateHandlers =
         toActivate
@@ -157,8 +159,6 @@ const dataMiddleware = routes =&gt; router =&gt; toState =&gt; {
             return { ...toState, data: routeData };
         });
 };
-
-export default dataMiddleware
 </code></pre>
 <p>And when configuring your router:</p>
 <pre><code class="lang-javascript javascript">import { routes } from &#39;./routes&#39;;
@@ -170,7 +170,7 @@ const router = new Router5();
 router.add(routes);
 
 /* data middleware */
-router.useMiddleware(dataMiddleware(routes));
+router.useMiddleware(dataMiddlewareFactory(routes));
 </code></pre>
 <p>In the case you don&#39;t want a route transition to wait for data to be loaded, you cannot use the router state object as a data container. Instead, you should load data from your components or use a state container like <a href="http://rackt.org/redux/index.html">redux</a>.</p>
 <h2 id="using-a-state-container-redux-">Using a state container (redux)</h2>
@@ -178,6 +178,7 @@ router.useMiddleware(dataMiddleware(routes));
 <p>Using a state container like redux gives you a lot more flexibility with your routing strategy.</p>
 </blockquote>
 <p>Using a state container like redux gives you a lot more flexibility with your routing strategy. Because all data ends up in the same bucket that your components can listen to, data loading doesn&#39;t need to happen within components or to be synced with route transitions. As a result, your view can represent with greater details the state of your application: for example your UI can be a lot more explicit about displaying loading feedback.</p>
+<p>The following example uses a redux store with a <code>redux-thunk</code> middleware.</p>
 <pre><code class="lang-javascript javascript">import { get } from &#39;xr&#39;;
 import { loadUsers, loadUser } from &#39;./actionCreators&#39;;
 
@@ -189,33 +190,39 @@ const routes = [
     {
         name: &#39;users&#39;,
         path: &#39;/users&#39;,
-        onActivate: (dispatch) =&gt; (params) =&gt; get(&#39;/users&#39;).then(data =&gt; dispatch(loadUsers(data.users)))
+        onActivate: (params) =&gt; (dispatch) =&gt;
+            get(&#39;/users&#39;).then(data =&gt; dispatch(loadUsers(data.users)))
     },
     {
         name: &#39;users.user&#39;,
         path: &#39;/:id&#39;,
-        onActivate: (dispatch) =&gt; (params) =&gt; get(`/users/${params.id}`).then(data =&gt; dispatch(loadUser(data.user)))
+        onActivate: (params) =&gt; (dispatch) =&gt;
+            get(`/users/${params.id}`).then(data =&gt; dispatch(loadUser(data.user)))
     }
 ]
 </code></pre>
-<p>Then we create a redux middleware for data which will load data on a transition success.</p>
+<p>You need to create your store and router, and pass your store to your router instance (with <code>.inject()</code>):</p>
+<pre><code class="lang-javascript javascript">router.inject(store);
+</code></pre>
+<p>Then we create a router5 middleware for data which will load data on a transition success.</p>
 <pre><code class="lang-javascript javascript">import { actionTypes } from &#39;redux-router5&#39;;
 import transitionPath from &#39;router5.transition-path&#39;;
 
-const onRouteActivateMiddleware = routes =&gt; ({ dispatch }) =&gt; next =&gt; action =&gt; {
-    if (action.type === actionTypes.TRANSITION_SUCCESS) {
-        const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
-        toActivate.forEach(segment =&gt; {
-            const routeSegment = routes.find(r =&gt; r.name === segment);
-            if (routeSegment &amp;&amp; routeSegment.onActivate) {
-                routeSegment.onActivate(dispatch)(action.payload.route.params);
-            }
-        });
-    }
-    next(action);
+const onRouteActivateMiddleware = routes =&gt; (router, { dispatch }) =&gt; (toState) =&gt; {
+    const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
+
+    toActivate.forEach(segment =&gt; {
+        const routeSegment = routes.find(r =&gt; r.name === segment);
+        if (routeSegment &amp;&amp; routeSegment.onActivate) {
+            dispatch(routeSegment.onActivate(action.payload.route.params));
+        }
+    });
 };
 </code></pre>
 <p>Finally, just create your store and include <code>onRouteActivateMiddleware(routes)</code> middleware.</p>
+<h2 id="async-data-loading-and-universal-applications">Async data loading and universal applications</h2>
+<p>The two examples above show two different techniques of loading data with a router5 middleware. One is blocking, one is non-blocking. But what about universal applications?</p>
+<p>The answer is very simple: block on the server-side, and choose to block or not on the client-side! For the redux example, we need to return a promise of all dispatched promises and we are done.</p>
 
     </main>
 

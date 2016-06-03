@@ -59,9 +59,10 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
             <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
+            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -71,13 +72,14 @@
             <a href="/docs/router-options.html" class="link">Router options</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
-            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
-            <a href="/docs/transition.html" class="link">Transition phase</a>
-            <a href="/docs/middleware.html" class="link">Middleware functions</a>
-            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link active">Universal applications</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
             <a href="/docs/async-data.html" class="link">Loading async data</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
+            <a href="/docs/injectables.html" class="link">Injectables</a>
 
             <strong>Plugins</strong>
 
@@ -107,78 +109,64 @@
 </ol>
 <h4 id="below-is-a-more-in-depth-tutorial">Below is a more in-depth tutorial</h4>
 <h2 id="create-your-router-client-server-">Create your router (client &amp; server)</h2>
-<p>You can use the same code for configuring your router on both client and server sides.</p>
+<p>You can use the same code for configuring your router on both client and server sides. The history plugin, for example, can be safely used on Node.js and in browsers.</p>
 <pre><code class="lang-js">const Router5 = require( &#39;router5&#39; ).default;
 const listenersPlugin = require( &#39;router5-listeners&#39; );
 const historyPlugin = require( &#39;router5-history&#39; );
 
-const router = new Router5()
-    .setOption( &#39;useHash&#39;, false )
-    .setOption( &#39;trailingSlash&#39;, true )
-    .setOption( &#39;defaultRoute&#39;, &#39;404&#39; )
-    .usePlugin( historyPlugin() )
-    .usePlugin( listenersPlugin() )
-    .addNode( &#39;home&#39;, &#39;/home&#39; )
-    .addNode( &#39;about&#39;, &#39;/about&#39; )
-    .addNode( &#39;contact&#39;, &#39;/contact&#39; )
-    .addNode( &#39;404&#39;, &#39;/404&#39; );
+function createRouter() {
+    return new Router5([
+            { name: &#39;home&#39;, path: &#39;/home&#39; },
+            { name: &#39;about&#39;, path: &#39;/about&#39; },
+            { name: &#39;contact&#39;, path: &#39;/contact&#39; },
+            { name: &#39;404&#39;, path: &#39;/404&#39; }
+        ], {
+            useHash: false,
+            trailingSlash: true,
+            defaultRoute: &#39;404&#39;
+        })
+        .usePlugin(historyPlugin())
+        .usePlugin(listenersPlugin())
+}
+
+export default createRouter
 </code></pre>
 <h2 id="server-side-routing">Server-side Routing</h2>
 <blockquote>
 <p>This example is an <a href="http://expressjs.com/">Express</a> with <a href="http://paularmstrong.github.io/swig/">Swig</a> application. Make changes were needed to suit your preferred frameworks.</p>
 </blockquote>
+<p>For universal applications, you need to:</p>
+<ul>
+<li>Create a new router instance for each request, using the request URL</li>
+<li>Send the state to the client and start your router with this initial state</li>
+</ul>
 <p><strong><code>server.js</code></strong></p>
-<pre><code class="lang-javascript javascript">&#39;use strict&#39;;
+<pre><code class="lang-javascript javascript">import express from &#39;express&#39;;
+import createRouter from &#39;router5&#39;;
+import swig from &#39;swig&#39;;
 
-/**
- * Add our Imports
- */
-const express = require( &#39;express&#39; );
-const swig = require( &#39;swig&#39; );
-const router = require( &#39;./js/router.js&#39; );
-
-/**
- * Init an app
- */
 const app = express();
 
-/**
- * Set Swig as the HTML engine
- */
+// Swig is used for templating in this example
+// Use what you are confortable with
 app.engine( &#39;html&#39;, swig.renderFile );
-
-/**
- * Use Swig on our HTML
- */
 app.set( &#39;view engine&#39;, &#39;html&#39; );
 app.set( &#39;views&#39;, &#39;./views&#39; );
 
-/**
- * Listen to any and all URLs
- */
-app.get( &#39;*&#39;, function loadSite( req, res ) {
+app.get( &#39;*&#39;, ( req, res ) =&gt; {
+    // Create a new router for each request
+    const router = createRouter();
 
-    // Start Router5 and send it the original URL from Express
     router.start( req.originalUrl, function done( error, state ) {
         if ( error ) {
             res.status( 500 ).send( error );
         } else {
-            // Send our JSON-encoded state to Swig
-            res.render( &#39;base&#39;, {
-                initialState: JSON.stringify( state )
-            } );
+            res.send(/* Use your router state, send some HTML! */ );
         }
-
-        // Stop the router when we&#39;re done
-        router.stop();
-
     });
 
 } );
 
-/**
- * Start the App
- */
 app.listen( 8080, function logServerStart() {
     console.log( &#39;Server is listening on port 8080...&#39; );
 } );
@@ -186,7 +174,6 @@ app.listen( 8080, function logServerStart() {
 <p><strong><code>base.html</code></strong></p>
 <pre><code class="lang-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en-US&quot;&gt;
-
     &lt;head&gt;
         &lt;title&gt;Example Server-side Routing&lt;/title&gt;
     &lt;/head&gt;

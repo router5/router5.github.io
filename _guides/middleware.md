@@ -5,21 +5,21 @@ route segments can be deactivated and future active route segments can be activa
 
 ## Registering middleware functions
 
-A middleware is a function taking a router instance and returning a function which will be called on each transition (unless a transition failed at the _canActivate_ or _canDeactivate_ state).
+A middleware is a function taking a router instance and injectables (like lifecycle methods and plugins) and returning a function which will be called on each transition (unless a transition failed at the _canActivate_ or _canDeactivate_ state).
 
 A middleware function can return a boolean for synchronous results, a promise or call
 a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.
 
 This type of function is ideal to remove data loading logic from components, and is a good fit
-for applications aiming at having a centralised state object.
+for applications aiming at having a  qcentralised state object.
 
 ```javascript
-const mware1 = router => (toState, fromState, done) => {
+const mware1 = (router) => (toState, fromState, done) => {
     // Let's fetch data and call done
     done();
 };
 
-const mware2 = router => (toState, fromState, done) {
+const mware2 = (router) => (toState, fromState, done) {
     // Let's fetch data and call done
     done();
 };

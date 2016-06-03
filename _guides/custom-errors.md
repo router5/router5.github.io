@@ -1,4 +1,4 @@
-# Custom errors and redictions
+# Cusom errors and redictions
 
 > When failing a transition function (canActivate, canDeactivate, middleware) custom errors can be returned. Custom errors can be a string or an object and will be added to the error object and passed to `start` and `navigate` callbacks).
 
@@ -8,36 +8,38 @@
 ### A string
 
 ```js
-router.canActivate('profile', (toState, fromState, done) => {
+router.canActivate('profile', (router) => (toState, fromState, done) => {
     done('my custom error');
 });
 
 router.navigate('profile', {}, {}, (err, state) => {
-    // err is
-    err = {
+    /* Error:
+    {
         code: 'CANNOT_ACTIVATE',
         segment: 'profile',
         error: 'my custom error'
-    };
+    }
+    /*
 })
 ```
 
 ### An object
 
 ```js
-router.canActivate('profile', (toState, fromState, done) => {
+router.canActivate('profile', (router) => (toState, fromState, done) => {
     done({
         why: 'because'
     });
 });
 
 router.navigate('profile', {}, {}, (err, state) => {
-    // err is
-    err = {
+    /* Error:
+    {
         code: 'CANNOT_ACTIVATE',
         segment: 'profile',
         why: 'because'
-    };
+    }
+    */
 })
 ```
 
@@ -46,7 +48,7 @@ router.navigate('profile', {}, {}, (err, state) => {
 With promises, make sure you return a rejected promise.
 
 ```js
-router.canActivate('profile', (toState, fromState, done) => {
+router.canActivate('profile', (router) => (toState, fromState, done) => {
     return isUserLoggedIn()
         .catch(() => Promise.reject({ why: 'because'}));
 });
@@ -57,7 +59,7 @@ router.canActivate('profile', (toState, fromState, done) => {
 A custom error can return an object with a `redirect` property (object defining a route by `name` and `params`).
 
 ```js
-router.canActivate('profile', (toState, fromState, done) => {
+router.canActivate('profile', (router) => (toState, fromState, done) => {
     return isUserLoggedIn()
         .catch(() => Promise.reject({ redirect: { name: 'login' }}));
 });

@@ -59,9 +59,10 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
             <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
+            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
+            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -71,13 +72,14 @@
             <a href="/docs/router-options.html" class="link">Router options</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
-            <a href="/docs/preventing-navigation.html" class="link active">Preventing navigation</a>
-            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
-            <a href="/docs/transition.html" class="link">Transition phase</a>
-            <a href="/docs/middleware.html" class="link">Middleware functions</a>
-            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
+            <a href="/docs/preventing-navigation.html" class="link active">Preventing navigation</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
             <a href="/docs/async-data.html" class="link">Loading async data</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
+            <a href="/docs/injectables.html" class="link">Injectables</a>
 
             <strong>Plugins</strong>
 
@@ -99,51 +101,41 @@
 <blockquote>
 <p>It is a common case to want to allow / prevent navigation away from a view or component: if a User is in the middle of completing a form and data has not been saved, you might want to warn them about data being lost or prevent them to leave the current view until data has been saved.</p>
 </blockquote>
-<h2 id="can-i-deactivate-">Can I deactivate?</h2>
-<p>Like Angular 2 and Aurelia routers, <em>router5</em> will ask active components which would be
-deactivated by a route change if they can be deactivated.</p>
-<p>You can register a <code>canDeactivate(toRoute, fromRoute[, done])</code> function per node to allow or prevent access
-to a specific route and its descendents. <em>router5</em> exposes a <code>.canDeactivate(segment, function)</code> method for registering them. It will. be invoked when trying to transition to a new route. Alternatively, instead of passing a function, you can pass a boolean.</p>
-<p><code>canDeactivate</code> methods are invoked from bottom to top. If a User is navigating from route <code>A.1.a</code> to route <code>B</code>,
-<em>router5</em> will query registered components for segment <code>A.1.a</code>, then <code>A.1</code>, then <code>A</code>.</p>
-<p>A <code>canDeactivate</code> method can return <code>true</code> or <code>false</code> for synchronous results, can
-return a thenable (<code>promise</code>) or can invoke a <code>done</code> callback. A resolved promise is equivalent
-to returning true, and a rejected promise will prevent a segment deactivation.</p>
+<h2 id="lifecycle-functions">Lifecycle functions</h2>
+<p>Router5 supports <code>canActivate</code> and <code>canDeactivate</code> functions for segments:</p>
+<ul>
+<li><code>canActivate</code> functions are called on segments which will become active as a result of a route change</li>
+<li><code>canDeactivate</code> functions are called on segments which will become inactive as a result of a route change</li>
+</ul>
+<p>Both functions have the same signature than middleware functions. Their result can be synchronous (returning a boolean) or asynchronous (returning a promise or calling <code>done(err, result)</code>).</p>
 <blockquote>
 <p><strong>Note:</strong> if a canActivate or canDeactivate function doesn&#39;t return a boolean, a promise or doesn&#39;t call back,
   the transition will not proceed.</p>
-</blockquote>
 <p><em>router5</em> doesn&#39;t create any promise and therefore if you do not wish to use promises, you are not forced
 to use a polyfill or promise implementation in your app.</p>
+</blockquote>
+<pre><code class="lang-javascript javascript">const canActivate = (router) =&gt; (toState, fromState) =&gt; {
+    return true;
+}
+
+router.canActivate(&#39;admin&#39;, canActivate);
+</code></pre>
+<pre><code class="lang-javascript javascript">const canActivate = (router) =&gt; (toState, fromState) =&gt; {
+    return true;
+}
+
+router.canActivate(&#39;admin&#39;, canActivate);
+</code></pre>
+<h3 id="order-of-invocation">Order of invocation</h3>
+<p><code>canActivate</code> and <code>canDeactivate</code> functions are thunks: they expose another function to receive navigation updates, allowing you to use closures if you need to.</p>
+<p>Those handlers will be invoked when your router is started with your router instance and injectables. Then their exposed function will be called to query if a segment can be activated or deactivated.</p>
+<p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same
+than <code>canDeactivate</code> methods: you can return a boolean value, return a promise or invoke a done callback.</p>
+<p><code>canDeactivate</code> methods are invoked from bottom to top. If a User is navigating from route <code>A.1.a</code> to route <code>B</code>,
+<em>router5</em> will query registered components for segment <code>A.1.a</code>, then <code>A.1</code>, then <code>A</code>.</p>
 <blockquote>
 <p>When option <code>autoCleanUp</code> is set to true, canDeactivate methods are removed when their associated segment is no longer active.</p>
 </blockquote>
-<p>One way to use <code>canDeactivate</code> is to update it with the state of your application.</p>
-<pre><code>const onChange = () =&gt; {
-    const isDirty = isFormDirty();
-    router.canDeactivate(&#39;routeName&#39;, !isDirty);
-};
-</code></pre><h2 id="can-i-activate-">Can I activate?</h2>
-<p>You can register a <code>canActivate(toRoute, fromRoute[, done])</code> function per node to allow or prevent access
-to a specific route and its descendents.</p>
-<p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same
-than <code>canDeactivate</code> methods: you can return a boolean value, return a promise or invoke a done callback.</p>
-<pre><code class="lang-javascript javascript">const isAdmin = true
-
-function canAccessAdmin(toRoute, fromRoute, done) {
-    return isAdmin;
-}
-
-myRouter.add({ name: &#39;admin&#39;, path: &#39;/admin&#39;, canActivate: canAccessAdmin });
-</code></pre>
-<h2 id="additional-arguments">Additional arguments</h2>
-<p>You can specify additional arguments which will be passed to <code>canActivate</code> and <code>canDeactivate</code> functions.</p>
-<pre><code class="lang-javascript javascript">myRouter.setAdditionalArgs([a, b]);
-
-myRouter.canActivate(&#39;route&#39;, function(a, b, toState, fromState) {
-    return true;
-});
-</code></pre>
 
     </main>
 
