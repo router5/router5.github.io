@@ -59,10 +59,7 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
-            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -102,11 +99,14 @@
 <p>When using lifecycle methods (<code>canActivate</code>, <code>canDeactivate</code>), middleware or plugins, you might need to access specific objects from your application: a store, a specific API, etc... You can pass their reference to router5 and they will be passed alongside your router instance.</p>
 </blockquote>
 <p>You can only register all injectables at once, and you should before you start your router.</p>
-<pre><code class="lang-javscript">router.inject(store, api);
+<pre><code class="lang-js">router.setDependencies({ store, api });
+// or
+router.setDependency(&#39;store&#39;, store);
+router.setDependency(&#39;api&#39;, api);
 </code></pre>
-<p>You can retrieve your currently injected references using <code>getInjectables()</code>.</p>
+<p>You can retrieve your current dependencies references using <code>getDependencies()</code>.</p>
 <p>Lifecycle methods (<code>canActivate</code>, <code>canDeactivate</code>), middleware or plugins will be called with them:</p>
-<pre><code class="lang-js">const plugin = (router, ...injectables) =&gt; ({
+<pre><code class="lang-js">const plugin = (router, dependencies) =&gt; ({
     /*
         onStart() {},
         onStop() {},
@@ -115,12 +115,12 @@
     */
 });
 </code></pre>
-<pre><code class="lang-js">const canActivate = (router, ...injectables) =&gt;
+<pre><code class="lang-js">const canActivate = (router, dependencies) =&gt;
     (toState, fromState, done) {
         /* ... */
     }
 </code></pre>
-<pre><code class="lang-js">const middleware = (router, ...injectables) =&gt;
+<pre><code class="lang-js">const middleware = (router, dependencies) =&gt;
     (toState, fromState, done) {
         /* ... */
     }

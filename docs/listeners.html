@@ -59,10 +59,7 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
-            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -99,11 +96,11 @@
     <main>
         <h1 id="listeners-plugin">Listeners plugin</h1>
 <blockquote>
-<p>To be able to react to route changes, you might need to add listeners. <code>router5-listeners</code> plugin provides different ways to listen to router state changes.</p>
+<p>To be able to react to route changes, you might need to add listeners. <code>router5-plugin-listeners</code> plugin provides different ways to listen to router state changes.</p>
 </blockquote>
-<pre><code class="lang-javascript javascript">import listenersPlugin from &#39;router5-listeners&#39;;
+<pre><code class="lang-javascript javascript">import listenersPlugin from &#39;router5-plugin-listeners&#39;;
 
-const router = new Router5()
+const router = createRouter()
     .usePlugin(listenersPlugin());
 </code></pre>
 <h2 id="three-types-of-listeners">Three types of listeners</h2>

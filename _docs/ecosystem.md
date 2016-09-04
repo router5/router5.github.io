@@ -5,9 +5,12 @@
 
 ## Plugins
 
-- [router5-listeners](https://github.com/router5/router5-listeners)
-- [router5-history](https://github.com/router5/router5-history)
-- [router5-persistent-params](https://github.com/router5/router5-persistent-params)
+- [router5-plugin-listeners](https://github.com/router5/router5-plugin-listeners)
+- [router5-plugin-browser](https://github.com/router5/router5-plugin-browser)
+- [router5-plugin-persistent-params](https://github.com/router5/router5-plugin-persistent-params)
+- [router5-plugin-rx](https://github.com/router5/router5-plugin-rx)
+- [router5-plugin-rxjs](https://github.com/router5/router5-plugin-rxjs)
+- [router5-plugin-xstream](https://github.com/router5/router5-plugin-xstream)
 
 
 ## Middleware, bindings, components, etc...

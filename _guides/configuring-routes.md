@@ -34,10 +34,10 @@ const routes = [
 
 You can add all your routes at once using Router5 constructor or `router.add`.
 
-__new Router5(routes, options)__
+__createRouter(routes, options)__
 
 ```javascript
-const router = new Router5(routes, options);
+const router = createRouter(routes, options);
 ```
 
 __add(routes)__
@@ -58,8 +58,12 @@ __addNode(name, path[, canActivate])__
 You can add routes node by node, specifying a node name and its segment path.
 
 ```javascript
-var router = new Router5()
+var router = createRouter()
     .addNode('users',      '/users')
     .addNode('users.view', '/view/:id')
     .addNode('users.list', '/list');
 ```
+
+## Configuring the root node path
+
+At the top of your tree of routes, there is an unamed node called the root node. Its path is empty and can be configured using `router.setRootPath(path)`. It can be used for example to list a number of allowed query parameters for all routes in strict query parameters mode (ter.setRootPath('?param1&param2')`).

@@ -59,10 +59,7 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
-            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -111,21 +108,22 @@
 <h2 id="create-your-router-client-server-">Create your router (client &amp; server)</h2>
 <p>You can use the same code for configuring your router on both client and server sides. The history plugin, for example, can be safely used on Node.js and in browsers.</p>
 <pre><code class="lang-js">const Router5 = require( &#39;router5&#39; ).default;
-const listenersPlugin = require( &#39;router5-listeners&#39; );
-const historyPlugin = require( &#39;router5-history&#39; );
+const listenersPlugin = require( &#39;router5-plugin-listeners&#39; );
+const browserPlugin = require( &#39;router5-plugin-browser&#39; );
 
 function createRouter() {
-    return new Router5([
+    return createRouter([
             { name: &#39;home&#39;, path: &#39;/home&#39; },
             { name: &#39;about&#39;, path: &#39;/about&#39; },
             { name: &#39;contact&#39;, path: &#39;/contact&#39; },
             { name: &#39;404&#39;, path: &#39;/404&#39; }
         ], {
-            useHash: false,
             trailingSlash: true,
             defaultRoute: &#39;404&#39;
         })
-        .usePlugin(historyPlugin())
+        .usePlugin(browserPlugin({
+            useHash: false
+        }))
         .usePlugin(listenersPlugin())
 }
 

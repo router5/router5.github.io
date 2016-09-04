@@ -18,24 +18,23 @@ A plugin is a function taking a router instance and returning an object with a n
 ## Registering a plugin
 
 ```javascript
-const myPlugin = () =>
-    router => ({
-        name: 'MY_CUSTOM_PLUGIN',
+function myPlugin(router, dependencies) {
+    return {
         onTransitionSuccess: (toState, fromState) => {
             console.log('Yippee, navigation to ' + toState.name + ' was successful!');
         }
-    });
+    };
 
-const router = new Router5()
-    .usePlugin(myPlugin());
+const router = createRouter()
+    .usePlugin(myPlugin);
 ```
 
 
 ## Plugin examples
 
-- [router5-listeners](https://github.com/router5/router5-listeners)
-- [router5-history](https://github.com/router5/router5-history)
-- [router5-persistent-params](https://github.com/router5/router5-persistent-params)
+- [router5-plugin-listeners](https://github.com/router5/router5-plugin-listeners)
+- [router5-plugin-browser](https://github.com/router5/router5-plugin-browser)
+- [router5-plugin-persistent-params](https://github.com/router5/router5-plugin-persistent-params)
 - [Logger](https://github.com/router5/router5/blob/master/modules/logger.js)
 
 Router5 includes a logging plugin that you can use to help development

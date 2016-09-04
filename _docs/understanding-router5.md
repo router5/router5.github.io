@@ -11,7 +11,7 @@ In "traditional" routing, a specific route is associated with a _route handler_.
 
 ![Router](/img/router.png)
 
-Updating your browser history or listening to URL changes is considered a side-effect, because they are specific to an environment where your application might run (the browser). You can use [router5-history](https://github.com/router5/router5-history) to update the browser URL and translate popstate events to routing instructions.
+Updating your browser history or listening to URL changes is considered a side-effect, because they are specific to an environment where your application might run (the browser). You can use [router5-plugin-browser](https://github.com/router5/router5-plugin-browser) to update the browser URL and translate popstate events to routing instructions.
 
 A state object will contain:
 - The `name` of the route
@@ -67,7 +67,7 @@ The current route is `admin.users`. If we were to navigate to `home`, `Main` wou
 
 > The __transition node__ (as explained above), _is_ the node to re-render your view from.
 
-[router5-listeners](https://github.com/router5/router5-listeners) makes possible to register those three types of listeners: _"any change"_ listener, route listener and node listener. Note that router5-listeners has a limit of one node listener per node (_router5-listeners_ uses [router5.transition-path](https://github.com/router5/transition-path) to compute the transition path between two router5 states).
+[router5-plugin-listeners](https://github.com/router5/router5-plugin-listeners) makes possible to register those three types of listeners: _"any change"_ listener, route listener and node listener. Note that router5-plugin-listeners has a limit of one node listener per node (_router5-plugin-listeners_ uses [router5.transition-path](https://github.com/router5/transition-path) to compute the transition path between two router5 states).
 
 ![Relation between router and view](/img/router-view.png)
 
@@ -78,7 +78,7 @@ In slightly more complicated cases, you might have other parts of your screen to
 
 Router 5 is best suited for trees of components, where components can easily be composed together. It works best with React, deku, cyclejs, etc...
 
-It also works very well with state containers like [redux](http://rackt.org/redux/index.html): your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don't need to use [router5-listeners](https://github.com/router5/router5-listeners) plugin.
+It also works very well with state containers like [redux](http://rackt.org/redux/index.html): your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don't need to use [router5-plugin-listeners](https://github.com/router5/router5-plugin-listeners) plugin.
 
 - [react-router5](https://github.com/router5/react-router5) and [deku-router5](https://github.com/router5/deku-router5) both provide a `routeNode(nodeName)(BaseComponent)` higher-order component for re-rendering from a node down when the given node is the transition node.
 - [redux-router5](https://github.com/router5/redux-router5) provides a selector `routeNode(nodeName)` which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with `connect` from [react-redux](https://github.com/rackt/react-redux) or [deku-redux](https://github.com/troch/deku-redux).

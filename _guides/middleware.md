@@ -1,11 +1,11 @@
 # Middleware functions
 
 > Multiple middleware functions can be registered with a router instance. They are invoked in series after the router has made sure active
-route segments can be deactivated and future active route segments can be activated. Middleware functions are a great way to load data for your routes.
+route segments can be deactivated and future active route segments can be activated. Middleware functions are for example a great way to load data for your routes.
 
 ## Registering middleware functions
 
-A middleware is a function taking a router instance and injectables (like lifecycle methods and plugins) and returning a function which will be called on each transition (unless a transition failed at the _canActivate_ or _canDeactivate_ state).
+A middleware is a function taking a router instance and registered dependencies (like lifecycle methods and plugins) and returning a function which will be called on each transition (unless a transition failed at the _canActivate_ or _canDeactivate_ state).
 
 A middleware function can return a boolean for synchronous results, a promise or call
 a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.
@@ -27,7 +27,7 @@ const mware2 = (router) => (toState, fromState, done) {
 router.useMiddleware(mware1, mware2);
 ```
 
-> Calling `useMiddleware` again will cause previously registered middleware functions to be deregistered.
+`useMiddleware` can be called multiple times, but keep in mind that registration order matters. You can clear all your middleware functions by using `router.clearMiddleware()`.
 
 ## Adding data to state
 

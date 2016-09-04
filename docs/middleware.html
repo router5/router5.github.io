@@ -59,10 +59,7 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
-            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -100,10 +97,10 @@
         <h1 id="middleware-functions">Middleware functions</h1>
 <blockquote>
 <p>Multiple middleware functions can be registered with a router instance. They are invoked in series after the router has made sure active
-route segments can be deactivated and future active route segments can be activated. Middleware functions are a great way to load data for your routes.</p>
+route segments can be deactivated and future active route segments can be activated. Middleware functions are for example a great way to load data for your routes.</p>
 </blockquote>
 <h2 id="registering-middleware-functions">Registering middleware functions</h2>
-<p>A middleware is a function taking a router instance and injectables (like lifecycle methods and plugins) and returning a function which will be called on each transition (unless a transition failed at the <em>canActivate</em> or <em>canDeactivate</em> state).</p>
+<p>A middleware is a function taking a router instance and registered dependencies (like lifecycle methods and plugins) and returning a function which will be called on each transition (unless a transition failed at the <em>canActivate</em> or <em>canDeactivate</em> state).</p>
 <p>A middleware function can return a boolean for synchronous results, a promise or call
 a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.</p>
 <p>This type of function is ideal to remove data loading logic from components, and is a good fit
@@ -120,9 +117,7 @@ const mware2 = (router) =&gt; (toState, fromState, done) {
 
 router.useMiddleware(mware1, mware2);
 </code></pre>
-<blockquote>
-<p>Calling <code>useMiddleware</code> again will cause previously registered middleware functions to be deregistered.</p>
-</blockquote>
+<p><code>useMiddleware</code> can be called multiple times, but keep in mind that registration order matters. You can clear all your middleware functions by using <code>router.clearMiddleware()</code>.</p>
 <h2 id="adding-data-to-state">Adding data to state</h2>
 <p>It is possible to mutate the <code>toState</code> object by adding properties, or to pass a new state object in callbacks or promises.
 When passing a new object, the router will ignore it if initial state properties (<code>name</code>, <code>params</code> and <code>path</code>) are changed.</p>
