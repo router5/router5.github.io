@@ -126,13 +126,13 @@ Then we create a router5 middleware for data which will load data on a transitio
 import { actionTypes } from 'redux-router5';
 import transitionPath from 'router5.transition-path';
 
-const onRouteActivateMiddleware = routes => (router, { store }) => (toState) => {
+const onRouteActivateMiddleware = routes => (router, dependencies) => (toState) => {
     const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
 
     toActivate.forEach(segment => {
         const routeSegment = routes.find(r => r.name === segment);
         if (routeSegment && routeSegment.onActivate) {
-            store.dispatch(routeSegment.onActivate(action.payload.route.params));
+            dependencies.store.dispatch(routeSegment.onActivate(action.payload.route.params));
         }
     });
 };

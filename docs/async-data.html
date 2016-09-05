@@ -202,13 +202,13 @@ const routes = [
 <pre><code class="lang-javascript javascript">import { actionTypes } from &#39;redux-router5&#39;;
 import transitionPath from &#39;router5.transition-path&#39;;
 
-const onRouteActivateMiddleware = routes =&gt; (router, { store }) =&gt; (toState) =&gt; {
+const onRouteActivateMiddleware = routes =&gt; (router, dependencies) =&gt; (toState) =&gt; {
     const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
 
     toActivate.forEach(segment =&gt; {
         const routeSegment = routes.find(r =&gt; r.name === segment);
         if (routeSegment &amp;&amp; routeSegment.onActivate) {
-            store.dispatch(routeSegment.onActivate(action.payload.route.params));
+            dependencies.store.dispatch(routeSegment.onActivate(action.payload.route.params));
         }
     });
 };
