@@ -94,6 +94,7 @@ async.parallel([
     renderDoc('_docs', 'migration.md', {migration: true}),
     renderDoc('_docs', 'migration-2.md', {migration2: true}),
     renderDoc('_docs', 'migration-3.md', {migration3: true}),
+    renderDoc('_docs', 'migration-4.md', {migration4: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
     renderDoc('_guides', 'router-options.md', {options: true, docs: true}),
     renderDoc('_guides', 'navigation.md', {navigation: true, docs: true}),
@@ -108,6 +109,7 @@ async.parallel([
     renderDoc('_docs', 'understanding-router5.md', {understanding: true}),
     renderDoc('_guides', 'async-data.md', {asyncData: true, docs: true}),
     renderDoc('_guides', 'custom-errors.md', {customErrors: true, docs: true}),
+    renderDoc('_guides', 'injectables.md', {injectables: true, docs: true}),
     // renderApi,
     renderDoc('_docs', 'ecosystem.md', {ecosystem: true, examples: true}),
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [

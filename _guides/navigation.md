@@ -5,11 +5,13 @@
 ## Starting your router
 
 ```javascript
-var myRouter = Router5()
-    .addNode('home', '/home')
-    .addNode('about', '/about')
-    .addNode('contact', '/contact')
-    .start();
+const myRouter = Router5([
+    { name: 'home', path: '/home' },
+    { name: 'about', path: '/about' },
+    { name: 'contact', path: '/contact' }
+]);
+
+myRouter.start();
 ```
 
 Invoking the `.start([startPathOrState ,] done)` function will:
@@ -33,8 +35,8 @@ to `/about`:
 
 ```javascript
 var myRouter = Router5([
-        new RouteNode('home', '/home'),
-        new RouteNode('section', '/:section'),
+        { name: 'home', path: '/home' },
+        { name: 'section', path: '/:section' }
     ], {
         defaultRoute: 'section'
         defaultParams: {section: 'about'}
