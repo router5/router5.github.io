@@ -14,7 +14,7 @@ const myRouter = Router5([
 myRouter.start('/home');
 ```
 
-> When using `.start()`, you should supply a starting path or state except if you use `router5-plugin-browser` (the current URL will be automatically used).
+> When using `.start()`, you should supply a starting path or state except if you use the browser plugin (the current URL will automatically be used).
 
 Invoking the `.start(startPathOrState[, done])` function will:
 

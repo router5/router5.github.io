@@ -25,17 +25,21 @@ function myPlugin(router, dependencies) {
         }
     };
 
+myPlugin.pluginName = 'MY_PLUGIN';
+
 const router = createRouter()
     .usePlugin(myPlugin);
+
+router.hasPlugin('MY_PLUGIN'); // => true
 ```
 
 
 ## Plugin examples
 
-- [router5-plugin-listeners](https://github.com/router5/router5-plugin-listeners)
-- [router5-plugin-browser](https://github.com/router5/router5-plugin-browser)
-- [router5-plugin-persistent-params](https://github.com/router5/router5-plugin-persistent-params)
-- [Logger](https://github.com/router5/router5/blob/master/modules/logger.js)
+- [Listeners plugin](https://github.com/router5/blob/master/modules/plugins/listeners/index.js)
+- [Browser plugin](https://github.com/router5/blob/master/modules/plugins/browser/index.js)
+- [Persistent params plugin](https://github.com/router5/blob/master/modules/plugins/persistentParams/index.js)
+- [Logger](https://github.com/router5/router5/blob/master/modules/plugins/logger/index.js)
 
 Router5 includes a logging plugin that you can use to help development
 
@@ -43,5 +47,5 @@ Router5 includes a logging plugin that you can use to help development
 import { loggerPlugin } from 'router5';
 
 const router = new Router()
-    .usePlugin(loggerPlugin());
+    .usePlugin(loggerPlugin);
 ```

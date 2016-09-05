@@ -108,8 +108,8 @@
 <h2 id="create-your-router-client-server-">Create your router (client &amp; server)</h2>
 <p>You can use the same code for configuring your router on both client and server sides. The history plugin, for example, can be safely used on Node.js and in browsers.</p>
 <pre><code class="lang-js">const Router5 = require( &#39;router5&#39; ).default;
-const listenersPlugin = require( &#39;router5-plugin-listeners&#39; );
-const browserPlugin = require( &#39;router5-plugin-browser&#39; );
+const listenersPlugin = require( &#39;router5/plugins/listeners&#39; );
+const browserPlugin = require( &#39;router5/plugins/browser&#39; );
 
 function createRouter() {
     return createRouter([

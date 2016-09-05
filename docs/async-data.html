@@ -117,7 +117,7 @@
 <p>You can use your router state objects as a container for route-specific data.</p>
 </blockquote>
 <p>You can use a middleware if you want your router to wait for data updates and/or prevent a route transition to happen if data loading fails.
-When doing so, you can use <code>toState</code> state object as a container for your route-specific data: <a href="https://github.com/router5/router5-plugin-listeners">router5-plugin-listeners</a> will pass it to your view (with the data you attached to it). You shouldn&#39;t mutate <code>toState</code> if you don&#39;t explicitly ask the router to wait by either calling a <code>done</code> callback or by returning a promise.</p>
+When doing so, you can use <code>toState</code> state object as a container for your route-specific data: the listeners plugin will pass it to your view (with the data you attached to it). You shouldn&#39;t mutate <code>toState</code> if you don&#39;t explicitly ask the router to wait by either calling a <code>done</code> callback or by returning a promise.</p>
 <p>First, we need to define what data need to be loaded for which route segment:</p>
 <pre><code class="lang-javascript javascript">import { get } from &#39;xr&#39;;
 

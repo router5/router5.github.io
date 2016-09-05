@@ -159,6 +159,7 @@ router.canActivate(&#39;admin&#39;, isAdmin);
 </code></pre>
 <h4 id="other-notable-changes">Other notable changes</h4>
 <ul>
+<li>AMD and globals bundle are no longer distributed, use the UMD bundle instead</li>
 <li><code>usePlugin</code> and <code>useMiddleware</code> behave the same: you can supply one or more argument, and calling them thereafter will add more plugins / middleware functions (<code>useMiddleware</code> used to overwrite middleware functions)</li>
 <li><code>errCodes</code> has been renamed to <code>errorCodes</code></li>
 <li>Route parameters and transition options are now optional in <code>navigate</code>, allowing users to only supply a route name and a done callback (<code>router.navigate(&#39;home&#39;, () =&gt; { /* ... */ })</code>)</li>

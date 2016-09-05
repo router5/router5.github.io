@@ -8,7 +8,7 @@ This plugin uses HTML5 history API and therefore is not compatible with browsers
 for browser compatibility.
 
 ```javascript
-import browserPlugin from 'router5-plugin-browser';
+import browserPlugin from 'router5/plugins/browser';
 
 const router = createRouter()
     .usePlugin(browserPlugin())

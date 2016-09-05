@@ -1,9 +1,9 @@
 # Listeners plugin
 
-> To be able to react to route changes, you might need to add listeners. `router5-plugin-listeners` plugin provides different ways to listen to router state changes.
+> To be able to react to route changes, you might need to add listeners. `listenersPlugin` plugin provides different ways to listen to router state changes.
 
 ```javascript
-import listenersPlugin from 'router5-plugin-listeners';
+import listenersPlugin from 'router5/plugins/listeners';
 
 const router = createRouter()
     .usePlugin(listenersPlugin());

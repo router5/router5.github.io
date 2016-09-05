@@ -93,6 +93,7 @@ import { constants } from 'router5';
 
 #### Other notable changes
 
+* AMD and globals bundle are no longer distributed, use the UMD bundle instead
 * `usePlugin` and `useMiddleware` behave the same: you can supply one or more argument, and calling them thereafter will add more plugins / middleware functions (`useMiddleware` used to overwrite middleware functions)
 * `errCodes` has been renamed to `errorCodes`
 * Route parameters and transition options are now optional in `navigate`, allowing users to only supply a route name and a done callback (`router.navigate('home', () => { /* ... */ })`)
