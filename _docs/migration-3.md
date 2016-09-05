@@ -1,4 +1,4 @@
-# Migrating from 1.x to 2.x
+# Migrating from 2.x to 3.x
 
 
 ## New features
