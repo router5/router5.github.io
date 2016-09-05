@@ -19,7 +19,6 @@ var height = 400;
 
 var createRouter = router5.default;
 var router = createRouter()
-    .setOption('useHash', true)
     // Users
     .addNode('users',      '/users')
     .addNode('users.view', '/view/:id')
@@ -30,11 +29,13 @@ var router = createRouter()
     .addNode('orders.pending',   '/pending')
     .addNode('orders.view',      '/details/:id')
     .usePlugin(router5ListenersPlugin())
-    .usePlugin(router5BrowserPlugin())
+    .usePlugin(router5BrowserPlugin({ useHash: true }))
     .addListener(drawGraph)
     .start(function (err, state) {
         drawGraph(state, null);
     });
+
+console.log(router);
 // Draw graph
 function drawGraph(toState, fromState) {
     toState = toState || {};
