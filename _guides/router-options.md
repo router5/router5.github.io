@@ -3,23 +3,16 @@
 > You can configure your router instance by passing options to the constructor or by using `.setOption(optName, optValue)`.
 
 ```javascript
-var router = new Router5([], {
-        useHash: true,
-        hashPrefix: '!',
+var router = createRouter([], {
         defaultRoute: 'home',
         defaultParams: {},
-        base: '',
         trailingSlash: false,
         autoCleanUp: true,
-        strictQueryParams: true
+        strictQueryParams: true,
+        allowNotFound: false
     })
-    .setOption('useHash', false)
-    .setOption('hashPrefix', '');
+    .setOption('strictQueryParams', false)
 ```
-
-## Use of hash part of URL
-
-Set `useHash` to `true` if you want the paths of your routes to be prefixed with a hash. You can also choose a `hashPrefix` which will be inserted between the path of a route and the hash. Those options will mostly be used by plugins such as `router5-history`.
 
 
 ## Default route
@@ -30,12 +23,6 @@ When your router instance starts, it will navigate to a default route if such ro
 - `defaultParams`: the default route params (defaults to `{}`)
 
 See [navigation guide](/docs/navigation.html) for more information.
-
-
-## Base path
-
-You can specify what the base path of your application is. By default `base` is set to an empty string, meaning your route paths won't be prefixed by any
-path.
 
 
 ## Optional trailing slashes
@@ -53,3 +40,18 @@ If `autoCleanUp` is set to true, the router will automatically clear `canDeactiv
 Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.
 
 If you want the router to still match routes if extra query parameters are present, set `strictQueryParams` to `false`.
+
+
+## Allow not found
+
+There are two ways to deal with not found routes: the first one is to configure a `defaultRoute` (and `defaultParams`), the second one is to allow those not found routes to create a new routing state. Set `allowNotFound` to true and the router will allow unknown URLs to create new state objects looking like the following (with `/route-not-found` being the not matched path):
+
+```js
+import { constants } from 'router5';
+
+{
+    name: constants.UNKNOWN_ROUTE
+    params: { path: '/route-not-found' },
+    path: '/route-not-found'
+}
+```

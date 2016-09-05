@@ -20,7 +20,7 @@ Router5 doesn't provide an opinionated way of handling async data, instead this 
 > You can use your router state objects as a container for route-specific data.
 
 You can use a middleware if you want your router to wait for data updates and/or prevent a route transition to happen if data loading fails.
-When doing so, you can use `toState` state object as a container for your route-specific data: [router5-listeners](https://github.com/router5/router5-listeners) will pass it to your view (with the data you attached to it). You shouldn't mutate `toState` if you don't explicitly ask the router to wait by either calling a `done` callback or by returning a promise.
+When doing so, you can use `toState` state object as a container for your route-specific data: the listeners plugin will pass it to your view (with the data you attached to it). You shouldn't mutate `toState` if you don't explicitly ask the router to wait by either calling a `done` callback or by returning a promise.
 
 First, we need to define what data need to be loaded for which route segment:
 
@@ -50,7 +50,7 @@ Then we create a middleware function which will invoke data for the activated se
 ```javascript
 import transitionPath from 'router5.transition-path';
 
-const dataMiddlewareFactory = routes => router => toState => {
+const dataMiddlewareFactory = (routes) => (router) => (toState, fromState) => {
     const { toActivate } = transitionPath(toState, fromState);
     const onActivateHandlers =
         toActivate
@@ -72,11 +72,8 @@ And when configuring your router:
 ```javascript
 import { routes } from './routes';
 
-const router = new Router5();
+const router = createRouter(routes);
 /* ... configure your router */
-
-/* add your routes */
-router.add(routes);
 
 /* data middleware */
 router.useMiddleware(dataMiddlewareFactory(routes));
@@ -120,7 +117,7 @@ const routes = [
 You need to create your store and router, and pass your store to your router instance (with `.inject()`):
 
 ```javascript
-router.inject(store);
+router.setDependency('store', store);
 ```
 
 Then we create a router5 middleware for data which will load data on a transition success.
@@ -129,13 +126,13 @@ Then we create a router5 middleware for data which will load data on a transitio
 import { actionTypes } from 'redux-router5';
 import transitionPath from 'router5.transition-path';
 
-const onRouteActivateMiddleware = routes => (router, { dispatch }) => (toState) => {
+const onRouteActivateMiddleware = routes => (router, { store }) => (toState) => {
     const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
 
     toActivate.forEach(segment => {
         const routeSegment = routes.find(r => r.name === segment);
         if (routeSegment && routeSegment.onActivate) {
-            dispatch(routeSegment.onActivate(action.payload.route.params));
+            store.dispatch(routeSegment.onActivate(action.payload.route.params));
         }
     });
 };

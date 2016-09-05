@@ -59,10 +59,7 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration-4.html" class="link active">Migrating from 3.x</a>
-            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-4.html" class="link active">Migrating to v4</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -98,8 +95,76 @@
 
     <main>
         <h1 id="migrating-from-3-x-to-4-x">Migrating from 3.x to 4.x</h1>
-<h2 id="new-features-and-breaking-changes">New features and breaking changes</h2>
-<h2 id="code-example">Code example</h2>
+<ul>
+<li><a href="/docs/migration-3.html">Migrating from 2.x to 3.x</a></li>
+<li><a href="/docs/migration-2.html">Migrating from 1.x to 2.x</a></li>
+<li><a href="/docs/migration.html">Migrating from 0.x to 1.x</a></li>
+</ul>
+<h2 id="release-notes-and-breaking-changes">Release notes and breaking changes</h2>
+<p>With version 4.0.0, <em>router5</em> has been refactored. API for plugins, middleware functions, <code>canActivate</code> and <code>canDeactivate</code> functions are now consistent.</p>
+<h4 id="router-instanciation">Router instanciation</h4>
+<p><em>router5</em> default export is now a <code>createRouter</code> function as opposed to a <code>Router5</code> class. The API is identical between <code>createRouter(routes, options)</code> and <code>createRouter(routes, options)</code>.</p>
+<pre><code class="lang-js">import createRouter from &#39;router5&#39;;
+
+const router = createRouter(routes, options);
+</code></pre>
+<h4 id="plugins-moved">Plugins moved</h4>
+<p><code>router5-history</code>, <code>router5-persistent-params</code> and <code>router5-listeners</code> have been moved to router5 main repository. They are no longer individual modules but are distributed with router5 module.</p>
+<pre><code class="lang-js">import browserPlugin from &#39;router/plugins/browser&#39;;
+import listenersPlugin from &#39;router/plugins/listeners&#39;;
+import persistentParamsPlugin from &#39;router/plugins/persistentParams&#39;;
+</code></pre>
+<p>The history plugin has been renamed &#39;browser plugin&#39;, to better describe its responsabilities. It deals with any URL related options and methods, to make router5 fully runtime environment agnostic:</p>
+<ul>
+<li><code>useHash</code>, <code>hashPrefix</code> and <code>base</code> options need to be passed to <code>browserPlugin</code>, not router5</li>
+<li><code>buildUrl</code>, <code>matchUrl</code> and <code>urlToPath</code> methods are no longer present by default and are added to your router instance by <code>browserPlugin</code>.</li>
+</ul>
+<pre><code class="lang-js">import browserPlugin from &#39;router/plugins/browser&#39;;
+
+router.usePlugin(browserPlugin({
+    useHash: true
+}));
+</code></pre>
+<h4 id="dependency-injection-reworked">Dependency injection reworked</h4>
+<p>Dependency injection has been reworked: <code>setAdditionalArgs</code> has been renamed to <code>setDependencies</code> / <code>setDependency</code> and <code>getAdditionalArgs</code> has been renamed to <code>getDependencies</code>.</p>
+<pre><code class="lang-js">router.setDependency(&#39;store&#39;, store);
+// Or
+router.setDependencies({ store });
+
+router.getDependencies(); // =&gt; { store: store }
+</code></pre>
+<p>Dependencies are no longer injected before <code>toState</code> in middleware, canActivate and canDeactivate functions. Instead, they are injected alongside <code>router</code>, and are now available in plugins too. They are passed as an object of key / value pairs: it will now be easier to share code, plugins, middleware without sharing the exact same dependencies.</p>
+<h4 id="middleware-and-route-lifecycle-functions-alignment">Middleware and route lifecycle functions alignment</h4>
+<p>canActivate and canDeactivate functions have been reworked to be aligned with middleware functions.</p>
+<pre><code class="lang-js">function isAdmin(router, dependencies) {
+    return function (toState, fromState, done) {
+        /* boolean, promise or call done */
+    }
+}
+
+router.canActivate(&#39;admin&#39;, isAdmin);
+</code></pre>
+<p>Boolean shortcuts are still supported (<code>canActivate(&#39;admin&#39;, isAdmin)</code>).</p>
+<p>More importantly, they are now <strong>thunks</strong>: they are executed when added, and their returned functions will be executed when required by the router. It enables the use of <strong>closures</strong>.</p>
+<h4 id="unknown-routes-not-found-supported">Unknown routes (not found) supported</h4>
+<p>A new <code>allowNotFound</code> option available, to give a new strategy to deal with unkown routes.</p>
+<p>If <code>defaultRoute</code> option is not supplied and a path cannot be matched by the router, then the router will emit an <code>ROUTE_NOT_FOUND</code> error unless <code>allowNotFound</code> is set to true. In that case, the router will allow the transition to happen and will generate a state like the following one (given a User tried to navigate to an unknown ULR <code>/route-not-found</code>):</p>
+<pre><code class="lang-js">import { constants } from &#39;router5&#39;;
+
+{
+    name: constants.UNKNOWN_ROUTE
+    params: { path: &#39;/route-not-found&#39; },
+    path: &#39;/route-not-found&#39;
+}
+</code></pre>
+<h4 id="other-notable-changes">Other notable changes</h4>
+<ul>
+<li>AMD and globals bundle are no longer distributed, use the UMD bundle instead</li>
+<li><code>usePlugin</code> and <code>useMiddleware</code> behave the same: you can supply one or more argument, and calling them thereafter will add more plugins / middleware functions (<code>useMiddleware</code> used to overwrite middleware functions)</li>
+<li><code>errCodes</code> has been renamed to <code>errorCodes</code></li>
+<li>Route parameters and transition options are now optional in <code>navigate</code>, allowing users to only supply a route name and a done callback (<code>router.navigate(&#39;home&#39;, () =&gt; { /* ... */ })</code>)</li>
+<li>A new <code>setRootNodePath</code> function has been added to configure the path of the root node. It can be used for example to list a number of allowed query parameters for all routes if <code>strictQueryParams</code> option is set to <code>true</code>.</li>
+</ul>
 
     </main>
 

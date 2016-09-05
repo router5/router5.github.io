@@ -8,10 +8,10 @@ This plugin uses HTML5 history API and therefore is not compatible with browsers
 for browser compatibility.
 
 ```javascript
-import historyPlugin from 'router5-history';
+import browserPlugin from 'router5/plugins/browser';
 
-const router = new Router5()
-    .usePlugin(historyPlugin())
+const router = createRouter()
+    .usePlugin(browserPlugin())
     .start();
 ```
 

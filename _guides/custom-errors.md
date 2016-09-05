@@ -12,7 +12,7 @@ router.canActivate('profile', (router) => (toState, fromState, done) => {
     done('my custom error');
 });
 
-router.navigate('profile', {}, {}, (err, state) => {
+router.navigate('profile', (err, state) => {
     /* Error:
     {
         code: 'CANNOT_ACTIVATE',
@@ -32,7 +32,7 @@ router.canActivate('profile', (router) => (toState, fromState, done) => {
     });
 });
 
-router.navigate('profile', {}, {}, (err, state) => {
+router.navigate('profile', (err, state) => {
     /* Error:
     {
         code: 'CANNOT_ACTIVATE',
@@ -64,7 +64,7 @@ router.canActivate('profile', (router) => (toState, fromState, done) => {
         .catch(() => Promise.reject({ redirect: { name: 'login' }}));
 });
 
-router.navigate('profile', {}, {}, (err, state) => {
+router.navigate('profile', (err, state) => {
     // err is null
     state.name === 'login';
 });

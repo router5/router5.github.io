@@ -17,8 +17,8 @@ var routeNodes = {
 var svg;
 var height = 400;
 
-var Router5 = router5.default;
-var router = new Router5()
+var createRouter = router5.default;
+var router = createRouter()
     .setOption('useHash', true)
     // Users
     .addNode('users',      '/users')
@@ -30,7 +30,7 @@ var router = new Router5()
     .addNode('orders.pending',   '/pending')
     .addNode('orders.view',      '/details/:id')
     .usePlugin(router5ListenersPlugin())
-    .usePlugin(router5HistoryPlugin())
+    .usePlugin(router5BrowserPlugin())
     .addListener(drawGraph)
     .start(function (err, state) {
         drawGraph(state, null);

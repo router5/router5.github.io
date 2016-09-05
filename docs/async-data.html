@@ -59,10 +59,7 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
-            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -120,7 +117,7 @@
 <p>You can use your router state objects as a container for route-specific data.</p>
 </blockquote>
 <p>You can use a middleware if you want your router to wait for data updates and/or prevent a route transition to happen if data loading fails.
-When doing so, you can use <code>toState</code> state object as a container for your route-specific data: <a href="https://github.com/router5/router5-listeners">router5-listeners</a> will pass it to your view (with the data you attached to it). You shouldn&#39;t mutate <code>toState</code> if you don&#39;t explicitly ask the router to wait by either calling a <code>done</code> callback or by returning a promise.</p>
+When doing so, you can use <code>toState</code> state object as a container for your route-specific data: the listeners plugin will pass it to your view (with the data you attached to it). You shouldn&#39;t mutate <code>toState</code> if you don&#39;t explicitly ask the router to wait by either calling a <code>done</code> callback or by returning a promise.</p>
 <p>First, we need to define what data need to be loaded for which route segment:</p>
 <pre><code class="lang-javascript javascript">import { get } from &#39;xr&#39;;
 
@@ -144,7 +141,7 @@ const routes = [
 <p>Then we create a middleware function which will invoke data for the activated segments on a route change. In this example, data are loaded in parallel using <code>Promise.all</code>. You can proceed differently by loading data in series, or by implementing dependencies between your <code>onActivate</code> handlers.</p>
 <pre><code class="lang-javascript javascript">import transitionPath from &#39;router5.transition-path&#39;;
 
-const dataMiddlewareFactory = routes =&gt; router =&gt; toState =&gt; {
+const dataMiddlewareFactory = (routes) =&gt; (router) =&gt; (toState, fromState) =&gt; {
     const { toActivate } = transitionPath(toState, fromState);
     const onActivateHandlers =
         toActivate
@@ -163,11 +160,8 @@ const dataMiddlewareFactory = routes =&gt; router =&gt; toState =&gt; {
 <p>And when configuring your router:</p>
 <pre><code class="lang-javascript javascript">import { routes } from &#39;./routes&#39;;
 
-const router = new Router5();
+const router = createRouter(routes);
 /* ... configure your router */
-
-/* add your routes */
-router.add(routes);
 
 /* data middleware */
 router.useMiddleware(dataMiddlewareFactory(routes));
@@ -202,19 +196,19 @@ const routes = [
 ]
 </code></pre>
 <p>You need to create your store and router, and pass your store to your router instance (with <code>.inject()</code>):</p>
-<pre><code class="lang-javascript javascript">router.inject(store);
+<pre><code class="lang-javascript javascript">router.setDependency(&#39;store&#39;, store);
 </code></pre>
 <p>Then we create a router5 middleware for data which will load data on a transition success.</p>
 <pre><code class="lang-javascript javascript">import { actionTypes } from &#39;redux-router5&#39;;
 import transitionPath from &#39;router5.transition-path&#39;;
 
-const onRouteActivateMiddleware = routes =&gt; (router, { dispatch }) =&gt; (toState) =&gt; {
+const onRouteActivateMiddleware = routes =&gt; (router, { store }) =&gt; (toState) =&gt; {
     const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
 
     toActivate.forEach(segment =&gt; {
         const routeSegment = routes.find(r =&gt; r.name === segment);
         if (routeSegment &amp;&amp; routeSegment.onActivate) {
-            dispatch(routeSegment.onActivate(action.payload.route.params));
+            store.dispatch(routeSegment.onActivate(action.payload.route.params));
         }
     });
 };

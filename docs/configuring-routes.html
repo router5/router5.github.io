@@ -59,10 +59,7 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
-            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -124,8 +121,8 @@
 </code></pre>
 <h2 id="adding-routes-to-your-router">Adding routes to your router</h2>
 <p>You can add all your routes at once using Router5 constructor or <code>router.add</code>.</p>
-<p><strong>new Router5(routes, options)</strong></p>
-<pre><code class="lang-javascript javascript">const router = new Router5(routes, options);
+<p><strong>createRouter(routes, options)</strong></p>
+<pre><code class="lang-javascript javascript">const router = createRouter(routes, options);
 </code></pre>
 <p><strong>add(routes)</strong></p>
 <p><code>.add()</code> accepts single nodes, flat or nested arrays.</p>
@@ -138,11 +135,13 @@ myRouter.add([
 </code></pre>
 <p><strong>addNode(name, path[, canActivate])</strong></p>
 <p>You can add routes node by node, specifying a node name and its segment path.</p>
-<pre><code class="lang-javascript javascript">var router = new Router5()
+<pre><code class="lang-javascript javascript">var router = createRouter()
     .addNode(&#39;users&#39;,      &#39;/users&#39;)
     .addNode(&#39;users.view&#39;, &#39;/view/:id&#39;)
     .addNode(&#39;users.list&#39;, &#39;/list&#39;);
 </code></pre>
+<h2 id="configuring-the-root-node-path">Configuring the root node path</h2>
+<p>At the top of your tree of routes, there is an unamed node called the root node. Its path is empty and can be configured using <code>router.setRootPath(path)</code>. It can be used for example to list a number of allowed query parameters for all routes in strict query parameters mode (ter.setRootPath(&#39;?param1&amp;param2&#39;)`).</p>
 
     </main>
 

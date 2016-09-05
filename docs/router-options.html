@@ -59,10 +59,7 @@
 
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration-4.html" class="link">Migrating from 3.x</a>
-            <a href="/docs/migration-3.html" class="link">Migrating from 2.x</a>
-            <a href="/docs/migration-2.html" class="link">Migrating from 1.x</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
+            <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
@@ -101,21 +98,16 @@
 <blockquote>
 <p>You can configure your router instance by passing options to the constructor or by using <code>.setOption(optName, optValue)</code>.</p>
 </blockquote>
-<pre><code class="lang-javascript javascript">var router = new Router5([], {
-        useHash: true,
-        hashPrefix: &#39;!&#39;,
+<pre><code class="lang-javascript javascript">var router = createRouter([], {
         defaultRoute: &#39;home&#39;,
         defaultParams: {},
-        base: &#39;&#39;,
         trailingSlash: false,
         autoCleanUp: true,
-        strictQueryParams: true
+        strictQueryParams: true,
+        allowNotFound: false
     })
-    .setOption(&#39;useHash&#39;, false)
-    .setOption(&#39;hashPrefix&#39;, &#39;&#39;);
+    .setOption(&#39;strictQueryParams&#39;, false)
 </code></pre>
-<h2 id="use-of-hash-part-of-url">Use of hash part of URL</h2>
-<p>Set <code>useHash</code> to <code>true</code> if you want the paths of your routes to be prefixed with a hash. You can also choose a <code>hashPrefix</code> which will be inserted between the path of a route and the hash. Those options will mostly be used by plugins such as <code>router5-history</code>.</p>
 <h2 id="default-route">Default route</h2>
 <p>When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:</p>
 <ul>
@@ -123,9 +115,6 @@
 <li><code>defaultParams</code>: the default route params (defaults to <code>{}</code>)</li>
 </ul>
 <p>See <a href="/docs/navigation.html">navigation guide</a> for more information.</p>
-<h2 id="base-path">Base path</h2>
-<p>You can specify what the base path of your application is. By default <code>base</code> is set to an empty string, meaning your route paths won&#39;t be prefixed by any
-path.</p>
 <h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
 <p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
 <h2 id="automatic-clean-up">Automatic clean up</h2>
@@ -133,6 +122,16 @@ path.</p>
 <h2 id="strict-query-parameters">Strict query parameters</h2>
 <p>Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.</p>
 <p>If you want the router to still match routes if extra query parameters are present, set <code>strictQueryParams</code> to <code>false</code>.</p>
+<h2 id="allow-not-found">Allow not found</h2>
+<p>There are two ways to deal with not found routes: the first one is to configure a <code>defaultRoute</code> (and <code>defaultParams</code>), the second one is to allow those not found routes to create a new routing state. Set <code>allowNotFound</code> to true and the router will allow unknown URLs to create new state objects looking like the following (with <code>/route-not-found</code> being the not matched path):</p>
+<pre><code class="lang-js">import { constants } from &#39;router5&#39;;
+
+{
+    name: constants.UNKNOWN_ROUTE
+    params: { path: &#39;/route-not-found&#39; },
+    path: &#39;/route-not-found&#39;
+}
+</code></pre>
 
     </main>
 

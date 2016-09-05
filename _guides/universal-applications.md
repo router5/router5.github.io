@@ -17,21 +17,22 @@ You can use the same code for configuring your router on both client and server 
 
 ```js
 const Router5 = require( 'router5' ).default;
-const listenersPlugin = require( 'router5-listeners' );
-const historyPlugin = require( 'router5-history' );
+const listenersPlugin = require( 'router5/plugins/listeners' );
+const browserPlugin = require( 'router5/plugins/browser' );
 
 function createRouter() {
-    return new Router5([
+    return createRouter([
             { name: 'home', path: '/home' },
             { name: 'about', path: '/about' },
             { name: 'contact', path: '/contact' },
             { name: '404', path: '/404' }
         ], {
-            useHash: false,
             trailingSlash: true,
             defaultRoute: '404'
         })
-        .usePlugin(historyPlugin())
+        .usePlugin(browserPlugin({
+            useHash: false
+        }))
         .usePlugin(listenersPlugin())
 }
 

@@ -24,55 +24,29 @@ Files are available in `/dist/commonjs/`.
 
 ```javascript
 // ES2015+
-import Router5, { RouteNode, errCodes, transitionPath, loggerPlugin } from 'router5';
+import Router5, { RouteNode, errorCodes, transitionPath, loggerPlugin } from 'router5';
 
 // ES5
 var router5 = require('router5');
 
-var Router5 = router5.default;
+var createRouter = router5.default;
 var RouteNode = router5.RouteNode;
-var errCodes = router5.errCodes;
+var errorCodes = router5.errorCodes;
+var constants = router5.constants;
 var transitionPath = router5.transitionPath;
 var loggerPlugin = router5.loggerPlugin;
+
+var browserPlugin = require('router5/plugins/browser');
+var listenersPlugin = require('router5/plugins/listeners');
+var persistentParamsPlugin = require('router5/plugins/persistentParams');
 ```
-
-__Browser (globals)__
-
-`router5.js` and `router5.min.js` are available in `/dist/browser/`. All _router5_ dependencies (_route-node_ and _path-parser_)
-are packaged together. A `router5` object is registered globally. See above for what it contains.
-
-__AMD__
-
-`router5.js` and `router5.min.js` are available in `/dist/amd/`, it includes all router5 dependencies bundled
-together. `router5` returns an object, same as CommonJS.
 
 __UMD__
 
-UMD files are available in `/dist/umd`.
+A UMD bundle is available in `/dist/umd`, and it should be used for AMD or globals. The bundle contains all _router5_ dependencies (_route-node_ and _path-parser_), but doesn't contain plugins.
 
-
-## Plugins
-
-> `router5-listeners` and `router5-history` are both available through npm and bower too.
-
-```sh
-# Listeners plugin
-npm install router5-listeners
-bower install router5-listeners
-
-# History plugin
-npm install router5-history
-bower install router5-history
-
-# Persistent params plugin
-npm install router5-persistent-params
-bower install router5-persistent-params
-```
-
-[router5-history](https://github.com/router5/router5-history) global bundle adds `router5HistoryPlugin` to the global scope. The AMD
-bundle is named `router5HistoryPlugin`.
-
-[router5-listeners](https://github.com/router5/router5-listeners) global bundle adds `router5ListenersPlugin` to the global scope. The AMD
+Plugins are packaged separately and available in `/dist/umd`:
+- `browserPlugin` UMD module is named `router5BrowserPlugin`
+- `listenersPlugin` UMD module is named `router5ListenersPlugin`
+- `persistentParamsPlugin` UMD module is named `router5PersistentParamsPlugin`
 bundle is named `router5ListenersPlugin`.
-
-[router5-persistent-params](https://github.com/router5/router5-persistent-params) global bundle adds `router5PersistentParamsPlugin` to the global scope. The AMD bundle is named `router5PersistentParamsPlugin`.

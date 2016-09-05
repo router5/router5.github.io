@@ -4,16 +4,19 @@
 
 You can only register all injectables at once, and you should before you start your router.
 
-```javscript
-router.inject(store, api);
+```js
+router.setDependencies({ store, api });
+// or
+router.setDependency('store', store);
+router.setDependency('api', api);
 ```
 
-You can retrieve your currently injected references using `getInjectables()`.
+You can retrieve your current dependencies references using `getDependencies()`.
 
 Lifecycle methods (`canActivate`, `canDeactivate`), middleware or plugins will be called with them:
 
 ```js
-const plugin = (router, ...injectables) => ({
+const plugin = (router, dependencies) => ({
     /*
         onStart() {},
         onStop() {},
@@ -24,7 +27,7 @@ const plugin = (router, ...injectables) => ({
 ```
 
 ```js
-const canActivate = (router, ...injectables) =>
+const canActivate = (router, dependencies) =>
     (toState, fromState, done) {
         /* ... */
     }
@@ -32,7 +35,7 @@ const canActivate = (router, ...injectables) =>
 
 
 ```js
-const middleware = (router, ...injectables) =>
+const middleware = (router, dependencies) =>
     (toState, fromState, done) {
         /* ... */
     }

@@ -11,21 +11,22 @@ const myRouter = Router5([
     { name: 'contact', path: '/contact' }
 ]);
 
-myRouter.start();
+myRouter.start('/home');
 ```
 
-Invoking the `.start([startPathOrState ,] done)` function will:
+> When using `.start()`, you should supply a starting path or state except if you use the browser plugin (the current URL will automatically be used).
 
-- Attempt to navigate to `startPathOrState` if provided
+Invoking the `.start(startPathOrState[, done])` function will:
+
+- Attempt to navigate to `startPathOrState`
 - Attempt to match the current URL if no `startPathOrState` was provided, or navigation failed
-- Attempt to navigate to the default route if it could not match the current URL or if `startPathOrState` was not provided / failed
+- Attempt to navigate to the default route if it could not match the provided start path or if `startPathOrState` was not provided / failed
 
 And will:
 
-- Start listening to _popstate_ events (triggered by back and forward buttons, and a manual change in the URL bar)
 - Enable navigation
 
-Providing a `startPathOrState` is designed to be used for universal JavaScript applications: see [universal applications](/docs/universal-applications.html).
+Providing a starting state is designed to be used for universal JavaScript applications: see [universal applications](/docs/universal-applications.html).
 
 
 ## Defining a default route
@@ -81,7 +82,7 @@ myRouter.navigate('section', {section: 'contact'}, {replace: true});
 Like for `.start()`, `.navigate()` accepts a callback (last argument):
 
 ```javascript
-myRouter.navigate('route', {}, {}, function (err, state) {
+myRouter.navigate('route', function (err, state) {
     /* ... */
 })
 ```
