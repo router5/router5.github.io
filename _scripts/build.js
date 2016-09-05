@@ -110,7 +110,7 @@ async.parallel([
     renderDoc('_guides', 'async-data.md', {asyncData: true, docs: true}),
     renderDoc('_guides', 'custom-errors.md', {customErrors: true, docs: true}),
     renderDoc('_guides', 'injectables.md', {injectables: true, docs: true}),
-    // renderApi,
+    renderApi,
     renderDoc('_docs', 'ecosystem.md', {ecosystem: true, examples: true}),
     renderDoc('_docs', 'with-react.md', {react: true, examples: true, scripts: [
         '/assets/router5-react-example.js'

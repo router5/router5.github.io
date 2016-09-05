@@ -35,7 +35,6 @@ var router = createRouter()
         drawGraph(state, null);
     });
 
-console.log(router);
 // Draw graph
 function drawGraph(toState, fromState) {
     toState = toState || {};
