@@ -46,7 +46,7 @@ function normalizeParams(param) {
 
 // Parse a string or a buffer.
 module.exports = function (done) {
-    fs.readFile(path.join(__dirname, '..', 'node_modules/router5/modules/router5.js'), function (err, res) {
+    fs.readFile(path.join(__dirname, '..', '..', 'router5/create-router.js'), function (err, res) {
         if (err) {
             done(err);
             return;
@@ -63,29 +63,24 @@ module.exports = function (done) {
             })
             .map(function (block, index) {
                 var block = {
-                    type: block.context.type,
-                    static: block.context.static,
                     name: block.context.name,
                     description: block.comment.description.replace(/(<p>|<\/p>)/g, '').trim(),
                     params: block.comment.tags.filter(filterTagByType('param')).map(normalizeParams),
                     returns: block.comment.tags.filter(filterTagByType('return')).map(normalizeParams)
                 };
-                block.signature = (index === 0 ? '' : (block.static ? 'Router5.' : 'router5.')) + block.name;
-                if (block.type !== 'property') {
-                    block.signature += '(' + block.params.map(function (param) {
+                block.signature = block.name === 'createRouter' ? block.name : 'router.' + block.name;
+                block.signature += '(' + block.params.map(function (param) {
                         return !param.optional ? param.name : '[' + param.name + ']';
                     }).join(', ') + ')';
-                }
 
                 return block;
             });
 
-        var classBlock   = blocks[0];
-        var methodBlocks = blocks.slice(1);
+        console.log(blocks);
         // .sort(function (a, b) {
         //     return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
         // });
 
-        done(null, {'class': classBlock, methods: methodBlocks});
+        done(null, blocks);
     });
 };
