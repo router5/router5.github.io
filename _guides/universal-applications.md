@@ -55,7 +55,7 @@ import swig from 'swig';
 const app = express();
 
 // Swig is used for templating in this example
-// Use what you are confortable with
+// Use what you are comfortable with
 app.engine( 'html', swig.renderFile );
 app.set( 'view engine', 'html' );
 app.set( 'views', './views' );

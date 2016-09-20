@@ -1,4 +1,4 @@
-# Cusom errors and redictions
+# Custom errors and redirections
 
 > When failing a transition function (canActivate, canDeactivate, middleware) custom errors can be returned. Custom errors can be a string or an object and will be added to the error object and passed to `start` and `navigate` callbacks).
 
