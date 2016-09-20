@@ -114,6 +114,17 @@ app.listen( 8080, function logServerStart() {
 
 From here forth, you can continue to use Router5 as if it was a regular Single-Page Application.
 
+
+### Performance
+
+A new router should be created on each request. There is no evidence of performance issues, however router5 includes a cloning mechanism to reduce the time it takes to create a router. Create a base router, and clone it for each request.
+
+```js
+const baseRouter = createRouter(/* ... */);
+
+const router = baseRouter.clone(dependencies);
+```
+
 ### Important to Remember - Pass in an Object
 
 It is important to remember that `Router5.start()` **does NOT** parse your starting state for you. If you pass in a `String` instead of an `Object` _Router5_ will attempt to navigate to the path of that string.

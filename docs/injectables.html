@@ -94,11 +94,13 @@
     </aside>
 
     <main>
-        <h1 id="injectables">Injectables</h1>
+        <h1 id="dependencies-injectables-">Dependencies (injectables)</h1>
 <blockquote>
 <p>When using lifecycle methods (<code>canActivate</code>, <code>canDeactivate</code>), middleware or plugins, you might need to access specific objects from your application: a store, a specific API, etc... You can pass their reference to router5 and they will be passed alongside your router instance.</p>
 </blockquote>
-<p>You can only register all injectables at once, and you should before you start your router.</p>
+<p>You can register all dependencies at once, or one by one.</p>
+<pre><code class="lang-js">const router = createRouter(routes, options, dependencies);
+</code></pre>
 <pre><code class="lang-js">router.setDependencies({ store, api });
 // or
 router.setDependency(&#39;store&#39;, store);

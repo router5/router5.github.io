@@ -1,8 +1,12 @@
-# Injectables
+# Dependencies (injectables)
 
 > When using lifecycle methods (`canActivate`, `canDeactivate`), middleware or plugins, you might need to access specific objects from your application: a store, a specific API, etc... You can pass their reference to router5 and they will be passed alongside your router instance.
 
-You can only register all injectables at once, and you should before you start your router.
+You can register all dependencies at once, or one by one.
+
+```js
+const router = createRouter(routes, options, dependencies);
+```
 
 ```js
 router.setDependencies({ store, api });
