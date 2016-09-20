@@ -69,8 +69,8 @@ function renderDoc(dir, page, customData) {
 }
 
 function renderApi(done) {
-    generateApi(function (err, doc) {
-        nunjucks.render(path.join(__dirname, '../_pages/api.html'), doc, function (err, docHtml) {
+    generateApi(function (err, modules) {
+        nunjucks.render(path.join(__dirname, '../_pages/api.html'), { modules: modules }, function (err, docHtml) {
             var docData = objectAssign({}, data, {
                 styleSheets: [
                     '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css',

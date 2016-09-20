@@ -43,7 +43,7 @@
 
             <a href="/docs/listeners.html" class="">Plugins</a>
 
-            <!-- <a href="/docs/api-reference.html" class="active">API</a> -->
+            <a href="/docs/api-reference.html" class="active">API</a>
 
             <a href="docs/with-react.html" class="">Examples</a>
 
@@ -59,7 +59,7 @@
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/get-started.html" class="link">Getting started</a>
             <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
-            <!-- <a href="/docs/api-reference.html" class="link active">Router5 API</a> -->
+            <a href="/docs/api-reference.html" class="link active">Router5 API</a>
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
             <strong>Guides</strong>
@@ -93,15 +93,136 @@
     </aside>
 
     <main>
-        <h1></h1>
+        <h1>API reference</h1>
 
 
-<h2>Constructor</h2>
+<h2>Core</h2>
+
 
 <table class="params-table">
     <thead>
         <tr>
-            <th colspan="3"></th>
+            <th colspan="3">
+                <strong>createRouter([routes], [options], [dependencies])</strong>
+                Create a router
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>routes</strong></td>
+            <td><code>Array</code></td>
+            <td>The routes</td>
+        </tr><tr>
+            <td><strong>options</strong></td>
+            <td><code>Object={}</code></td>
+            <td>The router options</td>
+        </tr><tr>
+            <td><strong>dependencies</strong></td>
+            <td><code>Object={}</code></td>
+            <td>The router dependencies</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.makeState(name, params, path, [metaParams], [source])</strong>
+                Build a state object
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The state name</td>
+        </tr><tr>
+            <td><strong>params</strong></td>
+            <td><code>Object</code></td>
+            <td>The state params</td>
+        </tr><tr>
+            <td><strong>path</strong></td>
+            <td><code>String</code></td>
+            <td>The state path</td>
+        </tr><tr>
+            <td><strong>metaParams</strong></td>
+            <td><code>Object</code></td>
+            <td>Description of the state params</td>
+        </tr><tr>
+            <td><strong>source</strong></td>
+            <td><code>String</code></td>
+            <td>The source of the routing state</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The state object</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.makeNotFoundState(path)</strong>
+                Build a not found state for a given path
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>path</strong></td>
+            <td><code>String</code></td>
+            <td>The unmatched path</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The not found state object</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.getState()</strong>
+                Get the current router state
+            </th>
         </tr>
 
         
@@ -109,11 +230,929 @@
 
     
 
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The current state</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.setState(state)</strong>
+                Set the current router state
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>state</strong></td>
+            <td><code>Object</code></td>
+            <td>The state object</td>
+        </tr>
+    </tbody>
+
+    
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.getOptions()</strong>
+                Get router options
+            </th>
+        </tr>
+
+        
+    </thead>
+
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router options</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.setOption(option, value)</strong>
+                Set an option
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>option</strong></td>
+            <td><code>String</code></td>
+            <td>The option name</td>
+        </tr><tr>
+            <td><strong>value</strong></td>
+            <td><code>*</code></td>
+            <td>The option value</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.setDependency(dependencyName, dependency)</strong>
+                Set a router dependency
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>dependencyName</strong></td>
+            <td><code>String</code></td>
+            <td>The dependency name</td>
+        </tr><tr>
+            <td><strong>dependency</strong></td>
+            <td><code>*</code></td>
+            <td>The dependency</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.setDependencies(deps)</strong>
+                Add dependencies
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>deps</strong></td>
+            <td><code>Object</code></td>
+            <td>A object of dependencies (key-value pairs)</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.getDependencies()</strong>
+                Get dependencies
+            </th>
+        </tr>
+
+        
+    </thead>
+
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The dependencies</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.add(routes)</strong>
+                Add routes
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>routes</strong></td>
+            <td><code>Array</code></td>
+            <td>A list of routes to add</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.addNode(name, path, [canActivateHandler])</strong>
+                Add a single route (node)
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route name (full name)</td>
+        </tr><tr>
+            <td><strong>path</strong></td>
+            <td><code>String</code></td>
+            <td>The route path (from parent)</td>
+        </tr><tr>
+            <td><strong>canActivateHandler</strong></td>
+            <td><code>Function</code></td>
+            <td>The canActivate handler for this node</td>
+        </tr>
+    </tbody>
+
     
 </table>
 
 
-<h2>Methods</h2>
+
+<h2>Router lifecycle</h2>
+
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.isStarted()</strong>
+                Check if the router is started
+            </th>
+        </tr>
+
+        
+    </thead>
+
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Boolean</code></td>
+            <td>Whether the router is started or not</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.start(startPathOrState, done)</strong>
+                Start the router
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>startPathOrState</strong></td>
+            <td><code>String</code><code>Object</code></td>
+            <td>The start path or state. This is optional when using the browser plugin.</td>
+        </tr><tr>
+            <td><strong>done</strong></td>
+            <td><code>Function</code></td>
+            <td>A done node style callback (err, state)</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.stop()</strong>
+                Stop the router
+            </th>
+        </tr>
+
+        
+    </thead>
+
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2>Navigation</h2>
+
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.cancel()</strong>
+                Cancel the current transition if there is one
+            </th>
+        </tr>
+
+        
+    </thead>
+
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.navigate(routeName, [routeParams], [options], [done])</strong>
+                Navigate to a route
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>routeName</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr><tr>
+            <td><strong>routeParams</strong></td>
+            <td><code>Object</code></td>
+            <td>The route params</td>
+        </tr><tr>
+            <td><strong>options</strong></td>
+            <td><code>Object</code></td>
+            <td>The navigation options (`replace`, `reload`)</td>
+        </tr><tr>
+            <td><strong>done</strong></td>
+            <td><code>Function</code></td>
+            <td>A done node style callback (err, state)</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Function</code></td>
+            <td>A cancel function</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.navigateToDefault([opts], [done])</strong>
+                Navigate to the default route (if defined)
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>opts</strong></td>
+            <td><code>Object</code></td>
+            <td>The navigation options</td>
+        </tr><tr>
+            <td><strong>done</strong></td>
+            <td><code>Function</code></td>
+            <td>A done node style callback (err, state)</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Function</code></td>
+            <td>A cancel function</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2>Route lifecycle</h2>
+
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.canDeactivate(name, canDeactivateHandler)</strong>
+                Register a canDeactivate handler or specify a if a route can be deactivated
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr><tr>
+            <td><strong>canDeactivateHandler</strong></td>
+            <td><code>Function</code><code>Boolean</code></td>
+            <td>The canDeactivate handler or boolean</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.clearCanDeactivate(name)</strong>
+                Remove a canDeactivate handler for a route
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.canActivate(name, canActivateHandler)</strong>
+                Register a canActivate handler or specify a if a route can be deactivated
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr><tr>
+            <td><strong>canActivateHandler</strong></td>
+            <td><code>Function</code><code>Boolean</code></td>
+            <td>The canActivate handler or boolean</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2>Middleware</h2>
+
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.useMiddleware(...middlewares)</strong>
+                Register middleware functions.
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>middlewares</strong></td>
+            <td><code>...Function</code></td>
+            <td>The middleware functions</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.clearMiddleware()</strong>
+                Remove all middleware functions
+            </th>
+        </tr>
+
+        
+    </thead>
+
+    
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2>Plugins</h2>
+
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.usePlugin(...plugins)</strong>
+                Use plugins
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>plugins</strong></td>
+            <td><code>...Function</code></td>
+            <td>An argument list of plugins</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The router instance</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.hasPlugin(pluginName)</strong>
+                Check if a plugin has already been registered.
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>pluginName</strong></td>
+            <td><code>String</code></td>
+            <td>The plugin name</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Boolean</code></td>
+            <td>Whether the plugin has been registered</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<h2>Utils</h2>
+
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.isActive(name, params, [strictEquality], [ignoreQueryParams])</strong>
+                Check if a route is currently active
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>name</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr><tr>
+            <td><strong>params</strong></td>
+            <td><code>Object</code></td>
+            <td>The route params</td>
+        </tr><tr>
+            <td><strong>strictEquality</strong></td>
+            <td><code>Boolean=false</code></td>
+            <td>Whether to check if the given route is the active route, or part of the active route</td>
+        </tr><tr>
+            <td><strong>ignoreQueryParams</strong></td>
+            <td><code>Boolean=true</code></td>
+            <td>Whether to ignore query parameters</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Boolean</code></td>
+            <td>Whether the given route is active</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.areStatesEqual(state1, state2, ignoreQueryParams)</strong>
+                Compare two route state objects
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>state1</strong></td>
+            <td><code>Object</code></td>
+            <td>The route state</td>
+        </tr><tr>
+            <td><strong>state2</strong></td>
+            <td><code>Object</code></td>
+            <td>The other route state</td>
+        </tr><tr>
+            <td><strong>ignoreQueryParams</strong></td>
+            <td><code>Boolean</code></td>
+            <td>Whether to ignore query parameters or not</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Boolean</code></td>
+            <td>Whether the two route state are equal or not</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.areStatesDescendants(parentState, childState)</strong>
+                Check if two states are related
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>parentState</strong></td>
+            <td><code>State</code></td>
+            <td>The parent state</td>
+        </tr><tr>
+            <td><strong>childState</strong></td>
+            <td><code>State</code></td>
+            <td>The child state</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Boolean</code></td>
+            <td>Whether the two states are descendants or not</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.buildPath(route, params)</strong>
+                Build a path
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>route</strong></td>
+            <td><code>String</code></td>
+            <td>The route name</td>
+        </tr><tr>
+            <td><strong>params</strong></td>
+            <td><code>Object</code></td>
+            <td>The route params</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>String</code></td>
+            <td>The path</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.matchPath(path, [source])</strong>
+                Match a path
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>path</strong></td>
+            <td><code>String</code></td>
+            <td>The path to match</td>
+        </tr><tr>
+            <td><strong>source</strong></td>
+            <td><code>String</code></td>
+            <td>The source (optional, used internally)</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td><code>Object</code></td>
+            <td>The matched state (null if unmatched)</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.setRootPath(rootPath)</strong>
+                Set the root node patch, use carefully. It can be used to set app-wide allowed query parameters.
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>rootPath</strong></td>
+            <td><code>String</code></td>
+            <td>The root node path</td>
+        </tr>
+    </tbody>
+
+    
+</table>
+
+
+
+<h2>Clone</h2>
+
+
+<table class="params-table">
+    <thead>
+        <tr>
+            <th colspan="3">
+                <strong>router.clone(deps)</strong>
+                Clone the current router configuration. The new returned router will be non-started,
+with a null state
+            </th>
+        </tr>
+
+        <tr>
+            <th colspan="3">Params</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><strong>deps</strong></td>
+            <td></td>
+            <td>[description]</td>
+        </tr>
+    </tbody>
+
+    <tbody class="return">
+        <tr>
+            <td><strong>Return</strong></td>
+            <td></td>
+            <td>[description]</td>
+        </tr>
+    </tbody>
+</table>
+
 
 
 
