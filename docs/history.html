@@ -80,8 +80,8 @@
 
             <strong>Plugins</strong>
 
+            <a href="/docs/history.html" class="link active">Browser</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/history.html" class="link active">History</a>
 
             <strong>Examples</strong>
 
@@ -94,18 +94,26 @@
     </aside>
 
     <main>
-        <h1 id="history-plugin">History plugin</h1>
-<p>The history plugin will automatically update your browser URL and state on route changes. It will also listen to popstate events (triggered
+        <h1 id="browser-plugin">Browser plugin</h1>
+<p>The browser plugin will automatically update your browser URL and state on route changes. It will also listen to popstate events (triggered
 by back and forward buttons and manual URL changes).</p>
-<p>This plugin uses HTML5 history API and therefore is not compatible with browsers which don&#39;t support it. Refer to <a href="http://caniuse.com/#search=history">caniuse.com</a>
-for browser compatibility.</p>
+<p>This plugin uses HTML5 history API and therefore is not compatible with browsers which don&#39;t support it. Refer to <a href="http://caniuse.com/#search=history">caniuse.com</a> for browser compatibility.</p>
+<p>It adds a bunch of functions to work with full URLs: <code>router.buildUrl(routeName, routeParams)</code> and <code>router.matchUrl(url)</code>. It also decorates the start function so you don&#39;t have to supply any start path (it extracts it from the current URL).</p>
 <pre><code class="lang-javascript javascript">import browserPlugin from &#39;router5/plugins/browser&#39;;
 
 const router = createRouter()
-    .usePlugin(browserPlugin())
+    .usePlugin(browserPlugin({
+        useHash: true
+    }))
     .start();
 </code></pre>
 <p>For more information on how to install, look at <a href="/docs/get-started.html">Get started</a>.</p>
+<h3 id="options">Options</h3>
+<ul>
+<li><code>useHash</code></li>
+<li><code>hashPrefix</code></li>
+<li><code>base</code>: the base of your application (the part to add / preserve between your domain and your route paths).</li>
+</ul>
 
     </main>
 
