@@ -11,7 +11,7 @@ With version 4.0.0, _router5_ has been refactored. API for plugins, middleware f
 
 #### Router instanciation
 
-_router5_ default export is now a `createRouter` function as opposed to a `Router5` class. The API is identical between `createRouter(routes, options)` and `new Router(routes, options)`.
+_router5_ default export is now a `createRouter` function as opposed to a `Router5` class. The API is identical between `createRouter(routes, options)` and `new Router5(routes, options)`.
 
 ```js
 import createRouter from 'router5';

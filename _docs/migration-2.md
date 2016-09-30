@@ -25,7 +25,7 @@ import Router5, { loggerPlugin } from 'router5';
 import historyPlugin from 'router5-history';
 import listenersPlugin from 'router5-listeners';
 
-const router = new Router()
+const router = new Router5()
     .add([{
         name: 'home',
         path: '/home'
@@ -47,7 +47,7 @@ var loggerPlugin = router5.loggerPlugin;
 var historyPlugin = require('router5-history');
 var listenersPlugin = require('router5-listeners');
 
-var router = new Router()
+var router = new Router5()
     .add([{
         name: 'home',
         path: '/home'

@@ -26,7 +26,7 @@ import { Router5 } from 'router5';
 import historyPlugin from 'router5-history';
 import listenersPlugin from 'router5-listeners';
 
-const router = new Router()
+const router = new Router5()
     .addNode('home', '/home')
     .usePlugin(historyPlugin())
     .usePlugin(listenersPlugin())
