@@ -7,6 +7,7 @@ var router = createRouter([], {
         defaultRoute: 'home',
         defaultParams: {},
         trailingSlash: false,
+        useTrailingSlash: undefined,
         autoCleanUp: true,
         strictQueryParams: true,
         allowNotFound: false
@@ -28,6 +29,10 @@ See [navigation guide](/docs/navigation.html) for more information.
 ## Optional trailing slashes
 
 By default, the router is in "strict match" mode. If you want trailing slashes to be optional, you can set `trailingSlash` to a truthy value.
+
+## Building with or without trailing slashes
+
+By default, the router will build your routes according to your route definitions. You can force or not the use of trailing slashes by setting `useTrailingSlash` to `true` or `false` (default to `undefined`); When setting this option, `trailingSlash` will be set to true (non strict matching).
 
 
 ## Automatic clean up

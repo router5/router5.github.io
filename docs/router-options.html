@@ -102,6 +102,7 @@
         defaultRoute: &#39;home&#39;,
         defaultParams: {},
         trailingSlash: false,
+        useTrailingSlash: undefined,
         autoCleanUp: true,
         strictQueryParams: true,
         allowNotFound: false
@@ -117,6 +118,8 @@
 <p>See <a href="/docs/navigation.html">navigation guide</a> for more information.</p>
 <h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
 <p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
+<h2 id="building-with-or-without-trailing-slashes">Building with or without trailing slashes</h2>
+<p>By default, the router will build your routes according to your route definitions. You can force or not the use of trailing slashes by setting <code>useTrailingSlash</code> to <code>true</code> or <code>false</code> (default to <code>undefined</code>); When setting this option, <code>trailingSlash</code> will be set to true (non strict matching).</p>
 <h2 id="automatic-clean-up">Automatic clean up</h2>
 <p>If <code>autoCleanUp</code> is set to true, the router will automatically clear <code>canDeactivate</code> functions / booleans when their associated segment becomes inactive.</p>
 <h2 id="strict-query-parameters">Strict query parameters</h2>
