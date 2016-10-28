@@ -46,7 +46,7 @@ Now let's see another example: a transition from `admin.roles` to `admin.users`.
 
 This is where you need to forget about route handlers and linking routes to components. On the left you have state updates coming from your router, and on the right you have your application view. Your application view is already in a certain state, and will now have to update to reflect the latest state updates.
 
-On a route change, you only need to re-render a portion of your app. Depending on where your come from, for the same given route, a smaller or larger part of your application view will need to be re-rendered. This is why route handlers are not helpful: routing is not about mapping a route to a component, it is about going from A to B.
+On a route change, you only need to re-render a portion of your app. Depending on where you come from, for the same given route, a smaller or larger part of your application view will need to be re-rendered. This is why route handlers are not helpful: routing is not about mapping a route to a component, it is about going from A to B.
 
 
 ### Binding to route changes
@@ -57,7 +57,7 @@ Your view will need to subscribe to route updates, or specific route updates. Th
 - The router has navigated to a specified route
 - A specified node is the transition node
 
-The last point is the main one. We have seen your routes are organised in a tree. Your components are also organised in a tree, like DOM elements of a page are. In your application, each route node (when active) will have corresponding component node. Those components are the ones your view should be re-rendered from when their associated node is the transition node of a route change.
+The last point is the main one. We have seen your routes are organised in a tree. Your components are also organised in a tree, like DOM elements of a page are. In your application, each route node (when active) will have a corresponding component node. Those components should be re-rendered if their associated node is a transition node of a route change.
 
 Below is an example of associated route and component nodes, when `admin.users` is active:
 
@@ -78,7 +78,7 @@ In slightly more complicated cases, you might have other parts of your screen to
 
 Router 5 is best suited for trees of components, where components can easily be composed together. It works best with React, deku, cyclejs, etc...
 
-It also works very well with state containers like [redux](http://rackt.org/redux/index.html): your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don't need to use the listeners plugin.
+It also works very well with state containers like [Redux](http://redux.js.org/): your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don't need to use the listeners plugin.
 
 - [react-router5](https://github.com/router5/react-router5) and [deku-router5](https://github.com/router5/deku-router5) both provide a `routeNode(nodeName)(BaseComponent)` higher-order component for re-rendering from a node down when the given node is the transition node.
 - [redux-router5](https://github.com/router5/redux-router5) provides a selector `routeNode(nodeName)` which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with `connect` from [react-redux](https://github.com/rackt/react-redux) or [deku-redux](https://github.com/troch/deku-redux).
