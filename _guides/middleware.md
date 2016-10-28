@@ -19,7 +19,7 @@ const mware1 = (router) => (toState, fromState, done) => {
     done();
 };
 
-const mware2 = (router) => (toState, fromState, done) {
+const mware2 = (router) => (toState, fromState, done) => {
     // Let's fetch data and call done
     done();
 };
