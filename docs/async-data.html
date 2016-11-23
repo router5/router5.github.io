@@ -207,7 +207,7 @@ const onRouteActivateMiddleware = routes =&gt; (router, dependencies) =&gt; (toS
     toActivate.forEach(segment =&gt; {
         const routeSegment = routes.find(r =&gt; r.name === segment);
         if (routeSegment &amp;&amp; routeSegment.onActivate) {
-            dependencies.store.dispatch(routeSegment.onActivate(action.payload.route.params));
+            dependencies.store.dispatch(routeSegment.onActivate(toState.params));
         }
     });
 
