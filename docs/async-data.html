@@ -145,9 +145,8 @@ const dataMiddlewareFactory = (routes) =&gt; (router) =&gt; (toState, fromState)
     const { toActivate } = transitionPath(toState, fromState);
     const onActivateHandlers =
         toActivate
-            .map(segment =&gt; routes.find(r =&gt; r.name === segment))
-            .filter(segment =&gt; segment.onActivate !== undefined)
-            .map(segment =&gt; segment.onActivate);
+            .map(segment =&gt; routes.find(r =&gt; r.name === segment).onActivate)
+            .filter(Boolean)
 
     return Promise
         .all(onActivateHandlers)
@@ -172,7 +171,7 @@ router.useMiddleware(dataMiddlewareFactory(routes));
 <p>Using a state container like redux gives you a lot more flexibility with your routing strategy.</p>
 </blockquote>
 <p>Using a state container like redux gives you a lot more flexibility with your routing strategy. Because all data ends up in the same bucket that your components can listen to, data loading doesn&#39;t need to happen within components or to be synced with route transitions. As a result, your view can represent with greater details the state of your application: for example your UI can be a lot more explicit about displaying loading feedback.</p>
-<p>The following example uses a redux store with a <code>redux-thunk</code> middleware.</p>
+<p>The following example assumes the use a redux store configured with a <code>redux-thunk</code> middleware.</p>
 <pre><code class="lang-javascript javascript">import { get } from &#39;xr&#39;;
 import { loadUsers, loadUser } from &#39;./actionCreators&#39;;
 
@@ -195,15 +194,15 @@ const routes = [
     }
 ]
 </code></pre>
-<p>You need to create your store and router, and pass your store to your router instance (with <code>.inject()</code>):</p>
+<p>You need to create your store and router, and pass your store to your router instance (with <code>.setDependency()</code>):</p>
 <pre><code class="lang-javascript javascript">router.setDependency(&#39;store&#39;, store);
 </code></pre>
 <p>Then we create a router5 middleware for data which will load data on a transition success.</p>
 <pre><code class="lang-javascript javascript">import { actionTypes } from &#39;redux-router5&#39;;
 import transitionPath from &#39;router5.transition-path&#39;;
 
-const onRouteActivateMiddleware = routes =&gt; (router, dependencies) =&gt; (toState) =&gt; {
-    const { toActivate } = transitionPath(action.payload.route, action.payload.previousRoute);
+const onRouteActivateMiddleware = routes =&gt; (router, dependencies) =&gt; (toState, fromState, done) =&gt; {
+    const { toActivate } = transitionPath(toState, fromState);
 
     toActivate.forEach(segment =&gt; {
         const routeSegment = routes.find(r =&gt; r.name === segment);
@@ -211,12 +210,14 @@ const onRouteActivateMiddleware = routes =&gt; (router, dependencies) =&gt; (toS
             dependencies.store.dispatch(routeSegment.onActivate(action.payload.route.params));
         }
     });
+
+    done();
 };
 </code></pre>
 <p>Finally, just create your store and include <code>onRouteActivateMiddleware(routes)</code> middleware.</p>
 <h2 id="async-data-loading-and-universal-applications">Async data loading and universal applications</h2>
 <p>The two examples above show two different techniques of loading data with a router5 middleware. One is blocking, one is non-blocking. But what about universal applications?</p>
-<p>The answer is very simple: block on the server-side, and choose to block or not on the client-side! For the redux example, we need to return a promise of all dispatched promises and we are done.</p>
+<p>The answer is very simple: block on the server-side, and choose to block or not on the client-side! For the example with example, you would need dispatch to return promises (with redux-thunk, your thunks need to return promises for their async operations).</p>
 
     </main>
 
