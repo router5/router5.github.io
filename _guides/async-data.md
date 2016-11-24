@@ -25,8 +25,6 @@ When doing so, you can use `toState` state object as a container for your route-
 First, we need to define what data need to be loaded for which route segment:
 
 ```javascript
-import { get } from 'xr';
-
 const routes = [
     {
         name: 'home',
@@ -35,12 +33,12 @@ const routes = [
     {
         name: 'users',
         path: '/users',
-        onActivate: (params) => get('/users').then(data => ({ users: data.users }))
+        onActivate: (params) => fetch('/users').then(data => ({ users: data.users }))
     },
     {
         name: 'users.user',
         path: '/:id',
-        onActivate: (params) => get(`/users/${params.id}`).then(data => ({ user: data.user }))
+        onActivate: (params) => fetch(`/users/${params.id}`).then(data => ({ user: data.user }))
     }
 ]
 ```
@@ -85,12 +83,11 @@ In the case you don't want a route transition to wait for data to be loaded, you
 
 > Using a state container like redux gives you a lot more flexibility with your routing strategy.
 
-Using a state container like redux gives you a lot more flexibility with your routing strategy. Because all data ends up in the same bucket that your components can listen to, data loading doesn't need to happen within components or to be synced with route transitions. As a result, your view can represent with greater details the state of your application: for example your UI can be a lot more explicit about displaying loading feedback.
+Using a state container like redux gives you a lot more flexibility with your routing strategy. Because all data ends up in the same bucket that your components can listen to, data loading doesn't need to block route transitions. The only thing it needs is a reference to your store so actions can be dispatched. As a result, your view can represent with greater details the state of your application: for example your UI can be a lot more explicit about displaying loading feedback. Not blocking route transitions also means immediate URL updates (history), making your app feel more responsive.
 
 The following example assumes the use a redux store configured with a `redux-thunk` middleware.
 
 ```javascript
-import { get } from 'xr';
 import { loadUsers, loadUser } from './actionCreators';
 
 const routes = [
@@ -102,13 +99,13 @@ const routes = [
         name: 'users',
         path: '/users',
         onActivate: (params) => (dispatch) =>
-            get('/users').then(data => dispatch(loadUsers(data.users)))
+            fetch('/users').then(data => dispatch(loadUsers(data.users)))
     },
     {
         name: 'users.user',
         path: '/:id',
         onActivate: (params) => (dispatch) =>
-            get(`/users/${params.id}`).then(data => dispatch(loadUser(data.user)))
+            fetch(`/users/${params.id}`).then(data => dispatch(loadUser(data.user)))
     }
 ]
 ```
@@ -125,11 +122,12 @@ Then we create a router5 middleware for data which will load data on a transitio
 import { actionTypes } from 'redux-router5';
 import transitionPath from 'router5.transition-path';
 
-const onRouteActivateMiddleware = routes => (router, dependencies) => (toState, fromState, done) => {
+const onRouteActivateMiddleware = (routes) => (router, dependencies) => (toState, fromState, done) => {
     const { toActivate } = transitionPath(toState, fromState);
 
     toActivate.forEach(segment => {
         const routeSegment = routes.find(r => r.name === segment);
+
         if (routeSegment && routeSegment.onActivate) {
             dependencies.store.dispatch(routeSegment.onActivate(toState.params));
         }
@@ -146,3 +144,47 @@ Finally, just create your store and include `onRouteActivateMiddleware(routes)` 
 The two examples above show two different techniques of loading data with a router5 middleware. One is blocking, one is non-blocking. But what about universal applications?
 
 The answer is very simple: block on the server-side, and choose to block or not on the client-side! For the example with example, you would need dispatch to return promises (with redux-thunk, your thunks need to return promises for their async operations).
+
+
+## Chunk loading
+
+Chunk loading (loading code asynchronoulsy) is similar to data loading, since one can consider code is a form of data. With middlewares, you can call a done callback or return a promise, making them perfectly usable with `require.ensure` or `System.import`. Like examples above, you can implement similar techniques with, let's say, a `loadComponent` route property loading your chunk.
+
+```js
+const routes = {
+        name: 'users',
+        path: '/users',
+        onActivate: (params) => (dispatch) =>
+            fetch('/users').then(data => dispatch(loadUsers(data.users))),
+        loadComponent: () => System.import('./views/UsersList')
+    },
+};
+```
+
+Then what you need is a middleware triggering `loadComponent`.
+
+There are also emerging techniques of anticipated loading rather than lazy loading (i.e. from a specific view / component, chunks are loaded in anticipation of where a user is likely to go next). We could implement a `siblingComponents` property.
+
+
+```js
+const routes = [
+    {
+        name: 'home',
+        path: '/home',
+        loadComponent: () => System.import('./views/Home'),
+        siblingComponents: [ 'users' ]
+    },
+    {
+        name: 'users',
+        path: '/users',
+        onActivate: (params) => (dispatch) =>
+            fetch('/users').then(data => dispatch(loadUsers(data.users))),
+        loadComponent: () => System.import('./views/UsersList'),
+        siblingComponents: [ 'home' ]
+    },
+};
+```
+
+Then on a transition, what you might want to consider this strategy:
+- Load data and component (chunk)
+- Once done, request idle callback to start loading sibling components
