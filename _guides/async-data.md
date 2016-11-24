@@ -148,7 +148,7 @@ The answer is very simple: block on the server-side, and choose to block or not 
 
 ## Chunk loading
 
-Chunk loading (loading code asynchronoulsy) is similar to data loading, since one can consider code is a form of data. With middlewares, you can call a done callback or return a promise, making them perfectly usable with `require.ensure` or `System.import`. Like examples above, you can implement similar techniques with, let's say, a `loadComponent` route property loading your chunk.
+Chunk loading (loading code asynchronoulsy) is similar to data loading, since one can consider code is a form of data. With middlewares, you can call a done callback or return a promise, making them perfectly usable with `require.ensure` or `System.import`. Like examples above, you can implement similar techniques with, let's say, a `loadComponent` route property.
 
 ```js
 const routes = {
@@ -163,7 +163,7 @@ const routes = {
 
 Then what you need is a middleware triggering `loadComponent`.
 
-There are also emerging techniques of anticipated loading rather than lazy loading (i.e. from a specific view / component, chunks are loaded in anticipation of where a user is likely to go next). We could implement a `siblingComponents` property.
+There are also emerging techniques of anticipated loading rather than lazy loading (i.e. from a specific view / component, chunks are loaded in anticipation of where a user is likely to go next). We could implement a `relatedComponents` property.
 
 
 ```js
@@ -172,7 +172,7 @@ const routes = [
         name: 'home',
         path: '/home',
         loadComponent: () => System.import('./views/Home'),
-        siblingComponents: [ 'users' ]
+        relatedComponents: [ 'users' ]
     },
     {
         name: 'users',
@@ -180,7 +180,7 @@ const routes = [
         onActivate: (params) => (dispatch) =>
             fetch('/users').then(data => dispatch(loadUsers(data.users))),
         loadComponent: () => System.import('./views/UsersList'),
-        siblingComponents: [ 'home' ]
+        relatedComponents: [ 'home' ]
     },
 };
 ```
