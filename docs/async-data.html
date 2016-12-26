@@ -217,7 +217,7 @@ const onRouteActivateMiddleware = (routes) =&gt; (router, dependencies) =&gt; (t
 <p>The two examples above show two different techniques of loading data with a router5 middleware. One is blocking, one is non-blocking. But what about universal applications?</p>
 <p>The answer is very simple: block on the server-side, and choose to block or not on the client-side! For the example with example, you would need dispatch to return promises (with redux-thunk, your thunks need to return promises for their async operations).</p>
 <h2 id="chunk-loading">Chunk loading</h2>
-<p>Chunk loading (loading code asynchronoulsy) is similar to data loading, since one can consider code is a form of data. With middlewares, you can call a done callback or return a promise, making them perfectly usable with <code>require.ensure</code> or <code>System.import</code>. Like examples above, you can implement similar techniques with, let&#39;s say, a <code>loadComponent</code> route property loading your chunk.</p>
+<p>Chunk loading (loading code asynchronoulsy) is similar to data loading, since one can consider code is a form of data. With middlewares, you can call a done callback or return a promise, making them perfectly usable with <code>require.ensure</code> or <code>System.import</code>. Like examples above, you can implement similar techniques with, let&#39;s say, a <code>loadComponent</code> route property.</p>
 <pre><code class="lang-js">const routes = {
         name: &#39;users&#39;,
         path: &#39;/users&#39;,
@@ -228,13 +228,13 @@ const onRouteActivateMiddleware = (routes) =&gt; (router, dependencies) =&gt; (t
 };
 </code></pre>
 <p>Then what you need is a middleware triggering <code>loadComponent</code>.</p>
-<p>There are also emerging techniques of anticipated loading rather than lazy loading (i.e. from a specific view / component, chunks are loaded in anticipation of where a user is likely to go next). We could implement a <code>siblingComponents</code> property.</p>
+<p>There are also emerging techniques of anticipated loading rather than lazy loading (i.e. from a specific view / component, chunks are loaded in anticipation of where a user is likely to go next). We could implement a <code>relatedComponents</code> property.</p>
 <pre><code class="lang-js">const routes = [
     {
         name: &#39;home&#39;,
         path: &#39;/home&#39;,
         loadComponent: () =&gt; System.import(&#39;./views/Home&#39;),
-        siblingComponents: [ &#39;users&#39; ]
+        relatedComponents: [ &#39;users&#39; ]
     },
     {
         name: &#39;users&#39;,
@@ -242,7 +242,7 @@ const onRouteActivateMiddleware = (routes) =&gt; (router, dependencies) =&gt; (t
         onActivate: (params) =&gt; (dispatch) =&gt;
             fetch(&#39;/users&#39;).then(data =&gt; dispatch(loadUsers(data.users))),
         loadComponent: () =&gt; System.import(&#39;./views/UsersList&#39;),
-        siblingComponents: [ &#39;home&#39; ]
+        relatedComponents: [ &#39;home&#39; ]
     },
 };
 </code></pre>
