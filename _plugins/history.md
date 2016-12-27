@@ -23,6 +23,7 @@ For more information on how to install, look at [Get started](/docs/get-started.
 
 ### Options
 
+- `forceDeactivate`: default to `true`, meaning `canDeactivate` handlers won't get called on popstate events. It is not recommended to set it to `false`.
 - `useHash`
 - `hashPrefix`
 - `base`: the base of your application (the part to add / preserve between your domain and your route paths).
