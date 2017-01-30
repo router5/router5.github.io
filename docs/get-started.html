@@ -94,9 +94,9 @@
     </aside>
 
     <main>
-        <h1 id="get-started">Get started</h1>
+        <h1 id="getting-started">Getting started</h1>
 <blockquote>
-<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>AMD</strong>, <strong>CommonJS</strong>, <strong>globals</strong> and <strong>UMD</strong>.</p>
+<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>CommonJS</strong>, and <strong>UMD</strong>.</p>
 </blockquote>
 <p>It can be installed using <strong>npm</strong> or <strong>bower</strong>. Alternatively, you can download a specific version
 from <a href="https://github.com/router5/router5/releases">github</a>. Whether you install <em>router5</em> from npm, bower or github,
@@ -109,9 +109,12 @@ npm install router5
 </code></pre>
 <h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
 <p><strong>CommonJS</strong></p>
-<p>Files are available in <code>/dist/commonjs/</code>.</p>
 <pre><code class="lang-javascript javascript">// ES2015+
 import Router5, { RouteNode, errorCodes, transitionPath, loggerPlugin } from &#39;router5&#39;;
+
+import browserPlugin from &#39;router5/plugins/browser&#39;;
+import listenersPlugin from &#39;router5/plugins/listeners&#39;;
+import persistentParamsPlugin from &#39;router5/plugins/persistentParams&#39;;
 
 // ES5
 var router5 = require(&#39;router5&#39;);

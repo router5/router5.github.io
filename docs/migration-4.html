@@ -110,16 +110,16 @@ const router = createRouter(routes, options);
 </code></pre>
 <h4 id="plugins-moved">Plugins moved</h4>
 <p><code>router5-history</code>, <code>router5-persistent-params</code> and <code>router5-listeners</code> have been moved to router5 main repository. They are no longer individual modules but are distributed with router5 module.</p>
-<pre><code class="lang-js">import browserPlugin from &#39;router/plugins/browser&#39;;
-import listenersPlugin from &#39;router/plugins/listeners&#39;;
-import persistentParamsPlugin from &#39;router/plugins/persistentParams&#39;;
+<pre><code class="lang-js">import browserPlugin from &#39;router5/plugins/browser&#39;;
+import listenersPlugin from &#39;router5/plugins/listeners&#39;;
+import persistentParamsPlugin from &#39;router5/plugins/persistentParams&#39;;
 </code></pre>
 <p>The history plugin has been renamed &#39;browser plugin&#39;, to better describe its responsabilities. It deals with any URL related options and methods, to make router5 fully runtime environment agnostic:</p>
 <ul>
 <li><code>useHash</code>, <code>hashPrefix</code> and <code>base</code> options need to be passed to <code>browserPlugin</code>, not router5</li>
 <li><code>buildUrl</code>, <code>matchUrl</code> and <code>urlToPath</code> methods are no longer present by default and are added to your router instance by <code>browserPlugin</code>.</li>
 </ul>
-<pre><code class="lang-js">import browserPlugin from &#39;router/plugins/browser&#39;;
+<pre><code class="lang-js">import browserPlugin from &#39;router5/plugins/browser&#39;;
 
 router.usePlugin(browserPlugin({
     useHash: true

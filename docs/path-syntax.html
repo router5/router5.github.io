@@ -115,6 +115,15 @@ large part of your URL. It is recommended to handle with care and to ONLY use on
 </ul>
 <p>Constraints are also applied when building paths: when passing incorrect params to <code>.navigate()</code>,
 an error will be thrown.</p>
+<h2 id="absolute-nested-paths">Absolute nested paths</h2>
+<p>You can define absolute nested paths (not concatenated with their parent&#39;s paths). Note that absolute paths are not allowed if any parent of a node has parameters.</p>
+<pre><code class="lang-js">const router = createRouter([
+    { name: &#39;admin&#39;, path: &#39;/admin&#39; },
+    { name: &#39;admin.users&#39;, path: &#39;~/users&#39; }
+]);
+
+router.buildPath(&#39;admin.users&#39;); // &#39;/users&#39;
+</code></pre>
 
     </main>
 

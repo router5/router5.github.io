@@ -1,6 +1,6 @@
-# Get started
+# Getting started
 
-> _router5_ is available in all major formats: __ES6__, __AMD__, __CommonJS__, __globals__ and __UMD__.
+> _router5_ is available in all major formats: __ES6__, __CommonJS__, and __UMD__.
 
 It can be installed using __npm__ or __bower__. Alternatively, you can download a specific version
 from [github](https://github.com/router5/router5/releases). Whether you install _router5_ from npm, bower or github,
@@ -20,11 +20,14 @@ npm install router5
 
 __CommonJS__
 
-Files are available in `/dist/commonjs/`.
 
 ```javascript
 // ES2015+
 import Router5, { RouteNode, errorCodes, transitionPath, loggerPlugin } from 'router5';
+
+import browserPlugin from 'router5/plugins/browser';
+import listenersPlugin from 'router5/plugins/listeners';
+import persistentParamsPlugin from 'router5/plugins/persistentParams';
 
 // ES5
 var router5 = require('router5');

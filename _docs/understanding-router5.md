@@ -4,6 +4,10 @@
 
 In "traditional" routing, a specific route is associated with a _route handler_. Such handlers would return your application tree or would link your route to a specific view / component. With router5 it is reversed: rather than the router updating the view, it is up to the view to listen / bind / subscribe to route changes in order to update itself.
 
+<div style="width: 100%; margin: 0 auto; text-align: center">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hblXdstrAg0" frameborder="0" allowfullscreen></iframe>
+</div>
+
 
 ## The state
 

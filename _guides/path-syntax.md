@@ -22,3 +22,17 @@ Url and matrix parameters can be constrained with a regular expression. Backslas
 
 Constraints are also applied when building paths: when passing incorrect params to `.navigate()`,
 an error will be thrown.
+
+
+## Absolute nested paths
+
+You can define absolute nested paths (not concatenated with their parent's paths). Note that absolute paths are not allowed if any parent of a node has parameters.
+
+```js
+const router = createRouter([
+    { name: 'admin', path: '/admin' },
+    { name: 'admin.users', path: '~/users' }
+]);
+
+router.buildPath('admin.users'); // '/users'
+```
