@@ -90,7 +90,9 @@ function renderApi(done) {
 
 async.parallel([
     renderPage('index.html', {home: true, router5Version: router5Version, pageTitle: data.pageTitle.replace(' docs ', ' ')}),
-    renderDoc('_docs', 'get-started.md', {getStarted: true}),
+    renderDoc('_docs', 'why-router5.md', {whyRouter5: true}),
+    renderDoc('_docs', 'installation.md', {getStarted: true}),
+    renderDoc('_docs', 'first-router.md', {firstRouter: true}),
     renderDoc('_docs', 'migration.md', {migration: true}),
     renderDoc('_docs', 'migration-2.md', {migration2: true}),
     renderDoc('_docs', 'migration-3.md', {migration3: true}),

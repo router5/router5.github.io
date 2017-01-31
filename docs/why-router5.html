@@ -38,7 +38,7 @@
 
             <a href="/docs/understanding-router5.html" class="">Key concepts</a>
 
-            <a href="/docs/get-started.html" class="">Get started</a>
+            <a href="/docs/installation.html" class="">Get started</a>
 
             <a href="/docs/configuring-routes.html" class="">Guides</a>
 
@@ -55,14 +55,19 @@
 
     <aside>
         <nav>
-            <strong>Router5</strong>
+            <strong>Getting started</strong>
 
             <a href="/docs/why-router5.html" class="link active">Why router5?</a>
-            <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
-            <a href="/docs/get-started.html" class="link">Getting started</a>
-            <a href="/docs/migration.html" class="link">Migrating from 0.x</a>
-            <a href="/docs/api-reference.html" class="link">Router5 API</a>
+            <a href="/docs/installation.html" class="link">Installation</a>
+            <!-- <a href="/docs/first-router.html" class="link">Your first router</a> -->
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
+
+            <strong>Docs</strong>
+
+            <a href="/docs/migration-4.html" class="link">Migrating to v4</a>
+            <a href="/docs/api-reference.html" class="link">Router5 API</a>
+            <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
+            <a href="/docs/transition.html" class="link">Transition phase</a>
 
             <strong>Guides</strong>
 
@@ -70,17 +75,18 @@
             <a href="/docs/router-options.html" class="link">Router options</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
-            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/transition.html" class="link">Transition phase</a>
-            <a href="/docs/middleware.html" class="link">Middleware functions</a>
-            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
+            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
+            <a href="/docs/middleware.html" class="link">Middleware functions</a>
+            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
             <a href="/docs/async-data.html" class="link">Loading async data</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
+            <a href="/docs/injectables.html" class="link">Dependency injection</a>
 
             <strong>Plugins</strong>
 
+            <a href="/docs/history.html" class="link">Browser</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
-            <a href="/docs/history.html" class="link">History</a>
 
             <strong>Examples</strong>
 
@@ -88,54 +94,19 @@
             <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
             <a href="/docs/with-deku.html" class="link">With Deku</a>
             <a href="/docs/with-deku-redux.html" class="link">With Deku and Redux</a>
+            <a href="/docs/with-cycle.html" class="link">With Cycle</a>
         </nav>
     </aside>
 
     <main>
         <h1 id="why-router5-">Why router5?</h1>
-<p>I imagine a lot of developers who will see for the first time <a href="http://router5.github.io">router5</a> will ask themselves the following question:
-is it yet another router? is it any good? Why oh why do people keep writing new routers all the time?</p>
-<p>It is not always easy to see the potential of something straight away, or understand the motivations behind. I therefore decided
-to try to tell you more about router5, why I decided to develop an entire new routing solution, and what problems it tries to solve.</p>
-<h2 id="the-rise-of-reactive-applications">The rise of reactive applications</h2>
-<p>Functional programming is becoming increasingly popular, as well as having reactive applications. With functional programming comes architectures
-based around components, where components are organised in a tree. Those components can apparent themselves to functions and vocabulary around them
-is identical to functional programming: components are predictable, free of side-effects, they are composable, you can use higher order components...</p>
-<p>Simultaneously, observable patterns are gaining more and more traction. Flux-like libraries are in full bloom and all share some core concepts:
-whatever your implementation. a component shouldn&#39;t hold state but instead should be passed <em>something</em> it can get data from over time and therefore
-react to changes. You have a nice tree of components that you render initially and then you perform sideways data loading for
-updating specific branches and leafs of your tree.</p>
-<p>Some time ago, I started to use React. Before React, I have heavily used Angular. I still do, and I&#39;ll probably continue to do so with Angular2.
-Coming from Angular, I started to look for a routing solution in React and used the most popular one: <a href="https://github.com/rackt/react-router">react-router</a>.
-React-router is a great tool, and I felt right at home with it. Like in <a href="https://github.com/angular-ui/ui-router">ui-router</a> or ngRoute, you can simply tell
-it what component / view to render for each route. React-router uses the concept of higher order components to wrap your components and build a tree for you.</p>
-<p>Playing around with different patterns, I found my playground application disjointed: I felt I had full control over data within a route but I was
-giving away control on routing and my component tree mutations. Ideally a router would never update a view, but would provide the tools to do so
-efficiently: a reactive application, reacting to data changes <em>including</em> route changes.</p>
-<blockquote>
-<p>After all, why treat route changes any different than data changes?</p>
-</blockquote>
-<h2 id="existing-routers-are-monolithic">Existing routers are monolithic</h2>
-<p>The most popular routers those days are tied to frameworks (or libraries) and are fairly large pieces of software, tightly coupled together.
-Angular2 and Aurelia, for example, include their own routing solution with exciting new functionalities: activation / deactivation, use
-of pipelines, etc...</p>
-<p>Routers in Angular, Angular 2, Aurelia, Ember, React... all implement everything from path recognition
-to navigation and history management. They all share similar concepts or technical hurdles, but share very little code or conventions.</p>
-<h2 id="making-the-same-mistake-">Making the same mistake?</h2>
-<p>I came across <a href="https://github.com/pillarjs/routington">routington</a> which is
-a trie-based URL router: it organises URLs in a tree. The concept is great, and I thought it could be enhanced by organising named routes
-in a tree rather than URL segments. That way, every branch of a named routes tree is a valid route. From an application point of view,
-it also means it is more maintainable: you reference routes by name rather than URL. Using a tree makes building and matching paths easy,
-it also goes hand in hand with a component tree and makes it easy to reason about route changes. From routington came
-<a href="https://github.com/troch/route-node">route-node</a>.</p>
-<p>I then needed to use a URL matching / building library. I looked at <a href="https://github.com/rcs/route-parser">route-parser</a>,
-<a href="https://github.com/snd/url-pattern">url-pattern</a> and <a href="https://github.com/pillarjs/path-to-regexp">path-to-regexp</a>.
-Having routes in a tree, I needed a library which could match URLs fully or partially (going down the tree until a match is found).
-None of the libraries mentioned could do it, so came <a href="https://github.com/troch/path-parser">path-parser</a>.</p>
-<p><img src="https://imgs.xkcd.com/comics/standards.png" alt="Standards"></p>
-<h2 id="router5">router5</h2>
-<p>Once route-node and path-parser were written, router5 could be designed. It delegates route management and route matching / building
-and focus on navigation, taking instructions and updating its state. Plugins can be added to extend its features (browser history, listeners, etc...).</p>
+<p><code>router5</code> is part of a new generation of routers: instead of rendering &quot;views&quot; or &quot;pages&quot;, router5 outputs its state. The main idea behind router5 is to treat routing state like any other application data or state.</p>
+<p>&quot;Traditional&quot; routing has been heavily influenced by server-side routing, which is stateless, while client-side routing is stateful. Watch my talk at ReactiveConf 2016: &quot;Past and future of client-side routing&quot;, it gives a great overview of what routing is, and what router5 does:</p>
+<div style="width: 100%; margin: 0 auto; text-align: center">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hblXdstrAg0" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<p>For more in-depth description of router5, look at <a href="/docs/understanding-router5.html">Understanding router5</a>.</p>
 
     </main>
 

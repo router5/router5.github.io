@@ -19,7 +19,7 @@ const router = createRouter()
     .start();
 ```
 
-For more information on how to install, look at [Get started](/docs/get-started.html).
+For more information on how to install, look at [Get started](/docs/installation.html).
 
 ### Options
 

@@ -40,7 +40,7 @@
 
             <a href="/docs/installation.html" class="">Get started</a>
 
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
+            <a href="/docs/configuring-routes.html" class="">Guides</a>
 
             <a href="/docs/listeners.html" class="">Plugins</a>
 
@@ -59,7 +59,7 @@
 
             <a href="/docs/why-router5.html" class="link">Why router5?</a>
             <a href="/docs/installation.html" class="link">Installation</a>
-            <!-- <a href="/docs/first-router.html" class="link">Your first router</a> -->
+            <!-- <a href="/docs/first-router.html" class="link active">Your first router</a> -->
             <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
 
             <strong>Docs</strong>
@@ -80,7 +80,7 @@
             <a href="/docs/middleware.html" class="link">Middleware functions</a>
             <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
             <a href="/docs/async-data.html" class="link">Loading async data</a>
-            <a href="/docs/plugins.html" class="link active">Using plugins</a>
+            <a href="/docs/plugins.html" class="link">Using plugins</a>
             <a href="/docs/injectables.html" class="link">Dependency injection</a>
 
             <strong>Plugins</strong>
@@ -99,49 +99,7 @@
     </aside>
 
     <main>
-        <h1 id="using-plugins">Using plugins</h1>
-<blockquote>
-<p>Router5 is extensible with the use of plugins. Plugins can decorate a route instance and do things on specific router and transition events.</p>
-</blockquote>
-<h2 id="plugin-requirements">Plugin requirements</h2>
-<p>A plugin is a function taking a router instance and returning an object with a name and at least one of the following methods:</p>
-<ul>
-<li><strong>onStart()</strong>: invoked when <code>router.start()</code> is called</li>
-<li><strong>onStop()</strong>: invoked when <code>router.stop()</code> is called</li>
-<li><strong>onTransitionStart(toState, fromState)</strong></li>
-<li><strong>onTransitionCancel(toState, fromState)</strong></li>
-<li><strong>onTransitionError(toState, fromState, err)</strong></li>
-<li><strong>onTransitionSuccess(toState, fromState, opts)</strong> (options contains <code>replace</code> and <code>reload</code> boolean flags)</li>
-</ul>
-<h2 id="registering-a-plugin">Registering a plugin</h2>
-<pre><code class="lang-javascript javascript">function myPlugin(router, dependencies) {
-    return {
-        onTransitionSuccess: (toState, fromState) =&gt; {
-            console.log(&#39;Yippee, navigation to &#39; + toState.name + &#39; was successful!&#39;);
-        }
-    };
-
-myPlugin.pluginName = &#39;MY_PLUGIN&#39;;
-
-const router = createRouter()
-    .usePlugin(myPlugin);
-
-router.hasPlugin(&#39;MY_PLUGIN&#39;); // =&gt; true
-</code></pre>
-<h2 id="plugin-examples">Plugin examples</h2>
-<ul>
-<li><a href="https://github.com/router5/router5/blob/master/modules/plugins/listeners/index.js">Listeners plugin</a></li>
-<li><a href="https://github.com/router5/router5/blob/master/modules/plugins/browser/index.js">Browser plugin</a></li>
-<li><a href="https://github.com/router5/router5/blob/master/modules/plugins/persistentParams/index.js">Persistent params plugin</a></li>
-<li><a href="https://github.com/router5/router5/blob/master/modules/plugins/logger/index.js">Logger</a></li>
-</ul>
-<p>Router5 includes a logging plugin that you can use to help development</p>
-<pre><code class="lang-javascript javascript">import createRouter, { loggerPlugin } from &#39;router5&#39;;
-
-const router = createRouter()
-    .usePlugin(loggerPlugin);
-</code></pre>
-
+        
     </main>
 
     <footer class="">
