@@ -149,7 +149,7 @@ router.canActivate(&#39;admin&#39;, isAdmin);
 <p>More importantly, they are now <strong>thunks</strong>: they are executed when added, and their returned functions will be executed when required by the router. It enables the use of <strong>closures</strong>.</p>
 <h4 id="unknown-routes-not-found-supported">Unknown routes (not found) supported</h4>
 <p>A new <code>allowNotFound</code> option available, to give a new strategy to deal with unkown routes.</p>
-<p>If <code>defaultRoute</code> option is not supplied and a path cannot be matched by the router, then the router will emit an <code>ROUTE_NOT_FOUND</code> error unless <code>allowNotFound</code> is set to true. In that case, the router will allow the transition to happen and will generate a state like the following one (given a User tried to navigate to an unknown ULR <code>/route-not-found</code>):</p>
+<p>If <code>defaultRoute</code> option is not supplied and a path cannot be matched by the router, then the router will emit an <code>ROUTE_NOT_FOUND</code> error unless <code>allowNotFound</code> is set to true. In that case, the router will allow the transition to happen and will generate a state like the following one (given a User tried to navigate to an unknown URL <code>/route-not-found</code>):</p>
 <pre><code class="lang-js">import { constants } from &#39;router5&#39;;
 
 {

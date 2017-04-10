@@ -79,7 +79,7 @@ More importantly, they are now __thunks__: they are executed when added, and the
 
 A new `allowNotFound` option available, to give a new strategy to deal with unkown routes.
 
-If `defaultRoute` option is not supplied and a path cannot be matched by the router, then the router will emit an `ROUTE_NOT_FOUND` error unless `allowNotFound` is set to true. In that case, the router will allow the transition to happen and will generate a state like the following one (given a User tried to navigate to an unknown ULR `/route-not-found`):
+If `defaultRoute` option is not supplied and a path cannot be matched by the router, then the router will emit an `ROUTE_NOT_FOUND` error unless `allowNotFound` is set to true. In that case, the router will allow the transition to happen and will generate a state like the following one (given a User tried to navigate to an unknown URL `/route-not-found`):
 
 ```js
 import { constants } from 'router5';
