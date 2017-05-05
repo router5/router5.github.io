@@ -24,13 +24,6 @@ const canActivate = (router) => (toState, fromState) => {
 router.canActivate('admin', canActivate);
 ```
 
-```javascript
-const canActivate = (router) => (toState, fromState) => {
-    return true;
-}
-
-router.canActivate('admin', canActivate);
-```
 
 ### Order of invocation
 
