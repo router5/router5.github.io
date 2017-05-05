@@ -11,7 +11,7 @@ A middleware function can return a boolean for synchronous results, a promise or
 a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.
 
 This type of function is ideal to remove data loading logic from components, and is a good fit
-for applications aiming at having a  qcentralised state object.
+for applications aiming at having a centralised state object.
 
 ```javascript
 const mware1 = (router) => (toState, fromState, done) => {
