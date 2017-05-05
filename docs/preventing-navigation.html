@@ -118,12 +118,6 @@ to use a polyfill or promise implementation in your app.</p>
 
 router.canActivate(&#39;admin&#39;, canActivate);
 </code></pre>
-<pre><code class="lang-javascript javascript">const canActivate = (router) =&gt; (toState, fromState) =&gt; {
-    return true;
-}
-
-router.canActivate(&#39;admin&#39;, canActivate);
-</code></pre>
 <h3 id="order-of-invocation">Order of invocation</h3>
 <p><code>canActivate</code> and <code>canDeactivate</code> functions are thunks: they expose another function to receive navigation updates, allowing you to use closures if you need to.</p>
 <p>Those handlers will be invoked when your router is started with your router instance and injectables. Then their exposed function will be called to query if a segment can be activated or deactivated.</p>

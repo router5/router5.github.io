@@ -105,7 +105,7 @@ route segments can be deactivated and future active route segments can be activa
 <p>A middleware function can return a boolean for synchronous results, a promise or call
 a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.</p>
 <p>This type of function is ideal to remove data loading logic from components, and is a good fit
-for applications aiming at having a  qcentralised state object.</p>
+for applications aiming at having a centralised state object.</p>
 <pre><code class="lang-javascript javascript">const mware1 = (router) =&gt; (toState, fromState, done) =&gt; {
     // Let&#39;s fetch data and call done
     done();
