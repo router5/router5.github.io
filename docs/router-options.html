@@ -110,6 +110,9 @@
     })
     .setOption(&#39;strictQueryParams&#39;, false)
 </code></pre>
+<h2 id="strict-query-parameters">Strict query parameters</h2>
+<p>Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.</p>
+<p>If you want the router to still match routes if extra query parameters are present, set <code>strictQueryParams</code> to <code>false</code>.</p>
 <h2 id="default-route">Default route</h2>
 <p>When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:</p>
 <ul>
@@ -117,15 +120,6 @@
 <li><code>defaultParams</code>: the default route params (defaults to <code>{}</code>)</li>
 </ul>
 <p>See <a href="/docs/navigation.html">navigation guide</a> for more information.</p>
-<h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
-<p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
-<h2 id="building-with-or-without-trailing-slashes">Building with or without trailing slashes</h2>
-<p>By default, the router will build your routes according to your route definitions. You can force or not the use of trailing slashes by setting <code>useTrailingSlash</code> to <code>true</code> or <code>false</code> (default to <code>undefined</code>); When setting this option, <code>trailingSlash</code> will be set to true (non strict matching).</p>
-<h2 id="automatic-clean-up">Automatic clean up</h2>
-<p>If <code>autoCleanUp</code> is set to true, the router will automatically clear <code>canDeactivate</code> functions / booleans when their associated segment becomes inactive.</p>
-<h2 id="strict-query-parameters">Strict query parameters</h2>
-<p>Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.</p>
-<p>If you want the router to still match routes if extra query parameters are present, set <code>strictQueryParams</code> to <code>false</code>.</p>
 <h2 id="allow-not-found">Allow not found</h2>
 <p>There are two ways to deal with not found routes: the first one is to configure a <code>defaultRoute</code> (and <code>defaultParams</code>), the second one is to allow those not found routes to create a new routing state. Set <code>allowNotFound</code> to true and the router will allow unknown URLs to create new state objects looking like the following (with <code>/route-not-found</code> being the not matched path):</p>
 <pre><code class="lang-js">import { constants } from &#39;router5&#39;;
@@ -136,6 +130,12 @@
     path: &#39;/route-not-found&#39;
 }
 </code></pre>
+<h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
+<p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
+<h2 id="building-with-or-without-trailing-slashes">Building with or without trailing slashes</h2>
+<p>By default, the router will build your routes according to your route definitions. You can force or not the use of trailing slashes by setting <code>useTrailingSlash</code> to <code>true</code> or <code>false</code> (default to <code>undefined</code>); When setting this option, <code>trailingSlash</code> will be set to true (non strict matching).</p>
+<h2 id="automatic-clean-up">Automatic clean up</h2>
+<p>If <code>autoCleanUp</code> is set to true, the router will automatically clear <code>canDeactivate</code> functions / booleans when their associated segment becomes inactive.</p>
 
     </main>
 
