@@ -121,13 +121,14 @@
 </ul>
 <p>See <a href="/docs/navigation.html">navigation guide</a> for more information.</p>
 <h2 id="allow-not-found">Allow not found</h2>
-<p>There are two ways to deal with not found routes: the first one is to configure a <code>defaultRoute</code> (and <code>defaultParams</code>), the second one is to allow those not found routes to create a new routing state. Set <code>allowNotFound</code> to true and the router will allow unknown URLs to create new state objects looking like the following (with <code>/route-not-found</code> being the not matched path):</p>
+<p>There are two ways to deal with not found routes: the first one is to configure a <code>defaultRoute</code> (and <code>defaultParams</code>), the second one is to allow those not found routes to create a new routing state. Set <code>allowNotFound</code> to true and the router will emit a state value for unmatched paths.</p>
+<p>For example, if you try to match <code>/hello-world</code> and you don&#39;t have this route defined, the router will emit the following state:</p>
 <pre><code class="lang-js">import { constants } from &#39;router5&#39;;
 
-{
+const state = {
     name: constants.UNKNOWN_ROUTE
-    params: { path: &#39;/route-not-found&#39; },
-    path: &#39;/route-not-found&#39;
+    params: { path: &#39;/hello-world&#39; },
+    path: &#39;/hello-world&#39;
 }
 </code></pre>
 <h2 id="optional-trailing-slashes">Optional trailing slashes</h2>

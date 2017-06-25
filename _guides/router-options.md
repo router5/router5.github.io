@@ -35,15 +35,17 @@ See [navigation guide](/docs/navigation.html) for more information.
 
 ## Allow not found
 
-There are two ways to deal with not found routes: the first one is to configure a `defaultRoute` (and `defaultParams`), the second one is to allow those not found routes to create a new routing state. Set `allowNotFound` to true and the router will allow unknown URLs to create new state objects looking like the following (with `/route-not-found` being the not matched path):
+There are two ways to deal with not found routes: the first one is to configure a `defaultRoute` (and `defaultParams`), the second one is to allow those not found routes to create a new routing state. Set `allowNotFound` to true and the router will emit a state value for unmatched paths.
+
+For example, if you try to match `/hello-world` and you don't have this route defined, the router will emit the following state:
 
 ```js
 import { constants } from 'router5';
 
-{
+const state = {
     name: constants.UNKNOWN_ROUTE
-    params: { path: '/route-not-found' },
-    path: '/route-not-found'
+    params: { path: '/hello-world' },
+    path: '/hello-world'
 }
 ```
 
