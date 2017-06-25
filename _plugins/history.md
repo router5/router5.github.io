@@ -27,3 +27,5 @@ For more information on how to install, look at [Get started](/docs/installation
 - `useHash`
 - `hashPrefix`
 - `base`: the base of your application (the part to add / preserve between your domain and your route paths).
+- `preserveHash`: whether to preserve the initial hash value on page load (default to `true`, only if `useHash` is `false`)
+- `mergeState`: whether to keep any value added in history state by a 3rd party or not (default to `false`)

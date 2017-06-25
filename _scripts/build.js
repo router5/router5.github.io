@@ -97,6 +97,7 @@ async.parallel([
     renderDoc('_docs', 'migration-2.md', {migration2: true}),
     renderDoc('_docs', 'migration-3.md', {migration3: true}),
     renderDoc('_docs', 'migration-4.md', {migration4: true}),
+    renderDoc('_docs', 'migration-5.md', {migration5: true}),
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
     renderDoc('_guides', 'router-options.md', {options: true, docs: true}),
     renderDoc('_guides', 'navigation.md', {navigation: true, docs: true}),

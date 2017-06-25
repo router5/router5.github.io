@@ -60,7 +60,7 @@
 
             <strong>Docs</strong>
 
-            <a href="/docs/migration-5.html" class="link">Migrating to v5</a>
+            <a href="/docs/migration-5.html" class="link active">Migrating to v5</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
@@ -81,7 +81,7 @@
 
             <strong>Plugins</strong>
 
-            <a href="/docs/history.html" class="link active">Browser</a>
+            <a href="/docs/history.html" class="link">Browser</a>
             <a href="/docs/listeners.html" class="link">Listeners</a>
 
             <strong>Examples</strong>
@@ -95,28 +95,26 @@
     </aside>
 
     <main>
-        <h1 id="browser-plugin">Browser plugin</h1>
-<p>The browser plugin will automatically update your browser URL and state on route changes. It will also listen to popstate events (triggered
-by back and forward buttons and manual URL changes).</p>
-<p>This plugin uses HTML5 history API and therefore is not compatible with browsers which don&#39;t support it. Refer to <a href="http://caniuse.com/#search=history">caniuse.com</a> for browser compatibility.</p>
-<p>It adds a bunch of functions to work with full URLs: <code>router.buildUrl(routeName, routeParams)</code> and <code>router.matchUrl(url)</code>. It also decorates the start function so you don&#39;t have to supply any start path (it extracts it from the current URL).</p>
-<pre><code class="lang-javascript javascript">import browserPlugin from &#39;router5/plugins/browser&#39;;
-
-const router = createRouter()
-    .usePlugin(browserPlugin({
-        useHash: true
-    }))
-    .start();
-</code></pre>
-<p>For more information on how to install, look at <a href="/docs/installation.html">Get started</a>.</p>
-<h3 id="options">Options</h3>
+        <h1 id="migrating-from-4-x-to-5-x">Migrating from 4.x to 5.x</h1>
 <ul>
-<li><code>forceDeactivate</code>: default to <code>true</code>, meaning <code>canDeactivate</code> handlers won&#39;t get called on popstate events. It is not recommended to set it to <code>false</code>.</li>
-<li><code>useHash</code></li>
-<li><code>hashPrefix</code></li>
-<li><code>base</code>: the base of your application (the part to add / preserve between your domain and your route paths).</li>
-<li><code>preserveHash</code>: whether to preserve the initial hash value on page load (default to <code>true</code>, only if <code>useHash</code> is <code>false</code>)</li>
-<li><code>mergeState</code>: whether to keep any value added in history state by a 3rd party or not (default to <code>false</code>)</li>
+<li><a href="/docs/migration-4.html">Migrating from 3.x to 4.x</a></li>
+<li><a href="/docs/migration-3.html">Migrating from 2.x to 3.x</a></li>
+<li><a href="/docs/migration-2.html">Migrating from 1.x to 2.x</a></li>
+<li><a href="/docs/migration.html">Migrating from 0.x to 1.x</a></li>
+</ul>
+<h2 id="release-notes-and-breaking-changes">Release notes and breaking changes</h2>
+<p>With version 5.0.0, <code>router5</code> is now a monorepo: all repos have been imported into <a href="https://github.com/router5/router5">https://github.com/router5/router5</a>. This will make maintenance and release of new versions easier.</p>
+<h4 id="bug-fixes">Bug fixes</h4>
+<p>Not found state is now passed to middleware functions on start: if you use <code>allowNotFound</code> option and have custom middleware functions, make sure they still work.</p>
+<h4 id="default-options">Default options</h4>
+<ul>
+<li>router <code>strictQueryParams</code> option is now <code>false</code> by default: if you currently don&#39;t specify that option, you need to explicitely set it to <code>true</code> to keep the same behaviour.</li>
+<li>browser plugin option <code>preserveHash</code> is now <code>true</code> by default</li>
+</ul>
+<h3 id="packages-renamed">Packages renamed</h3>
+<ul>
+<li><code>router5.helpers</code> package has been renamed to <code>router5-helpers</code></li>
+<li><code>router5.transition-path</code> package has been renamed to <code>router5-transition-path</code></li>
 </ul>
 
     </main>

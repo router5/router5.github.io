@@ -4,6 +4,6 @@
 
 ## Example
 
-View the source [on GitHub](https://github.com/router5/examples/tree/master/apps/cycle).
+View the source [on GitHub](https://github.com/router5/router5/tree/master/packages/examples/apps/cycle).
 
 <div id="app"></div>
