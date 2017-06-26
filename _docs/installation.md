@@ -2,16 +2,15 @@
 
 > _router5_ is available in all major formats: __ES6__, __CommonJS__, and __UMD__.
 
-It can be installed using __npm__ or __bower__. Alternatively, you can download a specific version
-from [github](https://github.com/router5/router5/releases). Whether you install _router5_ from npm, bower or github,
-you will have access to the same files.
+It can be installed using __npm__ or __yarn__. Alternatively, you can download a specific version
+from [github](https://github.com/router5/router5/releases).
 
 
 ## Installation
 
 ```sh
-# bower
-bower install router5
+# yarn
+yarn add router5
 # npm
 npm install router5
 ```
