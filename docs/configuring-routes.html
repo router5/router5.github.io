@@ -100,10 +100,11 @@
 <p>There are a few ways to add routes to your router. You can specify your routes when creating a router instance and / or use chainable <code>add</code> and <code>addNode</code> methods to add routes.</p>
 </blockquote>
 <h2 id="defining-your-routes-as-pojos">Defining your routes as POJOs</h2>
-<p>You can define your routes as a flat array or nested array of routes</p>
+<p>You can define your routes as a flat array or nested array of routes. When using a flat array of routes, nested route names need to have their full name specified.</p>
+<p>Route objects also accept the following properties:</p>
 <ul>
-<li>When using a flat array of routes, nested route names need to have their full name specified.</li>
-<li>For each route, as well as <code>path</code> and <code>name</code>, you can specify a <code>canActivate</code> method which will be automatically registered.</li>
+<li><code>canActivate</code>: a method to control whether or not the route node can be activated (see <a href="/docs/preventing-navigation.html">Preventing navigation</a>)</li>
+<li><code>forwardTo</code>: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route, or having multiple paths pointing to the same route.</li>
 </ul>
 <p><strong>Flat array of routes</strong></p>
 <pre><code class="lang-javascript javascript">const routes = [

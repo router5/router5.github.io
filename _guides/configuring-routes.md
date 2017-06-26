@@ -4,9 +4,11 @@
 
 ## Defining your routes as POJOs
 
-You can define your routes as a flat array or nested array of routes
-- When using a flat array of routes, nested route names need to have their full name specified.
-- For each route, as well as `path` and `name`, you can specify a `canActivate` method which will be automatically registered.
+You can define your routes as a flat array or nested array of routes. When using a flat array of routes, nested route names need to have their full name specified.
+
+Route objects also accept the following properties:
+- `canActivate`: a method to control whether or not the route node can be activated (see [Preventing navigation](/docs/preventing-navigation.html))
+- `forwardTo`: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route, or having multiple paths pointing to the same route.
 
 __Flat array of routes__
 
