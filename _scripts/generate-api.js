@@ -52,7 +52,7 @@ function normalizeParams(param) {
 
 function parseFile(title, file) {
     return function(done) {
-        fs.readFile(path.join(__dirname, '..', '..', 'router5', file), function (err, res) {
+        fs.readFile(path.join(__dirname, '..', '..', 'router5/packages/router5', file), function (err, res) {
             if (err) {
                 done(err);
                 return;
