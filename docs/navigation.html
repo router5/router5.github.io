@@ -95,73 +95,73 @@
     </aside>
 
     <main>
-        &lt;h1 id=&quot;navigation&quot;&gt;Navigation&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;After configuring your routes, you need to &lt;em&gt;enable navigation&lt;/em&gt; by starting your router instance.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;starting-your-router&quot;&gt;Starting your router&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;const myRouter = createRouter([
-    { name: &amp;#39;home&amp;#39;, path: &amp;#39;/home&amp;#39; },
-    { name: &amp;#39;about&amp;#39;, path: &amp;#39;/about&amp;#39; },
-    { name: &amp;#39;contact&amp;#39;, path: &amp;#39;/contact&amp;#39; }
+        <h1 id="navigation">Navigation</h1>
+<blockquote>
+<p>After configuring your routes, you need to <em>enable navigation</em> by starting your router instance.</p>
+</blockquote>
+<h2 id="starting-your-router">Starting your router</h2>
+<pre><code class="lang-javascript javascript">const myRouter = createRouter([
+    { name: &#39;home&#39;, path: &#39;/home&#39; },
+    { name: &#39;about&#39;, path: &#39;/about&#39; },
+    { name: &#39;contact&#39;, path: &#39;/contact&#39; }
 ]);
 
-myRouter.start(&amp;#39;/home&amp;#39;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;When using &lt;code&gt;.start()&lt;/code&gt;, you should supply a starting path or state except if you use the browser plugin (the current URL will automatically be used).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Invoking the &lt;code&gt;.start(startPathOrState[, done])&lt;/code&gt; function will:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Attempt to navigate to &lt;code&gt;startPathOrState&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Attempt to match the current URL if no &lt;code&gt;startPathOrState&lt;/code&gt; was provided, or navigation failed&lt;/li&gt;
-&lt;li&gt;Attempt to navigate to the default route if it could not match the provided start path or if &lt;code&gt;startPathOrState&lt;/code&gt; was not provided / failed&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;And will:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Enable navigation&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Providing a starting state is designed to be used for universal JavaScript applications: see &lt;a href=&quot;/docs/universal-applications.html&quot;&gt;universal applications&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;defining-a-default-route&quot;&gt;Defining a default route&lt;/h2&gt;
-&lt;p&gt;A default route can be set in &lt;code&gt;createRouter&lt;/code&gt; options. The following example will cause your application to navigate
-to &lt;code&gt;/about&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;var myRouter = createRouter([
-        { name: &amp;#39;home&amp;#39;, path: &amp;#39;/home&amp;#39; },
-        { name: &amp;#39;section&amp;#39;, path: &amp;#39;/:section&amp;#39; }
+myRouter.start(&#39;/home&#39;);
+</code></pre>
+<blockquote>
+<p>When using <code>.start()</code>, you should supply a starting path or state except if you use the browser plugin (the current URL will automatically be used).</p>
+</blockquote>
+<p>Invoking the <code>.start(startPathOrState[, done])</code> function will:</p>
+<ul>
+<li>Attempt to navigate to <code>startPathOrState</code></li>
+<li>Attempt to match the current URL if no <code>startPathOrState</code> was provided, or navigation failed</li>
+<li>Attempt to navigate to the default route if it could not match the provided start path or if <code>startPathOrState</code> was not provided / failed</li>
+</ul>
+<p>And will:</p>
+<ul>
+<li>Enable navigation</li>
+</ul>
+<p>Providing a starting state is designed to be used for universal JavaScript applications: see <a href="/docs/universal-applications.html">universal applications</a>.</p>
+<h2 id="defining-a-default-route">Defining a default route</h2>
+<p>A default route can be set in <code>createRouter</code> options. The following example will cause your application to navigate
+to <code>/about</code>:</p>
+<pre><code class="lang-javascript javascript">var myRouter = createRouter([
+        { name: &#39;home&#39;, path: &#39;/home&#39; },
+        { name: &#39;section&#39;, path: &#39;/:section&#39; }
     ], {
-        defaultRoute: &amp;#39;section&amp;#39;
-        defaultParams: {section: &amp;#39;about&amp;#39;}
+        defaultRoute: &#39;section&#39;
+        defaultParams: {section: &#39;about&#39;}
     })
     .start(function (err, state) {
         /* ... */
     });
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A callback can be passed to start and will be invoked once the router has transitioned to the default route.&lt;/p&gt;
-&lt;h2 id=&quot;navigating-to-a-specific-route&quot;&gt;Navigating to a specific route&lt;/h2&gt;
-&lt;p&gt;Router5 exposes the following method: &lt;code&gt;navigate(routeName, routeParams, opts)&lt;/code&gt;. This method has to be
-called for navigating to a different route: &lt;strong&gt;clicks on links won&amp;#39;t be intercepted by the router&lt;/strong&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;myRouter.navigate(&amp;#39;section&amp;#39;, {section: &amp;#39;contact&amp;#39;});
-// Will navigate to &amp;#39;/contact&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Forcing a reload&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;When trying to navigate to the current route nothing will happen unless &lt;code&gt;reload&lt;/code&gt; is set to &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;myRouter.navigate(&amp;#39;section&amp;#39;, {section: &amp;#39;contact&amp;#39;}, {reload: true});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Replacing current state&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Set &lt;code&gt;replace&lt;/code&gt; to true for replacing the current state in history when navigating to a new route. Default
-behaviour is to add an entry in history.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;myRouter.navigate(&amp;#39;section&amp;#39;, {section: &amp;#39;contact&amp;#39;}, {replace: true});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;knowing-when-a-transition-has-been-successful-or-not&quot;&gt;Knowing when a transition has been successful or not&lt;/h2&gt;
-&lt;p&gt;Like for &lt;code&gt;.start()&lt;/code&gt;, &lt;code&gt;.navigate()&lt;/code&gt; accepts a callback (last argument):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;myRouter.navigate(&amp;#39;route&amp;#39;, function (err, state) {
+</code></pre>
+<p>A callback can be passed to start and will be invoked once the router has transitioned to the default route.</p>
+<h2 id="navigating-to-a-specific-route">Navigating to a specific route</h2>
+<p>Router5 exposes the following method: <code>navigate(routeName, routeParams, opts)</code>. This method has to be
+called for navigating to a different route: <strong>clicks on links won&#39;t be intercepted by the router</strong>.</p>
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;});
+// Will navigate to &#39;/contact&#39;
+</code></pre>
+<p><strong>Forcing a reload</strong></p>
+<p>When trying to navigate to the current route nothing will happen unless <code>reload</code> is set to <code>true</code>.</p>
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;}, {reload: true});
+</code></pre>
+<p><strong>Replacing current state</strong></p>
+<p>Set <code>replace</code> to true for replacing the current state in history when navigating to a new route. Default
+behaviour is to add an entry in history.</p>
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;}, {replace: true});
+</code></pre>
+<h2 id="knowing-when-a-transition-has-been-successful-or-not">Knowing when a transition has been successful or not</h2>
+<p>Like for <code>.start()</code>, <code>.navigate()</code> accepts a callback (last argument):</p>
+<pre><code class="lang-javascript javascript">myRouter.navigate(&#39;route&#39;, function (err, state) {
     /* ... */
 })
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;stopping-your-router&quot;&gt;Stopping your router&lt;/h2&gt;
-&lt;p&gt;At any time you can stop (pause) a router and it will prevent any navigation. To resume, simply invoke &lt;code&gt;.start()&lt;/code&gt; again.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;myRouter.stop();
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+<h2 id="stopping-your-router">Stopping your router</h2>
+<p>At any time you can stop (pause) a router and it will prevent any navigation. To resume, simply invoke <code>.start()</code> again.</p>
+<pre><code class="lang-javascript javascript">myRouter.stop();
+</code></pre>
 
     </main>
 

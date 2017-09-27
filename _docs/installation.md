@@ -22,7 +22,7 @@ __CommonJS__
 
 ```javascript
 // ES2015+
-import createRouter, { RouteNode, errorCodes, transitionPath, loggerPlugin } from 'router5';
+import createRouter, { RouteNode, errorCodes, transitionPath, loggerPlugin, constants } from 'router5';
 
 import browserPlugin from 'router5/plugins/browser';
 import listenersPlugin from 'router5/plugins/listeners';
@@ -37,6 +37,7 @@ var errorCodes = router5.errorCodes;
 var constants = router5.constants;
 var transitionPath = router5.transitionPath;
 var loggerPlugin = router5.loggerPlugin;
+var constants = router5.constants;
 
 var browserPlugin = require('router5/plugins/browser');
 var listenersPlugin = require('router5/plugins/listeners');

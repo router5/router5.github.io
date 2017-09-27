@@ -14,7 +14,7 @@ marked.setOptions({
   gfm: true
 });
 
-var env = nunjucks.configure(path.join(__dirname, '../'), {watch: false});
+var env = nunjucks.configure(path.join(__dirname, '../'), {watch: false, autoescape: false});
 
 var data = {
     pageTitle: 'router5 | flexible and powerful routing solution for web applications',

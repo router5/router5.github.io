@@ -95,21 +95,21 @@
     </aside>
 
     <main>
-        &lt;h1 id=&quot;dependencies-injectables-&quot;&gt;Dependencies (injectables)&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;When using lifecycle methods (&lt;code&gt;canActivate&lt;/code&gt;, &lt;code&gt;canDeactivate&lt;/code&gt;), middleware or plugins, you might need to access specific objects from your application: a store, a specific API, etc... You can pass their reference to router5 and they will be passed alongside your router instance.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;You can register all dependencies at once, or one by one.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;const router = createRouter(routes, options, dependencies);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;router.setDependencies({ store, api });
+        <h1 id="dependencies-injectables-">Dependencies (injectables)</h1>
+<blockquote>
+<p>When using lifecycle methods (<code>canActivate</code>, <code>canDeactivate</code>), middleware or plugins, you might need to access specific objects from your application: a store, a specific API, etc... You can pass their reference to router5 and they will be passed alongside your router instance.</p>
+</blockquote>
+<p>You can register all dependencies at once, or one by one.</p>
+<pre><code class="lang-js">const router = createRouter(routes, options, dependencies);
+</code></pre>
+<pre><code class="lang-js">router.setDependencies({ store, api });
 // or
-router.setDependency(&amp;#39;store&amp;#39;, store);
-router.setDependency(&amp;#39;api&amp;#39;, api);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You can retrieve your current dependencies references using &lt;code&gt;getDependencies()&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Lifecycle methods (&lt;code&gt;canActivate&lt;/code&gt;, &lt;code&gt;canDeactivate&lt;/code&gt;), middleware or plugins will be called with them:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;const plugin = (router, dependencies) =&amp;gt; ({
+router.setDependency(&#39;store&#39;, store);
+router.setDependency(&#39;api&#39;, api);
+</code></pre>
+<p>You can retrieve your current dependencies references using <code>getDependencies()</code>.</p>
+<p>Lifecycle methods (<code>canActivate</code>, <code>canDeactivate</code>), middleware or plugins will be called with them:</p>
+<pre><code class="lang-js">const plugin = (router, dependencies) =&gt; ({
     /*
         onStart() {},
         onStop() {},
@@ -117,17 +117,17 @@ router.setDependency(&amp;#39;api&amp;#39;, api);
         ...
     */
 });
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;const canActivate = (router, dependencies) =&amp;gt;
+</code></pre>
+<pre><code class="lang-js">const canActivate = (router, dependencies) =&gt;
     (toState, fromState, done) {
         /* ... */
     }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;const middleware = (router, dependencies) =&amp;gt;
+</code></pre>
+<pre><code class="lang-js">const middleware = (router, dependencies) =&gt;
     (toState, fromState, done) {
         /* ... */
     }
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
     </main>
 

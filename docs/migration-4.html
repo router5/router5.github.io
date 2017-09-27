@@ -95,77 +95,77 @@
     </aside>
 
     <main>
-        &lt;h1 id=&quot;migrating-from-3-x-to-4-x&quot;&gt;Migrating from 3.x to 4.x&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;/docs/migration-3.html&quot;&gt;Migrating from 2.x to 3.x&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/docs/migration-2.html&quot;&gt;Migrating from 1.x to 2.x&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;/docs/migration.html&quot;&gt;Migrating from 0.x to 1.x&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;release-notes-and-breaking-changes&quot;&gt;Release notes and breaking changes&lt;/h2&gt;
-&lt;p&gt;With version 4.0.0, &lt;em&gt;router5&lt;/em&gt; has been refactored. API for plugins, middleware functions, &lt;code&gt;canActivate&lt;/code&gt; and &lt;code&gt;canDeactivate&lt;/code&gt; functions are now consistent.&lt;/p&gt;
-&lt;h4 id=&quot;router-instanciation&quot;&gt;Router instanciation&lt;/h4&gt;
-&lt;p&gt;&lt;em&gt;router5&lt;/em&gt; default export is now a &lt;code&gt;createRouter&lt;/code&gt; function as opposed to a &lt;code&gt;Router5&lt;/code&gt; class. The API is identical between &lt;code&gt;createRouter(routes, options)&lt;/code&gt; and &lt;code&gt;new Router5(routes, options)&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;import createRouter from &amp;#39;router5&amp;#39;;
+        <h1 id="migrating-from-3-x-to-4-x">Migrating from 3.x to 4.x</h1>
+<ul>
+<li><a href="/docs/migration-3.html">Migrating from 2.x to 3.x</a></li>
+<li><a href="/docs/migration-2.html">Migrating from 1.x to 2.x</a></li>
+<li><a href="/docs/migration.html">Migrating from 0.x to 1.x</a></li>
+</ul>
+<h2 id="release-notes-and-breaking-changes">Release notes and breaking changes</h2>
+<p>With version 4.0.0, <em>router5</em> has been refactored. API for plugins, middleware functions, <code>canActivate</code> and <code>canDeactivate</code> functions are now consistent.</p>
+<h4 id="router-instanciation">Router instanciation</h4>
+<p><em>router5</em> default export is now a <code>createRouter</code> function as opposed to a <code>Router5</code> class. The API is identical between <code>createRouter(routes, options)</code> and <code>new Router5(routes, options)</code>.</p>
+<pre><code class="lang-js">import createRouter from &#39;router5&#39;;
 
 const router = createRouter(routes, options);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;plugins-moved&quot;&gt;Plugins moved&lt;/h4&gt;
-&lt;p&gt;&lt;code&gt;router5-history&lt;/code&gt;, &lt;code&gt;router5-persistent-params&lt;/code&gt; and &lt;code&gt;router5-listeners&lt;/code&gt; have been moved to router5 main repository. They are no longer individual modules but are distributed with router5 module.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;import browserPlugin from &amp;#39;router5/plugins/browser&amp;#39;;
-import listenersPlugin from &amp;#39;router5/plugins/listeners&amp;#39;;
-import persistentParamsPlugin from &amp;#39;router5/plugins/persistentParams&amp;#39;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The history plugin has been renamed &amp;#39;browser plugin&amp;#39;, to better describe its responsabilities. It deals with any URL related options and methods, to make router5 fully runtime environment agnostic:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;useHash&lt;/code&gt;, &lt;code&gt;hashPrefix&lt;/code&gt; and &lt;code&gt;base&lt;/code&gt; options need to be passed to &lt;code&gt;browserPlugin&lt;/code&gt;, not router5&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;buildUrl&lt;/code&gt;, &lt;code&gt;matchUrl&lt;/code&gt; and &lt;code&gt;urlToPath&lt;/code&gt; methods are no longer present by default and are added to your router instance by &lt;code&gt;browserPlugin&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;import browserPlugin from &amp;#39;router5/plugins/browser&amp;#39;;
+</code></pre>
+<h4 id="plugins-moved">Plugins moved</h4>
+<p><code>router5-history</code>, <code>router5-persistent-params</code> and <code>router5-listeners</code> have been moved to router5 main repository. They are no longer individual modules but are distributed with router5 module.</p>
+<pre><code class="lang-js">import browserPlugin from &#39;router5/plugins/browser&#39;;
+import listenersPlugin from &#39;router5/plugins/listeners&#39;;
+import persistentParamsPlugin from &#39;router5/plugins/persistentParams&#39;;
+</code></pre>
+<p>The history plugin has been renamed &#39;browser plugin&#39;, to better describe its responsabilities. It deals with any URL related options and methods, to make router5 fully runtime environment agnostic:</p>
+<ul>
+<li><code>useHash</code>, <code>hashPrefix</code> and <code>base</code> options need to be passed to <code>browserPlugin</code>, not router5</li>
+<li><code>buildUrl</code>, <code>matchUrl</code> and <code>urlToPath</code> methods are no longer present by default and are added to your router instance by <code>browserPlugin</code>.</li>
+</ul>
+<pre><code class="lang-js">import browserPlugin from &#39;router5/plugins/browser&#39;;
 
 router.usePlugin(browserPlugin({
     useHash: true
 }));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;dependency-injection-reworked&quot;&gt;Dependency injection reworked&lt;/h4&gt;
-&lt;p&gt;Dependency injection has been reworked: &lt;code&gt;setAdditionalArgs&lt;/code&gt; has been renamed to &lt;code&gt;setDependencies&lt;/code&gt; / &lt;code&gt;setDependency&lt;/code&gt; and &lt;code&gt;getAdditionalArgs&lt;/code&gt; has been renamed to &lt;code&gt;getDependencies&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;router.setDependency(&amp;#39;store&amp;#39;, store);
+</code></pre>
+<h4 id="dependency-injection-reworked">Dependency injection reworked</h4>
+<p>Dependency injection has been reworked: <code>setAdditionalArgs</code> has been renamed to <code>setDependencies</code> / <code>setDependency</code> and <code>getAdditionalArgs</code> has been renamed to <code>getDependencies</code>.</p>
+<pre><code class="lang-js">router.setDependency(&#39;store&#39;, store);
 // Or
 router.setDependencies({ store });
 
-router.getDependencies(); // =&amp;gt; { store: store }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Dependencies are no longer injected before &lt;code&gt;toState&lt;/code&gt; in middleware, canActivate and canDeactivate functions. Instead, they are injected alongside &lt;code&gt;router&lt;/code&gt;, and are now available in plugins too. They are passed as an object of key / value pairs: it will now be easier to share code, plugins, middleware without sharing the exact same dependencies.&lt;/p&gt;
-&lt;h4 id=&quot;middleware-and-route-lifecycle-functions-alignment&quot;&gt;Middleware and route lifecycle functions alignment&lt;/h4&gt;
-&lt;p&gt;canActivate and canDeactivate functions have been reworked to be aligned with middleware functions.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;function isAdmin(router, dependencies) {
+router.getDependencies(); // =&gt; { store: store }
+</code></pre>
+<p>Dependencies are no longer injected before <code>toState</code> in middleware, canActivate and canDeactivate functions. Instead, they are injected alongside <code>router</code>, and are now available in plugins too. They are passed as an object of key / value pairs: it will now be easier to share code, plugins, middleware without sharing the exact same dependencies.</p>
+<h4 id="middleware-and-route-lifecycle-functions-alignment">Middleware and route lifecycle functions alignment</h4>
+<p>canActivate and canDeactivate functions have been reworked to be aligned with middleware functions.</p>
+<pre><code class="lang-js">function isAdmin(router, dependencies) {
     return function (toState, fromState, done) {
         /* boolean, promise or call done */
     }
 }
 
-router.canActivate(&amp;#39;admin&amp;#39;, isAdmin);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Boolean shortcuts are still supported (&lt;code&gt;canActivate(&amp;#39;admin&amp;#39;, isAdmin)&lt;/code&gt;).&lt;/p&gt;
-&lt;p&gt;More importantly, they are now &lt;strong&gt;thunks&lt;/strong&gt;: they are executed when added, and their returned functions will be executed when required by the router. It enables the use of &lt;strong&gt;closures&lt;/strong&gt;.&lt;/p&gt;
-&lt;h4 id=&quot;unknown-routes-not-found-supported&quot;&gt;Unknown routes (not found) supported&lt;/h4&gt;
-&lt;p&gt;A new &lt;code&gt;allowNotFound&lt;/code&gt; option available, to give a new strategy to deal with unkown routes.&lt;/p&gt;
-&lt;p&gt;If &lt;code&gt;defaultRoute&lt;/code&gt; option is not supplied and a path cannot be matched by the router, then the router will emit an &lt;code&gt;ROUTE_NOT_FOUND&lt;/code&gt; error unless &lt;code&gt;allowNotFound&lt;/code&gt; is set to true. In that case, the router will allow the transition to happen and will generate a state like the following one (given a User tried to navigate to an unknown URL &lt;code&gt;/route-not-found&lt;/code&gt;):&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;import { constants } from &amp;#39;router5&amp;#39;;
+router.canActivate(&#39;admin&#39;, isAdmin);
+</code></pre>
+<p>Boolean shortcuts are still supported (<code>canActivate(&#39;admin&#39;, isAdmin)</code>).</p>
+<p>More importantly, they are now <strong>thunks</strong>: they are executed when added, and their returned functions will be executed when required by the router. It enables the use of <strong>closures</strong>.</p>
+<h4 id="unknown-routes-not-found-supported">Unknown routes (not found) supported</h4>
+<p>A new <code>allowNotFound</code> option available, to give a new strategy to deal with unkown routes.</p>
+<p>If <code>defaultRoute</code> option is not supplied and a path cannot be matched by the router, then the router will emit an <code>ROUTE_NOT_FOUND</code> error unless <code>allowNotFound</code> is set to true. In that case, the router will allow the transition to happen and will generate a state like the following one (given a User tried to navigate to an unknown URL <code>/route-not-found</code>):</p>
+<pre><code class="lang-js">import { constants } from &#39;router5&#39;;
 
 {
     name: constants.UNKNOWN_ROUTE
-    params: { path: &amp;#39;/route-not-found&amp;#39; },
-    path: &amp;#39;/route-not-found&amp;#39;
+    params: { path: &#39;/route-not-found&#39; },
+    path: &#39;/route-not-found&#39;
 }
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;other-notable-changes&quot;&gt;Other notable changes&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;AMD and globals bundle are no longer distributed, use the UMD bundle instead&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;usePlugin&lt;/code&gt; and &lt;code&gt;useMiddleware&lt;/code&gt; behave the same: you can supply one or more argument, and calling them thereafter will add more plugins / middleware functions (&lt;code&gt;useMiddleware&lt;/code&gt; used to overwrite middleware functions)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;errCodes&lt;/code&gt; has been renamed to &lt;code&gt;errorCodes&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Route parameters and transition options are now optional in &lt;code&gt;navigate&lt;/code&gt;, allowing users to only supply a route name and a done callback (&lt;code&gt;router.navigate(&amp;#39;home&amp;#39;, () =&amp;gt; { /* ... */ })&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;A new &lt;code&gt;setRootNodePath&lt;/code&gt; function has been added to configure the path of the root node. It can be used for example to list a number of allowed query parameters for all routes if &lt;code&gt;strictQueryParams&lt;/code&gt; option is set to &lt;code&gt;true&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
+</code></pre>
+<h4 id="other-notable-changes">Other notable changes</h4>
+<ul>
+<li>AMD and globals bundle are no longer distributed, use the UMD bundle instead</li>
+<li><code>usePlugin</code> and <code>useMiddleware</code> behave the same: you can supply one or more argument, and calling them thereafter will add more plugins / middleware functions (<code>useMiddleware</code> used to overwrite middleware functions)</li>
+<li><code>errCodes</code> has been renamed to <code>errorCodes</code></li>
+<li>Route parameters and transition options are now optional in <code>navigate</code>, allowing users to only supply a route name and a done callback (<code>router.navigate(&#39;home&#39;, () =&gt; { /* ... */ })</code>)</li>
+<li>A new <code>setRootNodePath</code> function has been added to configure the path of the root node. It can be used for example to list a number of allowed query parameters for all routes if <code>strictQueryParams</code> option is set to <code>true</code>.</li>
+</ul>
 
     </main>
 

@@ -95,46 +95,46 @@
     </aside>
 
     <main>
-        &lt;h1 id=&quot;middleware-functions&quot;&gt;Middleware functions&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Multiple middleware functions can be registered with a router instance. They are invoked in series after the router has made sure active
-route segments can be deactivated and future active route segments can be activated. Middleware functions are for example a great way to load data for your routes.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;registering-middleware-functions&quot;&gt;Registering middleware functions&lt;/h2&gt;
-&lt;p&gt;A middleware is a function taking a router instance and registered dependencies (like lifecycle methods and plugins) and returning a function which will be called on each transition (unless a transition failed at the &lt;em&gt;canActivate&lt;/em&gt; or &lt;em&gt;canDeactivate&lt;/em&gt; state).&lt;/p&gt;
-&lt;p&gt;A middleware function can return a boolean for synchronous results, a promise or call
-a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.&lt;/p&gt;
-&lt;p&gt;This type of function is ideal to remove data loading logic from components, and is a good fit
-for applications aiming at having a centralised state object.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;const mware1 = (router) =&amp;gt; (toState, fromState, done) =&amp;gt; {
-    // Let&amp;#39;s fetch data and call done
+        <h1 id="middleware-functions">Middleware functions</h1>
+<blockquote>
+<p>Multiple middleware functions can be registered with a router instance. They are invoked in series after the router has made sure active
+route segments can be deactivated and future active route segments can be activated. Middleware functions are for example a great way to load data for your routes.</p>
+</blockquote>
+<h2 id="registering-middleware-functions">Registering middleware functions</h2>
+<p>A middleware is a function taking a router instance and registered dependencies (like lifecycle methods and plugins) and returning a function which will be called on each transition (unless a transition failed at the <em>canActivate</em> or <em>canDeactivate</em> state).</p>
+<p>A middleware function can return a boolean for synchronous results, a promise or call
+a done callback for asynchronous operations. If it returns false, a rejected promise or a callback with an error, it will fail the transition.</p>
+<p>This type of function is ideal to remove data loading logic from components, and is a good fit
+for applications aiming at having a centralised state object.</p>
+<pre><code class="lang-javascript javascript">const mware1 = (router) =&gt; (toState, fromState, done) =&gt; {
+    // Let&#39;s fetch data and call done
     done();
 };
 
-const mware2 = (router) =&amp;gt; (toState, fromState, done) =&amp;gt; {
-    // Let&amp;#39;s fetch data and call done
+const mware2 = (router) =&gt; (toState, fromState, done) =&gt; {
+    // Let&#39;s fetch data and call done
     done();
 };
 
 router.useMiddleware(mware1, mware2);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;useMiddleware&lt;/code&gt; can be called multiple times, but keep in mind that registration order matters. You can clear all your middleware functions by using &lt;code&gt;router.clearMiddleware()&lt;/code&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;adding-data-to-state&quot;&gt;Adding data to state&lt;/h2&gt;
-&lt;p&gt;It is possible to mutate the &lt;code&gt;toState&lt;/code&gt; object by adding properties, or to pass a new state object in callbacks or promises.
-When passing a new object, the router will ignore it if initial state properties (&lt;code&gt;name&lt;/code&gt;, &lt;code&gt;params&lt;/code&gt; and &lt;code&gt;path&lt;/code&gt;) are changed.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;import { getData } from &amp;#39;./dataApi&amp;#39;;
+</code></pre>
+<p><code>useMiddleware</code> can be called multiple times, but keep in mind that registration order matters. You can clear all your middleware functions by using <code>router.clearMiddleware()</code>.</p>
+<h2 id="adding-data-to-state">Adding data to state</h2>
+<p>It is possible to mutate the <code>toState</code> object by adding properties, or to pass a new state object in callbacks or promises.
+When passing a new object, the router will ignore it if initial state properties (<code>name</code>, <code>params</code> and <code>path</code>) are changed.</p>
+<pre><code class="lang-javascript javascript">import { getData } from &#39;./dataApi&#39;;
 
-const dataLoader = router =&amp;gt;
-    (toState, fromState) =&amp;gt;
+const dataLoader = router =&gt;
+    (toState, fromState) =&gt;
         // toState object will be extended with data values
-        getData().then(data =&amp;gt; ({ ...toState, ...data }));
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;custom-errors&quot;&gt;Custom errors&lt;/h2&gt;
-&lt;p&gt;When failing a transition in a middleware function, custom errors can be returned. Custom errors can be a string or an object:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;when a string, the router will return &lt;code&gt;{ code: &amp;#39;TRANSITION_ERR&amp;#39;, error: &amp;#39;&amp;lt;your string&amp;gt;&amp;#39;}&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;when an object, the returned error object will be extended with your error object &lt;code&gt;{ code: &amp;#39;TRANSITION_ERR&amp;#39;, ...errorObject }&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
+        getData().then(data =&gt; ({ ...toState, ...data }));
+</code></pre>
+<h2 id="custom-errors">Custom errors</h2>
+<p>When failing a transition in a middleware function, custom errors can be returned. Custom errors can be a string or an object:</p>
+<ul>
+<li>when a string, the router will return <code>{ code: &#39;TRANSITION_ERR&#39;, error: &#39;&lt;your string&gt;&#39;}</code></li>
+<li>when an object, the returned error object will be extended with your error object <code>{ code: &#39;TRANSITION_ERR&#39;, ...errorObject }</code></li>
+</ul>
 
     </main>
 

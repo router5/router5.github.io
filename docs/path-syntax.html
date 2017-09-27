@@ -95,36 +95,36 @@
     </aside>
 
     <main>
-        &lt;h1 id=&quot;path-syntax&quot;&gt;Path syntax&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;router5&lt;/em&gt; uses &lt;a href=&quot;https://github.com/troch/path-parser&quot;&gt;path-parser&lt;/a&gt; for parsing, matching and generating URLs&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;defining-parameters&quot;&gt;Defining parameters&lt;/h2&gt;
-&lt;p&gt;Four parameter types are supported:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;:param&lt;/code&gt;: url parameters&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;;matrix&lt;/code&gt;: matrix parameters&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;*splat&lt;/code&gt;: for parameters spanning over multiple segments. Splat parameters are greedy and could swallow a
-large part of your URL. It is recommended to handle with care and to ONLY use on routes without children.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;?param1&amp;amp;param2&lt;/code&gt; or &lt;code&gt;?:param1&amp;amp;:param2&lt;/code&gt;: query parameters&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;constrained-parameters&quot;&gt;Constrained parameters&lt;/h2&gt;
-&lt;p&gt;Url and matrix parameters can be constrained with a regular expression. Backslashes need to be escaped.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;:param&amp;lt;\\d+&amp;gt;&lt;/code&gt; will match numbers only for parameter param&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;;id&amp;lt;[a-fA-F0-9]{8}&amp;gt;&lt;/code&gt; will match 8 characters hexadecimal strings for parameter id&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Constraints are also applied when building paths: when passing incorrect params to &lt;code&gt;.navigate()&lt;/code&gt;,
-an error will be thrown.&lt;/p&gt;
-&lt;h2 id=&quot;absolute-nested-paths&quot;&gt;Absolute nested paths&lt;/h2&gt;
-&lt;p&gt;You can define absolute nested paths (not concatenated with their parent&amp;#39;s paths). Note that absolute paths are not allowed if any parent of a node has parameters.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;const router = createRouter([
-    { name: &amp;#39;admin&amp;#39;, path: &amp;#39;/admin&amp;#39; },
-    { name: &amp;#39;admin.users&amp;#39;, path: &amp;#39;~/users&amp;#39; }
+        <h1 id="path-syntax">Path syntax</h1>
+<blockquote>
+<p><em>router5</em> uses <a href="https://github.com/troch/path-parser">path-parser</a> for parsing, matching and generating URLs</p>
+</blockquote>
+<h2 id="defining-parameters">Defining parameters</h2>
+<p>Four parameter types are supported:</p>
+<ul>
+<li><code>:param</code>: url parameters</li>
+<li><code>;matrix</code>: matrix parameters</li>
+<li><code>*splat</code>: for parameters spanning over multiple segments. Splat parameters are greedy and could swallow a
+large part of your URL. It is recommended to handle with care and to ONLY use on routes without children.</li>
+<li><code>?param1&amp;param2</code> or <code>?:param1&amp;:param2</code>: query parameters</li>
+</ul>
+<h2 id="constrained-parameters">Constrained parameters</h2>
+<p>Url and matrix parameters can be constrained with a regular expression. Backslashes need to be escaped.</p>
+<ul>
+<li><code>:param&lt;\\d+&gt;</code> will match numbers only for parameter param</li>
+<li><code>;id&lt;[a-fA-F0-9]{8}&gt;</code> will match 8 characters hexadecimal strings for parameter id</li>
+</ul>
+<p>Constraints are also applied when building paths: when passing incorrect params to <code>.navigate()</code>,
+an error will be thrown.</p>
+<h2 id="absolute-nested-paths">Absolute nested paths</h2>
+<p>You can define absolute nested paths (not concatenated with their parent&#39;s paths). Note that absolute paths are not allowed if any parent of a node has parameters.</p>
+<pre><code class="lang-js">const router = createRouter([
+    { name: &#39;admin&#39;, path: &#39;/admin&#39; },
+    { name: &#39;admin.users&#39;, path: &#39;~/users&#39; }
 ]);
 
-router.buildPath(&amp;#39;admin.users&amp;#39;); // &amp;#39;/users&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;
+router.buildPath(&#39;admin.users&#39;); // &#39;/users&#39;
+</code></pre>
 
     </main>
 

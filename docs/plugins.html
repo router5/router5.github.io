@@ -95,48 +95,48 @@
     </aside>
 
     <main>
-        &lt;h1 id=&quot;using-plugins&quot;&gt;Using plugins&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;router5 is extensible with the use of plugins. Plugins can decorate a route instance and do things on specific router and transition events.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;plugin-requirements&quot;&gt;Plugin requirements&lt;/h2&gt;
-&lt;p&gt;A plugin is a function taking a router instance and returning an object with a name and at least one of the following methods:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;onStart()&lt;/strong&gt;: invoked when &lt;code&gt;router.start()&lt;/code&gt; is called&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;onStop()&lt;/strong&gt;: invoked when &lt;code&gt;router.stop()&lt;/code&gt; is called&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;onTransitionStart(toState, fromState)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;onTransitionCancel(toState, fromState)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;onTransitionError(toState, fromState, err)&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;onTransitionSuccess(toState, fromState, opts)&lt;/strong&gt; (options contains &lt;code&gt;replace&lt;/code&gt; and &lt;code&gt;reload&lt;/code&gt; boolean flags)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;registering-a-plugin&quot;&gt;Registering a plugin&lt;/h2&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;function myPlugin(router, dependencies) {
+        <h1 id="using-plugins">Using plugins</h1>
+<blockquote>
+<p>router5 is extensible with the use of plugins. Plugins can decorate a route instance and do things on specific router and transition events.</p>
+</blockquote>
+<h2 id="plugin-requirements">Plugin requirements</h2>
+<p>A plugin is a function taking a router instance and returning an object with a name and at least one of the following methods:</p>
+<ul>
+<li><strong>onStart()</strong>: invoked when <code>router.start()</code> is called</li>
+<li><strong>onStop()</strong>: invoked when <code>router.stop()</code> is called</li>
+<li><strong>onTransitionStart(toState, fromState)</strong></li>
+<li><strong>onTransitionCancel(toState, fromState)</strong></li>
+<li><strong>onTransitionError(toState, fromState, err)</strong></li>
+<li><strong>onTransitionSuccess(toState, fromState, opts)</strong> (options contains <code>replace</code> and <code>reload</code> boolean flags)</li>
+</ul>
+<h2 id="registering-a-plugin">Registering a plugin</h2>
+<pre><code class="lang-javascript javascript">function myPlugin(router, dependencies) {
     return {
-        onTransitionSuccess: (toState, fromState) =&amp;gt; {
-            console.log(&amp;#39;Yippee, navigation to &amp;#39; + toState.name + &amp;#39; was successful!&amp;#39;);
+        onTransitionSuccess: (toState, fromState) =&gt; {
+            console.log(&#39;Yippee, navigation to &#39; + toState.name + &#39; was successful!&#39;);
         }
     };
 
-myPlugin.pluginName = &amp;#39;MY_PLUGIN&amp;#39;;
+myPlugin.pluginName = &#39;MY_PLUGIN&#39;;
 
 const router = createRouter()
     .usePlugin(myPlugin);
 
-router.hasPlugin(&amp;#39;MY_PLUGIN&amp;#39;); // =&amp;gt; true
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;plugin-examples&quot;&gt;Plugin examples&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/router5/router5/packages/router5/blob/master/modules/plugins/listeners/index.js&quot;&gt;Listeners plugin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/router5/router5/packages/router5/blob/master/modules/plugins/browser/index.js&quot;&gt;Browser plugin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/router5/router5/packages/router5/blob/master/modules/plugins/persistentParams/index.js&quot;&gt;Persistent params plugin&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/router5/router5/packages/router5/blob/master/modules/plugins/logger/index.js&quot;&gt;Logger&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Router5 includes a logging plugin that you can use to help development&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;import createRouter, { loggerPlugin } from &amp;#39;router5&amp;#39;;
+router.hasPlugin(&#39;MY_PLUGIN&#39;); // =&gt; true
+</code></pre>
+<h2 id="plugin-examples">Plugin examples</h2>
+<ul>
+<li><a href="https://github.com/router5/router5/packages/router5/blob/master/modules/plugins/listeners/index.js">Listeners plugin</a></li>
+<li><a href="https://github.com/router5/router5/packages/router5/blob/master/modules/plugins/browser/index.js">Browser plugin</a></li>
+<li><a href="https://github.com/router5/router5/packages/router5/blob/master/modules/plugins/persistentParams/index.js">Persistent params plugin</a></li>
+<li><a href="https://github.com/router5/router5/packages/router5/blob/master/modules/plugins/logger/index.js">Logger</a></li>
+</ul>
+<p>Router5 includes a logging plugin that you can use to help development</p>
+<pre><code class="lang-javascript javascript">import createRouter, { loggerPlugin } from &#39;router5&#39;;
 
 const router = createRouter()
     .usePlugin(loggerPlugin);
-&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
 
     </main>
 
