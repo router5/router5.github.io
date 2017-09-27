@@ -95,29 +95,29 @@
     </aside>
 
     <main>
-        <h1 id="getting-started">Getting started</h1>
-<blockquote>
-<p><em>router5</em> is available in all major formats: <strong>ES6</strong>, <strong>CommonJS</strong>, and <strong>UMD</strong>.</p>
-</blockquote>
-<p>It can be installed using <strong>npm</strong> or <strong>yarn</strong>. Alternatively, you can download a specific version
-from <a href="https://github.com/router5/router5/releases">github</a>.</p>
-<h2 id="installation">Installation</h2>
-<pre><code class="lang-sh"># yarn
+        &lt;h1 id=&quot;getting-started&quot;&gt;Getting started&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;router5&lt;/em&gt; is available in all major formats: &lt;strong&gt;ES6&lt;/strong&gt;, &lt;strong&gt;CommonJS&lt;/strong&gt;, and &lt;strong&gt;UMD&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;It can be installed using &lt;strong&gt;npm&lt;/strong&gt; or &lt;strong&gt;yarn&lt;/strong&gt;. Alternatively, you can download a specific version
+from &lt;a href=&quot;https://github.com/router5/router5/releases&quot;&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;installation&quot;&gt;Installation&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-sh&quot;&gt;# yarn
 yarn add router5
 # npm
 npm install router5
-</code></pre>
-<h2 id="include-_router5_-in-your-application">Include <em>router5</em> in your application</h2>
-<p><strong>CommonJS</strong></p>
-<pre><code class="lang-javascript javascript">// ES2015+
-import Router5, { RouteNode, errorCodes, transitionPath, loggerPlugin } from &#39;router5&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;include-_router5_-in-your-application&quot;&gt;Include &lt;em&gt;router5&lt;/em&gt; in your application&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;CommonJS&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;// ES2015+
+import createRouter, { RouteNode, errorCodes, transitionPath, loggerPlugin } from &amp;#39;router5&amp;#39;;
 
-import browserPlugin from &#39;router5/plugins/browser&#39;;
-import listenersPlugin from &#39;router5/plugins/listeners&#39;;
-import persistentParamsPlugin from &#39;router5/plugins/persistentParams&#39;;
+import browserPlugin from &amp;#39;router5/plugins/browser&amp;#39;;
+import listenersPlugin from &amp;#39;router5/plugins/listeners&amp;#39;;
+import persistentParamsPlugin from &amp;#39;router5/plugins/persistentParams&amp;#39;;
 
 // ES5
-var router5 = require(&#39;router5&#39;);
+var router5 = require(&amp;#39;router5&amp;#39;);
 
 var createRouter = router5.default;
 var RouteNode = router5.RouteNode;
@@ -126,19 +126,19 @@ var constants = router5.constants;
 var transitionPath = router5.transitionPath;
 var loggerPlugin = router5.loggerPlugin;
 
-var browserPlugin = require(&#39;router5/plugins/browser&#39;);
-var listenersPlugin = require(&#39;router5/plugins/listeners&#39;);
-var persistentParamsPlugin = require(&#39;router5/plugins/persistentParams&#39;);
-</code></pre>
-<p><strong>UMD</strong></p>
-<p>A UMD bundle is available in <code>/dist/umd</code>, and it should be used for AMD or globals. The bundle contains all <em>router5</em> dependencies (<em>route-node</em> and <em>path-parser</em>), but doesn&#39;t contain plugins.</p>
-<p>Plugins are packaged separately and available in <code>/dist/umd</code>:</p>
-<ul>
-<li><code>browserPlugin</code> UMD module is named <code>router5BrowserPlugin</code></li>
-<li><code>listenersPlugin</code> UMD module is named <code>router5ListenersPlugin</code></li>
-<li><code>persistentParamsPlugin</code> UMD module is named <code>router5PersistentParamsPlugin</code>
-bundle is named <code>router5ListenersPlugin</code>.</li>
-</ul>
+var browserPlugin = require(&amp;#39;router5/plugins/browser&amp;#39;);
+var listenersPlugin = require(&amp;#39;router5/plugins/listeners&amp;#39;);
+var persistentParamsPlugin = require(&amp;#39;router5/plugins/persistentParams&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;UMD&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A UMD bundle is available in &lt;code&gt;/dist/umd&lt;/code&gt;, and it should be used for AMD or globals. The bundle contains all &lt;em&gt;router5&lt;/em&gt; dependencies (&lt;em&gt;route-node&lt;/em&gt; and &lt;em&gt;path-parser&lt;/em&gt;), but doesn&amp;#39;t contain plugins.&lt;/p&gt;
+&lt;p&gt;Plugins are packaged separately and available in &lt;code&gt;/dist/umd&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;browserPlugin&lt;/code&gt; UMD module is named &lt;code&gt;router5BrowserPlugin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;listenersPlugin&lt;/code&gt; UMD module is named &lt;code&gt;router5ListenersPlugin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;persistentParamsPlugin&lt;/code&gt; UMD module is named &lt;code&gt;router5PersistentParamsPlugin&lt;/code&gt;
+bundle is named &lt;code&gt;router5ListenersPlugin&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 
     </main>
 

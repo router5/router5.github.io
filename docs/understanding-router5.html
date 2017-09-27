@@ -95,67 +95,67 @@
     </aside>
 
     <main>
-        <h1 id="understanding-router5">Understanding Router5</h1>
-<blockquote>
-<p>The main idea behind router5 is to treat routes like any other application data / state. This guide aims to take you through router5&#39;s key concepts.</p>
-</blockquote>
-<p>In &quot;traditional&quot; routing, a specific route is associated with a <em>route handler</em>. Such handlers would return your application tree or would link your route to a specific view / component. With router5 it is reversed: rather than the router updating the view, it is up to the view to listen / bind / subscribe to route changes in order to update itself.</p>
-<div style="width: 100%; margin: 0 auto; text-align: center">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/hblXdstrAg0" frameborder="0" allowfullscreen></iframe>
-</div>
+        &lt;h1 id=&quot;understanding-router5&quot;&gt;Understanding router5&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The main idea behind router5 is to treat routes like any other application data / state. This guide aims to take you through router5&amp;#39;s key concepts.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In &amp;quot;traditional&amp;quot; routing, a specific route is associated with a &lt;em&gt;route handler&lt;/em&gt;. Such handlers would return your application tree or would link your route to a specific view / component. With router5 it is reversed: rather than the router updating the view, it is up to the view to listen / bind / subscribe to route changes in order to update itself.&lt;/p&gt;
+&lt;div style=&quot;width: 100%; margin: 0 auto; text-align: center&quot;&gt;
+    &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/hblXdstrAg0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 
 
-<h2 id="the-state">The state</h2>
-<p><a href="https://github.com/router5/router5">router5</a> is the core repository. Once you have defined your routes and started your router, it only does one thing: it takes navigation instructions and output state updates.</p>
-<p><img src="/img/router.png" alt="Router"></p>
-<p>Updating your browser history or listening to URL changes is considered a side-effect, because they are specific to an environment where your application might run (the browser). You can use the browser plugin to update the browser URL and translate popstate events to routing instructions.</p>
-<p>A state object will contain:</p>
-<ul>
-<li>The <code>name</code> of the route</li>
-<li>The parameters (<code>params</code>) of the route</li>
-<li>The <code>path</code> of the route</li>
-</ul>
-<h3 id="tree-of-routes">Tree of routes</h3>
-<p>Your routes are organised in a tree, made of segments and nodes. At the top will always be an unnamed root node (its name is an empty string <code>&#39;&#39;</code>). It gives you the ability to have nested routes, each node of the tree (except the root node) is a valid route of your application.</p>
-<p>For the rest of this article, we will use the following simple example of a few nested routes:</p>
-<p><img src="/img/routes-tree.png" alt="Tree of routes"></p>
-<h3 id="transition">Transition</h3>
-<p>During a transition phase, the router will follow a <strong>transition path</strong>: it will deactivate some segments and activate some new ones. The intersection node between deactivated and activated segments is the <strong>transition node</strong>. The <strong>transition node</strong> is very important for your view, as we are about to discover.</p>
-<p>Using the tree of routes shown above, let&#39;s consider we transition from <code>home</code> to <code>admin.users</code>: the transition node will be <em>the unamed root node</em>, we will deactivate <code>home</code> and activate <code>admin</code> and <code>admin.users</code>.</p>
-<p><img src="/img/routes-tree-transition-1.png" alt="Transition example #1"></p>
-<p>Now let&#39;s see another example: a transition from <code>admin.roles</code> to <code>admin.users</code>. The transition node will be <code>admin</code>, and the admin segment will remain activated. <code>admin.roles</code> will be deactivated and <code>admin.users</code> will be activated.</p>
-<p><img src="/img/routes-tree-transition-2.png" alt="Transition example #1"></p>
-<h2 id="the-view">The view</h2>
-<blockquote>
-<p>The router is unaware of your view and you need to bind your view to your router&#39;s state updates.</p>
-</blockquote>
-<p>This is where you need to forget about route handlers and linking routes to components. On the left you have state updates coming from your router, and on the right you have your application view. Your application view is already in a certain state, and will now have to update to reflect the latest state updates.</p>
-<p>On a route change, you only need to re-render a portion of your app. Depending on where you come from, for the same given route, a smaller or larger part of your application view will need to be re-rendered. This is why route handlers are not helpful: routing is not about mapping a route to a component, it is about going from A to B.</p>
-<h3 id="binding-to-route-changes">Binding to route changes</h3>
-<p>Your view will need to subscribe to route updates, or specific route updates. There are three types of events you might want to react to, depending on what information you are after:</p>
-<ul>
-<li>The router has navigated to a route (any route)</li>
-<li>The router has navigated to a specified route</li>
-<li>A specified node is the transition node</li>
-</ul>
-<p>The last point is the main one. We have seen your routes are organised in a tree. Your components are also organised in a tree, like DOM elements of a page are. In your application, each route node (when active) will have a corresponding component node. Those components should be re-rendered if their associated node is a transition node of a route change.</p>
-<p>Below is an example of associated route and component nodes, when <code>admin.users</code> is active:</p>
-<p><img src="/img/routes-tree-components.png" alt="Transition nodes"></p>
-<p>The current route is <code>admin.users</code>. If we were to navigate to <code>home</code>, <code>Main</code> would be the component associated to the route node <code>&#39;&#39;</code>. It would re-render to output a <code>Home</code> component instance rather than an <code>Admin</code> one, discarding the whole admin view.</p>
-<blockquote>
-<p>The <strong>transition node</strong> (as explained above), <em>is</em> the node to re-render your view from.</p>
-</blockquote>
-<p>The <strong>listeners plugin</strong> makes possible to register those three types of listeners: <em>&quot;any change&quot;</em> listener, route listener and node listener. Note that <code>listenersPlugin</code> has a limit of one node listener per node (<em>listenersPlugin</em> uses <a href="https://github.com/router5/router5/tree/master/packages/router5-transition-path">router5-transition-path</a> to compute the transition path between two router5 states).</p>
-<p><img src="/img/router-view.png" alt="Relation between router and view"></p>
-<p>In slightly more complicated cases, you might have other parts of your screen to re-render. For example, you might have a header, a main menu or a side panel to update on a route change: in that case you can listen to any route change or a specific route change, and re-render that specific portion of a screen. Keep transition nodes for your &quot;main&quot; content update.</p>
-<h2 id="what-is-router5-best-suited-for-">What is router5 best suited for?</h2>
-<p>Router 5 is best suited for trees of components, where components can easily be composed together. It works best with React, deku, cyclejs, etc...</p>
-<p>It also works very well with state containers like <a href="http://redux.js.org/">Redux</a>: your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don&#39;t need to use the listeners plugin.</p>
-<ul>
-<li><a href="https://github.com/router5/react-router5">react-router5</a> and <a href="https://github.com/router5/router5/tree/master/packages/deku-router5">deku-router5</a> both provide a <code>routeNode(nodeName)(BaseComponent)</code> higher-order component for re-rendering from a node down when the given node is the transition node.</li>
-<li><a href="https://github.com/router5/router5/tree/master/packages/redux-router5">redux-router5</a> provides a selector <code>routeNode(nodeName)</code> which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with <code>connect</code> from <a href="https://github.com/rackt/react-redux">react-redux</a> or <a href="https://github.com/troch/deku-redux">deku-redux</a>.</li>
-</ul>
-<p><img src="/img/router-redux.png" alt="With redux"></p>
+&lt;h2 id=&quot;the-state&quot;&gt;The state&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/router5/router5&quot;&gt;router5&lt;/a&gt; is the core repository. Once you have defined your routes and started your router, it only does one thing: it takes navigation instructions and output state updates.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/router.png&quot; alt=&quot;Router&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Updating your browser history or listening to URL changes is considered a side-effect, because they are specific to an environment where your application might run (the browser). You can use the browser plugin to update the browser URL and translate popstate events to routing instructions.&lt;/p&gt;
+&lt;p&gt;A state object will contain:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;name&lt;/code&gt; of the route&lt;/li&gt;
+&lt;li&gt;The parameters (&lt;code&gt;params&lt;/code&gt;) of the route&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;path&lt;/code&gt; of the route&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;tree-of-routes&quot;&gt;Tree of routes&lt;/h3&gt;
+&lt;p&gt;Your routes are organised in a tree, made of segments and nodes. At the top will always be an unnamed root node (its name is an empty string &lt;code&gt;&amp;#39;&amp;#39;&lt;/code&gt;). It gives you the ability to have nested routes, each node of the tree (except the root node) is a valid route of your application.&lt;/p&gt;
+&lt;p&gt;For the rest of this article, we will use the following simple example of a few nested routes:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/routes-tree.png&quot; alt=&quot;Tree of routes&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;transition&quot;&gt;Transition&lt;/h3&gt;
+&lt;p&gt;During a transition phase, the router will follow a &lt;strong&gt;transition path&lt;/strong&gt;: it will deactivate some segments and activate some new ones. The intersection node between deactivated and activated segments is the &lt;strong&gt;transition node&lt;/strong&gt;. The &lt;strong&gt;transition node&lt;/strong&gt; is very important for your view, as we are about to discover.&lt;/p&gt;
+&lt;p&gt;Using the tree of routes shown above, let&amp;#39;s consider we transition from &lt;code&gt;home&lt;/code&gt; to &lt;code&gt;admin.users&lt;/code&gt;: the transition node will be &lt;em&gt;the unamed root node&lt;/em&gt;, we will deactivate &lt;code&gt;home&lt;/code&gt; and activate &lt;code&gt;admin&lt;/code&gt; and &lt;code&gt;admin.users&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/routes-tree-transition-1.png&quot; alt=&quot;Transition example #1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Now let&amp;#39;s see another example: a transition from &lt;code&gt;admin.roles&lt;/code&gt; to &lt;code&gt;admin.users&lt;/code&gt;. The transition node will be &lt;code&gt;admin&lt;/code&gt;, and the admin segment will remain activated. &lt;code&gt;admin.roles&lt;/code&gt; will be deactivated and &lt;code&gt;admin.users&lt;/code&gt; will be activated.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/routes-tree-transition-2.png&quot; alt=&quot;Transition example #1&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;the-view&quot;&gt;The view&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The router is unaware of your view and you need to bind your view to your router&amp;#39;s state updates.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is where you need to forget about route handlers and linking routes to components. On the left you have state updates coming from your router, and on the right you have your application view. Your application view is already in a certain state, and will now have to update to reflect the latest state updates.&lt;/p&gt;
+&lt;p&gt;On a route change, you only need to re-render a portion of your app. Depending on where you come from, for the same given route, a smaller or larger part of your application view will need to be re-rendered. This is why route handlers are not helpful: routing is not about mapping a route to a component, it is about going from A to B.&lt;/p&gt;
+&lt;h3 id=&quot;binding-to-route-changes&quot;&gt;Binding to route changes&lt;/h3&gt;
+&lt;p&gt;Your view will need to subscribe to route updates, or specific route updates. There are three types of events you might want to react to, depending on what information you are after:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The router has navigated to a route (any route)&lt;/li&gt;
+&lt;li&gt;The router has navigated to a specified route&lt;/li&gt;
+&lt;li&gt;A specified node is the transition node&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The last point is the main one. We have seen your routes are organised in a tree. Your components are also organised in a tree, like DOM elements of a page are. In your application, each route node (when active) will have a corresponding component node. Those components should be re-rendered if their associated node is a transition node of a route change.&lt;/p&gt;
+&lt;p&gt;Below is an example of associated route and component nodes, when &lt;code&gt;admin.users&lt;/code&gt; is active:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/routes-tree-components.png&quot; alt=&quot;Transition nodes&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The current route is &lt;code&gt;admin.users&lt;/code&gt;. If we were to navigate to &lt;code&gt;home&lt;/code&gt;, &lt;code&gt;Main&lt;/code&gt; would be the component associated to the route node &lt;code&gt;&amp;#39;&amp;#39;&lt;/code&gt;. It would re-render to output a &lt;code&gt;Home&lt;/code&gt; component instance rather than an &lt;code&gt;Admin&lt;/code&gt; one, discarding the whole admin view.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The &lt;strong&gt;transition node&lt;/strong&gt; (as explained above), &lt;em&gt;is&lt;/em&gt; the node to re-render your view from.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;strong&gt;listeners plugin&lt;/strong&gt; makes possible to register those three types of listeners: &lt;em&gt;&amp;quot;any change&amp;quot;&lt;/em&gt; listener, route listener and node listener. Note that &lt;code&gt;listenersPlugin&lt;/code&gt; has a limit of one node listener per node (&lt;em&gt;listenersPlugin&lt;/em&gt; uses &lt;a href=&quot;https://github.com/router5/router5/tree/master/packages/router5-transition-path&quot;&gt;router5-transition-path&lt;/a&gt; to compute the transition path between two router5 states).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/img/router-view.png&quot; alt=&quot;Relation between router and view&quot;&gt;&lt;/p&gt;
+&lt;p&gt;In slightly more complicated cases, you might have other parts of your screen to re-render. For example, you might have a header, a main menu or a side panel to update on a route change: in that case you can listen to any route change or a specific route change, and re-render that specific portion of a screen. Keep transition nodes for your &amp;quot;main&amp;quot; content update.&lt;/p&gt;
+&lt;h2 id=&quot;what-is-router5-best-suited-for-&quot;&gt;What is router5 best suited for?&lt;/h2&gt;
+&lt;p&gt;Router 5 is best suited for trees of components, where components can easily be composed together. It works best with React, deku, cyclejs, etc...&lt;/p&gt;
+&lt;p&gt;It also works very well with state containers like &lt;a href=&quot;http://redux.js.org/&quot;&gt;Redux&lt;/a&gt;: your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don&amp;#39;t need to use the listeners plugin.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/router5/react-router5&quot;&gt;react-router5&lt;/a&gt; and &lt;a href=&quot;https://github.com/router5/router5/tree/master/packages/deku-router5&quot;&gt;deku-router5&lt;/a&gt; both provide a &lt;code&gt;routeNode(nodeName)(BaseComponent)&lt;/code&gt; higher-order component for re-rendering from a node down when the given node is the transition node.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/router5/router5/tree/master/packages/redux-router5&quot;&gt;redux-router5&lt;/a&gt; provides a selector &lt;code&gt;routeNode(nodeName)&lt;/code&gt; which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with &lt;code&gt;connect&lt;/code&gt; from &lt;a href=&quot;https://github.com/rackt/react-redux&quot;&gt;react-redux&lt;/a&gt; or &lt;a href=&quot;https://github.com/troch/deku-redux&quot;&gt;deku-redux&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/img/router-redux.png&quot; alt=&quot;With redux&quot;&gt;&lt;/p&gt;
 
     </main>
 

@@ -95,12 +95,12 @@
     </aside>
 
     <main>
-        <h1 id="options">Options</h1>
-<blockquote>
-<p>You can configure your router instance by passing options to the constructor or by using <code>.setOption(optName, optValue)</code>.</p>
-</blockquote>
-<pre><code class="lang-javascript javascript">var router = createRouter([], {
-        defaultRoute: &#39;home&#39;,
+        &lt;h1 id=&quot;options&quot;&gt;Options&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can configure your router instance by passing options to the constructor or by using &lt;code&gt;.setOption(optName, optValue)&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;var router = createRouter([], {
+        defaultRoute: &amp;#39;home&amp;#39;,
         defaultParams: {},
         trailingSlash: false,
         useTrailingSlash: undefined,
@@ -108,35 +108,35 @@
         strictQueryParams: true,
         allowNotFound: false
     })
-    .setOption(&#39;strictQueryParams&#39;, false)
-</code></pre>
-<h2 id="strict-query-parameters">Strict query parameters</h2>
-<p>Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.</p>
-<p>If you want the router to still match routes if extra query parameters are present, set <code>strictQueryParams</code> to <code>false</code>.</p>
-<h2 id="default-route">Default route</h2>
-<p>When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:</p>
-<ul>
-<li><code>defaultRoute</code>: the default route.</li>
-<li><code>defaultParams</code>: the default route params (defaults to <code>{}</code>)</li>
-</ul>
-<p>See <a href="/docs/navigation.html">navigation guide</a> for more information.</p>
-<h2 id="allow-not-found">Allow not found</h2>
-<p>There are two ways to deal with not found routes: the first one is to configure a <code>defaultRoute</code> (and <code>defaultParams</code>), the second one is to allow those not found routes to create a new routing state. Set <code>allowNotFound</code> to true and the router will emit a state value for unmatched paths.</p>
-<p>For example, if you try to match <code>/hello-world</code> and you don&#39;t have this route defined, the router will emit the following state:</p>
-<pre><code class="lang-js">import { constants } from &#39;router5&#39;;
+    .setOption(&amp;#39;strictQueryParams&amp;#39;, false)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;strict-query-parameters&quot;&gt;Strict query parameters&lt;/h2&gt;
+&lt;p&gt;Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.&lt;/p&gt;
+&lt;p&gt;If you want the router to still match routes if extra query parameters are present, set &lt;code&gt;strictQueryParams&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;default-route&quot;&gt;Default route&lt;/h2&gt;
+&lt;p&gt;When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;defaultRoute&lt;/code&gt;: the default route.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;defaultParams&lt;/code&gt;: the default route params (defaults to &lt;code&gt;{}&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See &lt;a href=&quot;/docs/navigation.html&quot;&gt;navigation guide&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;h2 id=&quot;allow-not-found&quot;&gt;Allow not found&lt;/h2&gt;
+&lt;p&gt;There are two ways to deal with not found routes: the first one is to configure a &lt;code&gt;defaultRoute&lt;/code&gt; (and &lt;code&gt;defaultParams&lt;/code&gt;), the second one is to allow those not found routes to create a new routing state. Set &lt;code&gt;allowNotFound&lt;/code&gt; to true and the router will emit a state value for unmatched paths.&lt;/p&gt;
+&lt;p&gt;For example, if you try to match &lt;code&gt;/hello-world&lt;/code&gt; and you don&amp;#39;t have this route defined, the router will emit the following state:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;import { constants } from &amp;#39;router5&amp;#39;;
 
 const state = {
     name: constants.UNKNOWN_ROUTE
-    params: { path: &#39;/hello-world&#39; },
-    path: &#39;/hello-world&#39;
+    params: { path: &amp;#39;/hello-world&amp;#39; },
+    path: &amp;#39;/hello-world&amp;#39;
 }
-</code></pre>
-<h2 id="optional-trailing-slashes">Optional trailing slashes</h2>
-<p>By default, the router is in &quot;strict match&quot; mode. If you want trailing slashes to be optional, you can set <code>trailingSlash</code> to a truthy value.</p>
-<h2 id="building-with-or-without-trailing-slashes">Building with or without trailing slashes</h2>
-<p>By default, the router will build your routes according to your route definitions. You can force or not the use of trailing slashes by setting <code>useTrailingSlash</code> to <code>true</code> or <code>false</code> (default to <code>undefined</code>); When setting this option, <code>trailingSlash</code> will be set to true (non strict matching).</p>
-<h2 id="automatic-clean-up">Automatic clean up</h2>
-<p>If <code>autoCleanUp</code> is set to true, the router will automatically clear <code>canDeactivate</code> functions / booleans when their associated segment becomes inactive.</p>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;optional-trailing-slashes&quot;&gt;Optional trailing slashes&lt;/h2&gt;
+&lt;p&gt;By default, the router is in &amp;quot;strict match&amp;quot; mode. If you want trailing slashes to be optional, you can set &lt;code&gt;trailingSlash&lt;/code&gt; to a truthy value.&lt;/p&gt;
+&lt;h2 id=&quot;building-with-or-without-trailing-slashes&quot;&gt;Building with or without trailing slashes&lt;/h2&gt;
+&lt;p&gt;By default, the router will build your routes according to your route definitions. You can force or not the use of trailing slashes by setting &lt;code&gt;useTrailingSlash&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt; (default to &lt;code&gt;undefined&lt;/code&gt;); When setting this option, &lt;code&gt;trailingSlash&lt;/code&gt; will be set to true (non strict matching).&lt;/p&gt;
+&lt;h2 id=&quot;automatic-clean-up&quot;&gt;Automatic clean up&lt;/h2&gt;
+&lt;p&gt;If &lt;code&gt;autoCleanUp&lt;/code&gt; is set to true, the router will automatically clear &lt;code&gt;canDeactivate&lt;/code&gt; functions / booleans when their associated segment becomes inactive.&lt;/p&gt;
 
     </main>
 

@@ -95,45 +95,45 @@
     </aside>
 
     <main>
-        <h1 id="migrating-from-0-x-to-1-x">Migrating from 0.x to 1.x</h1>
-<blockquote>
-<p><strong>router5@1.0.0</strong> now uses plugins for managing browser history and handling listeners. Installling and using <code>router5-listeners</code> and <code>router5-history</code> will result in an almost identical behaviour.</p>
-</blockquote>
-<h2 id="new-features">New features</h2>
-<ul>
-<li>New <code>autoCleanUp</code> option for automatically deregistering components when their associated route is no longer active (also applies to route node listeners)</li>
-<li>New <code>canDeactivate</code> method as a shortcut for <code>registerComponent</code></li>
-<li>Plugins and built-in logger plugin</li>
-<li>Support for multiple middleware functions</li>
-</ul>
-<h2 id="breaking-change">Breaking change</h2>
-<ul>
-<li>Transition errors are now objects with a code property, and not strings</li>
-<li><code>onTransition()</code> is now deprecated in favour of <code>useMiddleware()</code></li>
-<li>history is now managed by a plugin (<code>router5-history</code>)</li>
-<li>listeners is now managed by a plugin (<code>router5-history</code>), API remains the same</li>
-</ul>
-<h2 id="code-example">Code example</h2>
-<pre><code class="lang-javascript javascript">import { Router5 } from &#39;router5&#39;;
-import historyPlugin from &#39;router5-history&#39;;
-import listenersPlugin from &#39;router5-listeners&#39;;
+        &lt;h1 id=&quot;migrating-from-0-x-to-1-x&quot;&gt;Migrating from 0.x to 1.x&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;router5@1.0.0&lt;/strong&gt; now uses plugins for managing browser history and handling listeners. Installling and using &lt;code&gt;router5-listeners&lt;/code&gt; and &lt;code&gt;router5-history&lt;/code&gt; will result in an almost identical behaviour.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;new-features&quot;&gt;New features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;New &lt;code&gt;autoCleanUp&lt;/code&gt; option for automatically deregistering components when their associated route is no longer active (also applies to route node listeners)&lt;/li&gt;
+&lt;li&gt;New &lt;code&gt;canDeactivate&lt;/code&gt; method as a shortcut for &lt;code&gt;registerComponent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Plugins and built-in logger plugin&lt;/li&gt;
+&lt;li&gt;Support for multiple middleware functions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;breaking-change&quot;&gt;Breaking change&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Transition errors are now objects with a code property, and not strings&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;onTransition()&lt;/code&gt; is now deprecated in favour of &lt;code&gt;useMiddleware()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;history is now managed by a plugin (&lt;code&gt;router5-history&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;listeners is now managed by a plugin (&lt;code&gt;router5-history&lt;/code&gt;), API remains the same&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;code-example&quot;&gt;Code example&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;import { Router5 } from &amp;#39;router5&amp;#39;;
+import historyPlugin from &amp;#39;router5-history&amp;#39;;
+import listenersPlugin from &amp;#39;router5-listeners&amp;#39;;
 
 const router = new Router5()
-    .addNode(&#39;home&#39;, &#39;/home&#39;)
+    .addNode(&amp;#39;home&amp;#39;, &amp;#39;/home&amp;#39;)
     .usePlugin(historyPlugin())
     .usePlugin(listenersPlugin())
     // Development helper
     .usePlugin(Router5.loggerPlugin())
     .start();
-</code></pre>
-<pre><code class="lang-javascript javascript">router.canDeactivate(&#39;home&#39;, true);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;router.canDeactivate(&amp;#39;home&amp;#39;, true);
 // is the equivalent of
-router.registerComponent(&#39;home&#39;, {
+router.registerComponent(&amp;#39;home&amp;#39;, {
     canDeactivate: function () {
         return true;
     }
 });
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
     </main>
 

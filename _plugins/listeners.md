@@ -87,7 +87,7 @@ the supplied route name.
 Listeners registered with `addRouteListener(name, fn)` can be removed later with `removeRouteListener(name, fn)`
 
 ```javascript
-var myRouter = Router5()
+var myRouter = createRouter()
     .addNode('home', '/home')
     .addNode('about', '/about')
     .start();

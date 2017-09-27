@@ -95,39 +95,39 @@
     </aside>
 
     <main>
-        <h1 id="preventing-navigation">Preventing navigation</h1>
-<blockquote>
-<p>It is a common case to want to allow / prevent navigation away from a view or component: if a User is in the middle of completing a form and data has not been saved, you might want to warn them about data being lost or prevent them to leave the current view until data has been saved.</p>
-</blockquote>
-<h2 id="lifecycle-functions">Lifecycle functions</h2>
-<p>Router5 supports <code>canActivate</code> and <code>canDeactivate</code> functions for segments:</p>
-<ul>
-<li><code>canActivate</code> functions are called on segments which will become active as a result of a route change</li>
-<li><code>canDeactivate</code> functions are called on segments which will become inactive as a result of a route change</li>
-</ul>
-<p>Both functions have the same signature than middleware functions. Their result can be synchronous (returning a boolean) or asynchronous (returning a promise or calling <code>done(err, result)</code>).</p>
-<blockquote>
-<p><strong>Note:</strong> if a canActivate or canDeactivate function doesn&#39;t return a boolean, a promise or doesn&#39;t call back,
-  the transition will not proceed.</p>
-<p><em>router5</em> doesn&#39;t create any promise and therefore if you do not wish to use promises, you are not forced
-to use a polyfill or promise implementation in your app.</p>
-</blockquote>
-<pre><code class="lang-javascript javascript">const canActivate = (router) =&gt; (toState, fromState) =&gt; {
+        &lt;h1 id=&quot;preventing-navigation&quot;&gt;Preventing navigation&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It is a common case to want to allow / prevent navigation away from a view or component: if a User is in the middle of completing a form and data has not been saved, you might want to warn them about data being lost or prevent them to leave the current view until data has been saved.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;lifecycle-functions&quot;&gt;Lifecycle functions&lt;/h2&gt;
+&lt;p&gt;Router5 supports &lt;code&gt;canActivate&lt;/code&gt; and &lt;code&gt;canDeactivate&lt;/code&gt; functions for segments:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;canActivate&lt;/code&gt; functions are called on segments which will become active as a result of a route change&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;canDeactivate&lt;/code&gt; functions are called on segments which will become inactive as a result of a route change&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both functions have the same signature than middleware functions. Their result can be synchronous (returning a boolean) or asynchronous (returning a promise or calling &lt;code&gt;done(err, result)&lt;/code&gt;).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; if a canActivate or canDeactivate function doesn&amp;#39;t return a boolean, a promise or doesn&amp;#39;t call back,
+  the transition will not proceed.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;router5&lt;/em&gt; doesn&amp;#39;t create any promise and therefore if you do not wish to use promises, you are not forced
+to use a polyfill or promise implementation in your app.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;const canActivate = (router) =&amp;gt; (toState, fromState) =&amp;gt; {
     return true;
 }
 
-router.canActivate(&#39;admin&#39;, canActivate);
-</code></pre>
-<h3 id="order-of-invocation">Order of invocation</h3>
-<p><code>canActivate</code> and <code>canDeactivate</code> functions are thunks: they expose another function to receive navigation updates, allowing you to use closures if you need to.</p>
-<p>Those handlers will be invoked when your router is started with your router instance and injectables. Then their exposed function will be called to query if a segment can be activated or deactivated.</p>
-<p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same
-than <code>canDeactivate</code> methods: you can return a boolean value, return a promise or invoke a done callback.</p>
-<p><code>canDeactivate</code> methods are invoked from bottom to top. If a User is navigating from route <code>A.1.a</code> to route <code>B</code>,
-<em>router5</em> will query registered components for segment <code>A.1.a</code>, then <code>A.1</code>, then <code>A</code>.</p>
-<blockquote>
-<p>When option <code>autoCleanUp</code> is set to true, canDeactivate methods are removed when their associated segment is no longer active.</p>
-</blockquote>
+router.canActivate(&amp;#39;admin&amp;#39;, canActivate);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;order-of-invocation&quot;&gt;Order of invocation&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;canActivate&lt;/code&gt; and &lt;code&gt;canDeactivate&lt;/code&gt; functions are thunks: they expose another function to receive navigation updates, allowing you to use closures if you need to.&lt;/p&gt;
+&lt;p&gt;Those handlers will be invoked when your router is started with your router instance and injectables. Then their exposed function will be called to query if a segment can be activated or deactivated.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;canActivate&lt;/code&gt; functions are called from top to bottom on newly activated segments. They behave the same
+than &lt;code&gt;canDeactivate&lt;/code&gt; methods: you can return a boolean value, return a promise or invoke a done callback.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;canDeactivate&lt;/code&gt; methods are invoked from bottom to top. If a User is navigating from route &lt;code&gt;A.1.a&lt;/code&gt; to route &lt;code&gt;B&lt;/code&gt;,
+&lt;em&gt;router5&lt;/em&gt; will query registered components for segment &lt;code&gt;A.1.a&lt;/code&gt;, then &lt;code&gt;A.1&lt;/code&gt;, then &lt;code&gt;A&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When option &lt;code&gt;autoCleanUp&lt;/code&gt; is set to true, canDeactivate methods are removed when their associated segment is no longer active.&lt;/p&gt;
+&lt;/blockquote&gt;
 
     </main>
 

@@ -95,87 +95,87 @@
     </aside>
 
     <main>
-        <h1 id="listeners-plugin">Listeners plugin</h1>
-<blockquote>
-<p>To be able to react to route changes, you might need to add listeners. <code>listenersPlugin</code> plugin provides different ways to listen to router state changes.</p>
-</blockquote>
-<pre><code class="lang-javascript javascript">import listenersPlugin from &#39;router5/plugins/listeners&#39;;
+        &lt;h1 id=&quot;listeners-plugin&quot;&gt;Listeners plugin&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To be able to react to route changes, you might need to add listeners. &lt;code&gt;listenersPlugin&lt;/code&gt; plugin provides different ways to listen to router state changes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;import listenersPlugin from &amp;#39;router5/plugins/listeners&amp;#39;;
 
 const router = createRouter()
     .usePlugin(listenersPlugin());
-</code></pre>
-<h2 id="three-types-of-listeners">Three types of listeners</h2>
-<p><img src="/img/deactivation-activation-path.png" alt="Navigation from &#39;users.view&#39; to &#39;orders.completed&#39;"></p>
-<p>When navigation from <em>users.view</em> to <em>orders.completed</em>:</p>
-<ul>
-<li>&#x2713; <code>.addListener(fn)</code> will be called</li>
-<li>&#x2713; <code>.addNodeListener(&#39;&#39;, fn)</code> will be called</li>
-<li>&#x2713; <code>.addRouteListener(&#39;orders.completed&#39;, fn)</code> will be called</li>
-</ul>
-<p><img src="/img/deactivation-activation-path-2.png" alt="Navigation from &#39;orders.completed&#39; to &#39;orders.pending&#39;"></p>
-<p>When navigation from <em>orders.pending</em> to <em>orders.pending</em>:</p>
-<ul>
-<li>&#x2713; <code>.addListener(fn)</code> will be called</li>
-<li>&#x2713; <code>.addNodeListener(&#39;orders&#39;, fn)</code> will be called</li>
-<li>&#x2713; <code>.addRouteListener(&#39;orders.pending&#39;, fn)</code> will be called</li>
-</ul>
-<h3 id="listener-arguments">Listener Arguments</h3>
-<p>Listeners will be called with <code>toState</code> and <code>fromState</code> arguments.
-State objects contain the following properties: <code>name</code>, <code>params</code> and <code>path</code>.</p>
-<h2 id="listen-to-a-node-change">Listen to a node change</h2>
-<p><code>addNodeListener(name, fn)</code> will register a listener which will be invoked when the specified route node
-is the <strong>transition node</strong> of a route change, i.e. the intersection between deactivated and activated segments.</p>
-<p>For example, when navigating from route name <code>A.1.a</code> to <code>A.1.b</code>, node <code>a.1</code> is the <em>apex</em> node. When navigating
-from <code>A.1.a</code> to <code>A.2</code>, <code>A</code> is the <em>apex</em>.</p>
-<p>Node listeners are limited to <strong>one listener per node</strong>, and are the most useful listener for <strong>component trees</strong>:
-they allow to use wrapping components and to re-render a view efficiently at a specific node. Using <code>addNodeListener(&#39;&#39;, fn)</code>
-will add a listener for the router&#39;s unamed root node.</p>
-<blockquote>
-<p>If <code>autoCleanUp</code> option is set to true, node listeners are automatically removed when their associated node no longer exists.</p>
-</blockquote>
-<pre><code class="lang-javascript javascript">myRouter.addNodeListener(&#39;A&#39;, function (toState, fromState) {
-    console.log(&#39;re-render from A&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;three-types-of-listeners&quot;&gt;Three types of listeners&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/img/deactivation-activation-path.png&quot; alt=&quot;Navigation from &amp;#39;users.view&amp;#39; to &amp;#39;orders.completed&amp;#39;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;When navigation from &lt;em&gt;users.view&lt;/em&gt; to &lt;em&gt;orders.completed&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;#x2713; &lt;code&gt;.addListener(fn)&lt;/code&gt; will be called&lt;/li&gt;
+&lt;li&gt;&amp;#x2713; &lt;code&gt;.addNodeListener(&amp;#39;&amp;#39;, fn)&lt;/code&gt; will be called&lt;/li&gt;
+&lt;li&gt;&amp;#x2713; &lt;code&gt;.addRouteListener(&amp;#39;orders.completed&amp;#39;, fn)&lt;/code&gt; will be called&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/img/deactivation-activation-path-2.png&quot; alt=&quot;Navigation from &amp;#39;orders.completed&amp;#39; to &amp;#39;orders.pending&amp;#39;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;When navigation from &lt;em&gt;orders.pending&lt;/em&gt; to &lt;em&gt;orders.pending&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;#x2713; &lt;code&gt;.addListener(fn)&lt;/code&gt; will be called&lt;/li&gt;
+&lt;li&gt;&amp;#x2713; &lt;code&gt;.addNodeListener(&amp;#39;orders&amp;#39;, fn)&lt;/code&gt; will be called&lt;/li&gt;
+&lt;li&gt;&amp;#x2713; &lt;code&gt;.addRouteListener(&amp;#39;orders.pending&amp;#39;, fn)&lt;/code&gt; will be called&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;listener-arguments&quot;&gt;Listener Arguments&lt;/h3&gt;
+&lt;p&gt;Listeners will be called with &lt;code&gt;toState&lt;/code&gt; and &lt;code&gt;fromState&lt;/code&gt; arguments.
+State objects contain the following properties: &lt;code&gt;name&lt;/code&gt;, &lt;code&gt;params&lt;/code&gt; and &lt;code&gt;path&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;listen-to-a-node-change&quot;&gt;Listen to a node change&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;addNodeListener(name, fn)&lt;/code&gt; will register a listener which will be invoked when the specified route node
+is the &lt;strong&gt;transition node&lt;/strong&gt; of a route change, i.e. the intersection between deactivated and activated segments.&lt;/p&gt;
+&lt;p&gt;For example, when navigating from route name &lt;code&gt;A.1.a&lt;/code&gt; to &lt;code&gt;A.1.b&lt;/code&gt;, node &lt;code&gt;a.1&lt;/code&gt; is the &lt;em&gt;apex&lt;/em&gt; node. When navigating
+from &lt;code&gt;A.1.a&lt;/code&gt; to &lt;code&gt;A.2&lt;/code&gt;, &lt;code&gt;A&lt;/code&gt; is the &lt;em&gt;apex&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Node listeners are limited to &lt;strong&gt;one listener per node&lt;/strong&gt;, and are the most useful listener for &lt;strong&gt;component trees&lt;/strong&gt;:
+they allow to use wrapping components and to re-render a view efficiently at a specific node. Using &lt;code&gt;addNodeListener(&amp;#39;&amp;#39;, fn)&lt;/code&gt;
+will add a listener for the router&amp;#39;s unamed root node.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If &lt;code&gt;autoCleanUp&lt;/code&gt; option is set to true, node listeners are automatically removed when their associated node no longer exists.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;myRouter.addNodeListener(&amp;#39;A&amp;#39;, function (toState, fromState) {
+    console.log(&amp;#39;re-render from A&amp;#39;);
 });
 
-myRouter.addNodeListener(&#39;A.1&#39;, function (toState, fromState) {
-    console.log(&#39;re-render from A.1&#39;);
+myRouter.addNodeListener(&amp;#39;A.1&amp;#39;, function (toState, fromState) {
+    console.log(&amp;#39;re-render from A.1&amp;#39;);
 });
 
-myRouter.navigate(&#39;A.1.a&#39;);
-myRouter.navigate(&#39;A.1.b&#39;); // =&gt; logs &#39;re-render from A.1&#39;
-myRouter.navigate(&#39;A.2&#39;);   // =&gt; logs &#39;re-render from A&#39;
-</code></pre>
-<h2 id="listen-to-any-route-change">Listen to any route change</h2>
-<p>Listeners registered with <code>addListener(fn)</code> will be triggered on any route change, including route reloads (<em>toState</em>
-will be equal to <em>fromState</em>). You can remove a previously added listener by using <code>removeListener(fn)</code>.</p>
-<pre><code class="lang-javascript javascript">function callback(toState, fromState) {
+myRouter.navigate(&amp;#39;A.1.a&amp;#39;);
+myRouter.navigate(&amp;#39;A.1.b&amp;#39;); // =&amp;gt; logs &amp;#39;re-render from A.1&amp;#39;
+myRouter.navigate(&amp;#39;A.2&amp;#39;);   // =&amp;gt; logs &amp;#39;re-render from A&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;listen-to-any-route-change&quot;&gt;Listen to any route change&lt;/h2&gt;
+&lt;p&gt;Listeners registered with &lt;code&gt;addListener(fn)&lt;/code&gt; will be triggered on any route change, including route reloads (&lt;em&gt;toState&lt;/em&gt;
+will be equal to &lt;em&gt;fromState&lt;/em&gt;). You can remove a previously added listener by using &lt;code&gt;removeListener(fn)&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;function callback(toState, fromState) {
     renderComponent(toState.name);
 }
 
 myRouter.addListener(callback);
 
 myRouter.removeListener(callback);
-</code></pre>
-<h2 id="listen-to-a-specific-route">Listen to a specific route</h2>
-<p><code>addRouteListener(name, fn)</code> will register a listener which will be triggered when the router is navigating to
-the supplied route name.</p>
-<p>Listeners registered with <code>addRouteListener(name, fn)</code> can be removed later with <code>removeRouteListener(name, fn)</code></p>
-<pre><code class="lang-javascript javascript">var myRouter = Router5()
-    .addNode(&#39;home&#39;, &#39;/home&#39;)
-    .addNode(&#39;about&#39;, &#39;/about&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;listen-to-a-specific-route&quot;&gt;Listen to a specific route&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;addRouteListener(name, fn)&lt;/code&gt; will register a listener which will be triggered when the router is navigating to
+the supplied route name.&lt;/p&gt;
+&lt;p&gt;Listeners registered with &lt;code&gt;addRouteListener(name, fn)&lt;/code&gt; can be removed later with &lt;code&gt;removeRouteListener(name, fn)&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;var myRouter = createRouter()
+    .addNode(&amp;#39;home&amp;#39;, &amp;#39;/home&amp;#39;)
+    .addNode(&amp;#39;about&amp;#39;, &amp;#39;/about&amp;#39;)
     .start();
 
-myRouter.addRouteListener(&#39;home&#39;, function (toState, fromState) {
-    alert(&#39;You have navigated to home&#39;);
+myRouter.addRouteListener(&amp;#39;home&amp;#39;, function (toState, fromState) {
+    alert(&amp;#39;You have navigated to home&amp;#39;);
 });
 
-myRouter.addRouteListener(&#39;about&#39;, function () {
-    alert(&#39;You have navigated to about&#39;);
+myRouter.addRouteListener(&amp;#39;about&amp;#39;, function () {
+    alert(&amp;#39;You have navigated to about&amp;#39;);
 });
 
-myRouter.navigate(&#39;home&#39;);  // =&gt; alerts &#39;You have navigated to home&#39;
-myRouter.navigate(&#39;about&#39;); // =&gt; alerts &#39;You have navigated to about&#39;
-</code></pre>
+myRouter.navigate(&amp;#39;home&amp;#39;);  // =&amp;gt; alerts &amp;#39;You have navigated to home&amp;#39;
+myRouter.navigate(&amp;#39;about&amp;#39;); // =&amp;gt; alerts &amp;#39;You have navigated to about&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;
 
     </main>
 

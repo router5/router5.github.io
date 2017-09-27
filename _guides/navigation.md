@@ -5,7 +5,7 @@
 ## Starting your router
 
 ```javascript
-const myRouter = Router5([
+const myRouter = createRouter([
     { name: 'home', path: '/home' },
     { name: 'about', path: '/about' },
     { name: 'contact', path: '/contact' }
@@ -31,11 +31,11 @@ Providing a starting state is designed to be used for universal JavaScript appli
 
 ## Defining a default route
 
-A default route can be set in Router5 constructor options. The following example will cause your application to navigate
+A default route can be set in `createRouter` options. The following example will cause your application to navigate
 to `/about`:
 
 ```javascript
-var myRouter = Router5([
+var myRouter = createRouter([
         { name: 'home', path: '/home' },
         { name: 'section', path: '/:section' }
     ], {

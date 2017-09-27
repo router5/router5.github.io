@@ -34,7 +34,7 @@ const routes = [
 
 ## Adding routes to your router
 
-You can add all your routes at once using Router5 constructor or `router.add`.
+You can add all your routes at once using `createRouter` or `router.add`.
 
 __createRouter(routes, options)__
 

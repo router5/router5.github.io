@@ -1,4 +1,4 @@
-# Understanding Router5
+# Understanding router5
 
 > The main idea behind router5 is to treat routes like any other application data / state. This guide aims to take you through router5's key concepts.
 

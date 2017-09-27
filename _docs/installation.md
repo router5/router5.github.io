@@ -22,7 +22,7 @@ __CommonJS__
 
 ```javascript
 // ES2015+
-import Router5, { RouteNode, errorCodes, transitionPath, loggerPlugin } from 'router5';
+import createRouter, { RouteNode, errorCodes, transitionPath, loggerPlugin } from 'router5';
 
 import browserPlugin from 'router5/plugins/browser';
 import listenersPlugin from 'router5/plugins/listeners';

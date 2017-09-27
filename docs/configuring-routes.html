@@ -95,55 +95,55 @@
     </aside>
 
     <main>
-        <h1 id="configuring-routes">Configuring routes</h1>
-<blockquote>
-<p>There are a few ways to add routes to your router. You can specify your routes when creating a router instance and / or use chainable <code>add</code> and <code>addNode</code> methods to add routes.</p>
-</blockquote>
-<h2 id="defining-your-routes-as-pojos">Defining your routes as POJOs</h2>
-<p>You can define your routes as a flat array or nested array of routes. When using a flat array of routes, nested route names need to have their full name specified.</p>
-<p>Route objects also accept the following properties:</p>
-<ul>
-<li><code>canActivate</code>: a method to control whether or not the route node can be activated (see <a href="/docs/preventing-navigation.html">Preventing navigation</a>)</li>
-<li><code>forwardTo</code>: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route, or having multiple paths pointing to the same route.</li>
-</ul>
-<p><strong>Flat array of routes</strong></p>
-<pre><code class="lang-javascript javascript">const routes = [
-    { name: &#39;users&#39;,      path: &#39;/users&#39;},
-    { name: &#39;users.view&#39;, path: &#39;/list&#39;},
-    { name: &#39;users.list&#39;, path: &#39;/view&#39;}
+        &lt;h1 id=&quot;configuring-routes&quot;&gt;Configuring routes&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There are a few ways to add routes to your router. You can specify your routes when creating a router instance and / or use chainable &lt;code&gt;add&lt;/code&gt; and &lt;code&gt;addNode&lt;/code&gt; methods to add routes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;defining-your-routes-as-pojos&quot;&gt;Defining your routes as POJOs&lt;/h2&gt;
+&lt;p&gt;You can define your routes as a flat array or nested array of routes. When using a flat array of routes, nested route names need to have their full name specified.&lt;/p&gt;
+&lt;p&gt;Route objects also accept the following properties:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;canActivate&lt;/code&gt;: a method to control whether or not the route node can be activated (see &lt;a href=&quot;/docs/preventing-navigation.html&quot;&gt;Preventing navigation&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;forwardTo&lt;/code&gt;: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route, or having multiple paths pointing to the same route.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Flat array of routes&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;const routes = [
+    { name: &amp;#39;users&amp;#39;,      path: &amp;#39;/users&amp;#39;},
+    { name: &amp;#39;users.view&amp;#39;, path: &amp;#39;/list&amp;#39;},
+    { name: &amp;#39;users.list&amp;#39;, path: &amp;#39;/view&amp;#39;}
 ];
-</code></pre>
-<p><strong>Nested arrays of routes</strong></p>
-<pre><code class="lang-javascript javascript">const routes = [
-    { name: &#39;users&#39;, path: &#39;/users&#39;, children: [
-        { name: &#39;view&#39;, path: &#39;/list&#39;},
-        { name: &#39;list&#39;, path: &#39;/view&#39;}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Nested arrays of routes&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;const routes = [
+    { name: &amp;#39;users&amp;#39;, path: &amp;#39;/users&amp;#39;, children: [
+        { name: &amp;#39;view&amp;#39;, path: &amp;#39;/list&amp;#39;},
+        { name: &amp;#39;list&amp;#39;, path: &amp;#39;/view&amp;#39;}
     ]}
 ];
-</code></pre>
-<h2 id="adding-routes-to-your-router">Adding routes to your router</h2>
-<p>You can add all your routes at once using Router5 constructor or <code>router.add</code>.</p>
-<p><strong>createRouter(routes, options)</strong></p>
-<pre><code class="lang-javascript javascript">const router = createRouter(routes, options);
-</code></pre>
-<p><strong>add(routes)</strong></p>
-<p><code>.add()</code> accepts single nodes, flat or nested arrays.</p>
-<pre><code class="lang-javascript javascript">myRouter.add({ name: &#39;about&#39;, path: &#39;/about&#39; });
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;adding-routes-to-your-router&quot;&gt;Adding routes to your router&lt;/h2&gt;
+&lt;p&gt;You can add all your routes at once using &lt;code&gt;createRouter&lt;/code&gt; or &lt;code&gt;router.add&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;createRouter(routes, options)&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;const router = createRouter(routes, options);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;add(routes)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;.add()&lt;/code&gt; accepts single nodes, flat or nested arrays.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;myRouter.add({ name: &amp;#39;about&amp;#39;, path: &amp;#39;/about&amp;#39; });
 // Or
 myRouter.add([
-    {name: &#39;about&#39;,   path: &#39;/about&#39;},
-    {name: &#39;contact&#39;, path: &#39;/contact&#39;},
+    {name: &amp;#39;about&amp;#39;,   path: &amp;#39;/about&amp;#39;},
+    {name: &amp;#39;contact&amp;#39;, path: &amp;#39;/contact&amp;#39;},
 ]);
-</code></pre>
-<p><strong>addNode(name, path[, canActivate])</strong></p>
-<p>You can add routes node by node, specifying a node name and its segment path.</p>
-<pre><code class="lang-javascript javascript">var router = createRouter()
-    .addNode(&#39;users&#39;,      &#39;/users&#39;)
-    .addNode(&#39;users.view&#39;, &#39;/view/:id&#39;)
-    .addNode(&#39;users.list&#39;, &#39;/list&#39;);
-</code></pre>
-<h2 id="configuring-the-root-node-path">Configuring the root node path</h2>
-<p>At the top of your tree of routes, there is an unamed node called the root node. Its path is empty and can be configured using <code>router.setRootPath(path)</code>. It can be used for example to list a number of allowed query parameters for all routes in strict query parameters mode (ter.setRootPath(&#39;?param1&amp;param2&#39;)`).</p>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;addNode(name, path[, canActivate])&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;You can add routes node by node, specifying a node name and its segment path.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;var router = createRouter()
+    .addNode(&amp;#39;users&amp;#39;,      &amp;#39;/users&amp;#39;)
+    .addNode(&amp;#39;users.view&amp;#39;, &amp;#39;/view/:id&amp;#39;)
+    .addNode(&amp;#39;users.list&amp;#39;, &amp;#39;/list&amp;#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;configuring-the-root-node-path&quot;&gt;Configuring the root node path&lt;/h2&gt;
+&lt;p&gt;At the top of your tree of routes, there is an unamed node called the root node. Its path is empty and can be configured using &lt;code&gt;router.setRootPath(path)&lt;/code&gt;. It can be used for example to list a number of allowed query parameters for all routes in strict query parameters mode (ter.setRootPath(&amp;#39;?param1&amp;amp;param2&amp;#39;)`).&lt;/p&gt;
 
     </main>
 

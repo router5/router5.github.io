@@ -95,33 +95,33 @@
     </aside>
 
     <main>
-        <h1 id="migrating-from-2-x-to-3-x">Migrating from 2.x to 3.x</h1>
-<h2 id="new-features">New features</h2>
-<ul>
-<li>When a transition fails (either in a <code>canActivate</code>, <code>canDeactivate</code> or middleware function), a custom error can be returned containing a <code>redirect</code> property.</li>
-<li>Persistent parameters plugin now available.</li>
-</ul>
-<h2 id="breaking-change">Breaking change</h2>
-<p>There are no breaking changes.</p>
-<h2 id="code-example">Code example</h2>
-<p>Redirecting to a login page if the current user is not logged in:</p>
-<pre><code class="lang-javascript javascript">// With promises
+        &lt;h1 id=&quot;migrating-from-2-x-to-3-x&quot;&gt;Migrating from 2.x to 3.x&lt;/h1&gt;
+&lt;h2 id=&quot;new-features&quot;&gt;New features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;When a transition fails (either in a &lt;code&gt;canActivate&lt;/code&gt;, &lt;code&gt;canDeactivate&lt;/code&gt; or middleware function), a custom error can be returned containing a &lt;code&gt;redirect&lt;/code&gt; property.&lt;/li&gt;
+&lt;li&gt;Persistent parameters plugin now available.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;breaking-change&quot;&gt;Breaking change&lt;/h2&gt;
+&lt;p&gt;There are no breaking changes.&lt;/p&gt;
+&lt;h2 id=&quot;code-example&quot;&gt;Code example&lt;/h2&gt;
+&lt;p&gt;Redirecting to a login page if the current user is not logged in:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;// With promises
 router.canActivate(
-    &#39;profile&#39;,
-    () =&gt; isLoggedIn()
-        .catch(() =&gt; ({ redirect: { name: &#39;login&#39; } }))
+    &amp;#39;profile&amp;#39;,
+    () =&amp;gt; isLoggedIn()
+        .catch(() =&amp;gt; ({ redirect: { name: &amp;#39;login&amp;#39; } }))
 );
 
 // With callbacks
 router.canActivate(
-    &#39;profile&#39;,
-    (toState, fromState, done) =&gt; {
+    &amp;#39;profile&amp;#39;,
+    (toState, fromState, done) =&amp;gt; {
         isLoggedIn()
-            .then(() =&gt; done(null, toState))
-            .catch(() =&gt; done(({ redirect: { name: &#39;login&#39; } })))
+            .then(() =&amp;gt; done(null, toState))
+            .catch(() =&amp;gt; done(({ redirect: { name: &amp;#39;login&amp;#39; } })))
     }
 );
-</code></pre>
+&lt;/code&gt;&lt;/pre&gt;
 
     </main>
 

@@ -6,8 +6,8 @@ _Router5_ is just as capable on the server versus in the browser. This enables y
 
 This is essentially done via two steps:
 
- 1. **Server-side** - Pass _Router5_ the current URL (since there's no `location` object on the server).
- 2. **Client-side** - Pass _Router5_ a starting state (via the `done` callback of _Step 1_) so that _Router5_ doesn't try to transition to the already activated page.
+ 1. **Server-side** - Pass to your router the current URL (since there's no `location` object on the server).
+ 2. **Client-side** - Pass to your router a starting state (via the `done` callback of _Step 1_) so that your router doesn't try to transition to the already activated page.
 
 #### Below is a more in-depth tutorial
 
@@ -16,7 +16,7 @@ This is essentially done via two steps:
 You can use the same code for configuring your router on both client and server sides. The history plugin, for example, can be safely used on Node.js and in browsers.
 
 ```js
-const Router5 = require( 'router5' ).default;
+const createRouter = require( 'router5' ).default;
 const listenersPlugin = require( 'router5/plugins/listeners' );
 const browserPlugin = require( 'router5/plugins/browser' );
 
@@ -112,7 +112,7 @@ app.listen( 8080, function logServerStart() {
 
 ```
 
-From here forth, you can continue to use Router5 as if it was a regular Single-Page Application.
+From here forth, you can continue to use router5 as if it was a regular Single-Page Application.
 
 
 ### Performance
@@ -127,4 +127,4 @@ const router = baseRouter.clone(dependencies);
 
 ### Important to Remember - Pass in an Object
 
-It is important to remember that `Router5.start()` **does NOT** parse your starting state for you. If you pass in a `String` instead of an `Object` _Router5_ will attempt to navigate to the path of that string.
+It is important to remember that `router.start()` **does NOT** parse your starting state for you. If you pass in a `String` instead of an `Object` your router will attempt to navigate to the path of that string.

@@ -95,163 +95,163 @@
     </aside>
 
     <main>
-        <h1 id="loading-async-data">Loading async data</h1>
-<blockquote>
-<p>Loading async data is always an important task of a web application. Very often, data and routes are tied to your application business logic. Therefore, loading data on a route change is very common.</p>
-</blockquote>
-<p>The way data loading can work with routing depends on what you might call your &quot;routing strategy&quot;:</p>
-<ul>
-<li>Do you want a route transition to wait for data to be loaded?</li>
-<li>Do you want a route transition to fail if data cannot be loaded?</li>
-<li>How do you bind your view to data?</li>
-</ul>
-<p>There are many ways to handle data coming from a router and from an API:</p>
-<ul>
-<li>your components can receive them both at the same time</li>
-<li>your components can receive a route update first and then a data update later</li>
-<li>your components can receive a route update first and decide to load data</li>
-<li>etc...</li>
-</ul>
-<p>Router5 doesn&#39;t provide an opinionated way of handling async data, instead this article demonstrates the tools router5 can provide to help you loading data. You shouldn&#39;t view those examples as <em>the</em> way to load data, their purpose is purely illustrative and they don&#39;t cover every case (error handling, server-side data loading, etc...). Instead you should aim to do things and organise your code the way you think is best for you and your application.</p>
-<h2 id="using-a-middleware">Using a middleware</h2>
-<blockquote>
-<p>You can use your router state objects as a container for route-specific data.</p>
-</blockquote>
-<p>You can use a middleware if you want your router to wait for data updates and/or prevent a route transition to happen if data loading fails.
-When doing so, you can use <code>toState</code> state object as a container for your route-specific data: the listeners plugin will pass it to your view (with the data you attached to it). You shouldn&#39;t mutate <code>toState</code> if you don&#39;t explicitly ask the router to wait by either calling a <code>done</code> callback or by returning a promise.</p>
-<p>First, we need to define what data need to be loaded for which route segment:</p>
-<pre><code class="lang-javascript javascript">const routes = [
+        &lt;h1 id=&quot;loading-async-data&quot;&gt;Loading async data&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Loading async data is always an important task of a web application. Very often, data and routes are tied to your application business logic. Therefore, loading data on a route change is very common.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The way data loading can work with routing depends on what you might call your &amp;quot;routing strategy&amp;quot;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Do you want a route transition to wait for data to be loaded?&lt;/li&gt;
+&lt;li&gt;Do you want a route transition to fail if data cannot be loaded?&lt;/li&gt;
+&lt;li&gt;How do you bind your view to data?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;There are many ways to handle data coming from a router and from an API:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;your components can receive them both at the same time&lt;/li&gt;
+&lt;li&gt;your components can receive a route update first and then a data update later&lt;/li&gt;
+&lt;li&gt;your components can receive a route update first and decide to load data&lt;/li&gt;
+&lt;li&gt;etc...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Router5 doesn&amp;#39;t provide an opinionated way of handling async data, instead this article demonstrates the tools router5 can provide to help you loading data. You shouldn&amp;#39;t view those examples as &lt;em&gt;the&lt;/em&gt; way to load data, their purpose is purely illustrative and they don&amp;#39;t cover every case (error handling, server-side data loading, etc...). Instead you should aim to do things and organise your code the way you think is best for you and your application.&lt;/p&gt;
+&lt;h2 id=&quot;using-a-middleware&quot;&gt;Using a middleware&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can use your router state objects as a container for route-specific data.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can use a middleware if you want your router to wait for data updates and/or prevent a route transition to happen if data loading fails.
+When doing so, you can use &lt;code&gt;toState&lt;/code&gt; state object as a container for your route-specific data: the listeners plugin will pass it to your view (with the data you attached to it). You shouldn&amp;#39;t mutate &lt;code&gt;toState&lt;/code&gt; if you don&amp;#39;t explicitly ask the router to wait by either calling a &lt;code&gt;done&lt;/code&gt; callback or by returning a promise.&lt;/p&gt;
+&lt;p&gt;First, we need to define what data need to be loaded for which route segment:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;const routes = [
     {
-        name: &#39;home&#39;,
-        path: &#39;/home&#39;
+        name: &amp;#39;home&amp;#39;,
+        path: &amp;#39;/home&amp;#39;
     },
     {
-        name: &#39;users&#39;,
-        path: &#39;/users&#39;,
-        onActivate: (params) =&gt; fetch(&#39;/users&#39;).then(data =&gt; ({ users: data.users }))
+        name: &amp;#39;users&amp;#39;,
+        path: &amp;#39;/users&amp;#39;,
+        onActivate: (params) =&amp;gt; fetch(&amp;#39;/users&amp;#39;).then(data =&amp;gt; ({ users: data.users }))
     },
     {
-        name: &#39;users.user&#39;,
-        path: &#39;/:id&#39;,
-        onActivate: (params) =&gt; fetch(`/users/${params.id}`).then(data =&gt; ({ user: data.user }))
+        name: &amp;#39;users.user&amp;#39;,
+        path: &amp;#39;/:id&amp;#39;,
+        onActivate: (params) =&amp;gt; fetch(`/users/${params.id}`).then(data =&amp;gt; ({ user: data.user }))
     }
 ]
-</code></pre>
-<p>Then we create a middleware function which will invoke data for the activated segments on a route change. In this example, data are loaded in parallel using <code>Promise.all</code>. You can proceed differently by loading data in series, or by implementing dependencies between your <code>onActivate</code> handlers.</p>
-<pre><code class="lang-javascript javascript">import transitionPath from &#39;router5.transition-path&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then we create a middleware function which will invoke data for the activated segments on a route change. In this example, data are loaded in parallel using &lt;code&gt;Promise.all&lt;/code&gt;. You can proceed differently by loading data in series, or by implementing dependencies between your &lt;code&gt;onActivate&lt;/code&gt; handlers.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;import transitionPath from &amp;#39;router5.transition-path&amp;#39;;
 
-const dataMiddlewareFactory = (routes) =&gt; (router) =&gt; (toState, fromState) =&gt; {
+const dataMiddlewareFactory = (routes) =&amp;gt; (router) =&amp;gt; (toState, fromState) =&amp;gt; {
     const { toActivate } = transitionPath(toState, fromState);
     const onActivateHandlers =
         toActivate
-            .map(segment =&gt; routes.find(r =&gt; r.name === segment).onActivate)
+            .map(segment =&amp;gt; routes.find(r =&amp;gt; r.name === segment).onActivate)
             .filter(Boolean)
 
     return Promise
         .all(onActivateHandlers)
-        .then(data =&gt; {
-            const routeData = data.reduce((accData, rData) =&gt; Object.assign(accData, rData), {});
+        .then(data =&amp;gt; {
+            const routeData = data.reduce((accData, rData) =&amp;gt; Object.assign(accData, rData), {});
             return { ...toState, data: routeData };
         });
 };
-</code></pre>
-<p>And when configuring your router:</p>
-<pre><code class="lang-javascript javascript">import { routes } from &#39;./routes&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And when configuring your router:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;import { routes } from &amp;#39;./routes&amp;#39;;
 
 const router = createRouter(routes);
 /* ... configure your router */
 
 /* data middleware */
 router.useMiddleware(dataMiddlewareFactory(routes));
-</code></pre>
-<p>In the case you don&#39;t want a route transition to wait for data to be loaded, you cannot use the router state object as a data container. Instead, you should load data from your components or use a state container like <a href="http://rackt.org/redux/index.html">redux</a>.</p>
-<h2 id="using-a-state-container-redux-">Using a state container (redux)</h2>
-<blockquote>
-<p>Using a state container like redux gives you a lot more flexibility with your routing strategy.</p>
-</blockquote>
-<p>Using a state container like redux gives you a lot more flexibility with your routing strategy. Because all data ends up in the same bucket that your components can listen to, data loading doesn&#39;t need to block route transitions. The only thing it needs is a reference to your store so actions can be dispatched. As a result, your view can represent with greater details the state of your application: for example your UI can be a lot more explicit about displaying loading feedback. Not blocking route transitions also means immediate URL updates (history), making your app feel more responsive.</p>
-<p>The following example assumes the use a redux store configured with a <code>redux-thunk</code> middleware.</p>
-<pre><code class="lang-javascript javascript">import { loadUsers, loadUser } from &#39;./actionCreators&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In the case you don&amp;#39;t want a route transition to wait for data to be loaded, you cannot use the router state object as a data container. Instead, you should load data from your components or use a state container like &lt;a href=&quot;http://rackt.org/redux/index.html&quot;&gt;redux&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;using-a-state-container-redux-&quot;&gt;Using a state container (redux)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Using a state container like redux gives you a lot more flexibility with your routing strategy.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Using a state container like redux gives you a lot more flexibility with your routing strategy. Because all data ends up in the same bucket that your components can listen to, data loading doesn&amp;#39;t need to block route transitions. The only thing it needs is a reference to your store so actions can be dispatched. As a result, your view can represent with greater details the state of your application: for example your UI can be a lot more explicit about displaying loading feedback. Not blocking route transitions also means immediate URL updates (history), making your app feel more responsive.&lt;/p&gt;
+&lt;p&gt;The following example assumes the use a redux store configured with a &lt;code&gt;redux-thunk&lt;/code&gt; middleware.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;import { loadUsers, loadUser } from &amp;#39;./actionCreators&amp;#39;;
 
 const routes = [
     {
-        name: &#39;home&#39;,
-        path: &#39;/home&#39;
+        name: &amp;#39;home&amp;#39;,
+        path: &amp;#39;/home&amp;#39;
     },
     {
-        name: &#39;users&#39;,
-        path: &#39;/users&#39;,
-        onActivate: (params) =&gt; (dispatch) =&gt;
-            fetch(&#39;/users&#39;).then(data =&gt; dispatch(loadUsers(data.users)))
+        name: &amp;#39;users&amp;#39;,
+        path: &amp;#39;/users&amp;#39;,
+        onActivate: (params) =&amp;gt; (dispatch) =&amp;gt;
+            fetch(&amp;#39;/users&amp;#39;).then(data =&amp;gt; dispatch(loadUsers(data.users)))
     },
     {
-        name: &#39;users.user&#39;,
-        path: &#39;/:id&#39;,
-        onActivate: (params) =&gt; (dispatch) =&gt;
-            fetch(`/users/${params.id}`).then(data =&gt; dispatch(loadUser(data.user)))
+        name: &amp;#39;users.user&amp;#39;,
+        path: &amp;#39;/:id&amp;#39;,
+        onActivate: (params) =&amp;gt; (dispatch) =&amp;gt;
+            fetch(`/users/${params.id}`).then(data =&amp;gt; dispatch(loadUser(data.user)))
     }
 ]
-</code></pre>
-<p>You need to create your store and router, and pass your store to your router instance (with <code>.setDependency()</code>):</p>
-<pre><code class="lang-javascript javascript">router.setDependency(&#39;store&#39;, store);
-</code></pre>
-<p>Then we create a router5 middleware for data which will load data on a transition success.</p>
-<pre><code class="lang-javascript javascript">import { actionTypes } from &#39;redux-router5&#39;;
-import transitionPath from &#39;router5.transition-path&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You need to create your store and router, and pass your store to your router instance (with &lt;code&gt;.setDependency()&lt;/code&gt;):&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;router.setDependency(&amp;#39;store&amp;#39;, store);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then we create a router5 middleware for data which will load data on a transition success.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript javascript&quot;&gt;import { actionTypes } from &amp;#39;redux-router5&amp;#39;;
+import transitionPath from &amp;#39;router5.transition-path&amp;#39;;
 
-const onRouteActivateMiddleware = (routes) =&gt; (router, dependencies) =&gt; (toState, fromState, done) =&gt; {
+const onRouteActivateMiddleware = (routes) =&amp;gt; (router, dependencies) =&amp;gt; (toState, fromState, done) =&amp;gt; {
     const { toActivate } = transitionPath(toState, fromState);
 
-    toActivate.forEach(segment =&gt; {
-        const routeSegment = routes.find(r =&gt; r.name === segment);
+    toActivate.forEach(segment =&amp;gt; {
+        const routeSegment = routes.find(r =&amp;gt; r.name === segment);
 
-        if (routeSegment &amp;&amp; routeSegment.onActivate) {
+        if (routeSegment &amp;amp;&amp;amp; routeSegment.onActivate) {
             dependencies.store.dispatch(routeSegment.onActivate(toState.params));
         }
     });
 
     done();
 };
-</code></pre>
-<p>Finally, just create your store and include <code>onRouteActivateMiddleware(routes)</code> middleware.</p>
-<h2 id="async-data-loading-and-universal-applications">Async data loading and universal applications</h2>
-<p>The two examples above show two different techniques of loading data with a router5 middleware. One is blocking, one is non-blocking. But what about universal applications?</p>
-<p>The answer is very simple: block on the server-side, and choose to block or not on the client-side! For the example with example, you would need dispatch to return promises (with redux-thunk, your thunks need to return promises for their async operations).</p>
-<h2 id="chunk-loading">Chunk loading</h2>
-<p>Chunk loading (loading code asynchronoulsy) is similar to data loading, since one can consider code is a form of data. With middlewares, you can call a done callback or return a promise, making them perfectly usable with <code>require.ensure</code> or <code>System.import</code>. Like examples above, you can implement similar techniques with, let&#39;s say, a <code>loadComponent</code> route property.</p>
-<pre><code class="lang-js">const routes = {
-        name: &#39;users&#39;,
-        path: &#39;/users&#39;,
-        onActivate: (params) =&gt; (dispatch) =&gt;
-            fetch(&#39;/users&#39;).then(data =&gt; dispatch(loadUsers(data.users))),
-        loadComponent: () =&gt; System.import(&#39;./views/UsersList&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally, just create your store and include &lt;code&gt;onRouteActivateMiddleware(routes)&lt;/code&gt; middleware.&lt;/p&gt;
+&lt;h2 id=&quot;async-data-loading-and-universal-applications&quot;&gt;Async data loading and universal applications&lt;/h2&gt;
+&lt;p&gt;The two examples above show two different techniques of loading data with a router5 middleware. One is blocking, one is non-blocking. But what about universal applications?&lt;/p&gt;
+&lt;p&gt;The answer is very simple: block on the server-side, and choose to block or not on the client-side! For the example with example, you would need dispatch to return promises (with redux-thunk, your thunks need to return promises for their async operations).&lt;/p&gt;
+&lt;h2 id=&quot;chunk-loading&quot;&gt;Chunk loading&lt;/h2&gt;
+&lt;p&gt;Chunk loading (loading code asynchronoulsy) is similar to data loading, since one can consider code is a form of data. With middlewares, you can call a done callback or return a promise, making them perfectly usable with &lt;code&gt;require.ensure&lt;/code&gt; or &lt;code&gt;System.import&lt;/code&gt;. Like examples above, you can implement similar techniques with, let&amp;#39;s say, a &lt;code&gt;loadComponent&lt;/code&gt; route property.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;const routes = {
+        name: &amp;#39;users&amp;#39;,
+        path: &amp;#39;/users&amp;#39;,
+        onActivate: (params) =&amp;gt; (dispatch) =&amp;gt;
+            fetch(&amp;#39;/users&amp;#39;).then(data =&amp;gt; dispatch(loadUsers(data.users))),
+        loadComponent: () =&amp;gt; System.import(&amp;#39;./views/UsersList&amp;#39;)
     },
 };
-</code></pre>
-<p>Then what you need is a middleware triggering <code>loadComponent</code>.</p>
-<p>There are also emerging techniques of anticipated loading rather than lazy loading (i.e. from a specific view / component, chunks are loaded in anticipation of where a user is likely to go next). We could implement a <code>relatedComponents</code> property.</p>
-<pre><code class="lang-js">const routes = [
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then what you need is a middleware triggering &lt;code&gt;loadComponent&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;There are also emerging techniques of anticipated loading rather than lazy loading (i.e. from a specific view / component, chunks are loaded in anticipation of where a user is likely to go next). We could implement a &lt;code&gt;relatedComponents&lt;/code&gt; property.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-js&quot;&gt;const routes = [
     {
-        name: &#39;home&#39;,
-        path: &#39;/home&#39;,
-        loadComponent: () =&gt; System.import(&#39;./views/Home&#39;),
-        relatedComponents: [ &#39;users&#39; ]
+        name: &amp;#39;home&amp;#39;,
+        path: &amp;#39;/home&amp;#39;,
+        loadComponent: () =&amp;gt; System.import(&amp;#39;./views/Home&amp;#39;),
+        relatedComponents: [ &amp;#39;users&amp;#39; ]
     },
     {
-        name: &#39;users&#39;,
-        path: &#39;/users&#39;,
-        onActivate: (params) =&gt; (dispatch) =&gt;
-            fetch(&#39;/users&#39;).then(data =&gt; dispatch(loadUsers(data.users))),
-        loadComponent: () =&gt; System.import(&#39;./views/UsersList&#39;),
-        relatedComponents: [ &#39;home&#39; ]
+        name: &amp;#39;users&amp;#39;,
+        path: &amp;#39;/users&amp;#39;,
+        onActivate: (params) =&amp;gt; (dispatch) =&amp;gt;
+            fetch(&amp;#39;/users&amp;#39;).then(data =&amp;gt; dispatch(loadUsers(data.users))),
+        loadComponent: () =&amp;gt; System.import(&amp;#39;./views/UsersList&amp;#39;),
+        relatedComponents: [ &amp;#39;home&amp;#39; ]
     },
 };
-</code></pre>
-<p>Then on a transition, what you might want to consider this strategy:</p>
-<ul>
-<li>Load data and component (chunk)</li>
-<li>Once done, request idle callback to start loading sibling components</li>
-</ul>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then on a transition, what you might want to consider this strategy:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Load data and component (chunk)&lt;/li&gt;
+&lt;li&gt;Once done, request idle callback to start loading sibling components&lt;/li&gt;
+&lt;/ul&gt;
 
     </main>
 
