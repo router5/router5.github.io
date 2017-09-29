@@ -15,8 +15,8 @@ __Flat array of routes__
 ```javascript
 const routes = [
     { name: 'users',      path: '/users'},
-    { name: 'users.view', path: '/list'},
-    { name: 'users.list', path: '/view'}
+    { name: 'users.view', path: '/view'},
+    { name: 'users.list', path: '/list'}
 ];
 ```
 
@@ -26,8 +26,8 @@ __Nested arrays of routes__
 ```javascript
 const routes = [
     { name: 'users', path: '/users', children: [
-        { name: 'view', path: '/list'},
-        { name: 'list', path: '/view'}
+        { name: 'view', path: '/view'},
+        { name: 'list', path: '/list'}
     ]}
 ];
 ```

@@ -109,15 +109,15 @@
 <p><strong>Flat array of routes</strong></p>
 <pre><code class="lang-javascript javascript">const routes = [
     { name: &#39;users&#39;,      path: &#39;/users&#39;},
-    { name: &#39;users.view&#39;, path: &#39;/list&#39;},
-    { name: &#39;users.list&#39;, path: &#39;/view&#39;}
+    { name: &#39;users.view&#39;, path: &#39;/view&#39;},
+    { name: &#39;users.list&#39;, path: &#39;/list&#39;}
 ];
 </code></pre>
 <p><strong>Nested arrays of routes</strong></p>
 <pre><code class="lang-javascript javascript">const routes = [
     { name: &#39;users&#39;, path: &#39;/users&#39;, children: [
-        { name: &#39;view&#39;, path: &#39;/list&#39;},
-        { name: &#39;list&#39;, path: &#39;/view&#39;}
+        { name: &#39;view&#39;, path: &#39;/view&#39;},
+        { name: &#39;list&#39;, path: &#39;/list&#39;}
     ]}
 ];
 </code></pre>
