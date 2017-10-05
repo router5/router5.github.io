@@ -1,7 +1,7 @@
 {
   "name": "router5.github.io",
   "private": true,
-  "version": "5.2.0",
+  "version": "5.3.0",
   "description": "router5 website",
   "scripts": {
     "build": "node _scripts/build.js"
