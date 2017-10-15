@@ -68,4 +68,4 @@ var router = createRouter()
 
 ## Configuring the root node path
 
-At the top of your tree of routes, there is an unamed node called the root node. Its path is empty and can be configured using `router.setRootPath(path)`. It can be used for example to list a number of allowed query parameters for all routes in strict query parameters mode (ter.setRootPath('?param1&param2')`).
+At the top of your tree of routes, there is an unamed node called the root node. Its path is empty and can be configured using `router.setRootPath(path)`. It can be used for example to list a number of allowed query parameters for all routes in strict query parameters mode (`router.setRootPath('?param1&param2')`).
