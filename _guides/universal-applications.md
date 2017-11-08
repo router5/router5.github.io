@@ -40,7 +40,7 @@ export default createRouter
 ```
 
 ## Server-side Routing
-> This example is an [Express](http://expressjs.com/) with [Swig](http://paularmstrong.github.io/swig/) application. Make changes were needed to suit your preferred frameworks.
+> This example is an [Express](http://expressjs.com/) with [Swig](http://paularmstrong.github.io/swig/) application. Make changes where needed to suit your preferred frameworks.
 
 For universal applications, you need to:
 - Create a new router instance for each request, using the request URL
