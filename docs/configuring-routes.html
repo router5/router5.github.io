@@ -101,11 +101,18 @@
 </blockquote>
 <h2 id="defining-your-routes-as-pojos">Defining your routes as POJOs</h2>
 <p>You can define your routes as a flat array or nested array of routes. When using a flat array of routes, nested route names need to have their full name specified.</p>
-<p>Route objects also accept the following properties:</p>
+<p>Route objects optionally accept the following properties:</p>
 <ul>
 <li><code>canActivate</code>: a method to control whether or not the route node can be activated (see <a href="/docs/preventing-navigation.html">Preventing navigation</a>)</li>
-<li><code>forwardTo</code>: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route, or having multiple paths pointing to the same route.</li>
+<li><code>forwardTo</code>: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route</li>
+<li><code>defaultParams</code>: an object of default params to extend when navigating and when matching a path</li>
+<li><code>encodeParams(stateParams)</code>: a function of state params returning path params. Used when building a path given a route name and params (typically on start and navigation).</li>
+<li><code>encodeParams(pathParams)</code>: a function of path params returning params. Used when matching a path to map path params to state params.</li>
 </ul>
+<p>Note on <code>encodeParams</code> and <code>decodeParams</code>: one can&#39;t be used without another, and applying one after another should be equivalent to an identity function.</p>
+<p><strong>encodeParams(stateParams: Object): Object</strong></p>
+<p>A function taking state params and returning path params.</p>
+<p>__decodedParams</p>
 <p><strong>Flat array of routes</strong></p>
 <pre><code class="lang-javascript javascript">const routes = [
     { name: &#39;users&#39;,      path: &#39;/users&#39;},
@@ -121,6 +128,7 @@
     ]}
 ];
 </code></pre>
+<p><strong>Nested arrays of routes</strong></p>
 <h2 id="adding-routes-to-your-router">Adding routes to your router</h2>
 <p>You can add all your routes at once using <code>createRouter</code> or <code>router.add</code>.</p>
 <p><strong>createRouter(routes, options)</strong></p>

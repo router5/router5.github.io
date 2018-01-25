@@ -6,9 +6,20 @@
 
 You can define your routes as a flat array or nested array of routes. When using a flat array of routes, nested route names need to have their full name specified.
 
-Route objects also accept the following properties:
+Route objects optionally accept the following properties:
 - `canActivate`: a method to control whether or not the route node can be activated (see [Preventing navigation](/docs/preventing-navigation.html))
-- `forwardTo`: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route, or having multiple paths pointing to the same route.
+- `forwardTo`: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route
+- `defaultParams`: an object of default params to extend when navigating and when matching a path
+- `encodeParams(stateParams)`: a function of state params returning path params. Used when building a path given a route name and params (typically on start and navigation).
+- `encodeParams(pathParams)`: a function of path params returning params. Used when matching a path to map path params to state params.
+
+Note on `encodeParams` and `decodeParams`: one can't be used without another, and applying one after another should be equivalent to an identity function.
+
+__encodeParams(stateParams: Object): Object__
+
+A function taking state params and returning path params.
+
+__decodedParams
 
 __Flat array of routes__
 
@@ -31,6 +42,9 @@ const routes = [
     ]}
 ];
 ```
+
+
+__Nested arrays of routes__
 
 ## Adding routes to your router
 
