@@ -84,7 +84,7 @@ Router 5 is best suited for trees of components, where components can easily be 
 
 It also works very well with state containers like [Redux](http://redux.js.org/): your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don't need to use the listeners plugin.
 
-- [react-router5](https://github.com/router5/react-router5) and [deku-router5](https://github.com/router5/router5/tree/master/packages/deku-router5) both provide a `routeNode(nodeName)(BaseComponent)` higher-order component for re-rendering from a node down when the given node is the transition node.
+- [react-router5](https://github.com/router5/router5/tree/master/packages/react-router5) and [deku-router5](https://github.com/router5/router5/tree/master/packages/deku-router5) both provide a `routeNode(nodeName)(BaseComponent)` higher-order component for re-rendering from a node down when the given node is the transition node.
 - [redux-router5](https://github.com/router5/router5/tree/master/packages/redux-router5) provides a selector `routeNode(nodeName)` which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with `connect` from [react-redux](https://github.com/rackt/react-redux) or [deku-redux](https://github.com/troch/deku-redux).
 
 ![With redux](/img/router-redux.png)

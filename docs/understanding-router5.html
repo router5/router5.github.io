@@ -143,7 +143,7 @@
 <p><img src="/img/routes-tree-components.png" alt="Transition nodes"></p>
 <p>The current route is <code>admin.users</code>. If we were to navigate to <code>home</code>, <code>Main</code> would be the component associated to the route node <code>&#39;&#39;</code>. It would re-render to output a <code>Home</code> component instance rather than an <code>Admin</code> one, discarding the whole admin view.</p>
 <blockquote>
-<p>The <strong>transition node</strong> (as explained above), <em>is</em> the node to re-render your view from.</p>
+<p>The <strong>transition node</strong> (as explained above), _is_ the node to re-render your view from.</p>
 </blockquote>
 <p>The <strong>listeners plugin</strong> makes possible to register those three types of listeners: <em>&quot;any change&quot;</em> listener, route listener and node listener. Note that <code>listenersPlugin</code> has a limit of one node listener per node (<em>listenersPlugin</em> uses <a href="https://github.com/router5/router5/tree/master/packages/router5-transition-path">router5-transition-path</a> to compute the transition path between two router5 states).</p>
 <p><img src="/img/router-view.png" alt="Relation between router and view"></p>
@@ -152,7 +152,7 @@
 <p>Router 5 is best suited for trees of components, where components can easily be composed together. It works best with React, deku, cyclejs, etc...</p>
 <p>It also works very well with state containers like <a href="http://redux.js.org/">Redux</a>: your state container is placed between your view and your router, and your view subscribes to state updates (rather than directly subscribing to route updates). In that case you don&#39;t need to use the listeners plugin.</p>
 <ul>
-<li><a href="https://github.com/router5/react-router5">react-router5</a> and <a href="https://github.com/router5/router5/tree/master/packages/deku-router5">deku-router5</a> both provide a <code>routeNode(nodeName)(BaseComponent)</code> higher-order component for re-rendering from a node down when the given node is the transition node.</li>
+<li><a href="https://github.com/router5/router5/tree/master/packages/react-router5">react-router5</a> and <a href="https://github.com/router5/router5/tree/master/packages/deku-router5">deku-router5</a> both provide a <code>routeNode(nodeName)(BaseComponent)</code> higher-order component for re-rendering from a node down when the given node is the transition node.</li>
 <li><a href="https://github.com/router5/router5/tree/master/packages/redux-router5">redux-router5</a> provides a selector <code>routeNode(nodeName)</code> which will release the new router state object when the specified node is the transition node. When combined with react or deku, you use it with <code>connect</code> from <a href="https://github.com/rackt/react-redux">react-redux</a> or <a href="https://github.com/troch/deku-redux">deku-redux</a>.</li>
 </ul>
 <p><img src="/img/router-redux.png" alt="With redux"></p>
