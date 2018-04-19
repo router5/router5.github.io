@@ -77,6 +77,11 @@ behaviour is to add an entry in history.
 myRouter.navigate('section', {section: 'contact'}, {replace: true});
 ```
 
+__Custom options__
+
+You can pass any option to `navigate`: those options will be added to the state of your router (under `meta`).
+
+
 ## Knowing when a transition has been successful or not
 
 Like for `.start()`, `.navigate()` accepts a callback (last argument):

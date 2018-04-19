@@ -4,26 +4,24 @@
 
 ```javascript
 var router = createRouter([], {
+        allowNotFound: false,
+        autoCleanUp: true,
         defaultRoute: 'home',
         defaultParams: {},
-        trailingSlash: false,
-        useTrailingSlash: undefined,
-        autoCleanUp: true,
-        strictQueryParams: true,
-        allowNotFound: false
+        queryParams: {
+            arrayFormat: 'default',
+            nullFormat: 'default',
+            booleanFormat: 'default'
+        },
+        queryParamsMode: 'default',
+        trailingSlashMode: 'default',
+        strictTrailingSlash: false,
+        caseSensitive: false
     })
     .setOption('strictQueryParams', false)
 ```
 
-
-## Strict query parameters
-
-Query parameters are optional, meaning a route can still be matched if a query parameter defined in its path is not present. However, if extra query parameters are present in the path which is being matched, matching will fail.
-
-If you want the router to still match routes if extra query parameters are present, set `strictQueryParams` to `false`.
-
-
-## Default route
+### Default route
 
 When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:
 
@@ -33,7 +31,7 @@ When your router instance starts, it will navigate to a default route if such ro
 See [navigation guide](/docs/navigation.html) for more information.
 
 
-## Allow not found
+### Allow not found
 
 There are two ways to deal with not found routes: the first one is to configure a `defaultRoute` (and `defaultParams`), the second one is to allow those not found routes to create a new routing state. Set `allowNotFound` to true and the router will emit a state value for unmatched paths.
 
@@ -50,16 +48,51 @@ const state = {
 ```
 
 
-## Optional trailing slashes
+### Query parameters mode
 
-By default, the router is in "strict match" mode. If you want trailing slashes to be optional, you can set `trailingSlash` to a truthy value.
-
-
-## Building with or without trailing slashes
-
-By default, the router will build your routes according to your route definitions. You can force or not the use of trailing slashes by setting `useTrailingSlash` to `true` or `false` (default to `undefined`); When setting this option, `trailingSlash` will be set to true (non strict matching).
+Option `queryParamsMode` can take the following values:
+* `'default'`: a path will match with any query parameters added, but when building, extra parameters won't appear in the returned path.
+* `'strict'`: a path with query parameters which were not listed in node definition will cause a match to be unsuccessful. When building, extra parameters won't appear in the returned path.
+* `'loose'`: a path will match with any query parameters added, and when building, extra parameters will appear in the returned path.
 
 
-## Automatic clean up
+### Query parameters formatting
+
+You can specify how array, boolean and null values are formatted in query parameters, and how they are matched.
+
+* `arrayFormat`: Specifies how arrays should be stringified
+  * `'none'` (default): no brackets or indexes are added to query parameter names (`'role=member&role=admin'`)
+  * `'brackets`: brackets are added to query parameter names (`'role[]=member&role[]=admin'`)
+  * `'index'`: brackets and indexes are added to query parameter names (`'role[0]=member&role[1]=admin'`)
+* `booleanFormat`: specifies how boolean values are stringified and parsed
+  * `'none'` (default): booleans are stringified to strings (`'istrue=true&isfalse=false'`)
+  * `'empty-true'`: same as `'none'` except true values are stringified without value (`'istrue&isfalse=false'`). If you choose this boolean format, make sure to change the value of `'nullFormat'`.
+  * `'string'`: same as `'none'` but `'true'` and `'false'` are parsed as booleans
+  * `'unicode'`: `true` and `false` are displayed with unicode characters, and parsed as booleans (`'istrue=✓&isfalse=✗'`)
+* `nullFormat`: specifies how null values are stringified and parsed
+  * `'default'` (default): null values are stringified without equal sign and value (`'isnull'`)
+  * `'string'`: null values are stringified to `'null'` (`'isnull=null'`) and parsed as null values
+  * `'hidden'`: null values are not stringified
+
+
+### Trailing slash mode
+
+Option `trailingSlashMode` can take the following values:
+* `'default'`: building follows path definitions
+* `'never'`: when building, trailing slash is removed
+* `'always'`: when building, trailing slash is added
+
+
+### Strict trailing slash
+
+By default, the router is not in "strict match" mode. If you want trailing slashes to not be optional, you can set `strictTailingSlash` to `true``.
+
+
+### Automatic clean up
 
 If `autoCleanUp` is set to true, the router will automatically clear `canDeactivate` functions / booleans when their associated segment becomes inactive.
+
+
+### Case sensitivity
+
+By default, matching of routes is case insensitive. You can set `caseSensitive` to `true` if you want to change that behaviour.

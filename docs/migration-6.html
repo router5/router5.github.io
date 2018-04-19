@@ -38,7 +38,7 @@
 
             <a href="/docs/why-router5.html" class="">Getting started</a>
 
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
+            <a href="/docs/configuring-routes.html" class="">Guides</a>
 
             <a href="/docs/api-reference.html" class="">API</a>
 
@@ -60,7 +60,7 @@
 
             <strong>Docs</strong>
 
-            <a href="/docs/migration-6.html" class="link">Migrating to v6</a>
+            <a href="/docs/migration-6.html" class="link active">Migrating to v6</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
@@ -68,7 +68,7 @@
             <strong>Guides</strong>
 
             <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
-            <a href="/docs/router-options.html" class="link active">Router options</a>
+            <a href="/docs/router-options.html" class="link">Router options</a>
             <a href="/docs/path-syntax.html" class="link">Path syntax</a>
             <a href="/docs/navigation.html" class="link">Navigation</a>
             <a href="/docs/universal-applications.html" class="link">Universal applications</a>
@@ -95,55 +95,63 @@
     </aside>
 
     <main>
-        <h1 id="options">Options</h1>
-<blockquote>
-<p>You can configure your router instance by passing options to the constructor or by using <code>.setOption(optName, optValue)</code>.</p>
-</blockquote>
-<pre><code class="lang-javascript javascript">var router = createRouter([], {
-        allowNotFound: false,
-        autoCleanUp: true,
-        defaultRoute: &#39;home&#39;,
-        defaultParams: {},
-        queryParams: {
-            arrayFormat: &#39;default&#39;,
-            nullFormat: &#39;default&#39;,
-            booleanFormat: &#39;default&#39;
-        },
-        queryParamsMode: &#39;default&#39;,
-        trailingSlashMode: &#39;default&#39;,
-        strictTrailingSlash: false,
-        caseSensitive: false
-    })
-    .setOption(&#39;strictQueryParams&#39;, false)
-</code></pre>
-<h3 id="default-route">Default route</h3>
-<p>When your router instance starts, it will navigate to a default route if such route is defined and if it cannot match the URL against a known route:</p>
+        <h1 id="migrating-from-5-x-to-6-x">Migrating from 5.x to 6.x</h1>
 <ul>
-<li><code>defaultRoute</code>: the default route.</li>
-<li><code>defaultParams</code>: the default route params (defaults to <code>{}</code>)</li>
+<li><a href="/docs/migration-5.html">Migrating from 4.x to 5.x</a></li>
+<li><a href="/docs/migration-4.html">Migrating from 3.x to 4.x</a></li>
+<li><a href="/docs/migration-3.html">Migrating from 2.x to 3.x</a></li>
+<li><a href="/docs/migration-2.html">Migrating from 1.x to 2.x</a></li>
+<li><a href="/docs/migration.html">Migrating from 0.x to 1.x</a></li>
 </ul>
-<p>See <a href="/docs/navigation.html">navigation guide</a> for more information.</p>
-<h3 id="allow-not-found">Allow not found</h3>
-<p>There are two ways to deal with not found routes: the first one is to configure a <code>defaultRoute</code> (and <code>defaultParams</code>), the second one is to allow those not found routes to create a new routing state. Set <code>allowNotFound</code> to true and the router will emit a state value for unmatched paths.</p>
-<p>For example, if you try to match <code>/hello-world</code> and you don&#39;t have this route defined, the router will emit the following state:</p>
-<pre><code class="lang-js">import { constants } from &#39;router5&#39;;
-
-const state = {
-    name: constants.UNKNOWN_ROUTE
-    params: { path: &#39;/hello-world&#39; },
-    path: &#39;/hello-world&#39;
-}
-</code></pre>
-<h3 id="query-parameters-mode">Query parameters mode</h3>
-<p>Option <code>queryParamsMode</code> can take the following values:</p>
+<h2 id="release-notes-and-breaking-changes">Release notes and breaking changes</h2>
+<p>With version 6.0.0, router options have been reworked to be more intuitive and more flexible to use. Defaults have changed, but you can set options so your current URLs remain unchanged.</p>
+<h4 id="feature">Feature</h4>
 <ul>
+<li><code>router5</code><ul>
+<li>Navigation options are now added to state objects (in <code>meta</code>)</li>
+<li>You can now specify your custom navigation options: they will be added to state objects and are usable by your custom plugins and middlewares</li>
+<li>New <code>queryParams</code> option to configure how query parameters are built, and how they are parsed</li>
+<li>New <code>caseSensitive</code> option (default to <code>false</code>)</li>
+</ul>
+</li>
+<li><code>react-router5</code><ul>
+<li>Alternative components using a render function have been added in addition to the higher-order components. Those components require a new provider, because they leverage React new context API (React &gt;= 16.3, see <a href="https://github.com/router5/router5/tree/master/packages/react-router5">https://github.com/router5/router5/tree/master/packages/react-router5</a>). Higher-order components won&#39;t be deprecated, and will evolve to use React new context API once deprecated.</li>
+</ul>
+</li>
+</ul>
+<h4 id="bug-fix">Bug fix</h4>
+<ul>
+<li><code>router5</code><ul>
+<li>Navigation with browser plugin and <code>useHash</code> on IE11 fixed when manually changing the URL</li>
+<li>Transition phase was reowrked to support correctly state mutations in middlewares using the done callback or promises</li>
+</ul>
+</li>
+</ul>
+<h3 id="breaking-changes">Breaking changes</h3>
+<ul>
+<li>Path matching used to be case sensitive and it is now case insensitive by default (new <code>caseSensitive</code> option)</li>
+<li>Query parameters in paths can no longer be defined with <code>[]</code> (brackets should be removed)</li>
+<li>Option <code>trailingSlash</code> has been renamed to <code>strictTrailingSlash</code>: by default it is <code>false</code></li>
+<li>Option <code>useTrailingSlash</code> has been renamed to <code>trailingSlashMode</code> with value being <code>&#39;default&#39;</code>, <code>&#39;never&#39;</code> or <code>&#39;always&#39;</code></li>
+<li>Option <code>strictQueryParams</code> has been renamed to <code>queryParamsMode</code> with value being <code>&#39;default&#39;</code>, <code>&#39;strict&#39;</code> or <code>&#39;loose&#39;</code></li>
+<li>Query parameters: by default boolean values are now stringified to <code>&#39;true&#39;</code> and <code>&#39;false&#39;</code>, null values are stringified without <code>=</code> sign (<code>{ param: null }</code> will be stringified to <code>&#39;?param&#39;</code>). To keep your current behaviour intact, set <code>queryParams.nullFormat</code> to <code>&#39;hidden&#39;</code> and <code>queryParams.booleanFormat</code> to <code>&#39;empty-true&#39;</code> (see options below)</li>
+<li>Private method router.makeState signature has changed (you shouldn&#39;t be impacted)</li>
+</ul>
+<p><strong>As described above, options have been revamped to make it easier and more intuitive to configure:</strong></p>
+<ul>
+<li>trailingSlashMode:<ul>
+<li><code>&#39;default&#39;</code>: building follows path definitions</li>
+<li><code>&#39;none&#39;</code>: when building, trailing slash is removed</li>
+<li><code>&#39;always&#39;</code>: when building, trailing slash is added</li>
+</ul>
+</li>
+<li>queryParamsMode:<ul>
 <li><code>&#39;default&#39;</code>: a path will match with any query parameters added, but when building, extra parameters won&#39;t appear in the returned path.</li>
 <li><code>&#39;strict&#39;</code>: a path with query parameters which were not listed in node definition will cause a match to be unsuccessful. When building, extra parameters won&#39;t appear in the returned path.</li>
 <li><code>&#39;loose&#39;</code>: a path will match with any query parameters added, and when building, extra parameters will appear in the returned path.</li>
 </ul>
-<h3 id="query-parameters-formatting">Query parameters formatting</h3>
-<p>You can specify how array, boolean and null values are formatted in query parameters, and how they are matched.</p>
-<ul>
+</li>
+<li>queryParams:<ul>
 <li><code>arrayFormat</code>: Specifies how arrays should be stringified<ul>
 <li><code>&#39;none&#39;</code> (default): no brackets or indexes are added to query parameter names (<code>&#39;role=member&amp;role=admin&#39;</code>)</li>
 <li><code>&#39;brackets</code>: brackets are added to query parameter names (<code>&#39;role[]=member&amp;role[]=admin&#39;</code>)</li>
@@ -164,19 +172,8 @@ const state = {
 </ul>
 </li>
 </ul>
-<h3 id="trailing-slash-mode">Trailing slash mode</h3>
-<p>Option <code>trailingSlashMode</code> can take the following values:</p>
-<ul>
-<li><code>&#39;default&#39;</code>: building follows path definitions</li>
-<li><code>&#39;never&#39;</code>: when building, trailing slash is removed</li>
-<li><code>&#39;always&#39;</code>: when building, trailing slash is added</li>
+</li>
 </ul>
-<h3 id="strict-trailing-slash">Strict trailing slash</h3>
-<p>By default, the router is not in &quot;strict match&quot; mode. If you want trailing slashes to not be optional, you can set <code>strictTailingSlash</code> to `true``.</p>
-<h3 id="automatic-clean-up">Automatic clean up</h3>
-<p>If <code>autoCleanUp</code> is set to true, the router will automatically clear <code>canDeactivate</code> functions / booleans when their associated segment becomes inactive.</p>
-<h3 id="case-sensitivity">Case sensitivity</h3>
-<p>By default, matching of routes is case insensitive. You can set <code>caseSensitive</code> to <code>true</code> if you want to change that behaviour.</p>
 
     </main>
 

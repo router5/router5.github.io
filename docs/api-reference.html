@@ -59,7 +59,7 @@
 
             <strong>Docs</strong>
 
-            <a href="/docs/migration-5.html" class="link">Migrating to v5</a>
+            <a href="/docs/migration-6.html" class="link">Migrating to v6</a>
             <a href="/docs/api-reference.html" class="link active">Router5 API</a>
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
@@ -143,7 +143,7 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router.makeState(name, params, path, [metaParams], [source], [forceId])</strong>
+                <strong>router.makeState(name, params, path, [meta], [forceId])</strong>
                 Build a state object
             </th>
         </tr>
@@ -167,13 +167,9 @@
             <td><code>String</code></td>
             <td>The state path</td>
         </tr><tr>
-            <td><strong>metaParams</strong></td>
+            <td><strong>meta</strong></td>
             <td><code>Object</code></td>
-            <td>Description of the state params</td>
-        </tr><tr>
-            <td><strong>source</strong></td>
-            <td><code>String</code></td>
-            <td>The source of the routing state</td>
+            <td>The meta object</td>
         </tr><tr>
             <td><strong>forceId</strong></td>
             <td><code>Number</code></td>
@@ -194,7 +190,7 @@
     <thead>
         <tr>
             <th colspan="3">
-                <strong>router.makeNotFoundState(path)</strong>
+                <strong>router.makeNotFoundState(path, [options])</strong>
                 Build a not found state for a given path
             </th>
         </tr>
@@ -209,6 +205,10 @@
             <td><strong>path</strong></td>
             <td><code>String</code></td>
             <td>The unmatched path</td>
+        </tr><tr>
+            <td><strong>options</strong></td>
+            <td><code>Object</code></td>
+            <td>The navigation options</td>
         </tr>
     </tbody>
 

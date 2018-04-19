@@ -60,7 +60,7 @@
 
             <strong>Docs</strong>
 
-            <a href="/docs/migration-5.html" class="link">Migrating to v5</a>
+            <a href="/docs/migration-6.html" class="link">Migrating to v6</a>
             <a href="/docs/api-reference.html" class="link">Router5 API</a>
             <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
             <a href="/docs/transition.html" class="link">Transition phase</a>
@@ -152,6 +152,8 @@ called for navigating to a different route: <strong>clicks on links won&#39;t be
 behaviour is to add an entry in history.</p>
 <pre><code class="lang-javascript javascript">myRouter.navigate(&#39;section&#39;, {section: &#39;contact&#39;}, {replace: true});
 </code></pre>
+<p><strong>Custom options</strong></p>
+<p>You can pass any option to <code>navigate</code>: those options will be added to the state of your router (under <code>meta</code>).</p>
 <h2 id="knowing-when-a-transition-has-been-successful-or-not">Knowing when a transition has been successful or not</h2>
 <p>Like for <code>.start()</code>, <code>.navigate()</code> accepts a callback (last argument):</p>
 <pre><code class="lang-javascript javascript">myRouter.navigate(&#39;route&#39;, function (err, state) {
