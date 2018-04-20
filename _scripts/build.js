@@ -102,6 +102,7 @@ async.parallel([
     renderDoc('_guides', 'configuring-routes.md', {confRoutes: true, docs: true}),
     renderDoc('_guides', 'router-options.md', {options: true, docs: true}),
     renderDoc('_guides', 'navigation.md', {navigation: true, docs: true}),
+    renderDoc('_guides', 'observability.md', {observability: true, docs: true}),
     renderDoc('_guides', 'transition.md', {transition: true, docs: true}),
     renderDoc('_guides', 'middleware.md', {middleware: true, docs: true}),
     renderDoc('_plugins', 'listeners.md', {listeners: true, plugins: true}),
