@@ -4,7 +4,7 @@
 
 ## Subscribing
 
-ou can subscribe to route changes using `router.subscribe()`, and will receive an object containing `route` and `previousRoute`.
+You can subscribe to route changes using `router.subscribe()`, and will receive an object containing `route` and `previousRoute`.
 Alternatively, you can use the listeners plugin.
 
 
