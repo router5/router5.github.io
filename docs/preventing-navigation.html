@@ -21,145 +21,12 @@
     <meta property="og:url" content="http://router5.github.io">
     <meta property="og:description" content="Simple, framework-agnostic, powerful and functional HTML5 routing solution.">
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
-    <!-- Stylsheets -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/docs.css">
-    <link rel="stylesheet" href="/styles/examples.css">
-    
+    <link rel="canonical" href="https://router5.js.org/advance/preventing-navigation">
+    <meta http-equiv="refresh" content="2;url=https://router5.js.org/advance/preventing-navigation" />
 </head>
 
 <body>
-    
-        <header>
-        <nav class="">
-            <a href="/" class="">Home</a>
-
-            <a href="/docs/why-router5.html" class="">Getting started</a>
-
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
-
-            <a href="/docs/api-reference.html" class="">API</a>
-
-            <a href="docs/with-react.html" class="">Examples</a>
-
-            <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-        </nav>
-    </header>
-
-
-    <aside>
-        <nav>
-            <strong>Getting started</strong>
-
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
-            <a href="/docs/installation.html" class="link">Installation</a>
-            <!-- <a href="/docs/first-router.html" class="link">Your first router</a> -->
-            <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
-
-            <strong>Docs</strong>
-
-            <a href="/docs/migration-6.html" class="link">Migrating to v6</a>
-            <a href="/docs/api-reference.html" class="link">Router5 API</a>
-            <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
-            <a href="/docs/transition.html" class="link">Transition phase</a>
-
-            <strong>Guides</strong>
-
-            <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
-            <a href="/docs/router-options.html" class="link">Router options</a>
-            <a href="/docs/path-syntax.html" class="link">Path syntax</a>
-            <a href="/docs/navigation.html" class="link">Navigation</a>
-            <a href="/docs/observability.html" class="link">Observability</a>
-            <a href="/docs/universal-applications.html" class="link">Universal applications</a>
-            <a href="/docs/preventing-navigation.html" class="link active">Preventing navigation</a>
-            <a href="/docs/middleware.html" class="link">Middleware functions</a>
-            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
-            <a href="/docs/async-data.html" class="link">Loading async data</a>
-            <a href="/docs/plugins.html" class="link">Using plugins</a>
-            <a href="/docs/injectables.html" class="link">Dependency injection</a>
-
-            <strong>Plugins</strong>
-
-            <a href="/docs/history.html" class="link">Browser</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-
-            <strong>Examples</strong>
-
-            <a href="/docs/with-react.html" class="link">With React</a>
-            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
-            <a href="/docs/with-deku.html" class="link">With Deku</a>
-            <a href="/docs/with-deku-redux.html" class="link">With Deku and Redux</a>
-            <a href="/docs/with-cycle.html" class="link">With Cycle</a>
-        </nav>
-    </aside>
-
-    <main>
-        <h1 id="preventing-navigation">Preventing navigation</h1>
-<blockquote>
-<p>It is a common case to want to allow / prevent navigation away from a view or component: if a User is in the middle of completing a form and data has not been saved, you might want to warn them about data being lost or prevent them to leave the current view until data has been saved.</p>
-</blockquote>
-<h2 id="lifecycle-functions">Lifecycle functions</h2>
-<p>Router5 supports <code>canActivate</code> and <code>canDeactivate</code> functions for segments:</p>
-<ul>
-<li><code>canActivate</code> functions are called on segments which will become active as a result of a route change</li>
-<li><code>canDeactivate</code> functions are called on segments which will become inactive as a result of a route change</li>
-</ul>
-<p>Both functions have the same signature than middleware functions. Their result can be synchronous (returning a boolean) or asynchronous (returning a promise or calling <code>done(err, result)</code>).</p>
-<blockquote>
-<p><strong>Note:</strong> if a canActivate or canDeactivate function doesn&#39;t return a boolean, a promise or doesn&#39;t call back,
-  the transition will not proceed.</p>
-</blockquote>
-<blockquote>
-<p><em>router5</em> doesn&#39;t create any promise and therefore if you do not wish to use promises, you are not forced
-to use a polyfill or promise implementation in your app.</p>
-</blockquote>
-<pre><code class="lang-javascript javascript">const canActivate = (router) =&gt; (toState, fromState) =&gt; {
-    return true;
-}
-
-router.canActivate(&#39;admin&#39;, canActivate);
-</code></pre>
-<h3 id="order-of-invocation">Order of invocation</h3>
-<p><code>canActivate</code> and <code>canDeactivate</code> functions are thunks: they expose another function to receive navigation updates, allowing you to use closures if you need to.</p>
-<p>Those handlers will be invoked when your router is started with your router instance and injectables. Then their exposed function will be called to query if a segment can be activated or deactivated.</p>
-<p><code>canActivate</code> functions are called from top to bottom on newly activated segments. They behave the same
-than <code>canDeactivate</code> methods: you can return a boolean value, return a promise or invoke a done callback.</p>
-<p><code>canDeactivate</code> methods are invoked from bottom to top. If a User is navigating from route <code>A.1.a</code> to route <code>B</code>,
-<em>router5</em> will query registered components for segment <code>A.1.a</code>, then <code>A.1</code>, then <code>A</code>.</p>
-<blockquote>
-<p>When option <code>autoCleanUp</code> is set to true, canDeactivate methods are removed when their associated segment is no longer active.</p>
-</blockquote>
-
-    </main>
-
-    <footer class="">
-    &copy; Thomas Roch
-
-    |
-
-    <a href="https://github.com/router5/router5/blob/master/LICENSE">Licence MIT</a>
-
-    |
-
-    <a href="https://github.com/router5/router5/graphs/contributors">Contributors</a>
-
-    |
-
-    <a href="https://github.com/router5/router5/issues">issues</a>
-</footer>
-
-
-    <!-- Scripts -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    
-
-
-    <!-- Script files -->
+    You are going to be redirected to <a href="https://router5.js.org/advance/preventing-navigation">router5.js.org</a>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -169,16 +36,6 @@ than <code>canDeactivate</code> methods: you can return a boolean value, return 
 
       ga('create', 'UA-64765998-1', 'auto');
       ga('send', 'pageview');
-    </script>
-
-    <script>
-        window.addEventListener('scroll', function () {
-            if (window.document.body.scrollTop > 0) {
-                window.document.body.classList.add('scrolled');
-            } else {
-                window.document.body.classList.remove('scrolled');
-            }
-        });
     </script>
 </body>
 

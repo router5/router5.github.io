@@ -21,131 +21,12 @@
     <meta property="og:url" content="http://router5.github.io">
     <meta property="og:description" content="Simple, framework-agnostic, powerful and functional HTML5 routing solution.">
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
-    <!-- Stylsheets -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/docs.css">
-    <link rel="stylesheet" href="/styles/examples.css">
-    
+    <link rel="canonical" href="https://router5.js.org/migration/migrating-from-4.x-to-5.x">
+    <meta http-equiv="refresh" content="2;url=https://router5.js.org/migration/migrating-from-4.x-to-5.x" />
 </head>
 
 <body>
-    
-        <header>
-        <nav class="">
-            <a href="/" class="">Home</a>
-
-            <a href="/docs/why-router5.html" class="">Getting started</a>
-
-            <a href="/docs/configuring-routes.html" class="">Guides</a>
-
-            <a href="/docs/api-reference.html" class="">API</a>
-
-            <a href="docs/with-react.html" class="">Examples</a>
-
-            <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-        </nav>
-    </header>
-
-
-    <aside>
-        <nav>
-            <strong>Getting started</strong>
-
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
-            <a href="/docs/installation.html" class="link">Installation</a>
-            <!-- <a href="/docs/first-router.html" class="link">Your first router</a> -->
-            <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
-
-            <strong>Docs</strong>
-
-            <a href="/docs/migration-6.html" class="link">Migrating to v6</a>
-            <a href="/docs/api-reference.html" class="link">Router5 API</a>
-            <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
-            <a href="/docs/transition.html" class="link">Transition phase</a>
-
-            <strong>Guides</strong>
-
-            <a href="/docs/configuring-routes.html" class="link">Configuring routes</a>
-            <a href="/docs/router-options.html" class="link">Router options</a>
-            <a href="/docs/path-syntax.html" class="link">Path syntax</a>
-            <a href="/docs/navigation.html" class="link">Navigation</a>
-            <a href="/docs/observability.html" class="link">Observability</a>
-            <a href="/docs/universal-applications.html" class="link">Universal applications</a>
-            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/middleware.html" class="link">Middleware functions</a>
-            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
-            <a href="/docs/async-data.html" class="link">Loading async data</a>
-            <a href="/docs/plugins.html" class="link">Using plugins</a>
-            <a href="/docs/injectables.html" class="link">Dependency injection</a>
-
-            <strong>Plugins</strong>
-
-            <a href="/docs/history.html" class="link">Browser</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-
-            <strong>Examples</strong>
-
-            <a href="/docs/with-react.html" class="link">With React</a>
-            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
-            <a href="/docs/with-deku.html" class="link">With Deku</a>
-            <a href="/docs/with-deku-redux.html" class="link">With Deku and Redux</a>
-            <a href="/docs/with-cycle.html" class="link">With Cycle</a>
-        </nav>
-    </aside>
-
-    <main>
-        <h1 id="migrating-from-4-x-to-5-x">Migrating from 4.x to 5.x</h1>
-<ul>
-<li><a href="/docs/migration-4.html">Migrating from 3.x to 4.x</a></li>
-<li><a href="/docs/migration-3.html">Migrating from 2.x to 3.x</a></li>
-<li><a href="/docs/migration-2.html">Migrating from 1.x to 2.x</a></li>
-<li><a href="/docs/migration.html">Migrating from 0.x to 1.x</a></li>
-</ul>
-<h2 id="release-notes-and-breaking-changes">Release notes and breaking changes</h2>
-<p>With version 5.0.0, <code>router5</code> is now a monorepo: all repos have been imported into <a href="https://github.com/router5/router5">https://github.com/router5/router5</a>. This will make maintenance and release of new versions easier.</p>
-<h4 id="bug-fixes">Bug fixes</h4>
-<p>Not found state is now passed to middleware functions on start: if you use <code>allowNotFound</code> option and have custom middleware functions, make sure they still work.</p>
-<h4 id="default-options">Default options</h4>
-<ul>
-<li>router <code>strictQueryParams</code> option is now <code>false</code> by default: if you currently don&#39;t specify that option, you need to explicitely set it to <code>true</code> to keep the same behaviour.</li>
-<li>browser plugin option <code>preserveHash</code> is now <code>true</code> by default</li>
-</ul>
-<h3 id="packages-renamed">Packages renamed</h3>
-<ul>
-<li><code>router5.helpers</code> package has been renamed to <code>router5-helpers</code></li>
-<li><code>router5.transition-path</code> package has been renamed to <code>router5-transition-path</code></li>
-</ul>
-
-    </main>
-
-    <footer class="">
-    &copy; Thomas Roch
-
-    |
-
-    <a href="https://github.com/router5/router5/blob/master/LICENSE">Licence MIT</a>
-
-    |
-
-    <a href="https://github.com/router5/router5/graphs/contributors">Contributors</a>
-
-    |
-
-    <a href="https://github.com/router5/router5/issues">issues</a>
-</footer>
-
-
-    <!-- Scripts -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    
-
-
-    <!-- Script files -->
+    You are going to be redirected to <a href="https://router5.js.org/migration/migrating-from-4.x-to-5.x">router5.js.org</a>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -155,16 +36,6 @@
 
       ga('create', 'UA-64765998-1', 'auto');
       ga('send', 'pageview');
-    </script>
-
-    <script>
-        window.addEventListener('scroll', function () {
-            if (window.document.body.scrollTop > 0) {
-                window.document.body.classList.add('scrolled');
-            } else {
-                window.document.body.classList.remove('scrolled');
-            }
-        });
     </script>
 </body>
 

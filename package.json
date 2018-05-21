@@ -3,9 +3,6 @@
   "private": true,
   "version": "6.1.2",
   "description": "router5 website",
-  "scripts": {
-    "build": "node _scripts/build.js"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/router5/router5.github.io.git"
@@ -15,15 +12,7 @@
   "bugs": {
     "url": "https://github.com/router5/router5.github.io/issues"
   },
-  "homepage": "http://router5.github.io",
+  "homepage": "http://router5.js.org",
   "main": "index.js",
-  "devDependencies": {
-    "async": "~2.6.0",
-    "docchi": "~0.12.1",
-    "marked": "~0.3.19",
-    "nunjucks": "~3.1.2",
-    "object-assign": "~4.1.1",
-    "router5": "6.0.0",
-    "webpack": "~4.6.0"
-  }
+  "devDependencies": {}
 }

@@ -21,167 +21,12 @@
     <meta property="og:url" content="http://router5.github.io">
     <meta property="og:description" content="Simple, framework-agnostic, powerful and functional HTML5 routing solution.">
     <meta property="og:image" content="http://router5.github.io/logo/r5_128.png">
-    <!-- Stylsheets -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github-gist.min.css">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/docs.css">
-    <link rel="stylesheet" href="/styles/examples.css">
-    
+    <link rel="canonical" href="https://router5.js.org/guides/defining-routes">
+    <meta http-equiv="refresh" content="2;url=https://router5.js.org/guides/defining-routes" />
 </head>
 
 <body>
-    
-        <header>
-        <nav class="">
-            <a href="/" class="">Home</a>
-
-            <a href="/docs/why-router5.html" class="">Getting started</a>
-
-            <a href="/docs/configuring-routes.html" class="active">Guides</a>
-
-            <a href="/docs/api-reference.html" class="">API</a>
-
-            <a href="docs/with-react.html" class="">Examples</a>
-
-            <iframe src="https://ghbtns.com/github-btn.html?user=router5&repo=router5&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
-        </nav>
-    </header>
-
-
-    <aside>
-        <nav>
-            <strong>Getting started</strong>
-
-            <a href="/docs/why-router5.html" class="link">Why router5?</a>
-            <a href="/docs/installation.html" class="link">Installation</a>
-            <!-- <a href="/docs/first-router.html" class="link">Your first router</a> -->
-            <a href="/docs/ecosystem.html" class="link">Ecosystem</a>
-
-            <strong>Docs</strong>
-
-            <a href="/docs/migration-6.html" class="link">Migrating to v6</a>
-            <a href="/docs/api-reference.html" class="link">Router5 API</a>
-            <a href="/docs/understanding-router5.html" class="link">Understanding router5</a>
-            <a href="/docs/transition.html" class="link">Transition phase</a>
-
-            <strong>Guides</strong>
-
-            <a href="/docs/configuring-routes.html" class="link active">Configuring routes</a>
-            <a href="/docs/router-options.html" class="link">Router options</a>
-            <a href="/docs/path-syntax.html" class="link">Path syntax</a>
-            <a href="/docs/navigation.html" class="link">Navigation</a>
-            <a href="/docs/observability.html" class="link">Observability</a>
-            <a href="/docs/universal-applications.html" class="link">Universal applications</a>
-            <a href="/docs/preventing-navigation.html" class="link">Preventing navigation</a>
-            <a href="/docs/middleware.html" class="link">Middleware functions</a>
-            <a href="/docs/custom-errors.html" class="link">Custom errors and redirections</a>
-            <a href="/docs/async-data.html" class="link">Loading async data</a>
-            <a href="/docs/plugins.html" class="link">Using plugins</a>
-            <a href="/docs/injectables.html" class="link">Dependency injection</a>
-
-            <strong>Plugins</strong>
-
-            <a href="/docs/history.html" class="link">Browser</a>
-            <a href="/docs/listeners.html" class="link">Listeners</a>
-
-            <strong>Examples</strong>
-
-            <a href="/docs/with-react.html" class="link">With React</a>
-            <a href="/docs/with-react-redux.html" class="link">With React and Redux</a>
-            <a href="/docs/with-deku.html" class="link">With Deku</a>
-            <a href="/docs/with-deku-redux.html" class="link">With Deku and Redux</a>
-            <a href="/docs/with-cycle.html" class="link">With Cycle</a>
-        </nav>
-    </aside>
-
-    <main>
-        <h1 id="configuring-routes">Configuring routes</h1>
-<blockquote>
-<p>There are a few ways to add routes to your router. You can specify your routes when creating a router instance and / or use chainable <code>add</code> and <code>addNode</code> methods to add routes.</p>
-</blockquote>
-<h2 id="defining-your-routes-as-pojos">Defining your routes as POJOs</h2>
-<p>You can define your routes as a flat array or nested array of routes. When using a flat array of routes, nested route names need to have their full name specified.</p>
-<p>Route objects optionally accept the following properties:</p>
-<ul>
-<li><code>canActivate</code>: a method to control whether or not the route node can be activated (see <a href="/docs/preventing-navigation.html">Preventing navigation</a>)</li>
-<li><code>forwardTo</code>: if specified, the router will transition to the forwarded route instead. It is useful for defaulting to a child route</li>
-<li><code>defaultParams</code>: an object of default params to extend when navigating and when matching a path</li>
-<li><code>encodeParams(stateParams)</code>: a function of state params returning path params. Used when building a path given a route name and params (typically on start and navigation).</li>
-<li><code>encodeParams(pathParams)</code>: a function of path params returning params. Used when matching a path to map path params to state params.</li>
-</ul>
-<p>Note on <code>encodeParams</code> and <code>decodeParams</code>: one can&#39;t be used without another, and applying one after another should be equivalent to an identity function.</p>
-<p><strong>encodeParams(stateParams: Object): Object</strong></p>
-<p>A function taking state params and returning path params.</p>
-<p>__decodedParams</p>
-<p><strong>Flat array of routes</strong></p>
-<pre><code class="lang-javascript javascript">const routes = [
-    { name: &#39;users&#39;,      path: &#39;/users&#39;},
-    { name: &#39;users.view&#39;, path: &#39;/view&#39;},
-    { name: &#39;users.list&#39;, path: &#39;/list&#39;}
-];
-</code></pre>
-<p><strong>Nested arrays of routes</strong></p>
-<pre><code class="lang-javascript javascript">const routes = [
-    { name: &#39;users&#39;, path: &#39;/users&#39;, children: [
-        { name: &#39;view&#39;, path: &#39;/view&#39;},
-        { name: &#39;list&#39;, path: &#39;/list&#39;}
-    ]}
-];
-</code></pre>
-<p><strong>Nested arrays of routes</strong></p>
-<h2 id="adding-routes-to-your-router">Adding routes to your router</h2>
-<p>You can add all your routes at once using <code>createRouter</code> or <code>router.add</code>.</p>
-<p><strong>createRouter(routes, options)</strong></p>
-<pre><code class="lang-javascript javascript">const router = createRouter(routes, options);
-</code></pre>
-<p><strong>add(routes)</strong></p>
-<p><code>.add()</code> accepts single nodes, flat or nested arrays.</p>
-<pre><code class="lang-javascript javascript">myRouter.add({ name: &#39;about&#39;, path: &#39;/about&#39; });
-// Or
-myRouter.add([
-    {name: &#39;about&#39;,   path: &#39;/about&#39;},
-    {name: &#39;contact&#39;, path: &#39;/contact&#39;},
-]);
-</code></pre>
-<p><strong>addNode(name, path[, canActivate])</strong></p>
-<p>You can add routes node by node, specifying a node name and its segment path.</p>
-<pre><code class="lang-javascript javascript">var router = createRouter()
-    .addNode(&#39;users&#39;,      &#39;/users&#39;)
-    .addNode(&#39;users.view&#39;, &#39;/view/:id&#39;)
-    .addNode(&#39;users.list&#39;, &#39;/list&#39;);
-</code></pre>
-<h2 id="configuring-the-root-node-path">Configuring the root node path</h2>
-<p>At the top of your tree of routes, there is an unamed node called the root node. Its path is empty and can be configured using <code>router.setRootPath(path)</code>. It can be used for example to list a number of allowed query parameters for all routes in strict query parameters mode (<code>router.setRootPath(&#39;?param1&amp;param2&#39;)</code>).</p>
-
-    </main>
-
-    <footer class="">
-    &copy; Thomas Roch
-
-    |
-
-    <a href="https://github.com/router5/router5/blob/master/LICENSE">Licence MIT</a>
-
-    |
-
-    <a href="https://github.com/router5/router5/graphs/contributors">Contributors</a>
-
-    |
-
-    <a href="https://github.com/router5/router5/issues">issues</a>
-</footer>
-
-
-    <!-- Scripts -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    
-
-
-    <!-- Script files -->
+    You are going to be redirected to <a href="https://router5.js.org/guides/defining-routes">router5.js.org</a>
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -191,16 +36,6 @@ myRouter.add([
 
       ga('create', 'UA-64765998-1', 'auto');
       ga('send', 'pageview');
-    </script>
-
-    <script>
-        window.addEventListener('scroll', function () {
-            if (window.document.body.scrollTop > 0) {
-                window.document.body.classList.add('scrolled');
-            } else {
-                window.document.body.classList.remove('scrolled');
-            }
-        });
     </script>
 </body>
 
